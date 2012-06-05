@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1944,1760" id="server" metadata="uml2-1.0" initialized="true" zoom="0.5" tag="1000" key="32303037303533312D31303030206775616E6162616E615F7630342F5665726F6E696361">
+  <children xsi:type="editmodel:ClassEditModel" name="Cliente" location="697,509" size="132,373" id="server/Cliente" runTimeClassModel="getTelefono(),db,getIndirizzo(),getPassword(),setDb(Lserver.DataBase;),indirizzo,telefono,getNome(),registrareCliente(),password,cognome,getCf(),getCognome(),getDb(),Cliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),email,nome,cf">
+    <children xsi:type="editmodel:CompartmentEditModel" size="103,144">
+      <children xsi:type="editmodel:AttributeEditModel" name="cf" id="server/Cliente#cf"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="cognome" id="server/Cliente#cognome"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="db" id="server/Cliente#db"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="email" id="server/Cliente#email"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="indirizzo" id="server/Cliente#indirizzo"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nome" id="server/Cliente#nome"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="password" id="server/Cliente#password"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="telefono" id="server/Cliente#telefono"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="109,180">
+      <children xsi:type="editmodel:MethodEditModel" name="Cliente" id="server/Cliente#Cliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCf" id="server/Cliente#getCf()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCognome" id="server/Cliente#getCognome()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDb" id="server/Cliente#getDb()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getIndirizzo" id="server/Cliente#getIndirizzo()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNome" id="server/Cliente#getNome()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPassword" id="server/Cliente#getPassword()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTelefono" id="server/Cliente#getTelefono()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="registrareCliente" id="server/Cliente#registrareCliente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setDb" id="server/Cliente#setDb(Lserver.DataBase;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Componente" location="277,1568" size="123,93" id="server/Componente" runTimeClassModel="codice,modello,tipo">
+    <children xsi:type="editmodel:CompartmentEditModel" size="89,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="codice" id="server/Componente#codice"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="modello" id="server/Componente#modello"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="tipo" id="server/Componente#tipo"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ComponenteMagazino" location="645,1379" size="185,75" id="server/ComponenteMagazino" runTimeClassModel="sn,stato">
+    <children xsi:type="editmodel:CompartmentEditModel" size="77,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="sn" id="server/ComponenteMagazino#sn"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stato" id="server/ComponenteMagazino#stato"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ComputerAssemblato" location="50,1568" size="177,67" id="server/ComputerAssemblato" runTimeClassModel="assemblaComputer()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="122,18">
+      <children xsi:type="editmodel:MethodEditModel" name="assemblaComputer" id="server/ComputerAssemblato#assemblaComputer()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Configurazione" location="234,1379" size="139,129" id="server/Configurazione" runTimeClassModel="descrizione,codice,prezzo,standard,nome">
+    <children xsi:type="editmodel:CompartmentEditModel" size="109,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="codice" id="server/Configurazione#codice"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="descrizione" id="server/Configurazione#descrizione"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nome" id="server/Configurazione#nome"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="prezzo" id="server/Configurazione#prezzo"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="standard" id="server/Configurazione#standard"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Connezione" location="840,239" size="134,139" id="server/Connezione" runTimeClassModel="run(),Connezione(Ljava.net.Socket;),Connezione(),in,out">
+    <children xsi:type="editmodel:CompartmentEditModel" size="111,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="in" id="server/Connezione#in"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="out" id="server/Connezione#out"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="87,54">
+      <children xsi:type="editmodel:MethodEditModel" name="Connezione" id="server/Connezione#Connezione(Ljava.net.Socket;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Connezione" id="server/Connezione#Connezione()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="server/Connezione#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="server/Connezione@connezione+server/ServizioServer@servizioServer" source="//@children.5" target="//@children.14" targetEnd="//@children.5/@sourceConnections.0/@children.2" label="//@children.5/@sourceConnections.0/@children.0" sourceEnd="//@children.5/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="connezione" location="0,62" id="server/Connezione@connezione+server/ServizioServer@servizioServer|server/Connezione#connezione" attachSource="true" multiplicityLabel="//@children.5/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.5/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - connezione" location="767,279" size="66,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="815,307" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="servizioServer" location="136,112" id="server/Connezione@connezione+server/ServizioServer@servizioServer|server/ServizioServer#servizioServer"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="DataBase" location="50,50" size="237,409" id="server/DataBase" runTimeClassModel="DataBase(),setSt(Ljava.sql.Statement;),getStConsultaComputer(),cercaModelli(Ljava.lang.String;I),stConsultaComputer,consultaLog(Ljava.lang.String;Ljava.lang.String;),setStNuevoCliente(Ljava.sql.PreparedStatement;),insertCliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),stConsultaLog,stNuevoCliente,setStConta(Ljava.sql.PreparedStatement;),setStConsultaLog(Ljava.sql.PreparedStatement;),getSt(),getStNuevoCliente(),getStConsultaLog(),conta(Ljava.lang.String;),st,getStConta(),setStConsultaComputer(Ljava.sql.PreparedStatement;),stConta">
+    <children xsi:type="editmodel:CompartmentEditModel" size="214,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="st" id="server/DataBase#st"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stConsultaComputer" id="server/DataBase#stConsultaComputer"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stConsultaLog" id="server/DataBase#stConsultaLog"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stConta" id="server/DataBase#stConta"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stNuevoCliente" id="server/DataBase#stNuevoCliente"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="143,270">
+      <children xsi:type="editmodel:MethodEditModel" name="DataBase" id="server/DataBase#DataBase()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cercaModelli" id="server/DataBase#cercaModelli(Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="consultaLog" id="server/DataBase#consultaLog(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="conta" id="server/DataBase#conta(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSt" id="server/DataBase#getSt()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getStConsultaComputer" id="server/DataBase#getStConsultaComputer()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getStConsultaLog" id="server/DataBase#getStConsultaLog()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getStConta" id="server/DataBase#getStConta()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getStNuevoCliente" id="server/DataBase#getStNuevoCliente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="insertCliente" id="server/DataBase#insertCliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setSt" id="server/DataBase#setSt(Ljava.sql.Statement;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setStConsultaComputer" id="server/DataBase#setStConsultaComputer(Ljava.sql.PreparedStatement;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setStConsultaLog" id="server/DataBase#setStConsultaLog(Ljava.sql.PreparedStatement;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setStConta" id="server/DataBase#setStConta(Ljava.sql.PreparedStatement;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setStNuevoCliente" id="server/DataBase#setStNuevoCliente(Ljava.sql.PreparedStatement;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Fattura" location="684,1009" size="131,121" id="server/Fattura" runTimeClassModel="generareFattura(),codice,totale,data">
+    <children xsi:type="editmodel:CompartmentEditModel" size="85,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="codice" id="server/Fattura#codice"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="data" id="server/Fattura#data"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="totale" id="server/Fattura#totale"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="108,18">
+      <children xsi:type="editmodel:MethodEditModel" name="generareFattura" id="server/Fattura#generareFattura()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Magazzino" location="50,1711" size="111,29" id="server/Magazzino" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PagamentoFatto" location="785,1568" size="147,29" id="server/PagamentoFatto" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Preventivo" location="450,1568" size="121,85" id="server/Preventivo" runTimeClassModel="totale,ricalcolaTotale()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="72,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="totale" id="server/Preventivo#totale"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="98,18">
+      <children xsi:type="editmodel:MethodEditModel" name="ricalcolaTotale" id="server/Preventivo#ricalcolaTotale()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="RichiestaSpedizione" location="423,1379" size="172,103" id="server/RichiestaSpedizione" runTimeClassModel="ora,data,generaRichiesta()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="data" id="server/RichiestaSpedizione#data"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="ora" id="server/RichiestaSpedizione#ora"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="108,18">
+      <children xsi:type="editmodel:MethodEditModel" name="generaRichiesta" id="server/RichiestaSpedizione#generaRichiesta()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Spedizione" location="621,1568" size="114,67" id="server/Spedizione" runTimeClassModel="spedire()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="66,18">
+      <children xsi:type="editmodel:MethodEditModel" name="spedire" id="server/Spedizione#spedire()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.14/@sourceConnections.0" name="Collegare" location="484,44" size="111,95" id="conexionInterface/Collegare" runTimeClassModel="collegareDB()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="88,18">
+      <children xsi:type="editmodel:MethodEditModel" name="collegareDB" id="conexionInterface/Collegare#collegareDB()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.0" name="ServizioServer" location="472,189" size="136,175" id="server/ServizioServer" runTimeClassModel="main([Ljava.lang.String;),ServizioServer(),setC(Lserver.Connezione;),collegareDB(),c,run(),getC()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="88,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="c" id="server/ServizioServer#c"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="102,108">
+      <children xsi:type="editmodel:MethodEditModel" name="ServizioServer" id="server/ServizioServer#ServizioServer()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="collegareDB" id="server/ServizioServer#collegareDB()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getC" id="server/ServizioServer#getC()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="main" id="server/ServizioServer#main([Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="server/ServizioServer#run()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setC" id="server/ServizioServer#setC(Lserver.Connezione;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="conexionInterface/Collegare&lt;-server/ServizioServer" source="//@children.14" target="//@children.13" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="67,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="55,95"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Server" location="166,698" size="86,67" id="server/Server" runTimeClassModel="Server(Ljava.lang.String;F)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="63,18">
+      <children xsi:type="editmodel:MethodEditModel" name="Server" id="server/Server#Server(Ljava.lang.String;F)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="server/Computer&lt;-server/Server" source="//@children.15" target="//@children.17/@sourceConnections.0" targetEnd="//@children.15/@sourceConnections.0/@children.1" sourceEnd="//@children.15/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="43,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Desktop" location="282,698" size="92,67" id="server/Desktop" runTimeClassModel="Desktop(Ljava.lang.String;F)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="69,18">
+      <children xsi:type="editmodel:MethodEditModel" name="Desktop" id="server/Desktop#Desktop(Ljava.lang.String;F)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="server/Computer&lt;-server/Desktop" source="//@children.16" target="//@children.17/@sourceConnections.0" targetEnd="//@children.16/@sourceConnections.0/@children.1" sourceEnd="//@children.16/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="46,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Laptop" location="50,698" size="86,67" id="server/Laptop" runTimeClassModel="Laptop(Ljava.lang.String;F)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="63,18">
+      <children xsi:type="editmodel:MethodEditModel" name="Laptop" id="server/Laptop#Laptop(Ljava.lang.String;F)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.15/@sourceConnections.0 //@children.16/@sourceConnections.0" autoLocated="true" id="server/Computer&lt;-server/Laptop" source="//@children.17" target="//@children.18" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="43,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,139" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.17/@sourceConnections.0" name="Computer" location="139,509" size="142,139" id="server/Computer" runTimeClassModel="mostrareComputer(),prezzo,tipo,nome,Computer(Ljava.lang.String;F)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="80,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="nome" id="server/Computer#nome"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="prezzo" id="server/Computer#prezzo"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="tipo" id="server/Computer#tipo"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="119,36">
+      <children xsi:type="editmodel:MethodEditModel" name="Computer" id="server/Computer#Computer(Ljava.lang.String;F)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mostrareComputer" id="server/Computer#mostrareComputer()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Contrasegno" location="326,1102" size="122,29" id="server/Contrasegno" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="server/Pagamento&lt;-server/Contrasegno" source="//@children.19" target="//@children.22/@sourceConnections.0" targetEnd="//@children.19/@sourceConnections.0/@children.1" sourceEnd="//@children.19/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="61,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.22/@sourceConnections.0" name="Pagamento" location="182,1009" size="115,43" id="server/Pagamento" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="CartaCredito" location="174,1102" size="122,29" id="server/CartaCredito" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="server/Pagamento&lt;-server/CartaCredito" source="//@children.21" target="//@children.22/@sourceConnections.0" targetEnd="//@children.21/@sourceConnections.0/@children.1" sourceEnd="//@children.21/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="61,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Bonifico" location="50,1102" size="94,29" id="server/Bonifico" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.21/@sourceConnections.0 //@children.19/@sourceConnections.0" autoLocated="true" id="server/Pagamento&lt;-server/Bonifico" source="//@children.22" target="//@children.20" targetEnd="//@children.22/@sourceConnections.0/@children.1" sourceEnd="//@children.22/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="47,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="57,43" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Ordine" location="405,509" size="85,29" id="server/Ordine" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
