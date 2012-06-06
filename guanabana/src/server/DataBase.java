@@ -106,6 +106,16 @@ public class DataBase {
 		result.close();
 		return numero;
 	}
+	
+	public int countComponentiModello(String tipo) throws SQLException{
+		int num = 0;
+		ResultSet result;
+		result = stModello.executeQuery("select id, nome, prezzo from componenti where "+tipo+" = 1");
+		result.last();
+		num = result.getRow();
+		System.out.println(num); //test
+		return num;
+	}
 	public String[][] getComponentiModello(String tipo) throws SQLException{
 		ResultSet result;
 		int i=0;
@@ -134,12 +144,12 @@ public class DataBase {
 	
 		
 	}
-	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		
-		DataBase db = new DataBase();		
-		String[][] components=db.getComponentiModello("ser");
-		for(int i=0;i<2;i++) System.out.println(components[i][0]);
-	}
+//	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+//		int i =0;
+//		DataBase db = new DataBase();		
+//		String[][] components=db.getComponentiModello("ser");
+//		i = db.countComponentiModello("ser");
+//	}
 	
 	/**
 	 * @return the st

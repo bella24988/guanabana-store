@@ -38,7 +38,11 @@ public class ModelloController implements ActionListener {
 			} else if (nome.startsWith("SER")) {
 				tipo = "ser";
 			}
-			String[][] components = db.getComponentiModello(tipo);
+			int rows = 0;
+			int maxCol = 3;
+			rows = db.countComponentiModello(tipo);
+			String[][] components = new String[rows][maxCol];
+			components = db.getComponentiModello(tipo);
 			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
