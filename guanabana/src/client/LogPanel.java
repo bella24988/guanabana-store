@@ -13,46 +13,55 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Font;
 
+/**
+ * @author Lele
+ * Classe LogPanel: contiene un pannello panelLogin che contiene i campi di testo per inserire username e password, con i tasti login e registrati, nel caso in cui non sia stato effettuato il login.
+ * In caso di login effettuato contiene il pannello di saluto.
+ * La classe contiene inoltre un TextArea dove vengono visualizzati i messaggi ricevuti dal server.
+ */
 public class LogPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L; //serializzazione
 	/**
-	 * 
+	 * Dichiarazione delle variabili
 	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Dichiarazione Variabile
-	 */
-	private JLabel lblUser; // Etichette
-	/**
-	 * Dichiarazione Variabile
-	 */
-	private JLabel lblPassword;
-	public JButton btnRegistrati;
-	public JButton btnLog;
-	public JTextField txtUser;
-	public JTextField txtPassword;
-	private LogController logController;
-	private RegistratiController registratiController;
-	private SalutoPanel logFatto;
-	private JTextArea txaMessaggio;
-	private JPanel panelLogin;
-	private ContenutoPanel contenuto;
+	private JLabel lblUser; //Etichetta email
+	private JLabel lblPassword; //Etichetta password
+	public JButton btnRegistrati; //Bottone registrati
+	public JButton btnLog;   //Bottone login
+	public JTextField txtUser; //Campo di testo email
+	public JTextField txtPassword; //Campo di testo password
+	private LogController logController; //Controllore per il bottone login
+	private RegistratiController registratiController; //Controllore per il bottone registrati
+	private SalutoPanel salutoPanel; //Pannello di saluto
+	private JPanel panelLogin;  //Pannello che contiene gli elementi per fare il login
+	private JTextArea txaMessaggio; //Box per i messaggi ricevuti dal server (errori ecc..)
+	private ContenutoPanel contenuto; //Pannello contenuto
 
-	// COSTRUTTORE
+	
+	/**
+	 * @param contenuto
+	 * Costruttore: crea il pannello con il pannello login
+	 */
 	public LogPanel(ContenutoPanel contenuto) {
-		this.setContenuto(contenuto);
-		setBackground(Color.WHITE);
-		lblUser = new JLabel("Email: ");
-		lblUser.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtPassword = new JTextField(15);
-		txtUser = new JTextField(15);
-		lblUser.setLabelFor(txtUser);
-
-		lblPassword = new JLabel("Password: ");
-		lblPassword.setLabelFor(txtPassword);
-		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		this.setContenuto(contenuto); //associa il pannello contenuto
+		setBackground(Color.WHITE);  //colore di sfondo
+		
+		lblUser = new JLabel("Email: "); //inizializza l'etichetta Email
+		lblUser.setHorizontalAlignment(SwingConstants.RIGHT);  //allineamento testo
+		lblPassword = new JLabel("Password: "); //inizializza l'etichetta password
+		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT); //allineamento testo
+		txtUser = new JTextField(15); //inizializza campo di testo Email
+		txtPassword = new JTextField(15); //inizializza campo di testo password
+		lblUser.setLabelFor(txtUser); //associa etichetta a campo di testo
+		lblPassword.setLabelFor(txtPassword); //associa etichetta a campo di testo
+		
+		//inizializza bottoni login e registrati
 		btnLog = new JButton("Login");
 		btnRegistrati = new JButton("Registrati");
+		
+		//inizializza, definisce aspetto e aggiunge gli elementi al pannello panelLogin
 		panelLogin = new JPanel();
 		panelLogin.setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
@@ -64,57 +73,58 @@ public class LogPanel extends JPanel {
 		panelLogin.add(btnLog, BorderLayout.WEST);
 		panelLogin.add(btnRegistrati, BorderLayout.EAST);
 
-		add(panelLogin, BorderLayout.NORTH);
-		txaMessaggio = new JTextArea("");
-		txaMessaggio.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
+		add(panelLogin, BorderLayout.NORTH); //aggiunge panelLogin a LogPanel
+		txaMessaggio = new JTextArea("");    //inizializza il messaggio vuoto
+		txaMessaggio.setFont(new Font("Comic Sans MS", Font.BOLD, 13)); //aspetto
 		txaMessaggio.setForeground(Color.RED);
 		txaMessaggio.setEditable(false);
-		add(txaMessaggio, BorderLayout.CENTER);
+		add(txaMessaggio, BorderLayout.CENTER); //aggiunge campo per il messaggio sotto panelLogin
 
-		// Controllers
-		logController = new LogController(this);
+		// Controllori
+		logController = new LogController(this); //controllore tasto login
 		btnLog.addActionListener(logController);
-		registratiController = new RegistratiController(this, contenuto);
+		registratiController = new RegistratiController(this, contenuto); //controllore tasto registrati
 		btnRegistrati.addActionListener(registratiController);
 
 	}
 
-	public void bloccareInserzione() {
+	/**
+	 * Blocca l'inserimento nei campi di testo e blocca i bottoni
+	 */
+	public void bloccareInserimento() {
 		btnLog.setEnabled(false);
-		txtPassword.setEditable(false);
+		txtPassword.setEnabled(false);
 		txtUser.setEnabled(false);
 		btnRegistrati.setEnabled(false);
 	}
 
+	/**
+	 * @param nome
+	 * @param cognome
+	 * Mostra salutoPanel una volta fatto il login
+	 */
 	public void loginFatto(String nome, String cognome) {
-		// Non visibilita degli elementi
-		deshabilitaRegistrazione();
-		btnLog.setVisible(false);
-		btnRegistrati.setVisible(false);
-		txtPassword.setVisible(false);
-		txtUser.setVisible(false);
-		lblPassword.setVisible(false);
-		lblUser.setVisible(false);
+		// Nasconde gli elementi
+		nascondiFormRegistrazione();
+		panelLogin.setVisible(false);
 		setTxaMessaggio("");
-		// instancia del nuovo panel
-		logFatto = new SalutoPanel(nome, cognome, this);
-		add(logFatto, BorderLayout.NORTH);
+		// Inizializzazione e posizionamento di salutoPanel
+		salutoPanel = new SalutoPanel(nome, cognome, this);
+		add(salutoPanel, BorderLayout.NORTH);
 
 	}
 
-	public void deshabilitaRegistrazione() {
+	public void nascondiFormRegistrazione() {
 		contenuto.getRegistratiView().setVisible(false);
 	}
 
-	public void SbloccareInserzione() {
-		btnLog.setVisible(true);
-		btnRegistrati.setVisible(true);
-		txtPassword.setVisible(true);
-		txtUser.setVisible(true);
-		lblPassword.setVisible(true);
-		lblUser.setVisible(true);
+	/**
+	 * Permette inserimento nei campi di testo Email e Password ed attiva i bottoni login e registrati
+	 */
+	public void sbloccareInserimento() {
+		panelLogin.setVisible(true);
 		btnLog.setEnabled(true);
-		txtPassword.setEditable(true);
+		txtPassword.setEnabled(true);
 		txtUser.setEnabled(true);
 		btnRegistrati.setEnabled(true);
 		setTxtUser("");
@@ -122,10 +132,22 @@ public class LogPanel extends JPanel {
 	}
 
 	public void logoutFatto() {
-		logFatto.setVisible(false);
-		SbloccareInserzione();
+		salutoPanel.setVisible(false);
+		sbloccareInserimento();
+	}
+	
+	public void mostraMessaggioErrore(String messaggio) {
+		txaMessaggio.setVisible(true);
+		setTxaMessaggio(messaggio);
 	}
 
+	public void nascondiMessaggioErrore() {
+		if (txaMessaggio.isVisible() == true) {
+			txaMessaggio.setVisible(false);
+		}
+	}
+	
+	//inizio getters and setters
 	public String getTxtUser() {
 		return txtUser.getText();
 	}
@@ -157,16 +179,7 @@ public class LogPanel extends JPanel {
 		this.txaMessaggio.setText(txaMessaggio);
 	}
 
-	public void mostraMessagio(String messaggio) {
-		txaMessaggio.setVisible(true);
-		setTxaMessaggio(messaggio);
-	}
-
-	public void togliereMessaggio() {
-		if (txaMessaggio.isVisible() == true) {
-			txaMessaggio.setVisible(false);
-		}
-	}
+	
 
 	public ContenutoPanel getContenuto() {
 		return contenuto;
@@ -204,5 +217,6 @@ public class LogPanel extends JPanel {
 	public void setLogController1(LogController logController1) {
 		this.logController1 = logController1;
 	}
+	//fine getters and setters
 
 }

@@ -10,14 +10,22 @@ import server.DataBase;
 import client.SalutoPanel;
 import client.LogPanel;
 
+/**
+ * @author Lele
+ * Classe che implementa l'action listener per il pulsante login e logout
+ */
 public class LogController implements ActionListener{
 	
-	private LogPanel logPanel;
+	private LogPanel logPanel; //pannello login da cui è chiamato LogController (funzionalità login)
 	private Cliente cliente;
 	private DataBase db;
-	private SalutoPanel logFattoPanel;
+	private SalutoPanel salutoPanel; //pannello saluto da cui è chiamato LogController (funzionalità logout)
 	
 	
+	/**
+	 * @param log
+	 * costruttore 1: apre la connessione col database e si associa al LogPanel chiamante
+	 */
 	public LogController(LogPanel log){
 		this.setLogpanel(log);
 		try {
@@ -30,27 +38,32 @@ public class LogController implements ActionListener{
 			e.printStackTrace();
 		}
 	}
-
-	public LogController(SalutoPanel logFattoPanel, LogPanel logPanel) {
-		this.setLogFattoPanel(logFattoPanel);
+	
+	/**
+	 * @param salutoPanel
+	 * @param logPanel
+	 * costruttore 2: si associa al SalutoPanel chiamante
+	 */
+	public LogController(SalutoPanel salutoPanel, LogPanel logPanel) {
+		this.setLogFattoPanel(salutoPanel);
 		this.setLogpanel(logPanel);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getActionCommand().equalsIgnoreCase("Login")){
-			logPanel.bloccareInserzione();
+			logPanel.bloccareInserimento();
 			try {
 				String[] consultaDB = new String[7];
 				consultaDB = db.consultaLog(logPanel.getTxtUser(), logPanel.getTxtPassword());
 				if (consultaDB[0]!=null){
-					logPanel.mostraMessagio("");
+					logPanel.mostraMessaggioErrore("");
 					Cliente cliente = new Cliente(consultaDB[0],consultaDB[1],consultaDB[2],consultaDB[3],
 						consultaDB[4],consultaDB[5],consultaDB[6]);
 					logPanel.loginFatto(cliente.getNome(), cliente.getCognome());				
 				}else{
-					logPanel.SbloccareInserzione();
-					logPanel.mostraMessagio("La email e la password non coincidono, per favore verifichi i dati.");
+					logPanel.sbloccareInserimento();
+					logPanel.mostraMessaggioErrore("La email e la password non coincidono, per favore verifichi i dati.");
 				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -112,14 +125,14 @@ public class LogController implements ActionListener{
 	 * @return the logFattoPanel
 	 */
 	public SalutoPanel getLogFattoPanel() {
-		return logFattoPanel;
+		return salutoPanel;
 	}
 
 	/**
 	 * @param logFattoPanel the logFattoPanel to set
 	 */
 	public void setLogFattoPanel(SalutoPanel logFattoPanel) {
-		this.logFattoPanel = logFattoPanel;
+		this.salutoPanel = logFattoPanel;
 	}
 
 	/**
@@ -153,8 +166,6 @@ public class LogController implements ActionListener{
 	 * @uml.associationEnd inverse="logController1:client.SalutoPanel"
 	 * @uml.association name="controllato"
 	 */
-	private SalutoPanel salutoPanel;
-
 
 	/** 
 	 * Getter of the property <tt>salutoPanel</tt>

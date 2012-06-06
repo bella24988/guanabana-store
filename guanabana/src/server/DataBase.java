@@ -106,7 +106,6 @@ public class DataBase {
 		result.close();
 		return numero;
 	}
-	//non è meglio fare un void showComponentiModello direttamente qui?
 	public String[][] getComponentiModello(String tipo) throws SQLException{
 		ResultSet result;
 		int i=0;
@@ -130,13 +129,16 @@ public class DataBase {
 			i++;
 		}
 		result.close();
+		
 		return components;
 	
 		
 	}
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+		
 		DataBase db = new DataBase();		
-		db.getComponentiModello("ser");
+		String[][] components=db.getComponentiModello("ser");
+		for(int i=0;i<2;i++) System.out.println(components[i][0]);
 	}
 	
 	/**

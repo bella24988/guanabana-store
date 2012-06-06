@@ -10,23 +10,29 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+/**
+ * @author Lele
+ * Classe MenuPanel: contiene 3 bottoni per selezionare l'acquisto di Ser, Lap, Des
+ */
 public class MenuPanel extends JPanel {
 
 	/**
-	 * 
+	 * Dichiarazioni delle variabili
 	 */
-	private static final long serialVersionUID = 1L;
-	public JButton btnLaptop; // Buttons
-	public JButton btnServer;
-	public JButton btnDesktop;
-	private ContenutoPanel contenuto;
-	private MenuController menuController;
+	private static final long serialVersionUID = 1L; //serializzazione
+	public JButton btnLaptop; // Bottone Acquista Laptop
+	public JButton btnServer; // Bottone Acquista Server 
+	public JButton btnDesktop;// Bottone Acquista Desktop 
+	private ContenutoPanel contenuto; //Pannello contenuto
+	private MenuController menuController; //Controllore di questo pannello
 
 	/**
-	 * Create the panel.
+	 * Costruttore della classe: crea il pannello e passa il riferimento a contenuto
 	 */
 	public MenuPanel(ContenutoPanel contenuto) {
-		setBackground(Color.WHITE);
+		
+		//Definisce aspetto MenuPanel e lo suddivide in griglia
+		setBackground(Color.WHITE);  
 		this.setContenuto(contenuto);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -36,7 +42,9 @@ public class MenuPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-
+		//fine definizione aspetto
+		
+		//dichiarazione, definizione aspetto e posizionamento in griglia del bottone Acquista Laptop
 		btnLaptop = new JButton("Acquista Laptop");
 		btnLaptop.setForeground(new Color(0, 0, 0));
 		btnLaptop.setBackground(new Color(154, 205, 50));
@@ -47,6 +55,7 @@ public class MenuPanel extends JPanel {
 		gbc_btnAcquistaLaptop.gridy = 0;
 		add(btnLaptop, gbc_btnAcquistaLaptop);
 
+		//dichiarazione, definizione aspetto e posizionamento in griglia del bottone Acquista Desktop
 		btnDesktop = new JButton("Acquista Desktop");
 		btnDesktop.setForeground(new Color(0, 0, 0));
 		btnDesktop.setBackground(new Color(154, 205, 50));
@@ -56,7 +65,8 @@ public class MenuPanel extends JPanel {
 		gbc_btnAcquistaDesktop.gridx = 0;
 		gbc_btnAcquistaDesktop.gridy = 1;
 		add(btnDesktop, gbc_btnAcquistaDesktop);
-
+		
+		//dichiarazione, definizione aspetto e posizionamento in griglia del bottone Acquista Server
 		btnServer = new JButton("Acquista Server");
 		btnServer.setForeground(new Color(0, 0, 0));
 		btnServer.setBackground(new Color(154, 205, 50));
@@ -66,13 +76,14 @@ public class MenuPanel extends JPanel {
 		gbc_btnAcquistaServer.gridy = 2;
 		add(btnServer, gbc_btnAcquistaServer);
 
-		// CONTROLLERS
+		// Controllori: listeners dei tre bottoni
 		menuController = new MenuController(this, contenuto);
 		btnLaptop.addActionListener(menuController);
 		btnDesktop.addActionListener(menuController);
 		btnServer.addActionListener(menuController);
 	}
-
+	
+	//inizio getter and setter
 	/**
 	 * @return the contenuto
 	 */
@@ -87,30 +98,6 @@ public class MenuPanel extends JPanel {
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
 	}
-
-	/**
-	 * @uml.property  name="menuController1"
-	 * @uml.associationEnd  inverse="menuPanel:client.MenuController"
-	 * @uml.association  name="controllato"
-	 */
-	private MenuController menuController1;
-
-	/**
-	 * Getter of the property <tt>menuController1</tt>
-	 * @return  Returns the menuController1.
-	 * @uml.property  name="menuController1"
-	 */
-	public MenuController getMenuController1() {
-		return menuController1;
-	}
-
-	/**
-	 * Setter of the property <tt>menuController1</tt>
-	 * @param menuController1  The menuController1 to set.
-	 * @uml.property  name="menuController1"
-	 */
-	public void setMenuController1(MenuController menuController1) {
-		this.menuController1 = menuController1;
-	}
+	//fine getter and setter
 
 }

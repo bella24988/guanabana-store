@@ -16,7 +16,7 @@ private Connezione c;
     	
     public ServizioServer() throws Exception{
     	
-    	Server = new ServerSocket(4001);
+    	Server = new ServerSocket(4000);
     	System.out.println("Il Server è in attesa sulla porta 4000.");
     	this.start();
     }
