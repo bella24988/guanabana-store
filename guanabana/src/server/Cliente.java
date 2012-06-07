@@ -13,8 +13,7 @@ public class Cliente {
 	private String password;
 	private String indirizzo;
 	private String telefono;
-	private DataBase db;
-	
+
 	/**
 	 */
 	
@@ -35,16 +34,6 @@ public class Cliente {
 	}
 
 	public void registrareCliente(){
-		try {
-			db = new DataBase();
-			db.insertCliente(cf, nome, cognome, email, indirizzo, telefono, password);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 	
@@ -171,22 +160,6 @@ public class Cliente {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-
-	/**
-	 * @return the db
-	 */
-	public DataBase getDb() {
-		return db;
-	}
-
-
-	/**
-	 * @param db the db to set
-	 */
-	public void setDb(DataBase db) {
-		this.db = db;
 	}
 
 		

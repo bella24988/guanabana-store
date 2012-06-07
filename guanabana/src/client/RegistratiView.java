@@ -494,21 +494,21 @@ public class RegistratiView extends JPanel {
 	}
 
 	public void ocultaFinestra() {
-		logPanel.loginFatto(getTxtNome(), getTxtCognome());
-
+		logPanel.loginFatto(getTxtNome());
 	}
 
 	/**
-	 * @uml.property  name="registratiController"
-	 * @uml.associationEnd  inverse="registratiView:client.RegistratiController"
-	 * @uml.association  name="controlllato"
+	 * @uml.property name="registratiController"
+	 * @uml.associationEnd inverse="registratiView:client.RegistratiController"
+	 * @uml.association name="controlllato"
 	 */
 	private RegistratiController registratiController;
 
 	/**
 	 * Getter of the property <tt>registratiController</tt>
-	 * @return  Returns the registratiController.
-	 * @uml.property  name="registratiController"
+	 * 
+	 * @return Returns the registratiController.
+	 * @uml.property name="registratiController"
 	 */
 	public RegistratiController getRegistratiController() {
 		return registratiController;
@@ -516,25 +516,28 @@ public class RegistratiView extends JPanel {
 
 	/**
 	 * Setter of the property <tt>registratiController</tt>
-	 * @param registratiController  The registratiController to set.
-	 * @uml.property  name="registratiController"
+	 * 
+	 * @param registratiController
+	 *            The registratiController to set.
+	 * @uml.property name="registratiController"
 	 */
 	public void setRegistratiController(
 			RegistratiController registratiController) {
-				this.registratiController = registratiController;
-			}
+		this.registratiController = registratiController;
+	}
 
 	/**
-	 * @uml.property  name="logPanel1"
-	 * @uml.associationEnd  inverse="registratiView:client.LogPanel"
-	 * @uml.association  name="si mostra in"
+	 * @uml.property name="logPanel1"
+	 * @uml.associationEnd inverse="registratiView:client.LogPanel"
+	 * @uml.association name="si mostra in"
 	 */
 	private LogPanel logPanel1;
 
 	/**
 	 * Getter of the property <tt>logPanel1</tt>
-	 * @return  Returns the logPanel1.
-	 * @uml.property  name="logPanel1"
+	 * 
+	 * @return Returns the logPanel1.
+	 * @uml.property name="logPanel1"
 	 */
 	public LogPanel getLogPanel1() {
 		return logPanel1;
@@ -542,8 +545,10 @@ public class RegistratiView extends JPanel {
 
 	/**
 	 * Setter of the property <tt>logPanel1</tt>
-	 * @param logPanel1  The logPanel1 to set.
-	 * @uml.property  name="logPanel1"
+	 * 
+	 * @param logPanel1
+	 *            The logPanel1 to set.
+	 * @uml.property name="logPanel1"
 	 */
 	public void setLogPanel1(LogPanel logPanel1) {
 		this.logPanel1 = logPanel1;

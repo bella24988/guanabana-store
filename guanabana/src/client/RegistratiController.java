@@ -3,6 +3,7 @@ package client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import server.Cliente;
 import client.ContenutoPanel;
@@ -46,12 +47,14 @@ public class RegistratiController implements ActionListener{
 					String indirizzo = "Via: "+registrati.getTxtVia()+" C.A.P. "+registrati.getTxtCap()+". "+
 										registrati.getTxtCitta()+". Provincia: "+registrati.getTxtProvincia()+
 										". "+registrati.getTxtStato();
-					
-					cliente = new Cliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
-							registrati.getTxtEmail(),registrati.getTxtPassword(),indirizzo,registrati.getTxtTelefono());
-					
-					cliente.registrareCliente();
-					
+					Client client = new Client();
+					try {
+						registrati.setTxtNome(client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
+								registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),registrati.getTxtPassword()));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+						registrati.mostraMessaggio("Errore con il server");
+					}					
 					registrati.ocultaFinestra();
 				
 				}else{

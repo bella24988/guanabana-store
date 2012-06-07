@@ -16,10 +16,10 @@ import client.LogPanel;
  */
 public class LogController implements ActionListener{
 	
-	private LogPanel logPanel; //pannello login da cui è chiamato LogController (funzionalità login)
+	private LogPanel logPanel; //pannello login da cui ÔøΩ chiamato LogController (funzionalitÀÜ login)
 	private Cliente cliente;
 	private DataBase db;
-	private SalutoPanel salutoPanel; //pannello saluto da cui è chiamato LogController (funzionalità logout)
+	private SalutoPanel salutoPanel; //pannello saluto da cui ÔøΩ chiamato LogController (funzionalitÀÜ logout)
 	
 	
 	/**
@@ -54,19 +54,19 @@ public class LogController implements ActionListener{
 		if (e.getActionCommand().equalsIgnoreCase("Login")){
 			logPanel.bloccareInserimento();
 			try {
-				String[] consultaDB = new String[7];
-				consultaDB = db.consultaLog(logPanel.getTxtUser(), logPanel.getTxtPassword());
-				if (consultaDB[0]!=null){
+				Client servizioClient = new Client();
+				String risposta = servizioClient.fareLogin(logPanel.getTxtUser(), logPanel.getTxtPassword());
+				System.out.println("Sono il client, mi ha risposto il server: "+risposta);
+				if (risposta.compareTo("errore") != 0){
 					logPanel.mostraMessaggioErrore("");
-					Cliente cliente = new Cliente(consultaDB[0],consultaDB[1],consultaDB[2],consultaDB[3],
-						consultaDB[4],consultaDB[5],consultaDB[6]);
-					logPanel.loginFatto(cliente.getNome(), cliente.getCognome());				
+					logPanel.loginFatto(risposta);				
 				}else{
 					logPanel.sbloccareInserimento();
 					logPanel.mostraMessaggioErrore("La email e la password non coincidono, per favore verifichi i dati.");
 				}
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+			} catch (Exception e1) {
+				logPanel.sbloccareInserimento();
+				logPanel.mostraMessaggioErrore("Non si puo stabilire un collegamento con il server");
 				e1.printStackTrace();
 			}
 			

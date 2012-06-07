@@ -25,18 +25,16 @@ public class SalutoPanel extends JPanel {
 	public JButton btnGestioneOrdine;
 	private LogController logController;
 	private String nome;
-	private String cognome;
 	private LogPanel panel;
 
 	// COSTRUTTORE
-	public SalutoPanel(String nome, String cognome, LogPanel panel) {
+	public SalutoPanel(String nome, LogPanel panel) {
 		setForeground(new Color(0, 100, 0));
 		setBackground(Color.WHITE);
 		this.setPanel(panel);
 		this.setNome(nome);
-		this.setCognome(cognome);
 
-		lblSaluto = new JLabel("Ciao " + nome + " " + cognome + "!");
+		lblSaluto = new JLabel("Ciao " + nome + "!");
 		lblSaluto.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 11));
 		lblSaluto.setForeground(new Color(0, 100, 0));
 		btnLogOut = new JButton("Logout");
@@ -99,21 +97,6 @@ public class SalutoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the cognome
-	 */
-	public String getCognome() {
-		return cognome;
-	}
-
-	/**
-	 * @param cognome
-	 *            the cognome to set
-	 */
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
-	}
-
-	/**
 	 * @return the lblSaluto
 	 */
 	public JLabel getLblSaluto() {
@@ -143,42 +126,46 @@ public class SalutoPanel extends JPanel {
 		this.panel = panel;
 	}
 
-	/** 
+	/**
 	 * @uml.property name="logController1"
 	 * @uml.associationEnd inverse="salutoPanel:client.LogController"
 	 * @uml.association name="controllato"
 	 */
 	private LogController logController1;
 
-	/** 
+	/**
 	 * Getter of the property <tt>logController1</tt>
-	 * @return  Returns the logController1.
-	 * @uml.property  name="logController1"
+	 * 
+	 * @return Returns the logController1.
+	 * @uml.property name="logController1"
 	 */
 	public LogController getLogController1() {
 		return logController1;
 	}
 
-	/** 
+	/**
 	 * Setter of the property <tt>logController1</tt>
-	 * @param logController1  The logController1 to set.
-	 * @uml.property  name="logController1"
+	 * 
+	 * @param logController1
+	 *            The logController1 to set.
+	 * @uml.property name="logController1"
 	 */
 	public void setLogController1(LogController logController1) {
 		this.logController1 = logController1;
 	}
 
 	/**
-	 * @uml.property  name="logPanel"
-	 * @uml.associationEnd  inverse="salutoPanel:client.LogPanel"
-	 * @uml.association  name="si mostra in"
+	 * @uml.property name="logPanel"
+	 * @uml.associationEnd inverse="salutoPanel:client.LogPanel"
+	 * @uml.association name="si mostra in"
 	 */
 	private LogPanel logPanel;
 
 	/**
 	 * Getter of the property <tt>logPanel</tt>
-	 * @return  Returns the logPanel.
-	 * @uml.property  name="logPanel"
+	 * 
+	 * @return Returns the logPanel.
+	 * @uml.property name="logPanel"
 	 */
 	public LogPanel getLogPanel() {
 		return logPanel;
@@ -186,8 +173,10 @@ public class SalutoPanel extends JPanel {
 
 	/**
 	 * Setter of the property <tt>logPanel</tt>
-	 * @param logPanel  The logPanel to set.
-	 * @uml.property  name="logPanel"
+	 * 
+	 * @param logPanel
+	 *            The logPanel to set.
+	 * @uml.property name="logPanel"
 	 */
 	public void setLogPanel(LogPanel logPanel) {
 		this.logPanel = logPanel;
