@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.activation.MailcapCommandMap;
-import javax.swing.JPanel;
-
 import server.DataBase;
 
 public class ModelloController implements ActionListener {
@@ -14,8 +11,10 @@ public class ModelloController implements ActionListener {
 	private String tipo;
 	private DataBase db;
 	private ModelloView modView;
-	public ModelloController(String nome) {
-		this.nome=nome;
+
+	public ModelloController(String nome, ModelloView modView) {
+		this.nome = nome;
+		this.setModView(modView);
 		try {
 			db = new DataBase();
 		} catch (SQLException e) {
@@ -29,10 +28,10 @@ public class ModelloController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		try {
-			if(nome.startsWith("LAP")){
-				tipo="lap";
+			if (nome.startsWith("LAP")) {
+				tipo = "lap";
 			} else if (nome.startsWith("DES")) {
 				tipo = "des";
 			} else if (nome.startsWith("SER")) {
@@ -43,14 +42,27 @@ public class ModelloController implements ActionListener {
 			rows = db.countComponentiModello(tipo);
 			String[][] components = new String[rows][maxCol];
 			components = db.getComponentiModello(tipo);
-			
+
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-	
-		
+
+	}
+
+	/**
+	 * @return the modView
+	 */
+	public ModelloView getModView() {
+		return modView;
+	}
+
+	/**
+	 * @param modView
+	 *            the modView to set
+	 */
+	public void setModView(ModelloView modView) {
+		this.modView = modView;
 	}
 
 }

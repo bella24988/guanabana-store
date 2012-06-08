@@ -58,9 +58,9 @@ public class ModelloView extends JPanel {
 				serverPanel.setVisible(true);
 				add(serverPanel);
 			}
-			i++;
-			modelloController = new ModelloController(nome[i]);
+			modelloController = new ModelloController(nome[i],this);
 			btnModelli[i].addActionListener(modelloController);
+			i++;
 		}
 	}
 

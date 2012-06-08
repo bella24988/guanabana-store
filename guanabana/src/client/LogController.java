@@ -4,9 +4,6 @@ package client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import server.Cliente;
-import server.DataBase;
 import client.SalutoPanel;
 import client.LogPanel;
 
@@ -17,8 +14,6 @@ import client.LogPanel;
 public class LogController implements ActionListener{
 	
 	private LogPanel logPanel; //pannello login da cui � chiamato LogController (funzionalitˆ login)
-	private Cliente cliente;
-	private DataBase db;
 	private SalutoPanel salutoPanel; //pannello saluto da cui � chiamato LogController (funzionalitˆ logout)
 	
 	
@@ -28,15 +23,6 @@ public class LogController implements ActionListener{
 	 */
 	public LogController(LogPanel log){
 		this.setLogpanel(log);
-		try {
-			setDb(new DataBase());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/**
@@ -91,34 +77,6 @@ public class LogController implements ActionListener{
 	 */
 	public void setLogpanel(LogPanel logpanel) {
 		this.logPanel = logpanel;
-	}
-
-	/**
-	 * @return the cliente
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * @param cliente the cliente to set
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	/**
-	 * @return the db
-	 */
-	public DataBase getDb() {
-		return db;
-	}
-
-	/**
-	 * @param db the db to set
-	 */
-	public void setDb(DataBase db) {
-		this.db = db;
 	}
 
 	/**

@@ -19,6 +19,8 @@ public class Client implements Collegare {
 	private Socket socket;
 	private BufferedReader buffer;
 	private PrintWriter writer;
+	private String tipo;
+	private int num;
 	
 	/**
 	 * @param host
@@ -44,7 +46,6 @@ public class Client implements Collegare {
 		lettura = socket.getInputStream();
 		scritura = socket.getOutputStream();
 		buffer = new BufferedReader(new InputStreamReader(lettura));
-		
 		writer = new PrintWriter(scritura);
 	
 		
@@ -68,9 +69,35 @@ public class Client implements Collegare {
 	}
 
 	@Override
-	public void cercaModelli(String tipo) {
-		// TODO Auto-generated method stub
-
+	public String[][] cercaModelli(String tipo, int numComputer) throws IOException {
+		
+		String[][] modelli = new String[numComputer][2];
+		writer.println("cercaModelli");
+		writer.flush();
+		
+		String risposta = buffer.readLine();
+		
+		if (risposta.compareTo("pronto")==0){
+			System.out.println("Sono il client, mi ha risposto il server: "+risposta);
+			writer.println(numComputer+"!"+tipo);
+			writer.flush();
+			
+			for(int i=0;i<numComputer;i++){
+				for(int j=0; j<2;j++){
+					modelli[i][j] = buffer.readLine();
+					System.out.println(modelli[i][j]);
+					writer.println("");
+					writer.flush();
+				}
+			}
+			
+		}else{
+			risposta = "impossibile collegare con il server"; 
+			}
+		
+		chiudereCollegamento();
+		
+		return modelli;
 	}
 
 	@Override
@@ -141,6 +168,55 @@ public class Client implements Collegare {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public int conta(String cosa) throws IOException {
+		int num=0;
+		String risposta ="";
+		
+		writer.println("conta");
+		writer.flush();
+		
+		risposta = buffer.readLine();
+		
+		if(risposta.compareTo("pronto")==0){
+			writer.println(cosa);
+			writer.flush();
+			
+			num = Integer.parseInt(buffer.readLine());
+			}
+		setNum(num);
+		chiudereCollegamento();
+		return num;
+	}
+
+	/**
+	 * @return the tipo
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * @return the num
+	 */
+	public int getNum() {
+		return num;
+	}
+
+	/**
+	 * @param num the num to set
+	 */
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 }

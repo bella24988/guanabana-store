@@ -4,7 +4,6 @@ import java.util.Collection;
 
 public abstract class Computer {
 
-
 	
 	public Computer(String nome, float prezzo) {
 		super();

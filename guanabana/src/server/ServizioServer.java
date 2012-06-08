@@ -22,6 +22,7 @@ public class ServizioServer implements Collegare, Runnable {
 	private Socket client;
 	private DataBase db;
 	private Cliente cliente;
+	private Computer computers;
 
 	public ServizioServer(Socket client) {
 		super();
@@ -43,12 +44,12 @@ public class ServizioServer implements Collegare, Runnable {
 			InputStream is = s.getInputStream();
 			BufferedReader ricevo = new BufferedReader(new InputStreamReader(is));
 			PrintWriter scrive = new PrintWriter(s.getOutputStream());
-			String richiestaClient = ricevo.readLine();
+			
+			String richiestaClient = ricevo.readLine();//Legge 1
+			System.out.println("Sono il server, ricevo messaggio dal client: no blocco if"+richiestaClient);
 			String datiLetti;
 			
-			if(richiestaClient.compareTo("login")==0){
-				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
-				
+			if(richiestaClient.compareTo("login")==0){		
 				scrive.println("pronto");
 				scrive.flush();
 				
@@ -81,6 +82,37 @@ public class ServizioServer implements Collegare, Runnable {
 				variabile[6]=temp;
 				System.out.println("Password:"+variabile[6]);
 				scrive.println(registreNuovoCliente(variabile[0],variabile[1],variabile[2],variabile[3],variabile[4],variabile[5],variabile[6]));
+				scrive.flush();
+				
+			}else if(richiestaClient.compareTo("cercaModelli")==0){
+				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
+				scrive.println("pronto");//Scrive 1
+				scrive.flush();
+				
+				String messaggio = ricevo.readLine();//Legge 2
+				String tipo = messaggio.substring(messaggio.indexOf("!")+1);
+				int numComputer = Integer.parseInt(messaggio.substring(0, messaggio.indexOf("!")));
+				
+				String [][] modelli = cercaModelli(tipo, numComputer);
+				for(int i=0;i<numComputer;i++){
+					for(int j=0; j<2;j++){
+						scrive.println(modelli[i][j]);
+						scrive.flush();
+						ricevo.readLine();
+					}
+				}
+				scrive.println("");
+				scrive.flush();
+				
+			}else if (richiestaClient.compareTo("conta")==0){
+				String tipo;
+				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
+				scrive.println("pronto");
+				scrive.flush();
+				
+				tipo = ricevo.readLine();
+				
+				scrive.println(conta(tipo));
 				scrive.flush();
 			}
 			
@@ -115,10 +147,33 @@ public class ServizioServer implements Collegare, Runnable {
 
 	}
 
-	@Override
-	public void cercaModelli(String tipo) {
-		// TODO Auto-generated method stub
+	public String[][] cercaModelli(String tipo, int numComputer) {
+		//Dichiarazione variabile locali
+		String[][] modelli = null;
+		setComputers(null);
+		try {
+			numComputer = db.conta(tipo);
+			modelli = new String[numComputer][2];
+			modelli = db.cercaModelli(tipo, numComputer);
+			String[] nome = new String[numComputer];
+			float[] prezzo = new float[numComputer];	
+			for(int i = 0; i < numComputer; i++){
+				nome[i]=modelli[i][0];
+				prezzo[i]=Float.parseFloat(modelli[i][1]);
+				if (tipo == "LAPTOP"){
+					setComputers(new Laptop(nome[i],prezzo[i]));
+				}else if (tipo == "DESKTOP"){
+					setComputers(new Desktop(nome[i],prezzo[i]));
+				}else if (tipo == "SERVER"){
+					setComputers(new Server(nome[i],prezzo[i]));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//Chiamata funzione al db
 		
+		return modelli;		
 	}
 
 	@Override
@@ -189,6 +244,33 @@ public class ServizioServer implements Collegare, Runnable {
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	/**
+	 * @return the computers
+	 */
+	public Computer getComputers() {
+		return computers;
+	}
+
+	/**
+	 * @param computers the computers to set
+	 */
+	public void setComputers(Computer computers) {
+		this.computers = computers;
+	}
+
+	@Override
+	public int conta(String cosa) {
+		
+			try {
+				int numComputers = db.conta(cosa);
+				return numComputers;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 0;
+			}
+		
 	}
 
 

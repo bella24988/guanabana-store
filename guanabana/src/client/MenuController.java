@@ -3,40 +3,20 @@ package client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-
-import server.Computer;
-import server.DataBase;
-import server.Desktop;
-import server.Laptop;
-import server.Server;
-
+import java.io.IOException;
 import client.ContenutoPanel;
 import client.MenuPanel;
 
 public class MenuController  implements ActionListener{
 	
-	private MenuPanel menuAcquista;
-	private DataBase db;
-	private Computer computers; 
+	private MenuPanel menuAcquista; 
 	private String tipoComputer = "";
-	private int numComputers = 0;
-	private String[][] modelli;
 	private ContenutoPanel contenuto;
-	
 
+	
 	public MenuController(MenuPanel menuAcquista, ContenutoPanel contenuto) {
 		this.setMenuAcquista(menuAcquista);
 		this.setContenuto(contenuto);
-		try {
-			setDb(new DataBase());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 
@@ -62,34 +42,35 @@ public class MenuController  implements ActionListener{
 
 
 	public void gesticeModelli(String tipoComputer){
-		
+			
+		int numComputers = 0;
+		Client servizioClientConta, servizioClientModelli;
+		servizioClientConta = new Client();
 		try {
-			numComputers = db.conta(tipoComputer);
-			modelli = new String[numComputers][2];
-			modelli = db.cercaModelli(tipoComputer, numComputers);
-			String[] nome = new String[numComputers];
-			float[] prezzo = new float[numComputers];	
-			for(int i = 0; i < numComputers; i++){
-				nome[i]=modelli[i][0];
-				prezzo[i]=Float.parseFloat(modelli[i][1]);
-				if (tipoComputer == "LAPTOP"){
-					computers = new Laptop(nome[i],prezzo[i]);
-				}else if (tipoComputer == "DESKTOP"){
-					computers = new Desktop(nome[i],prezzo[i]);
-				}else if (tipoComputer == "SERVER"){
-					computers = new Server(nome[i],prezzo[i]);
-				}
-			}
-			try{
-				contenuto.nascondeModelli();
-				contenuto.mostraModelli(numComputers, nome, prezzo, tipoComputer);
-			}catch (Exception e) {
-				contenuto.mostraModelli(numComputers, nome, prezzo, tipoComputer);
-			}
-		} catch (SQLException e1) {
+			numComputers = servizioClientConta.conta(tipoComputer);
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		String[][] modelli = new String[numComputers][2];
+		String[] nome = new String[numComputers];
+		float[] prezzo = new float[numComputers];	
+		System.out.println(numComputers);
+		try {
+			servizioClientModelli = new Client();
+			modelli = servizioClientModelli.cercaModelli(tipoComputer,numComputers);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i < numComputers; i++){
+			nome[i]=modelli[i][0];
+			prezzo[i]=Float.parseFloat(modelli[i][1]);
+		}
+		
+		contenuto.nascondeModelli();
+		contenuto.mostraModelli(numComputers, nome, prezzo, tipoComputer);
 	}
 	
 	/**
@@ -125,37 +106,6 @@ public class MenuController  implements ActionListener{
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
 	}
-
-
-
-	public DataBase getDb() {
-		return db;
-	}
-
-
-
-	public void setDb(DataBase db) {
-		this.db = db;
-	}
-
-
-
-	/**
-	 * @return the computers
-	 */
-	public Computer getComputers() {
-		return computers;
-	}
-
-
-
-	/**
-	 * @param computers the computers to set
-	 */
-	public void setComputers(Computer computers) {
-		this.computers = computers;
-	}
-
 
 
 	/**

@@ -3,7 +3,6 @@ package conexionInterface;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-
 public interface Collegare {
 
 		/**
@@ -14,7 +13,7 @@ public interface Collegare {
 		
 		public abstract String fareLogin(String user, String password) throws IOException;
 		
-		public abstract void cercaModelli(String tipo);
+		public abstract String[][] cercaModelli(String tipo, int numComputer) throws IOException;
 		
 		public abstract void cercaComponenti(String modello);
 		
@@ -26,4 +25,6 @@ public interface Collegare {
 		
 		public abstract String registreNuovoCliente(String cf, String nome, String cognome,String email, String indirizzo, 
 				 String telefono, String password) throws IOException; 
+		
+		public abstract int conta(String cosa) throws IOException;
 }
