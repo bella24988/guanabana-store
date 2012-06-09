@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import server.Cliente;
+import server.Computer;
+import server.Ordine;
 
 import conexionInterface.Collegare;
 
@@ -81,34 +83,38 @@ public class Client implements Collegare {
 	}
 
 	@Override
-	public String[][] cercaModelli(String tipo, int numComputer) throws IOException, ClassNotFoundException {
+	public Computer[] cercaModelli(String tipo, int numComputer) throws IOException, ClassNotFoundException {
 		writer = new ObjectOutputStream(scritura);
-		String[][] modelli = new String[numComputer][2];
-		writer.writeObject("cercaModelli");
+		Computer[] modelli = new Computer[numComputer];
+		
+		writer.writeObject("cercaModelli");//scrivo 1
 		writer.flush();
+		
 		buffer = new ObjectInputStream(lettura);
-		String risposta = (String) buffer.readObject();
+		
+		String risposta = (String) buffer.readObject(); //lego 1
 		
 		if (risposta.compareTo("pronto")==0){
+			
 			System.out.println("Sono il client, mi ha risposto il server: "+risposta);
 			
-			writer.writeObject(numComputer+"!"+tipo);
+			writer.writeObject(numComputer); //scrivo 2
 			writer.flush();
 			
-			for(int i=0;i<numComputer;i++){
-				for(int j=0; j<2;j++){
-					modelli[i][j] = (String) buffer.readObject();
-					System.out.println(modelli[i][j]);
-				}
-			}
+			risposta = (String) buffer.readObject(); //lego 2
+			
+			writer.writeObject(tipo); //scrivo 3
+			writer.flush();
+			
+			modelli = (Computer[]) buffer.readObject();
+			System.out.println("Sono il client, mi ha risposto il server: "+modelli);
+			chiudereCollegamento();
+			
+			return modelli;
 			
 		}else{
-			risposta = "impossibile collegare con il server"; 
+			return null;
 			}
-		
-		chiudereCollegamento();
-		
-		return modelli;
 	}
 
 	@Override
@@ -118,7 +124,8 @@ public class Client implements Collegare {
 	}
 
 	@Override
-	public void fareOrdine() {
+	public Ordine fareOrdine() {
+		return null;
 		// TODO Auto-generated method stub
 
 	}
@@ -151,8 +158,10 @@ public class Client implements Collegare {
 	}
 
 	@Override
-	public String registreNuovoCliente(String cf, String nome, String cognome,
+	public Cliente registreNuovoCliente(String cf, String nome, String cognome,
 			String email, String indirizzo, String telefono, String password) throws IOException, ClassNotFoundException {
+		
+		Cliente cliente;
 		writer = new ObjectOutputStream(scritura);
 		writer.writeObject("registrati");
 		writer.flush();
@@ -163,11 +172,13 @@ public class Client implements Collegare {
 			writer.writeObject(cf+"!"+nome+"!"+cognome+"!"+email+"!"+indirizzo+"!"+telefono+"!"+password);
 			writer.flush();
 			
-			risposta = (String) buffer.readObject();
+			cliente =  (Cliente) buffer.readObject();
 		}else{
-			risposta = "impossibile collegare con il server"; }
+			cliente = null;
+			}
 		chiudereCollegamento();
-		return risposta;
+		
+		return cliente;
 	}
 	
 	public void chiudereCollegamento() throws IOException{

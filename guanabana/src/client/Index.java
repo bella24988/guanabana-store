@@ -69,29 +69,25 @@ public class Index extends JApplet {
 						.addGroup(
 								gl_contentPane
 										.createSequentialGroup()
+										.addComponent(menuPanel,
+												GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(
+												ComponentPlacement.RELATED)
 										.addGroup(
 												gl_contentPane
 														.createParallelGroup(
 																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addComponent(
-																				menuPanel,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				contenuto,
-																				GroupLayout.PREFERRED_SIZE,
-																				799,
-																				GroupLayout.PREFERRED_SIZE))
 														.addComponent(
 																logPanel,
 																GroupLayout.PREFERRED_SIZE,
-																885,
+																770,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																contenuto,
+																GroupLayout.PREFERRED_SIZE,
+																799,
 																GroupLayout.PREFERRED_SIZE))
 										.addContainerGap()));
 		gl_contentPane
@@ -119,9 +115,9 @@ public class Index extends JApplet {
 																GroupLayout.PREFERRED_SIZE,
 																452,
 																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap())); // fine
-																// suddivisione
-																// in griglia
+										.addContainerGap()));
+		// suddivisione
+		// in griglia
 		logPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(
 				new Component[] { logPanel.txtUser, logPanel.txtPassword,
 						logPanel.btnLog, logPanel.btnRegistrati }));

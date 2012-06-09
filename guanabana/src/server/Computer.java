@@ -1,9 +1,15 @@
 package server;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public abstract class Computer {
-
+public abstract class Computer implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8391044426886288876L;
+	Componente[] componenti;
 	
 	public Computer(String nome, float prezzo) {
 		super();
@@ -16,14 +22,14 @@ public abstract class Computer {
 	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="computer:guanabana.Componente"
 	 * @uml.association  name="composto"
 	 */
-	private Collection componente;
+	private Collection<?> componente;
 
 	/**
 	 * Getter of the property <tt>componente</tt>
 	 * @return  Returns the componente.
 	 * @uml.property  name="componente"
 	 */
-	public Collection getComponente() {
+	public Collection<?> getComponente() {
 		return componente;
 	}
 
@@ -32,7 +38,7 @@ public abstract class Computer {
 	 * @param componente  The componente to set.
 	 * @uml.property  name="componente"
 	 */
-	public void setComponente(Collection componente) {
+	public void setComponente(Collection<?> componente) {
 		this.componente = componente;
 	}
 

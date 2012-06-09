@@ -4,6 +4,11 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import server.Computer;
+import server.Desktop;
+import server.Laptop;
+import server.Server;
 import client.ContenutoPanel;
 import client.MenuPanel;
 
@@ -67,21 +72,32 @@ public class MenuController  implements ActionListener{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String[][] modelli = new String[numComputers][2];
+		Computer[] modelli = null;
 		String[] nome = new String[numComputers];
 		float[] prezzo = new float[numComputers];	
 		System.out.println(numComputers);
+		if (tipoComputer == "LAPTOP"){
+			modelli=new Laptop [numComputers];
+		}else if (tipoComputer == "DESKTOP"){
+			modelli=new Desktop [numComputers];
+		}else if (tipoComputer == "SERVER"){
+			modelli=new Server [numComputers];
+		}
 		try {
 			servizioClientModelli = new Client();
 			modelli = servizioClientModelli.cercaModelli(tipoComputer,numComputers);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		
+		
 		for(int i = 0; i < numComputers; i++){
-			nome[i]=modelli[i][0];
-			prezzo[i]=Float.parseFloat(modelli[i][1]);
+			System.out.println(modelli[i].getNome());
+			nome[i]=modelli[i].getNome();
+			prezzo[i]=modelli[i].getPrezzo();
 		}
 		
 		contenuto.nascondeModelli();

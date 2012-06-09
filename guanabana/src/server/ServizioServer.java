@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.sql.SQLException;
 
 import conexionInterface.Collegare;
+import server.Desktop;
 
 /**
  * @author Veronica
@@ -16,12 +17,12 @@ import conexionInterface.Collegare;
  *			informazione.
  *
  */
-public class ServizioServer implements Collegare, Runnable {
+public class ServizioServer implements Collegare, Runnable{
 	
 	private Socket client;
 	private DataBase db;
 	private Cliente cliente;
-	private Computer computers;
+	private Computer[] computers;
 
 	public ServizioServer(Socket client) {
 		super();
@@ -95,17 +96,15 @@ public class ServizioServer implements Collegare, Runnable {
 				scrive.writeObject("pronto");//Scrive 1
 				scrive.flush();
 				
-				String messaggio = (String) ricevo.readObject();//Legge 2
-				String tipo = messaggio.substring(messaggio.indexOf("!")+1);
-				int numComputer = Integer.parseInt(messaggio.substring(0, messaggio.indexOf("!")));
+				int numComputer = (int) ricevo.readObject();//Legge 2
 				
-				String [][] modelli = cercaModelli(tipo, numComputer);
-				for(int i=0;i<numComputer;i++){
-					for(int j=0; j<2;j++){
-						scrive.writeObject(modelli[i][j]);
-						scrive.flush();
-					}
-				}
+				scrive.writeObject("ok");//Scrive 2
+				scrive.flush();
+				
+				String tipo = (String) ricevo.readObject();//lego 3
+				
+				scrive.writeObject(cercaModelli(tipo, numComputer));//scrivo 3
+				scrive.flush();
 				
 			}else if (richiestaClient.compareTo("conta")==0){
 				String tipo;
@@ -152,33 +151,39 @@ public class ServizioServer implements Collegare, Runnable {
 
 	}
 
-	public String[][] cercaModelli(String tipo, int numComputer) {
+	public Computer[] cercaModelli(String tipo, int numComputer) {
 		//Dichiarazione variabile locali
-		String[][] modelli = null;
-		setComputers(null);
+		String[][] modelli = new String[numComputer][2];
+		Computer[] comp = new Computer[numComputer];
+		System.out.println("Entro in cerca TIPO:"+tipo+numComputer);
 		try {
-			numComputer = db.conta(tipo);
-			modelli = new String[numComputer][2];
 			modelli = db.cercaModelli(tipo, numComputer);
+			System.out.println("Entro in cerca "+modelli);
 			String[] nome = new String[numComputer];
-			float[] prezzo = new float[numComputer];	
+			float[] prezzo = new float[numComputer];
+			
 			for(int i = 0; i < numComputer; i++){
 				nome[i]=modelli[i][0];
 				prezzo[i]=Float.parseFloat(modelli[i][1]);
-				if (tipo == "LAPTOP"){
-					setComputers(new Laptop(nome[i],prezzo[i]));
-				}else if (tipo == "DESKTOP"){
-					setComputers(new Desktop(nome[i],prezzo[i]));
-				}else if (tipo == "SERVER"){
-					setComputers(new Server(nome[i],prezzo[i]));
+				System.out.println("Entro in cerca - CICLO; "+nome[i]);
+				if (tipo.compareTo("LAPTOP")==0){
+					comp[i]= new Laptop(nome[i],prezzo[i]);
+					System.out.println("Entro in cerca "+comp[i].getNome());
+				}else if (tipo.compareTo("DESKTOP")==0){
+					comp[i]= new Desktop(nome[i],prezzo[i]);
+					System.out.println("Entro in cerca "+comp[i].getNome());
+				}else if (tipo.compareTo("SERVER")==0){
+					comp[i]= new Server(nome[i],prezzo[i]);
+					System.out.println("Entro in cerca "+comp[i].getNome());
 				}
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}//Chiamata funzione al db
-		
-		return modelli;		
+				
+		return comp;
 	}
 
 	@Override
@@ -188,7 +193,8 @@ public class ServizioServer implements Collegare, Runnable {
 	}
 
 	@Override
-	public void fareOrdine() {
+	public Ordine fareOrdine() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
@@ -224,17 +230,18 @@ public class ServizioServer implements Collegare, Runnable {
 	}
 
 	@Override
-	public String registreNuovoCliente(String cf, String nome, String cognome,
+	public Cliente registreNuovoCliente(String cf, String nome, String cognome,
 			String email, String indirizzo, String telefono, String password){
 		
 		try {
 			db.insertCliente(cf, nome, cognome, email, indirizzo, telefono, password);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "errore";
+			return null;
 		}
 		setCliente(new Cliente(cf, nome, cognome, email, indirizzo, telefono, password));
-		return nome+" "+cognome;
+		return cliente;
 	}
 
 	/**
@@ -254,14 +261,14 @@ public class ServizioServer implements Collegare, Runnable {
 	/**
 	 * @return the computers
 	 */
-	public Computer getComputers() {
+	public Computer[] getComputers() {
 		return computers;
 	}
 
 	/**
 	 * @param computers the computers to set
 	 */
-	public void setComputers(Computer computers) {
+	public void setComputers(Computer[] computers) {
 		this.computers = computers;
 	}
 

@@ -29,6 +29,7 @@ public class RegistratiController implements ActionListener{
 
 
 
+	@SuppressWarnings("unused")
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equalsIgnoreCase("Registrati")){
 			contenuto.mostraFormularioRegistrati(logpanel);
@@ -47,11 +48,15 @@ public class RegistratiController implements ActionListener{
 					String indirizzo = "Via: "+registrati.getTxtVia()+" C.A.P. "+registrati.getTxtCap()+". "+
 										registrati.getTxtCitta()+". Provincia: "+registrati.getTxtProvincia()+
 										". "+registrati.getTxtStato();
+					
 					Client client = new Client();
+					Cliente cliente;
 					try {
 						try {
-							registrati.setTxtNome(client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
-									registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),registrati.getTxtPassword()));
+							cliente=client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
+									registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),registrati.getTxtPassword());
+							if(client!=null)registrati.setTxtNome(cliente.getNome()+" "+cliente.getCognome());
+							else registrati.mostraMessaggio("Errore al registrarsi");
 						} catch (ClassNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
