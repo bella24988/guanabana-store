@@ -4,6 +4,8 @@ package client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import server.Cliente;
 import client.SalutoPanel;
 import client.LogPanel;
 
@@ -15,6 +17,7 @@ public class LogController implements ActionListener{
 	
 	private LogPanel logPanel; //pannello login da cui � chiamato LogController (funzionalitˆ login)
 	private SalutoPanel salutoPanel; //pannello saluto da cui � chiamato LogController (funzionalitˆ logout)
+	private Cliente cliente;
 	
 	
 	/**
@@ -41,11 +44,12 @@ public class LogController implements ActionListener{
 			logPanel.bloccareInserimento();
 			try {
 				Client servizioClient = new Client();
-				String risposta = servizioClient.fareLogin(logPanel.getTxtUser(), logPanel.getTxtPassword());
-				System.out.println("Sono il client, mi ha risposto il server: "+risposta);
-				if (risposta.compareTo("errore") != 0){
+				System.out.println("Sono il client, mi ho instanciado al server");
+				setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), logPanel.getTxtPassword()));
+				if (cliente != null){
 					logPanel.mostraMessaggioErrore("");
-					logPanel.loginFatto(risposta);				
+					logPanel.loginFatto(cliente.getNome() + " "
+							+ cliente.getCognome());				
 				}else{
 					logPanel.sbloccareInserimento();
 					logPanel.mostraMessaggioErrore("La email e la password non coincidono, per favore verifichi i dati.");
@@ -141,6 +145,20 @@ public class LogController implements ActionListener{
 	 */
 	public void setSalutoPanel(SalutoPanel salutoPanel) {
 		this.salutoPanel = salutoPanel;
+	}
+
+	/**
+	 * @return the cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	/**
+	 * @param cliente the cliente to set
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 

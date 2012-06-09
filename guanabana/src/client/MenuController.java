@@ -25,23 +25,38 @@ public class MenuController  implements ActionListener{
 		//Equals ignore case per chiamare la funzione del button.
 		if (e.getActionCommand().equalsIgnoreCase("Acquista Laptop")){
 			tipoComputer = "LAPTOP";
-			gesticeModelli(tipoComputer);
+			try {
+				gesticeModelli(tipoComputer);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}else if(e.getActionCommand().equalsIgnoreCase("Acquista Desktop")){
 		
 			tipoComputer = "DESKTOP";
-			gesticeModelli(tipoComputer);
+			try {
+				gesticeModelli(tipoComputer);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			
 		}else if(e.getActionCommand().equalsIgnoreCase("Acquista Server")){
 			tipoComputer = "SERVER";
-			gesticeModelli(tipoComputer);
+			try {
+				gesticeModelli(tipoComputer);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
 
 
-	public void gesticeModelli(String tipoComputer){
+	public void gesticeModelli(String tipoComputer) throws ClassNotFoundException{
 			
 		int numComputers = 0;
 		Client servizioClientConta, servizioClientModelli;

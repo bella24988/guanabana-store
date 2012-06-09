@@ -1,9 +1,8 @@
 package server;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
@@ -42,32 +41,39 @@ public class ServizioServer implements Collegare, Runnable {
 	public void run() {
 		try (Socket s=client) {
 			InputStream is = s.getInputStream();
-			BufferedReader ricevo = new BufferedReader(new InputStreamReader(is));
-			PrintWriter scrive = new PrintWriter(s.getOutputStream());
 			
-			String richiestaClient = ricevo.readLine();//Legge 1
+			ObjectInputStream ricevo = new ObjectInputStream(is);
+			String richiestaClient = (String) ricevo.readObject();//Legge 1
 			System.out.println("Sono il server, ricevo messaggio dal client: no blocco if"+richiestaClient);
 			String datiLetti;
+			ObjectOutputStream scrive = new ObjectOutputStream(s.getOutputStream());
 			
-			if(richiestaClient.compareTo("login")==0){		
-				scrive.println("pronto");
+			if(richiestaClient.compareTo("login")==0){
+				scrive.writeObject("pronto");
 				scrive.flush();
 				
-				datiLetti = ricevo.readLine();
-				String user = datiLetti.substring(0, datiLetti.indexOf("!"));
-				String password = datiLetti.substring(datiLetti.indexOf("!")+1);
+				datiLetti = (String) ricevo.readObject();
+				String user = datiLetti;
+				
+				scrive.writeObject("ok");
+				scrive.flush();
+				
+				datiLetti = (String) ricevo.readObject();
+				String password = datiLetti;
+				
 				System.out.print("user: "+user);
 				System.out.println(" password: "+password);
 				
-				scrive.println(fareLogin(user, password));
+				scrive.writeObject(fareLogin(user, password));
 				scrive.flush();
+				
 			}else if (richiestaClient.compareTo("registrati")==0){
 				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
 				
-				scrive.println("pronto");
+				scrive.writeObject("pronto");
 				scrive.flush();
 				
-				datiLetti = ricevo.readLine();
+				datiLetti = (String) ricevo.readObject();
 				String[] variabile = new String[7];
 				variabile[0]=(String) datiLetti.subSequence(0, datiLetti.indexOf("!"));
 				System.out.println("CF:"+variabile[0]);
@@ -81,38 +87,36 @@ public class ServizioServer implements Collegare, Runnable {
 				}
 				variabile[6]=temp;
 				System.out.println("Password:"+variabile[6]);
-				scrive.println(registreNuovoCliente(variabile[0],variabile[1],variabile[2],variabile[3],variabile[4],variabile[5],variabile[6]));
+				scrive.writeObject(registreNuovoCliente(variabile[0],variabile[1],variabile[2],variabile[3],variabile[4],variabile[5],variabile[6]));
 				scrive.flush();
 				
 			}else if(richiestaClient.compareTo("cercaModelli")==0){
 				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
-				scrive.println("pronto");//Scrive 1
+				scrive.writeObject("pronto");//Scrive 1
 				scrive.flush();
 				
-				String messaggio = ricevo.readLine();//Legge 2
+				String messaggio = (String) ricevo.readObject();//Legge 2
 				String tipo = messaggio.substring(messaggio.indexOf("!")+1);
 				int numComputer = Integer.parseInt(messaggio.substring(0, messaggio.indexOf("!")));
 				
 				String [][] modelli = cercaModelli(tipo, numComputer);
 				for(int i=0;i<numComputer;i++){
 					for(int j=0; j<2;j++){
-						scrive.println(modelli[i][j]);
+						scrive.writeObject(modelli[i][j]);
 						scrive.flush();
-						ricevo.readLine();
 					}
 				}
-				scrive.println("");
-				scrive.flush();
 				
 			}else if (richiestaClient.compareTo("conta")==0){
 				String tipo;
 				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
-				scrive.println("pronto");
+				
+				scrive.writeObject("pronto");
 				scrive.flush();
 				
-				tipo = ricevo.readLine();
-				
-				scrive.println(conta(tipo));
+				tipo = (String) ricevo.readObject();
+				System.out.println("Sono il server, ricevo la variabile tipo: "+tipo);
+				scrive.writeObject(conta(tipo));
 				scrive.flush();
 			}
 			
@@ -129,20 +133,21 @@ public class ServizioServer implements Collegare, Runnable {
 	}
 
 	@Override
-	public String fareLogin(String user, String password) {
+	public Cliente fareLogin(String user, String password) {
 		String[] consultaDB = new String[7];
 		try {
 			consultaDB = db.consultaLog(user, password);
 			if (consultaDB[0]!=null){
 				Cliente cliente = new Cliente(consultaDB[0],consultaDB[1],consultaDB[2],consultaDB[3],
 					consultaDB[4],consultaDB[5],consultaDB[6]);
-				return cliente.getNome()+" "+cliente.getCognome();				
+				System.out.println("Cliente Trovato");
+				return cliente;				
 			}else{
-				return "errore";}
+				return null;}
 		} catch (SQLException e) {
-			
+			System.out.println("Cliente NON Trovato");
 			e.printStackTrace();
-			return "errore";
+			return null;
 		}
 
 	}
@@ -264,10 +269,12 @@ public class ServizioServer implements Collegare, Runnable {
 	public int conta(String cosa) {
 		
 			try {
+				System.out.print("Entro en conta: "+cosa);
 				int numComputers = db.conta(cosa);
 				return numComputers;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.print("C'e errore");
 				return 0;
 			}
 		

@@ -1,11 +1,15 @@
 package server;
 
-import java.sql.SQLException;
-import java.util.Collection;
+import java.io.Serializable;
 
 
-public class Cliente {
 
+public class Cliente implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -321784570519146557L;
 	private String cf;
 	private String nome;
 	private String cognome;
@@ -33,34 +37,14 @@ public class Cliente {
 		
 	}
 
+	public Cliente() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void registrareCliente(){
 		
 	}
-	
-	/**
-	 * @uml.property  name="ordineNegozioOnline"
-	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="cliente:guanabana.OrdineNegozioOnline"
-	 * @uml.association  name="Realizza"
-	 */
-	private Collection ordineNegozioOnline;
 
-	/**
-	 * Getter of the property <tt>ordineNegozioOnline</tt>
-	 * @return  Returns the ordineNegozioOnline.
-	 * @uml.property  name="ordineNegozioOnline"
-	 */
-	public Collection getOrdineNegozioOnline() {
-		return ordineNegozioOnline;
-	}
-
-	/**
-	 * Setter of the property <tt>ordineNegozioOnline</tt>
-	 * @param ordineNegozioOnline  The ordineNegozioOnline to set.
-	 * @uml.property  name="ordineNegozioOnline"
-	 */
-	public void setOrdineNegozioOnline(Collection ordineNegozioOnline) {
-		this.ordineNegozioOnline = ordineNegozioOnline;
-	}
 
 	public String getCf() {
 		return cf;

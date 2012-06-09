@@ -49,8 +49,13 @@ public class RegistratiController implements ActionListener{
 										". "+registrati.getTxtStato();
 					Client client = new Client();
 					try {
-						registrati.setTxtNome(client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
-								registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),registrati.getTxtPassword()));
+						try {
+							registrati.setTxtNome(client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
+									registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),registrati.getTxtPassword()));
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					} catch (IOException e1) {
 						e1.printStackTrace();
 						registrati.mostraMessaggio("Errore con il server");

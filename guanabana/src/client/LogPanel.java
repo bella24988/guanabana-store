@@ -7,7 +7,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import client.LogController;
 import client.RegistratiController;
-
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.BorderLayout;
@@ -111,7 +110,7 @@ public class LogPanel extends JPanel {
 	}
 
 	/**
-	 * @param nome
+	 * @param cliente
 	 * @param cognome
 	 *            Mostra salutoPanel una volta fatto il login
 	 */
