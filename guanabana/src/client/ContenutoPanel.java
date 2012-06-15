@@ -2,6 +2,8 @@ package client;
 
 import javax.swing.JPanel;
 
+import modello.Computer;
+
 import java.awt.Color;
 
 public class ContenutoPanel extends JPanel {
@@ -30,6 +32,7 @@ public class ContenutoPanel extends JPanel {
 		add(registratiView);
 		registratiView.setVisible(false);
 		modelloView = new ModelloView();
+		modelloView.setVisible(false);
 		add(modelloView);
 	}
 
@@ -52,12 +55,12 @@ public class ContenutoPanel extends JPanel {
 		nascondeModelli();
 	}
 
-	public void mostraModelli(int num, String[] nome, float[] prezzo,
-			String tipo) {
+	public void mostraModelli(int num, Computer[] computers, String tipo) {
+		modelloView.setVisible(true);
 		nascondeFormularioRegistrati();
 		modelloView = new ModelloView();
 		add(modelloView);
-		modelloView.mostraButtons(num, nome, prezzo, tipo);
+		modelloView.mostraButtons(num, computers, tipo);
 		modelloView.setVisible(true);
 	}
 

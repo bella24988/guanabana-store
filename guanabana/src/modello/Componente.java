@@ -1,10 +1,15 @@
-package server;
+package modello;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 
-public class Componente {
+public class Componente implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * @uml.property  name="configurazione"
 	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="componente:guanabana.Configurazione"
@@ -97,6 +102,52 @@ public class Componente {
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	/**
+	 * @uml.property  name="nome"
+	 */
+	private String nome;
+
+	/**
+	 * Getter of the property <tt>nome</tt>
+	 * @return  Returns the nome.
+	 * @uml.property  name="nome"
+	 */
+	public String getNome() {
+		return nome;
+	}
+
+	/**
+	 * Setter of the property <tt>nome</tt>
+	 * @param nome  The nome to set.
+	 * @uml.property  name="nome"
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	/**
+	 * @uml.property  name="prezzo"
+	 */
+	private float prezzo;
+
+	/**
+	 * Getter of the property <tt>prezzo</tt>
+	 * @return  Returns the prezzo.
+	 * @uml.property  name="prezzo"
+	 */
+	public float getPrezzo() {
+		return prezzo;
+	}
+
+	/**
+	 * Setter of the property <tt>prezzo</tt>
+	 * @param prezzo  The prezzo to set.
+	 * @uml.property  name="prezzo"
+	 */
+	public void setPrezzo(float prezzo) {
+		this.prezzo = prezzo;
 	}
 
 

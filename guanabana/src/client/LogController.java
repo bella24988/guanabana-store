@@ -5,7 +5,8 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import server.Cliente;
+import modello.Cliente;
+
 import client.SalutoPanel;
 import client.LogPanel;
 

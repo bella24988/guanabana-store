@@ -12,7 +12,10 @@ public class DataBase {
 	/* Global variables definition*/
 	private Connection con;
 	private Statement st;
-	private PreparedStatement stConsultaLog, stNuevoCliente, stConsultaComputer, stConta;
+	private PreparedStatement stConsultaLog;
+	private PreparedStatement stNuevoCliente;
+	private PreparedStatement stConsultaComputer;
+	private PreparedStatement stConta;
 	private Statement stModello;
 	
 	/*Begin of the constructor*/

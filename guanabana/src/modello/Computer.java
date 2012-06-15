@@ -1,7 +1,6 @@
-package server;
+package modello;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 public abstract class Computer implements Serializable{
 	
@@ -22,24 +21,24 @@ public abstract class Computer implements Serializable{
 	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="computer:guanabana.Componente"
 	 * @uml.association  name="composto"
 	 */
-	private Collection<?> componente;
+	private Componente[] componente;
 
 	/**
 	 * Getter of the property <tt>componente</tt>
 	 * @return  Returns the componente.
 	 * @uml.property  name="componente"
 	 */
-	public Collection<?> getComponente() {
+	public Componente[] getComponente() {
 		return componente;
 	}
 
 	/**
 	 * Setter of the property <tt>componente</tt>
-	 * @param componente  The componente to set.
+	 * @param componenti2  The componente to set.
 	 * @uml.property  name="componente"
 	 */
-	public void setComponente(Collection<?> componente) {
-		this.componente = componente;
+	public void setComponente(Componente[] componenti2) {
+		this.componente = componenti2;
 	}
 
 	/**

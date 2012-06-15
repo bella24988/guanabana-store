@@ -3,6 +3,8 @@ package client;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import modello.Computer;
+
 public class ModelloView extends JPanel {
 
 	/**
@@ -23,42 +25,48 @@ public class ModelloView extends JPanel {
 	private JButton[] btnModelli;
 	private static final long serialVersionUID = 1L;
 	private ModelloController modelloController;
+	private ConfigurazioneServerPanel configServerPanel;
+	private Computer computer;
 
 	/**
 	 * Create the panel.
 	 */
 	public ModelloView() {
-
+		laptopPanel = new JPanel();
+		desktopPanel = new JPanel();
+		serverPanel = new JPanel();
+		laptopPanel.setVisible(false);
+		serverPanel.setVisible(false);
+		desktopPanel.setVisible(false);
 	}
 
-	public void mostraButtons(int num, String[] nome, float[] prezzo,
-			String tipo) {
+	public void mostraButtons(int num, Computer[] computer, String tipo) {
 
 		int i = 0;
 		btnModelli = new JButton[num];
 		setNumButtons(num);
 		while (i < num) {
 			btnModelli[i] = new JButton();
-			btnModelli[i].setText(nome[i] + ", Prezzo: "
-					+ String.valueOf(prezzo[i]));
+			btnModelli[i].setText(computer[i].getNome() + ", Prezzo: "
+					+ String.valueOf(computer[i].getPrezzo()));
 
 			if (tipo == "LAPTOP") {
-				laptopPanel = new JPanel();
 				laptopPanel.add(btnModelli[i]);
 				laptopPanel.setVisible(true);
 				add(laptopPanel);
 			} else if (tipo == "DESKTOP") {
-				desktopPanel = new JPanel();
+
 				desktopPanel.add(btnModelli[i]);
 				desktopPanel.setVisible(true);
 				add(desktopPanel);
 			} else {
-				serverPanel = new JPanel();
+
 				serverPanel.add(btnModelli[i]);
 				serverPanel.setVisible(true);
 				add(serverPanel);
 			}
-			modelloController = new ModelloController(nome[i],this);
+			this.computer = computer[i];
+			modelloController = new ModelloController(computer[i], this);
 			btnModelli[i].addActionListener(modelloController);
 			i++;
 		}
@@ -113,4 +121,44 @@ public class ModelloView extends JPanel {
 		this.prezzo = prezzo;
 	}
 
+	/**
+	 * @uml.property name="modelloController"
+	 * @uml.associationEnd inverse="modelloView:client.ModelloController"
+	 * @uml.association name="controllato"
+	 */
+	private ModelloController controller;
+
+	/**
+	 * Getter of the property <tt>modelloController</tt>
+	 * 
+	 * @return Returns the controller.
+	 * @uml.property name="modelloController"
+	 */
+	public ModelloController getModelloController() {
+		return controller;
+	}
+
+	/**
+	 * Setter of the property <tt>modelloController</tt>
+	 * 
+	 * @param modelloController
+	 *            The controller to set.
+	 * @uml.property name="modelloController"
+	 */
+	public void setModelloController(ModelloController modelloController) {
+		controller = modelloController;
+	}
+
+	public void mostraComponente(String tipo) {
+		System.out.println(tipo + "Modello view");
+		laptopPanel.setVisible(false);
+		serverPanel.setVisible(false);
+		desktopPanel.setVisible(false);
+		if (tipo.compareTo("SERVER") == 0) {
+			configServerPanel = new ConfigurazioneServerPanel(
+					computer.getComponente());
+			add(configServerPanel);
+			configServerPanel.setVisible(true);
+		}
+	}
 }

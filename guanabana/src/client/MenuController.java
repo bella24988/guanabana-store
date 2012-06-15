@@ -5,10 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import server.Computer;
-import server.Desktop;
-import server.Laptop;
-import server.Server;
+import modello.Computer;
+import modello.Desktop;
+import modello.Laptop;
+import modello.Server;
+
 import client.ContenutoPanel;
 import client.MenuPanel;
 
@@ -72,9 +73,7 @@ public class MenuController  implements ActionListener{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		Computer[] modelli = null;
-		String[] nome = new String[numComputers];
-		float[] prezzo = new float[numComputers];	
+		Computer[] modelli = null;	
 		System.out.println(numComputers);
 		if (tipoComputer == "LAPTOP"){
 			modelli=new Laptop [numComputers];
@@ -92,16 +91,8 @@ public class MenuController  implements ActionListener{
 			e.printStackTrace();
 		}
 		
-		
-		
-		for(int i = 0; i < numComputers; i++){
-			System.out.println(modelli[i].getNome());
-			nome[i]=modelli[i].getNome();
-			prezzo[i]=modelli[i].getPrezzo();
-		}
-		
 		contenuto.nascondeModelli();
-		contenuto.mostraModelli(numComputers, nome, prezzo, tipoComputer);
+		contenuto.mostraModelli(numComputers,modelli, tipoComputer);
 	}
 	
 	/**

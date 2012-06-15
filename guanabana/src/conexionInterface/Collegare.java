@@ -2,9 +2,10 @@ package conexionInterface;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import server.Cliente;
-import server.Computer;
-import server.Ordine;
+
+import modello.Cliente;
+import modello.Computer;
+import modello.Ordine;
 
 public interface Collegare {
 

@@ -1,4 +1,5 @@
-package server;
+package modello;
+
 
 
 public class Desktop extends Computer {

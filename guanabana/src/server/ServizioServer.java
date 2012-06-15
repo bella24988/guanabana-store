@@ -7,8 +7,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 
+import modello.Cliente;
+import modello.Componente;
+import modello.Computer;
+import modello.Desktop;
+import modello.Laptop;
+import modello.Ordine;
+import modello.Server;
+
 import conexionInterface.Collegare;
-import server.Desktop;
+import java.util.Collection;
+
+import javax.security.auth.Subject;
 
 /**
  * @author Veronica
@@ -21,8 +31,14 @@ public class ServizioServer implements Collegare, Runnable{
 	
 	private Socket client;
 	private DataBase db;
-	private Cliente cliente;
+	/**
+	 * @uml.property  name="cliente1"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="servizioServer:modello.Cliente"
+	 * @uml.association  name="utilizza servizio"
+	 */
+	private Cliente cliente = new modello.Cliente();;
 	private Computer[] computers;
+	private Componente[] componenti;
 
 	public ServizioServer(Socket client) {
 		super();
@@ -168,15 +184,24 @@ public class ServizioServer implements Collegare, Runnable{
 				System.out.println("Entro in cerca - CICLO; "+nome[i]);
 				if (tipo.compareTo("LAPTOP")==0){
 					comp[i]= new Laptop(nome[i],prezzo[i]);
+					cercaComponentiComputer("lap",comp[i]);
 					System.out.println("Entro in cerca "+comp[i].getNome());
+					comp[i].setTipo("LAPTOP");
 				}else if (tipo.compareTo("DESKTOP")==0){
 					comp[i]= new Desktop(nome[i],prezzo[i]);
+					comp[i].setTipo("DESKTOP");
 					System.out.println("Entro in cerca "+comp[i].getNome());
+					cercaComponentiComputer("des",comp[i]);
 				}else if (tipo.compareTo("SERVER")==0){
 					comp[i]= new Server(nome[i],prezzo[i]);
 					System.out.println("Entro in cerca "+comp[i].getNome());
+					cercaComponentiComputer("ser",comp[i]);
+					comp[i].setTipo("SERVER");
 				}
+				
+				
 			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -184,6 +209,23 @@ public class ServizioServer implements Collegare, Runnable{
 		}//Chiamata funzione al db
 				
 		return comp;
+	}
+	
+	private void cercaComponentiComputer(String tipo,  Computer comp) throws SQLException{
+		int rows = 0;
+		int maxCol = 3;
+		rows = db.countComponentiModello(tipo);
+		String[][] components = new String[rows][maxCol];
+		components = db.getComponentiModello(tipo);
+		componenti = new Componente[rows];
+		for(int i = 0; i < rows; i++){
+			componenti[i] = new Componente();
+			componenti[i].setCodice(components[i][0]);
+			componenti[i].setNome(components[i][1]);
+			componenti[i].setPrezzo(Float.parseFloat(components[i][2]));
+			componenti[i].setTipo(components[i][0].substring(0, 3));
+		}
+		comp.setComponente(componenti);
 	}
 
 	@Override
@@ -244,19 +286,6 @@ public class ServizioServer implements Collegare, Runnable{
 		return cliente;
 	}
 
-	/**
-	 * @return the cliente
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * @param cliente the cliente to set
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
 
 	/**
 	 * @return the computers
@@ -285,6 +314,74 @@ public class ServizioServer implements Collegare, Runnable{
 				return 0;
 			}
 		
+	}
+
+	/**
+	 * @uml.property  name="dataBase"
+	 * @uml.associationEnd  inverse="servizioServer:server.DataBase"
+	 * @uml.association  name="utilizza"
+	 */
+	private DataBase dataBase;
+
+	/**
+	 * Getter of the property <tt>dataBase</tt>
+	 * @return  Returns the dataBase.
+	 * @uml.property  name="dataBase"
+	 */
+	public DataBase getDataBase() {
+		return dataBase;
+	}
+
+	/**
+	 * Setter of the property <tt>dataBase</tt>
+	 * @param dataBase  The dataBase to set.
+	 * @uml.property  name="dataBase"
+	 */
+	public void setDataBase(DataBase dataBase) {
+		this.dataBase = dataBase;
+	}
+
+	/**
+	 * @uml.property  name="computer"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="servizioServer:modello.Computer"
+	 * @uml.association  name="cerca"
+	 */
+	private Collection<?> computer;
+
+	/**
+	 * Getter of the property <tt>computer</tt>
+	 * @return  Returns the computer.
+	 * @uml.property  name="computer"
+	 */
+	public Collection<?> getComputer() {
+		return computer;
+	}
+
+	/**
+	 * Setter of the property <tt>computer</tt>
+	 * @param computer  The computer to set.
+	 * @uml.property  name="computer"
+	 */
+	public void setComputer(Collection<?> computer) {
+		this.computer = computer;
+	}
+
+	/**
+	 * Getter of the property <tt>cliente1</tt>
+	 * @return  Returns the cliente.
+	 * @uml.property  name="cliente"
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	/**
+	 * Setter of the property <tt>cliente1</tt>
+	 * @param cliente1  The cliente1 to set.
+	 * @uml.property  name="cliente"
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 

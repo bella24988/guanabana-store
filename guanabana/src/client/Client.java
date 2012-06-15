@@ -8,9 +8,10 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import server.Cliente;
-import server.Computer;
-import server.Ordine;
+import modello.Cliente;
+import modello.Computer;
+import modello.Ordine;
+
 
 import conexionInterface.Collegare;
 

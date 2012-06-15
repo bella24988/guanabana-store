@@ -5,7 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import server.Cliente;
+import modello.Cliente;
+
 import client.ContenutoPanel;
 import client.LogPanel;
 import client.RegistratiView;
@@ -16,6 +17,7 @@ public class RegistratiController implements ActionListener{
 	ContenutoPanel contenuto;
 	RegistratiView registrati;
 	Cliente cliente;
+	
 	
 	public RegistratiController(RegistratiView registrati){
 		this.setRegistrati(registrati);
@@ -28,8 +30,6 @@ public class RegistratiController implements ActionListener{
 	}
 
 
-
-	@SuppressWarnings("unused")
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equalsIgnoreCase("Registrati")){
 			contenuto.mostraFormularioRegistrati(logpanel);
@@ -49,8 +49,7 @@ public class RegistratiController implements ActionListener{
 										registrati.getTxtCitta()+". Provincia: "+registrati.getTxtProvincia()+
 										". "+registrati.getTxtStato();
 					
-					Client client = new Client();
-					Cliente cliente;
+					client = new Client();
 					try {
 						try {
 							cliente=client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
@@ -199,6 +198,33 @@ public class RegistratiController implements ActionListener{
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
+	}
+
+
+
+	/**
+	 * @uml.property  name="client"
+	 * @uml.associationEnd  inverse="registratiController:client.Client"
+	 * @uml.association  name="utilizza"
+	 */
+	private Client client;
+
+	/**
+	 * Getter of the property <tt>client</tt>
+	 * @return  Returns the client.
+	 * @uml.property  name="client"
+	 */
+	public Client getClient() {
+		return client;
+	}
+
+	/**
+	 * Setter of the property <tt>client</tt>
+	 * @param client  The client to set.
+	 * @uml.property  name="client"
+	 */
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 	

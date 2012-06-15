@@ -1,4 +1,4 @@
-package server;
+package modello;
 
 import java.util.Collection;
 

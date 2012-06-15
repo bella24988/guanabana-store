@@ -1,95 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1438,1739" id="client" metadata="uml2-1.0" initialized="true" zoom="0.25" scrolledX="-24" tag="1000" key="32303037303533312D31303030206775616E6162616E615F7630342F5665726F6E696361">
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.1" name="ContenutoPanel" location="1123,179" size="196,229" id="client/ContenutoPanel" runTimeClassModel="nascondeFormularioRegistrati(),getRegistratiView(),mostraModelli(I[Ljava.lang.String;[FLjava.lang.String;),ContenutoPanel(),setRegistratiView(Lclient.RegistratiView;),registratiView,mostraFormularioRegistrati(Lclient.LogPanel;),nascondeModelli(),setModelloView(Lclient.ModelloView;),getModelloView()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="164,18">
-      <children xsi:type="editmodel:AttributeEditModel" name="registratiView" id="client/ContenutoPanel#registratiView"/>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="965,513" id="client" metadata="uml2-1.0" initialized="true" scrolledY="-265" tag="1000" key="32303037303533312D31303030206775616E6162616E612F5665726F6E696361">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.0" name="ModelloController" location="84,1050" size="156,139" id="client/ModelloController" runTimeClassModel="actionPerformed(Ljava.awt.event.ActionEvent;),setModView(Lclient.ModelloView;),getModView(),modView,ModelloController(Ljava.lang.String;Lclient.ModelloView;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="133,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="modView" id="client/ModelloController#modView"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="173,162">
-      <children xsi:type="editmodel:MethodEditModel" name="ContenutoPanel" id="client/ContenutoPanel#ContenutoPanel()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getModelloView" id="client/ContenutoPanel#getModelloView()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getRegistratiView" id="client/ContenutoPanel#getRegistratiView()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="mostraFormularioRegistrati" id="client/ContenutoPanel#mostraFormularioRegistrati(Lclient.LogPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="mostraModelli" id="client/ContenutoPanel#mostraModelli(I[Ljava.lang.String;[FLjava.lang.String;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="nascondeFormularioRegistrati" id="client/ContenutoPanel#nascondeFormularioRegistrati()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="nascondeModelli" id="client/ContenutoPanel#nascondeModelli()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setModelloView" id="client/ContenutoPanel#setModelloView(Lclient.ModelloView;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setRegistratiView" id="client/ContenutoPanel#setRegistratiView(Lclient.RegistratiView;)"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,72">
+      <children xsi:type="editmodel:MethodEditModel" name="ModelloController" id="client/ModelloController#ModelloController(Lmodello.Computer;Lclient.ModelloView;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="client/ModelloController#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getModView" id="client/ModelloController#getModView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setModView" id="client/ModelloController#setModView(Lclient.ModelloView;)"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="modifica" autoLocated="true" id="client/ContenutoPanel@contenutoPanel+client/RegistratiController@registratiController" source="//@children.0" target="//@children.6" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="modifica" size="40,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="contenutoPanel" location="78,229" id="client/ContenutoPanel@contenutoPanel+client/RegistratiController@registratiController|client/ContenutoPanel#contenutoPanel" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - contenutoPanel" location="1109,415" size="84,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1207,415" size="18,14" anchorKind="FirstPart"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controllato" autoLocated="true" id="client/ModelloController@modelloController+client/ModelloView@modelloView" source="//@children.0" target="//@children.11" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="controllato" size="50,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="modelloController" location="74,0" id="client/ModelloController@modelloController+client/ModelloView@modelloView|client/ModelloController#modelloController" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - modelloController" location="165,1029" size="92,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="133,1029" size="18,14" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiController" location="92,0" id="client/ContenutoPanel@contenutoPanel+client/RegistratiController@registratiController|client/RegistratiController#registratiController" multiplicityLabel="//@children.0/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + registratiController" location="1219,635" size="100,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1187,635" size="18,14" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="modelloView" location="137,283" id="client/ModelloController@modelloController+client/ModelloView@modelloView|client/ModelloView#modelloView" multiplicityLabel="//@children.0/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + modelloView" location="165,778" size="74,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="133,778" size="18,14" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="mostra" autoLocated="true" id="client/ModelloView@modelloView+client/ContenutoPanel@contenutoPanel" source="//@children.0" target="//@children.5" targetEnd="//@children.0/@sourceConnections.1/@children.2" label="//@children.0/@sourceConnections.1/@children.0" sourceEnd="//@children.0/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.1" name="RegistratiController" location="315,734" size="171,283" id="client/RegistratiController" runTimeClassModel="contenuto,logpanel,setContenuto(Lclient.ContenutoPanel;),setRegistrati(Lclient.RegistratiView;),getLogpanel(),RegistratiController(Lclient.LogPanel;Lclient.ContenutoPanel;),getContenuto(),cliente,actionPerformed(Ljava.awt.event.ActionEvent;),registrati,getRegistrati(),setLogpanel(Lclient.LogPanel;),RegistratiController(Lclient.RegistratiView;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="148,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="cliente" id="client/RegistratiController#cliente"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="contenuto" id="client/RegistratiController#contenuto"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="logpanel" id="client/RegistratiController#logpanel"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="registrati" id="client/RegistratiController#registrati"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="121,162">
+      <children xsi:type="editmodel:MethodEditModel" name="RegistratiController" id="client/RegistratiController#RegistratiController(Lclient.RegistratiView;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="RegistratiController" id="client/RegistratiController#RegistratiController(Lclient.LogPanel;Lclient.ContenutoPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="client/RegistratiController#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getContenuto" id="client/RegistratiController#getContenuto()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLogpanel" id="client/RegistratiController#getLogpanel()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRegistrati" id="client/RegistratiController#getRegistrati()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setContenuto" id="client/RegistratiController#setContenuto(Lclient.ContenutoPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLogpanel" id="client/RegistratiController#setLogpanel(Lclient.LogPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setRegistrati" id="client/RegistratiController#setRegistrati(Lclient.RegistratiView;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controlllato" autoLocated="true" id="client/RegistratiController@registratiController+client/RegistratiView@registratiView" source="//@children.1" target="//@children.5" targetEnd="//@children.1/@sourceConnections.0/@children.2" label="//@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="controlllato" size="52,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiController" location="171,141" id="client/RegistratiController@registratiController+client/RegistratiView@registratiView|client/RegistratiController#registratiController" attachSource="true" multiplicityLabel="//@children.1/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.1/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - registratiController" location="493,854" size="98,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="493,882" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiView" location="0,261" id="client/RegistratiController@registratiController+client/RegistratiView@registratiView|client/RegistratiView#registratiView" multiplicityLabel="//@children.1/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.1/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + registratiView" location="693,854" size="80,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="755,882" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="modifica" autoLocated="true" id="client/RegistratiController@registratiController+client/ContenutoPanel@contenutoPanel" source="//@children.1" target="//@children.6" targetEnd="//@children.1/@sourceConnections.1/@children.2" label="//@children.1/@sourceConnections.1/@children.0" sourceEnd="//@children.1/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="modifica" size="40,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiController" location="138,0" id="client/RegistratiController@registratiController+client/ContenutoPanel@contenutoPanel|client/RegistratiController#registratiController" attachSource="true" multiplicityLabel="//@children.1/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.1/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - registratiController" location="460,713" size="98,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="428,713" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="contenutoPanel" location="32,229" id="client/RegistratiController@registratiController+client/ContenutoPanel@contenutoPanel|client/ContenutoPanel#contenutoPanel" multiplicityLabel="//@children.1/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.1/@sourceConnections.1/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + contenutoPanel" location="460,680" size="86,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="428,680" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.6/@sourceConnections.2" name="Index" location="900,344" size="139,139" id="client/Index" runTimeClassModel="init(),contentPane,logPanel,paint(Ljava.awt.Graphics;),Index()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="116,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="contentPane" id="client/Index#contentPane"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="logPanel" id="client/Index#logPanel"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="56,54">
+      <children xsi:type="editmodel:MethodEditModel" name="Index" id="client/Index#Index()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="init" id="client/Index#init()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="paint" id="client/Index#paint(Ljava.awt.Graphics;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="menu" autoLocated="true" id="client/MenuPanel@menuPanel+client/Index@index" source="//@children.2" target="//@children.4" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="menu" size="26,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="index" location="0,38" id="client/MenuPanel@menuPanel+client/Index@index|client/Index#index" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="menuPanel" location="171,136" id="client/MenuPanel@menuPanel+client/Index@index|client/MenuPanel#menuPanel" multiplicityLabel="//@children.2/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.2/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + menuPanel" location="718,361" size="64,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="718,389" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="mostra" autoLocated="true" id="client/LogPanel@panelLog+client/Index@index" source="//@children.2" target="//@children.3" targetEnd="//@children.2/@sourceConnections.1/@children.2" label="//@children.2/@sourceConnections.1/@children.0" sourceEnd="//@children.2/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" name="mostra" size="33,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="contenutoPanel" location="196,114" id="client/ModelloView@modelloView+client/ContenutoPanel@contenutoPanel|client/ContenutoPanel#contenutoPanel" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="modelloView" location="0,131" id="client/ModelloView@modelloView+client/ContenutoPanel@contenutoPanel|client/ModelloView#modelloView" multiplicityLabel="//@children.0/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.0/@sourceConnections.1/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - modelloView" location="1509,271" size="72,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1563,299" size="18,14" anchorKind="LastPart"/>
-      </children>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="modifica" autoLocated="true" id="client/ContenutoPanel@contenutoPanel+client/MenuController@menuController" source="//@children.0" target="//@children.3" targetEnd="//@children.0/@sourceConnections.2/@children.2" label="//@children.0/@sourceConnections.2/@children.0" sourceEnd="//@children.0/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="modifica" size="40,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="contenutoPanel" location="10,229" id="client/ContenutoPanel@contenutoPanel+client/MenuController@menuController|client/ContenutoPanel#contenutoPanel" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.2/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - contenutoPanel" location="1139,415" size="84,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1107,415" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="menuController" location="171,10" id="client/ContenutoPanel@contenutoPanel+client/MenuController@menuController|client/MenuController#menuController"/>
-    </sourceConnections>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" name="LogController" location="103,645" size="168,301" id="client/LogController" runTimeClassModel="db,setCliente(Lserver.Cliente;),setDb(Lserver.DataBase;),getLogpanel(),getDb(),LogController(Lclient.SalutoPanel;Lclient.LogPanel;),getCliente(),cliente,actionPerformed(Ljava.awt.event.ActionEvent;),getLogFattoPanel(),LogController(Lclient.LogPanel;),setLogpanel(Lclient.LogPanel;),setLogFattoPanel(Lclient.SalutoPanel;),logFattoPanel">
-    <children xsi:type="editmodel:CompartmentEditModel" size="145,54">
-      <children xsi:type="editmodel:AttributeEditModel" name="cliente" id="client/LogController#cliente"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="db" id="client/LogController#db"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="logFattoPanel" id="client/LogController#logFattoPanel"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="113,198">
-      <children xsi:type="editmodel:MethodEditModel" name="LogController" id="client/LogController#LogController(Lclient.SalutoPanel;Lclient.LogPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="LogController" id="client/LogController#LogController(Lclient.LogPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="client/LogController#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getCliente" id="client/LogController#getCliente()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getDb" id="client/LogController#getDb()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getLogFattoPanel" id="client/LogController#getLogFattoPanel()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getLogpanel" id="client/LogController#getLogpanel()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setCliente" id="client/LogController#setCliente(Lserver.Cliente;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setDb" id="client/LogController#setDb(Lserver.DataBase;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setLogFattoPanel" id="client/LogController#setLogFattoPanel(Lclient.SalutoPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setLogpanel" id="client/LogController#setLogpanel(Lclient.LogPanel;)"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controllato" autoLocated="true" id="client/LogController@logController1+client/SalutoPanel@salutoPanel" source="//@children.1" target="//@children.8" targetEnd="//@children.1/@sourceConnections.0/@children.2" label="//@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="controllato" size="50,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="logController1" location="0,10" id="client/LogController@logController1+client/SalutoPanel@salutoPanel|client/LogController#logController1" attachSource="true" multiplicityLabel="//@children.1/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.1/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - logController1" location="17,659" size="76,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="75,631" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="salutoPanel" location="164,319" id="client/LogController@logController1+client/SalutoPanel@salutoPanel|client/SalutoPanel#salutoPanel" multiplicityLabel="//@children.1/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.1/@sourceConnections.0/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + salutoPanel" location="-94,623" size="67,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="-13,623" size="18,14" anchorKind="LastPart"/>
-      </children>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controllato" autoLocated="true" id="client/LogPanel@logPanel1+client/LogController@logController1" source="//@children.1" target="//@children.2" targetEnd="//@children.1/@sourceConnections.1/@children.2" label="//@children.1/@sourceConnections.1/@children.0" sourceEnd="//@children.1/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="controllato" size="50,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="logController1" location="113,0" id="client/LogPanel@logPanel1+client/LogController@logController1|client/LogController#logController1" attachSource="true" multiplicityLabel="//@children.1/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.1/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - logController1" location="223,623" size="76,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="191,623" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="logPanel1" location="54,445" id="client/LogPanel@logPanel1+client/LogController@logController1|client/LogPanel#logPanel1" multiplicityLabel="//@children.1/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.1/@sourceConnections.1/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - logPanel1" location="223,479" size="56,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="191,479" size="18,14" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="index" location="139,50" id="client/LogPanel@panelLog+client/Index@index|client/Index#index" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="panelLog" location="0,394" id="client/LogPanel@panelLog+client/Index@index|client/LogPanel#panelLog" multiplicityLabel="//@children.2/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.2/@sourceConnections.1/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + panelLog" location="1092,373" size="56,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1130,401" size="18,14" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.1" name="LogPanel" location="162,27" size="171,445" id="client/LogPanel" runTimeClassModel="bloccareInserzione(),contenuto,btnRegistrati,txtUser,txaMessaggio,setContenuto(Lclient.ContenutoPanel;),deshabilitaRegistrazione(),SbloccareInserzione(),btnLog,txtPassword,mostraMessagio(Ljava.lang.String;),getTxaMessaggio(),loginFatto(Ljava.lang.String;Ljava.lang.String;),getContenuto(),setTxtUser(Ljava.lang.String;),setTxaMessaggio(Ljava.lang.String;),getTxtUser(),getTxtPassword(),setTxtPassword(Ljava.lang.String;),LogPanel(Lclient.ContenutoPanel;),togliereMessaggio(),logoutFatto()">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.1" name="LogPanel" location="1155,0" size="187,445" id="client/LogPanel" runTimeClassModel="bloccareInserimento(),contenuto,btnRegistrati,txtUser,txaMessaggio,setContenuto(Lclient.ContenutoPanel;),btnLog,txtPassword,mostraMessaggioErrore(Ljava.lang.String;),getTxaMessaggio(),getContenuto(),setTxtUser(Ljava.lang.String;),getTxtUser(),setTxaMessaggio(Ljava.lang.String;),getTxtPassword(),setTxtPassword(Ljava.lang.String;),sbloccareInserimento(),loginFatto(Ljava.lang.String;),LogPanel(Lclient.ContenutoPanel;),nascondiMessaggioErrore(),logoutFatto(),nascondiFormRegistrazione()">
     <children xsi:type="editmodel:CompartmentEditModel" size="148,108">
       <children xsi:type="editmodel:AttributeEditModel" name="btnLog" id="client/LogPanel#btnLog"/>
       <children xsi:type="editmodel:AttributeEditModel" name="btnRegistrati" id="client/LogPanel#btnRegistrati"/>
@@ -98,86 +105,55 @@
       <children xsi:type="editmodel:AttributeEditModel" name="txtPassword" id="client/LogPanel#txtPassword"/>
       <children xsi:type="editmodel:AttributeEditModel" name="txtUser" id="client/LogPanel#txtUser"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="147,288">
+    <children xsi:type="editmodel:CompartmentEditModel" size="164,288">
       <children xsi:type="editmodel:MethodEditModel" name="LogPanel" id="client/LogPanel#LogPanel(Lclient.ContenutoPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="SbloccareInserzione" id="client/LogPanel#SbloccareInserzione()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="bloccareInserzione" id="client/LogPanel#bloccareInserzione()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="deshabilitaRegistrazione" id="client/LogPanel#deshabilitaRegistrazione()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="bloccareInserimento" id="client/LogPanel#bloccareInserimento()"/>
       <children xsi:type="editmodel:MethodEditModel" name="getContenuto" id="client/LogPanel#getContenuto()"/>
       <children xsi:type="editmodel:MethodEditModel" name="getTxaMessaggio" id="client/LogPanel#getTxaMessaggio()"/>
       <children xsi:type="editmodel:MethodEditModel" name="getTxtPassword" id="client/LogPanel#getTxtPassword()"/>
       <children xsi:type="editmodel:MethodEditModel" name="getTxtUser" id="client/LogPanel#getTxtUser()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="loginFatto" id="client/LogPanel#loginFatto(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="loginFatto" id="client/LogPanel#loginFatto(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="logoutFatto" id="client/LogPanel#logoutFatto()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="mostraMessagio" id="client/LogPanel#mostraMessagio(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mostraMessaggioErrore" id="client/LogPanel#mostraMessaggioErrore(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nascondiFormRegistrazione" id="client/LogPanel#nascondiFormRegistrazione()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nascondiMessaggioErrore" id="client/LogPanel#nascondiMessaggioErrore()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="sbloccareInserimento" id="client/LogPanel#sbloccareInserimento()"/>
       <children xsi:type="editmodel:MethodEditModel" name="setContenuto" id="client/LogPanel#setContenuto(Lclient.ContenutoPanel;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setTxaMessaggio" id="client/LogPanel#setTxaMessaggio(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setTxtPassword" id="client/LogPanel#setTxtPassword(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setTxtUser" id="client/LogPanel#setTxtUser(Ljava.lang.String;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="togliereMessaggio" id="client/LogPanel#togliereMessaggio()"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="si mostra in" autoLocated="true" id="client/LogPanel@logPanel+client/SalutoPanel@salutoPanel" source="//@children.2" target="//@children.8" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="si mostra in" size="55,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="logPanel" location="0,357" id="client/LogPanel@logPanel+client/SalutoPanel@salutoPanel|client/LogPanel#logPanel" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.2/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - logPanel" location="103,363" size="50,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="135,391" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="salutoPanel" location="175,87" id="client/LogPanel@logPanel+client/SalutoPanel@salutoPanel|client/SalutoPanel#salutoPanel"/>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="si mostra in" autoLocated="true" id="client/LogPanel@logPanel1+client/RegistratiView@registratiView" source="//@children.2" target="//@children.7" targetEnd="//@children.2/@sourceConnections.1/@children.2" label="//@children.2/@sourceConnections.1/@children.0" sourceEnd="//@children.2/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="si mostra in" size="55,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="logPanel1" location="161,445" id="client/LogPanel@logPanel1+client/RegistratiView@registratiView|client/LogPanel#logPanel1" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.2/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - logPanel1" location="257,479" size="56,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="327,479" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiView" location="0,10" id="client/LogPanel@logPanel1+client/RegistratiView@registratiView|client/RegistratiView#registratiView"/>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="mostra" autoLocated="true" id="client/LogPanel@panelLog+client/Index@index" source="//@children.2" target="//@children.10" targetEnd="//@children.2/@sourceConnections.2/@children.2" label="//@children.2/@sourceConnections.2/@children.0" sourceEnd="//@children.2/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="mostra" size="33,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="panelLog" location="171,267" id="client/LogPanel@panelLog+client/Index@index|client/LogPanel#panelLog" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.2/@sourceConnections.2/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + panelLog" location="339,271" size="56,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="339,299" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="index" location="0,87" id="client/LogPanel@panelLog+client/Index@index|client/Index#index"/>
-    </sourceConnections>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.2" name="MenuController" location="746,465" size="171,319" id="client/MenuController" runTimeClassModel="contenuto,db,setMenuAcquista(Lclient.MenuPanel;),setDb(Lserver.DataBase;),setContenuto(Lclient.ContenutoPanel;),menuAcquista,setComputers(Lserver.Computer;),getMenuAcquista(),computers,getContenuto(),getDb(),gesticeModelli(Ljava.lang.String;),actionPerformed(Ljava.awt.event.ActionEvent;),getComputers(),MenuController(Lclient.MenuPanel;Lclient.ContenutoPanel;)">
-    <children xsi:type="editmodel:CompartmentEditModel" size="148,72">
-      <children xsi:type="editmodel:AttributeEditModel" name="computers" id="client/MenuController#computers"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="contenuto" id="client/MenuController#contenuto"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="db" id="client/MenuController#db"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="menuAcquista" id="client/MenuController#menuAcquista"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="114,198">
-      <children xsi:type="editmodel:MethodEditModel" name="MenuController" id="client/MenuController#MenuController(Lclient.MenuPanel;Lclient.ContenutoPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="client/MenuController#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="gesticeModelli" id="client/MenuController#gesticeModelli(Ljava.lang.String;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getComputers" id="client/MenuController#getComputers()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getContenuto" id="client/MenuController#getContenuto()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getDb" id="client/MenuController#getDb()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getMenuAcquista" id="client/MenuController#getMenuAcquista()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setComputers" id="client/MenuController#setComputers(Lserver.Computer;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setContenuto" id="client/MenuController#setContenuto(Lclient.ContenutoPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setDb" id="client/MenuController#setDb(Lserver.DataBase;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setMenuAcquista" id="client/MenuController#setMenuAcquista(Lclient.MenuPanel;)"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controllato" autoLocated="true" id="client/MenuController@menuController1+client/MenuPanel@menuPanel" source="//@children.3" target="//@children.4" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controllato" autoLocated="true" id="client/LogPanel@logPanel1+client/LogController@logController1" source="//@children.3" target="//@children.8" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" name="controllato" size="50,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="menuController1" location="0,11" id="client/MenuController@menuController1+client/MenuPanel@menuPanel|client/MenuController#menuController1" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - menuController1" location="649,455" size="88,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="719,483" size="18,14" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="logPanel1" location="0,97" id="client/LogPanel@logPanel1+client/LogController@logController1|client/LogPanel#logPanel1" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - logPanel1" location="1092,76" size="56,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1130,104" size="18,14" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="menuPanel" location="171,162" id="client/MenuController@menuController1+client/MenuPanel@menuPanel|client/MenuPanel#menuPanel" multiplicityLabel="//@children.3/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.3/@sourceConnections.0/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + menuPanel" location="579,455" size="64,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="579,483" size="18,14" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="logController1" location="136,131" id="client/LogPanel@logPanel1+client/LogController@logController1|client/LogController#logController1" multiplicityLabel="//@children.3/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.3/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + logController1" location="577,76" size="78,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="577,104" size="18,14" anchorKind="LastPart"/>
       </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="si mostra in" autoLocated="true" id="client/LogPanel@logPanel+client/SalutoPanel@salutoPanel" source="//@children.3" target="//@children.7" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="si mostra in" size="55,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="logPanel" location="0,12" id="client/LogPanel@logPanel+client/SalutoPanel@salutoPanel|client/LogPanel#logPanel" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - logPanel" location="1098,-9" size="50,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1130,19" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="salutoPanel" location="174,252" id="client/LogPanel@logPanel+client/SalutoPanel@salutoPanel|client/SalutoPanel#salutoPanel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="si mostra in" autoLocated="true" id="client/LogPanel@logPanel1+client/RegistratiView@registratiView" source="//@children.3" target="//@children.5" targetEnd="//@children.3/@sourceConnections.2/@children.2" label="//@children.3/@sourceConnections.2/@children.0" sourceEnd="//@children.3/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="si mostra in" size="55,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="logPanel1" location="10,445" id="client/LogPanel@logPanel1+client/RegistratiView@registratiView|client/LogPanel#logPanel1" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - logPanel1" location="1172,452" size="56,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1140,452" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiView" location="204,10" id="client/LogPanel@logPanel1+client/RegistratiView@registratiView|client/RegistratiView#registratiView"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0" name="MenuPanel" location="402,314" size="171,175" id="client/MenuPanel" runTimeClassModel="getContenuto(),contenuto,MenuPanel(Lclient.ContenutoPanel;),setContenuto(Lclient.ContenutoPanel;),btnServer,btnDesktop,btnLaptop">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0 //@children.2/@sourceConnections.0" name="MenuPanel" location="540,246" size="171,175" id="client/MenuPanel" runTimeClassModel="contenuto,getContenuto(),MenuPanel(Lclient.ContenutoPanel;),setContenuto(Lclient.ContenutoPanel;),btnDesktop,btnServer,btnLaptop">
     <children xsi:type="editmodel:CompartmentEditModel" size="148,72">
       <children xsi:type="editmodel:AttributeEditModel" name="btnDesktop" id="client/MenuPanel#btnDesktop"/>
       <children xsi:type="editmodel:AttributeEditModel" name="btnLaptop" id="client/MenuPanel#btnLaptop"/>
@@ -189,71 +165,12 @@
       <children xsi:type="editmodel:MethodEditModel" name="getContenuto" id="client/MenuPanel#getContenuto()"/>
       <children xsi:type="editmodel:MethodEditModel" name="setContenuto" id="client/MenuPanel#setContenuto(Lclient.ContenutoPanel;)"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="menu" autoLocated="true" id="client/MenuPanel@menuPanel+client/Index@index" source="//@children.4" target="//@children.10" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="menu" size="26,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="menuPanel" location="171,33" id="client/MenuPanel@menuPanel+client/Index@index|client/MenuPanel#menuPanel" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.4/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - menuPanel" location="579,323" size="62,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="579,351" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="index" location="0,140" id="client/MenuPanel@menuPanel+client/Index@index|client/Index#index"/>
-    </sourceConnections>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.1" name="ModelloView" location="1590,162" size="138,265" id="client/ModelloView" runTimeClassModel="getPrezzo(),numButtons,nascondeButtons(),ModelloView(),prezzo,setNumButtons(I),setNome([Ljava.lang.String;),mostraButtons(I[Ljava.lang.String;[FLjava.lang.String;),setPrezzo([F),getNome(),nome,getNumButtons()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="111,54">
-      <children xsi:type="editmodel:AttributeEditModel" name="nome" id="client/ModelloView#nome"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="numButtons" id="client/ModelloView#numButtons"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="prezzo" id="client/ModelloView#prezzo"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="115,162">
-      <children xsi:type="editmodel:MethodEditModel" name="ModelloView" id="client/ModelloView#ModelloView()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getNome" id="client/ModelloView#getNome()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getNumButtons" id="client/ModelloView#getNumButtons()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getPrezzo" id="client/ModelloView#getPrezzo()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="mostraButtons" id="client/ModelloView#mostraButtons(I[Ljava.lang.String;[FLjava.lang.String;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="nascondeButtons" id="client/ModelloView#nascondeButtons()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setNome" id="client/ModelloView#setNome([Ljava.lang.String;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setNumButtons" id="client/ModelloView#setNumButtons(I)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setPrezzo" id="client/ModelloView#setPrezzo([F)"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0" name="RegistratiController" location="1109,657" size="171,283" id="client/RegistratiController" runTimeClassModel="contenuto,logpanel,setContenuto(Lclient.ContenutoPanel;),setRegistrati(Lclient.RegistratiView;),getLogpanel(),RegistratiController(Lclient.LogPanel;Lclient.ContenutoPanel;),getContenuto(),cliente,actionPerformed(Ljava.awt.event.ActionEvent;),registrati,getRegistrati(),setLogpanel(Lclient.LogPanel;),RegistratiController(Lclient.RegistratiView;)">
-    <children xsi:type="editmodel:CompartmentEditModel" size="148,72">
-      <children xsi:type="editmodel:AttributeEditModel" name="contenuto" id="client/RegistratiController#contenuto"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="logpanel" id="client/RegistratiController#logpanel"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="registrati" id="client/RegistratiController#registrati"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="cliente" id="client/RegistratiController#cliente"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="121,162">
-      <children xsi:type="editmodel:MethodEditModel" name="RegistratiController" id="client/RegistratiController#RegistratiController(Lclient.LogPanel;Lclient.ContenutoPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="RegistratiController" id="client/RegistratiController#RegistratiController(Lclient.RegistratiView;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="client/RegistratiController#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getContenuto" id="client/RegistratiController#getContenuto()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getLogpanel" id="client/RegistratiController#getLogpanel()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getRegistrati" id="client/RegistratiController#getRegistrati()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setContenuto" id="client/RegistratiController#setContenuto(Lclient.ContenutoPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setLogpanel" id="client/RegistratiController#setLogpanel(Lclient.LogPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setRegistrati" id="client/RegistratiController#setRegistrati(Lclient.RegistratiView;)"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controlllato" autoLocated="true" id="client/RegistratiController@registratiController+client/RegistratiView@registratiView" source="//@children.6" target="//@children.7" targetEnd="//@children.6/@sourceConnections.0/@children.2" label="//@children.6/@sourceConnections.0/@children.0" sourceEnd="//@children.6/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" name="controlllato" size="52,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiController" location="0,194" id="client/RegistratiController@registratiController+client/RegistratiView@registratiView|client/RegistratiController#registratiController" attachSource="true" multiplicityLabel="//@children.6/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.6/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - registratiController" location="1015,827" size="98,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1095,855" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiView" location="204,89" id="client/RegistratiController@registratiController+client/RegistratiView@registratiView|client/RegistratiView#registratiView" multiplicityLabel="//@children.6/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.6/@sourceConnections.0/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + registratiView" location="719,827" size="80,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="719,855" size="18,14" anchorKind="LastPart"/>
-      </children>
-    </sourceConnections>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.1 //@children.6/@sourceConnections.0" name="RegistratiView" location="510,762" size="204,967" id="client/RegistratiView" runTimeClassModel="txtPasswordConferma,setTxtNome(Ljava.lang.String;),txtCap,setTxtVia(Ljava.lang.String;),togliMessaggio(),setTxtCap(Ljava.lang.String;),ocultaFinestra(),setTxaMessaggioErrore(Ljava.lang.String;),txtNome,txtVia,setTxtEmail(Ljava.lang.String;),txtProvincia,txtCitta,logPanel,setPanelContenitore(Lclient.ContenutoPanel;),getTxaMessaggioErrore(),getTxtCognome(),txtCognome,getTxtPassword(),getTxtCf(),setTxtCf(Ljava.lang.String;),getTxtCitta(),txtTelefono,panelContenitore,setTxtCognome(Ljava.lang.String;),getTxtNome(),conoscePanel(Lclient.LogPanel;),dehabilitaRegistrati(),inizializza(),txtCf,setTxtPasswordConferma(Ljava.lang.String;),setTxtStato(Ljava.lang.String;),txtEmail,txaMessaggioErrore,txtStato,setTxtPassword(Ljava.lang.String;),RegistratiView(Lclient.ContenutoPanel;),setLogPanel(Lclient.LogPanel;),setTxtProvincia(Ljava.lang.String;),setTxtTelefono(Ljava.lang.String;),getPanelContenitore(),setTxtCitta(Ljava.lang.String;),txtPassword,getTxtCap(),getTxtProvincia(),getTxtPasswordConferma(),mostraMessaggio(Ljava.lang.String;),getTxtEmail(),getTxtTelefono(),getLogPanel(),getTxtVia(),getTxtStato()">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.3/@sourceConnections.2" name="RegistratiView" location="780,614" size="204,985" id="client/RegistratiView" runTimeClassModel="txtPasswordConferma,setTxtNome(Ljava.lang.String;),txtCap,setTxtVia(Ljava.lang.String;),togliMessaggio(),setTxtCap(Ljava.lang.String;),ocultaFinestra(),setTxaMessaggioErrore(Ljava.lang.String;),txtNome,txtVia,setTxtEmail(Ljava.lang.String;),txtProvincia,txtCitta,setPanelContenitore(Lclient.ContenutoPanel;),logPanel,getTxaMessaggioErrore(),getTxtCognome(),txtCognome,getTxtPassword(),getTxtCf(),setTxtCf(Ljava.lang.String;),getTxtCitta(),txtTelefono,panelContenitore,setTxtCognome(Ljava.lang.String;),getTxtNome(),conoscePanel(Lclient.LogPanel;),inizializza(),dehabilitaRegistrati(),txtCf,setTxtPasswordConferma(Ljava.lang.String;),setTxtStato(Ljava.lang.String;),txtEmail,txaMessaggioErrore,setTxtPassword(Ljava.lang.String;),txtStato,RegistratiView(Lclient.ContenutoPanel;),setLogPanel(Lclient.LogPanel;),setTxtProvincia(Ljava.lang.String;),setTxtTelefono(Ljava.lang.String;),getPanelContenitore(),setTxtCitta(Ljava.lang.String;),txtPassword,getTxtCap(),getTxtProvincia(),getTxtPasswordConferma(),mostraMessaggio(Ljava.lang.String;),getTxtEmail(),getTxtTelefono(),getLogPanel(),getTxtVia(),getTxtStato()">
     <children xsi:type="editmodel:CompartmentEditModel" size="181,270">
+      <children xsi:type="editmodel:AttributeEditModel" name="logPanel" id="client/RegistratiView#logPanel"/>
       <children xsi:type="editmodel:AttributeEditModel" name="panelContenitore" id="client/RegistratiView#panelContenitore"/>
       <children xsi:type="editmodel:AttributeEditModel" name="txaMessaggioErrore" id="client/RegistratiView#txaMessaggioErrore"/>
       <children xsi:type="editmodel:AttributeEditModel" name="txtCap" id="client/RegistratiView#txtCap"/>
@@ -308,68 +225,191 @@
       <children xsi:type="editmodel:MethodEditModel" name="setTxtVia" id="client/RegistratiView#setTxtVia(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="togliMessaggio" id="client/RegistratiView#togliMessaggio()"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.2/@sourceConnections.0" name="SalutoPanel" location="-183,297" size="174,319" id="client/SalutoPanel" runTimeClassModel="panel,getPanel(),setPanel(Lclient.LogPanel;),btnLogOut,lblSaluto,getNome(),setNome(Ljava.lang.String;),setLblSaluto(Ljavax.swing.JLabel;),cognome,btnGestioneOrdine,getLblSaluto(),setCognome(Ljava.lang.String;),getCognome(),nome,SalutoPanel(Ljava.lang.String;Ljava.lang.String;Lclient.LogPanel;)">
-    <children xsi:type="editmodel:CompartmentEditModel" size="151,108">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.1" name="ContenutoPanel" location="421,444" size="196,229" id="client/ContenutoPanel" runTimeClassModel="nascondeFormularioRegistrati(),mostraModelli(I[Ljava.lang.String;[FLjava.lang.String;),getRegistratiView(),ContenutoPanel(),setRegistratiView(Lclient.RegistratiView;),registratiView,mostraFormularioRegistrati(Lclient.LogPanel;),nascondeModelli(),setModelloView(Lclient.ModelloView;),getModelloView()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="164,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="registratiView" id="client/ContenutoPanel#registratiView"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="173,162">
+      <children xsi:type="editmodel:MethodEditModel" name="ContenutoPanel" id="client/ContenutoPanel#ContenutoPanel()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getModelloView" id="client/ContenutoPanel#getModelloView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRegistratiView" id="client/ContenutoPanel#getRegistratiView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mostraFormularioRegistrati" id="client/ContenutoPanel#mostraFormularioRegistrati(Lclient.LogPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mostraModelli" id="client/ContenutoPanel#mostraModelli(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nascondeFormularioRegistrati" id="client/ContenutoPanel#nascondeFormularioRegistrati()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nascondeModelli" id="client/ContenutoPanel#nascondeModelli()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setModelloView" id="client/ContenutoPanel#setModelloView(Lclient.ModelloView;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setRegistratiView" id="client/ContenutoPanel#setRegistratiView(Lclient.RegistratiView;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="mostra" autoLocated="true" id="client/ModelloView@modelloView+client/ContenutoPanel@contenutoPanel" source="//@children.6" target="//@children.11" targetEnd="//@children.6/@sourceConnections.0/@children.2" label="//@children.6/@sourceConnections.0/@children.0" sourceEnd="//@children.6/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="mostra" size="33,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="contenutoPanel" location="0,124" id="client/ModelloView@modelloView+client/ContenutoPanel@contenutoPanel|client/ContenutoPanel#contenutoPanel" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="modelloView" location="212,104" id="client/ModelloView@modelloView+client/ContenutoPanel@contenutoPanel|client/ModelloView#modelloView" multiplicityLabel="//@children.6/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.6/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - modelloView" location="240,599" size="72,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="240,571" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="modifica" autoLocated="true" id="client/ContenutoPanel@contenutoPanel+client/MenuController@menuController" source="//@children.6" target="//@children.10" targetEnd="//@children.6/@sourceConnections.1/@children.2" label="//@children.6/@sourceConnections.1/@children.0" sourceEnd="//@children.6/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="modifica" size="40,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="contenutoPanel" location="10,0" id="client/ContenutoPanel@contenutoPanel+client/MenuController@menuController|client/ContenutoPanel#contenutoPanel" attachSource="true" multiplicityLabel="//@children.6/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.6/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - contenutoPanel" location="438,423" size="84,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="406,423" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="menuController" location="171,201" id="client/ContenutoPanel@contenutoPanel+client/MenuController@menuController|client/MenuController#menuController"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="mostra" autoLocated="true" id="client/ContenutoPanel@contenuto+client/Index@index" source="//@children.6" target="//@children.2" targetEnd="//@children.6/@sourceConnections.2/@children.2" label="//@children.6/@sourceConnections.2/@children.0" sourceEnd="//@children.6/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="mostra" size="33,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="contenuto" location="196,19" id="client/ContenutoPanel@contenuto+client/Index@index|client/ContenutoPanel#contenuto" attachSource="true" multiplicityLabel="//@children.6/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.6/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + contenuto" location="624,442" size="60,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="624,470" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="index" location="0,119" id="client/ContenutoPanel@contenuto+client/Index@index|client/Index#index"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.1 //@children.8/@sourceConnections.0" name="SalutoPanel" location="825,-240" size="174,265" id="client/SalutoPanel" runTimeClassModel="panel,getPanel(),setPanel(Lclient.LogPanel;),SalutoPanel(Ljava.lang.String;Lclient.LogPanel;),btnLogOut,lblSaluto,getNome(),nome,setNome(Ljava.lang.String;),setLblSaluto(Ljavax.swing.JLabel;),btnGestioneOrdine,getLblSaluto()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="151,90">
       <children xsi:type="editmodel:AttributeEditModel" name="btnGestioneOrdine" id="client/SalutoPanel#btnGestioneOrdine"/>
       <children xsi:type="editmodel:AttributeEditModel" name="btnLogOut" id="client/SalutoPanel#btnLogOut"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="cognome" id="client/SalutoPanel#cognome"/>
       <children xsi:type="editmodel:AttributeEditModel" name="lblSaluto" id="client/SalutoPanel#lblSaluto"/>
       <children xsi:type="editmodel:AttributeEditModel" name="nome" id="client/SalutoPanel#nome"/>
       <children xsi:type="editmodel:AttributeEditModel" name="panel" id="client/SalutoPanel#panel"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="90,162">
-      <children xsi:type="editmodel:MethodEditModel" name="SalutoPanel" id="client/SalutoPanel#SalutoPanel(Ljava.lang.String;Ljava.lang.String;Lclient.LogPanel;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getCognome" id="client/SalutoPanel#getCognome()"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="89,126">
+      <children xsi:type="editmodel:MethodEditModel" name="SalutoPanel" id="client/SalutoPanel#SalutoPanel(Ljava.lang.String;Lclient.LogPanel;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="getLblSaluto" id="client/SalutoPanel#getLblSaluto()"/>
       <children xsi:type="editmodel:MethodEditModel" name="getNome" id="client/SalutoPanel#getNome()"/>
       <children xsi:type="editmodel:MethodEditModel" name="getPanel" id="client/SalutoPanel#getPanel()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="setCognome" id="client/SalutoPanel#setCognome(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setLblSaluto" id="client/SalutoPanel#setLblSaluto(Ljavax.swing.JLabel;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setNome" id="client/SalutoPanel#setNome(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setPanel" id="client/SalutoPanel#setPanel(Lclient.LogPanel;)"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.10/@sourceConnections.0" name="Collegare" location="450,50" size="111,95" id="conexionInterface/Collegare" runTimeClassModel="collegareDB()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0" name="LogController" location="434,-34" size="136,229" id="client/LogController" runTimeClassModel="setCliente(Lmodello.Cliente;),LogController(Lclient.SalutoPanel;Lclient.LogPanel;),getCliente(),cliente,actionPerformed(Ljava.awt.event.ActionEvent;),getLogFattoPanel(),LogController(Lclient.LogPanel;),getLogpanel(),setLogpanel(Lclient.LogPanel;),setLogFattoPanel(Lclient.SalutoPanel;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="88,18">
-      <children xsi:type="editmodel:MethodEditModel" name="collegareDB" id="conexionInterface/Collegare#collegareDB()"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="cliente" id="client/LogController#cliente"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.2 //@children.4/@sourceConnections.0" name="Index" location="749,207" size="169,175" id="client/Index" runTimeClassModel="main([Ljava.lang.String;),init(),collegareDB(),contentPane,paint(Ljava.awt.Graphics;),menuAcquista,scrollPane,Index()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="146,54">
-      <children xsi:type="editmodel:AttributeEditModel" name="contentPane" id="client/Index#contentPane"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="menuAcquista" id="client/Index#menuAcquista"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="scrollPane" id="client/Index#scrollPane"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,162">
+      <children xsi:type="editmodel:MethodEditModel" name="LogController" id="client/LogController#LogController(Lclient.SalutoPanel;Lclient.LogPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="LogController" id="client/LogController#LogController(Lclient.LogPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="client/LogController#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCliente" id="client/LogController#getCliente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLogFattoPanel" id="client/LogController#getLogFattoPanel()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLogpanel" id="client/LogController#getLogpanel()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setCliente" id="client/LogController#setCliente(Lmodello.Cliente;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLogFattoPanel" id="client/LogController#setLogFattoPanel(Lclient.SalutoPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLogpanel" id="client/LogController#setLogpanel(Lclient.LogPanel;)"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="88,72">
-      <children xsi:type="editmodel:MethodEditModel" name="Index" id="client/Index#Index()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="collegareDB" id="client/Index#collegareDB()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="init" id="client/Index#init()"/>
-      <children xsi:type="editmodel:MethodEditModel" name="paint" id="client/Index#paint(Ljava.awt.Graphics;)"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="conexionInterface/Collegare&lt;-client/Index" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,37" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="111,81"/>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="mostra" autoLocated="true" id="client/ContenutoPanel@contenuto+client/Index@index" source="//@children.10" target="//@children.0" targetEnd="//@children.10/@sourceConnections.1/@children.1" label="//@children.10/@sourceConnections.1/@children.2" sourceEnd="//@children.10/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="index" location="169,87" id="client/ContenutoPanel@contenuto+client/Index@index|client/Index#index" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="contenuto" location="0,115" id="client/ContenutoPanel@contenuto+client/Index@index|client/ContenutoPanel#contenuto" multiplicityLabel="//@children.10/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - contenuto" location="1055,271" size="58,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1095,299" size="18,14" anchorKind="LastPart"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controllato" autoLocated="true" id="client/LogController@logController1+client/SalutoPanel@salutoPanel" source="//@children.8" target="//@children.7" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="controllato" size="50,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="logController1" location="136,30" id="client/LogController@logController1+client/SalutoPanel@salutoPanel|client/LogController#logController1" attachSource="true" multiplicityLabel="//@children.8/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.8/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - logController1" location="577,-25" size="76,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="577,3" size="18,14" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:WireLabelEditModel" name="mostra" size="33,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="salutoPanel" location="0,236" id="client/LogController@logController1+client/SalutoPanel@salutoPanel|client/SalutoPanel#salutoPanel" multiplicityLabel="//@children.8/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.8/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + salutoPanel" location="751,-25" size="67,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="800,3" size="18,14" anchorKind="LastPart"/>
+      </children>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2"/>
+  <children xsi:type="editmodel:ClassEditModel" name="Client" location="551,1068" size="159,409" id="client/Client" runTimeClassModel="getTipo(),setTipo(Ljava.lang.String;),host,registreNuovoCliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),setNum(I),aprireCollegamento(),cercaModelli(Ljava.lang.String;I),fareLogin(Ljava.lang.String;Ljava.lang.String;),chiudereCollegamento(),num,cambiaStatoOrdine(Ljava.lang.String;),tipo,getHost(),conta(Ljava.lang.String;),Client(),getNum(),setHost(Ljava.lang.String;),cercaComponenti(Ljava.lang.String;),fareOrdine(),consultaOrdini()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="host" id="client/Client#host"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="num" id="client/Client#num"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="tipo" id="client/Client#tipo"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="136,306">
+      <children xsi:type="editmodel:MethodEditModel" name="Client" id="client/Client#Client()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="aprireCollegamento" id="client/Client#aprireCollegamento()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cambiaStatoOrdine" id="client/Client#cambiaStatoOrdine(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cercaComponenti" id="client/Client#cercaComponenti(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cercaModelli" id="client/Client#cercaModelli(Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="chiudereCollegamento" id="client/Client#chiudereCollegamento()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="consultaOrdini" id="client/Client#consultaOrdini()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="conta" id="client/Client#conta(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="fareLogin" id="client/Client#fareLogin(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="fareOrdine" id="client/Client#fareOrdine()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getHost" id="client/Client#getHost()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNum" id="client/Client#getNum()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTipo" id="client/Client#getTipo()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="registreNuovoCliente" id="client/Client#registreNuovoCliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setHost" id="client/Client#setHost(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNum" id="client/Client#setNum(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTipo" id="client/Client#setTipo(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="utilizza" autoLocated="true" id="client/Client@client+client/ModelloController@modelloController" source="//@children.9" target="//@children.0" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="utilizza" size="33,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="client" location="0,60" id="client/Client@client+client/ModelloController@modelloController|client/Client#client" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - client" location="509,1107" size="35,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="526,1135" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="modelloController" location="156,78" id="client/Client@client+client/ModelloController@modelloController|client/ModelloController#modelloController"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="utilizza" autoLocated="true" id="client/Client@client+client/RegistratiController@registratiController" source="//@children.9" target="//@children.1" targetEnd="//@children.9/@sourceConnections.1/@children.2" label="//@children.9/@sourceConnections.1/@children.0" sourceEnd="//@children.9/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="utilizza" size="33,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="client" location="0,10" id="client/Client@client+client/RegistratiController@registratiController|client/Client#client" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - client" location="509,1085" size="35,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="526,1057" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="registratiController" location="161,283" id="client/Client@client+client/RegistratiController@registratiController|client/RegistratiController#registratiController"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.6/@sourceConnections.1" name="MenuController" location="104,179" size="171,211" id="client/MenuController" runTimeClassModel="getMenuAcquista(),contenuto,getContenuto(),setMenuAcquista(Lclient.MenuPanel;),gesticeModelli(Ljava.lang.String;),actionPerformed(Ljava.awt.event.ActionEvent;),setContenuto(Lclient.ContenutoPanel;),menuAcquista,MenuController(Lclient.MenuPanel;Lclient.ContenutoPanel;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="148,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="contenuto" id="client/MenuController#contenuto"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="menuAcquista" id="client/MenuController#menuAcquista"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="114,126">
+      <children xsi:type="editmodel:MethodEditModel" name="MenuController" id="client/MenuController#MenuController(Lclient.MenuPanel;Lclient.ContenutoPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="actionPerformed" id="client/MenuController#actionPerformed(Ljava.awt.event.ActionEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="gesticeModelli" id="client/MenuController#gesticeModelli(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getContenuto" id="client/MenuController#getContenuto()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMenuAcquista" id="client/MenuController#getMenuAcquista()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setContenuto" id="client/MenuController#setContenuto(Lclient.ContenutoPanel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMenuAcquista" id="client/MenuController#setMenuAcquista(Lclient.MenuPanel;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="controllato" autoLocated="true" id="client/MenuPanel@menuPanel+client/MenuController@menuController1" source="//@children.10" target="//@children.4" targetEnd="//@children.10/@sourceConnections.0/@children.2" label="//@children.10/@sourceConnections.0/@children.0" sourceEnd="//@children.10/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="controllato" size="50,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="menuController1" location="171,138" id="client/MenuPanel@menuPanel+client/MenuController@menuController1|client/MenuController#menuController1" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="menuPanel" location="0,71" id="client/MenuPanel@menuPanel+client/MenuController@menuController1|client/MenuPanel#menuPanel" multiplicityLabel="//@children.10/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - menuPanel" location="471,296" size="62,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="515,324" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.6/@sourceConnections.0 //@children.0/@sourceConnections.0" name="ModelloView" location="21,464" size="212,283" id="client/ModelloView" runTimeClassModel="getPrezzo(),nascondeButtons(),prezzo,mostraButtons(I[Ljava.lang.String;[FLjava.lang.String;),getNome(),getNumButtons(),numButtons,ModelloView(),setNome([Ljava.lang.String;),setNumButtons(I),setPrezzo([F),nome,modelloController">
+    <children xsi:type="editmodel:CompartmentEditModel" size="189,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="modelloController" id="client/ModelloController@modelloController+client/ModelloView@modelloView|client/ModelloController#modelloController"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nome" id="client/ModelloView#nome"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="numButtons" id="client/ModelloView#numButtons"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="prezzo" id="client/ModelloView#prezzo"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="115,162">
+      <children xsi:type="editmodel:MethodEditModel" name="ModelloView" id="client/ModelloView#ModelloView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNome" id="client/ModelloView#getNome()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNumButtons" id="client/ModelloView#getNumButtons()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPrezzo" id="client/ModelloView#getPrezzo()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mostraButtons" id="client/ModelloView#mostraButtons(ILComputer;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nascondeButtons" id="client/ModelloView#nascondeButtons()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNome" id="client/ModelloView#setNome([Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNumButtons" id="client/ModelloView#setNumButtons(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPrezzo" id="client/ModelloView#setPrezzo([F)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" showScope="All" properties="wireOptions=2;Product=eUML2"/>
   <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
     <leftRuler/>
     <topRuler/>

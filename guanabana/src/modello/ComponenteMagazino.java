@@ -1,4 +1,4 @@
-package server;
+package modello;
 
 
 public class ComponenteMagazino {
