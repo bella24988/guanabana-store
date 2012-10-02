@@ -31,7 +31,7 @@ public class DataBase {
 		
 		
 		/*Prepared Statement*/
-		setStConsultaLog(con.prepareStatement("select * from clienti where email = ? and password = ? ;"));
+		setStConsultaLog(con.prepareStatement("select * from clienti where email = UPPER(?) and password = ? ;"));
 		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaComputer(con.prepareStatement("select nome,prezzo from standard_computer where nome like concat(?,'%')"));
 		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));		
