@@ -63,6 +63,7 @@ public class ServizioServer implements Collegare, Runnable{
 			String richiestaClient = (String) ricevo.readObject();//Legge 1
 			System.out.println("Sono il server, ricevo messaggio dal client: no blocco if"+richiestaClient);
 			String datiLetti;
+			
 			ObjectOutputStream scrive = new ObjectOutputStream(s.getOutputStream());
 			
 			if(richiestaClient.compareTo("login")==0){
