@@ -138,6 +138,7 @@ public class ModelloView extends JPanel {
 		return controller;
 	}
 
+	//ann
 	/**
 	 * Setter of the property <tt>modelloController</tt>
 	 * 
