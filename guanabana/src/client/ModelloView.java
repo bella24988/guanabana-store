@@ -25,7 +25,7 @@ public class ModelloView extends JPanel {
 	private JButton[] btnModelli;
 	private static final long serialVersionUID = 1L;
 	private ModelloController modelloController;
-	private ConfigurazioneServerPanel configServerPanel;
+	private ConfigPanelServer configServerPanel;
 	private Computer computer;
 
 	/**
@@ -156,7 +156,7 @@ public class ModelloView extends JPanel {
 		serverPanel.setVisible(false);
 		desktopPanel.setVisible(false);
 		if (tipo.compareTo("SERVER") == 0) {
-			configServerPanel = new ConfigurazioneServerPanel(
+			configServerPanel = new ConfServerPanel(
 					computer.getComponente());
 			add(configServerPanel);
 			configServerPanel.setVisible(true);
