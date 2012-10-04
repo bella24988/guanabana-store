@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -12,6 +14,8 @@ import modello.Componente;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
@@ -35,12 +39,11 @@ public class ConfServerPanel extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+				0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, 0.0,
+				0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JLabel lblServer = new JLabel("Server");
@@ -80,33 +83,10 @@ public class ConfServerPanel extends JPanel {
 		gbc_textField.gridy = 2;
 		add(textField, gbc_textField);
 		textField.setColumns(10);
-
-		// Mostra i componenti della memoria RAM
-		JLabel lblMemoriaRam = new JLabel("Memoria RAM");
-		lblMemoriaRam.setFont(new Font("Toledo", Font.BOLD, 11));
-		GridBagConstraints gbc_lblMemoriaRam = new GridBagConstraints();
-		gbc_lblMemoriaRam.anchor = GridBagConstraints.EAST;
-		gbc_lblMemoriaRam.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMemoriaRam.gridx = 0;
-		gbc_lblMemoriaRam.gridy = 3;
-		add(lblMemoriaRam, gbc_lblMemoriaRam);
 		// Radio Button della memoria RAM
 		JRadioButton[] rdbtnRam = new JRadioButton[componenti.length];
 		int i;
 		int ultimo = 3;
-		for (i = 0; i < componenti.length; i++) {
-			if (componenti[i].getTipo().compareTo("RAM") == 0) {
-				rdbtnRam[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
-				rdbtnRam[i].setBackground(Color.WHITE);
-				rdbtnRam[i].setFont(new Font("Toledo", Font.PLAIN, 11));
-				GridBagConstraints gbc_rdbtnRam = new GridBagConstraints();
-				gbc_rdbtnRam.insets = new Insets(0, 0, 5, 5);
-				gbc_rdbtnRam.gridx = 1;
-				gbc_rdbtnRam.gridy = ultimo++;
-				add(rdbtnRam[i], gbc_rdbtnRam);
-			}
-		}
 
 		JLabel lblProcessore = new JLabel("Processore");
 		lblProcessore.setFont(new Font("Toledo", Font.BOLD, 11));
@@ -114,9 +94,10 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblProcessore.anchor = GridBagConstraints.EAST;
 		gbc_lblProcessore.insets = new Insets(0, 0, 5, 5);
 		gbc_lblProcessore.gridx = 0;
-		gbc_lblProcessore.gridy = ultimo;
+		gbc_lblProcessore.gridy = 4;
 		add(lblProcessore, gbc_lblProcessore);
 
+		ButtonGroup groupCpuBtn = new ButtonGroup();
 		JRadioButton[] rdbtnCpu = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("CPU") == 0) {
@@ -129,6 +110,7 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnCpu.gridx = 1;
 				gbc_rdbtnCpu.gridy = ultimo++;
 				add(rdbtnCpu[i], gbc_rdbtnCpu);
+				groupCpuBtn.add(rdbtnCpu[i]);
 			}
 		}
 
@@ -138,7 +120,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblMonitoraggioFacile.anchor = GridBagConstraints.EAST;
 		gbc_lblMonitoraggioFacile.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMonitoraggioFacile.gridx = 0;
-		gbc_lblMonitoraggioFacile.gridy = ultimo;
+		gbc_lblMonitoraggioFacile.gridy = 4;
 		add(lblMonitoraggioFacile, gbc_lblMonitoraggioFacile);
 
 		JRadioButton[] rdbtnMon = new JRadioButton[componenti.length];
@@ -162,7 +144,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblSchedaPci.anchor = GridBagConstraints.EAST;
 		gbc_lblSchedaPci.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSchedaPci.gridx = 0;
-		gbc_lblSchedaPci.gridy = ultimo;
+		gbc_lblSchedaPci.gridy = 4;
 		add(lblSchedaPci, gbc_lblSchedaPci);
 
 		JRadioButton[] rdbtnPci = new JRadioButton[componenti.length];
@@ -188,7 +170,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblCapacitDiscoRigido.anchor = GridBagConstraints.EAST;
 		gbc_lblCapacitDiscoRigido.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCapacitDiscoRigido.gridx = 0;
-		gbc_lblCapacitDiscoRigido.gridy = ultimo;
+		gbc_lblCapacitDiscoRigido.gridy = 4;
 		add(lblCapacitDiscoRigido, gbc_lblCapacitDiscoRigido);
 
 		JRadioButton[] rdbtnHdd = new JRadioButton[componenti.length];
@@ -215,7 +197,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblCapacitDiscoRigido_1.anchor = GridBagConstraints.EAST;
 		gbc_lblCapacitDiscoRigido_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCapacitDiscoRigido_1.gridx = 0;
-		gbc_lblCapacitDiscoRigido_1.gridy = ultimo++;
+		gbc_lblCapacitDiscoRigido_1.gridy = 5;
 		add(lblCapacitDiscoRigido_1, gbc_lblCapacitDiscoRigido_1);
 
 		JLabel lblCapacitDiscoRigido_2 = new JLabel(
@@ -225,7 +207,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblCapacitDiscoRigido_2.anchor = GridBagConstraints.EAST;
 		gbc_lblCapacitDiscoRigido_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCapacitDiscoRigido_2.gridx = 0;
-		gbc_lblCapacitDiscoRigido_2.gridy = ultimo++;
+		gbc_lblCapacitDiscoRigido_2.gridy = 6;
 		add(lblCapacitDiscoRigido_2, gbc_lblCapacitDiscoRigido_2);
 
 		JLabel lblCapacitDiscoRigido_3 = new JLabel(
@@ -235,7 +217,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblCapacitDiscoRigido_3.anchor = GridBagConstraints.EAST;
 		gbc_lblCapacitDiscoRigido_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCapacitDiscoRigido_3.gridx = 0;
-		gbc_lblCapacitDiscoRigido_3.gridy = ultimo++;
+		gbc_lblCapacitDiscoRigido_3.gridy = 7;
 		add(lblCapacitDiscoRigido_3, gbc_lblCapacitDiscoRigido_3);
 
 		JLabel lblUnitOtticaCddvd = new JLabel(
@@ -245,7 +227,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblUnitOtticaCddvd.anchor = GridBagConstraints.EAST;
 		gbc_lblUnitOtticaCddvd.insets = new Insets(0, 0, 5, 5);
 		gbc_lblUnitOtticaCddvd.gridx = 0;
-		gbc_lblUnitOtticaCddvd.gridy = ultimo++;
+		gbc_lblUnitOtticaCddvd.gridy = 8;
 		add(lblUnitOtticaCddvd, gbc_lblUnitOtticaCddvd);
 
 		JLabel lblEstenzioneGaranzia = new JLabel("Estenzione Garanzia");
@@ -254,7 +236,7 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblEstenzioneGaranzia.anchor = GridBagConstraints.EAST;
 		gbc_lblEstenzioneGaranzia.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEstenzioneGaranzia.gridx = 0;
-		gbc_lblEstenzioneGaranzia.gridy = ultimo++;
+		gbc_lblEstenzioneGaranzia.gridy = 9;
 		add(lblEstenzioneGaranzia, gbc_lblEstenzioneGaranzia);
 
 	}
