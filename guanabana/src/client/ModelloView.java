@@ -1,7 +1,12 @@
 package client;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import modello.Computer;
 
@@ -26,6 +31,7 @@ public class ModelloView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ModelloController modelloController;
 	private ConfServerPanel confServerPanel;
+	private PreventivoPanel preventivo;
 	private Computer computer;
 
 	/**
@@ -158,7 +164,12 @@ public class ModelloView extends JPanel {
 		if (tipo.compareTo("SERVER") == 0) {
 			confServerPanel = new ConfServerPanel(
 					computer.getComponente());
-			add(confServerPanel);
+			preventivo = new PreventivoPanel();
+			JScrollPane scroller = new JScrollPane(confServerPanel);
+			scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+			scroller.setPreferredSize(new Dimension(550, 400));
+			add(scroller, BorderLayout.WEST);
+			add(preventivo, BorderLayout.EAST);
 			confServerPanel.setVisible(true);
 		}
 	}

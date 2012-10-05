@@ -1,30 +1,22 @@
 package client;
 
 import javax.swing.JPanel;
-
-import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import modello.Componente;
-
 import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 public class ConfServerPanel extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4215414321261368512L;
-	private JTextField textField;
 	private Componente[] componenti;
 
 	/**
@@ -37,52 +29,23 @@ public class ConfServerPanel extends JPanel {
 		this.setComponenti(componenti);
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0,
-				Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.columnWidths = new int[] { 147, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 25, 25, 25, 25, 25, 25,
+				25, 0, 25 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+				0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JLabel lblServer = new JLabel("Server");
 		lblServer.setForeground(new Color(0, 153, 0));
 		lblServer.setFont(new Font("Toledo", Font.BOLD, 14));
 		GridBagConstraints gbc_lblServer = new GridBagConstraints();
-		gbc_lblServer.gridwidth = 4;
+		gbc_lblServer.gridwidth = 2;
 		gbc_lblServer.insets = new Insets(0, 0, 5, 0);
 		gbc_lblServer.gridx = 0;
 		gbc_lblServer.gridy = 0;
 		add(lblServer, gbc_lblServer);
-		JLabel lblPreventivo = new JLabel("Preventivo:");
-		lblPreventivo.setForeground(new Color(0, 153, 0));
-		lblPreventivo.setFont(new Font("Toledo", Font.BOLD, 14));
-		GridBagConstraints gbc_lblPreventivo = new GridBagConstraints();
-		gbc_lblPreventivo.gridwidth = 2;
-		gbc_lblPreventivo.insets = new Insets(0, 0, 5, 0);
-		gbc_lblPreventivo.gridx = 2;
-		gbc_lblPreventivo.gridy = 1;
-		add(lblPreventivo, gbc_lblPreventivo);
-
-		JLabel lblTotale = new JLabel("Totale:");
-		lblTotale.setFont(new Font("Toledo", Font.BOLD, 12));
-		GridBagConstraints gbc_lblTotale = new GridBagConstraints();
-		gbc_lblTotale.anchor = GridBagConstraints.EAST;
-		gbc_lblTotale.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTotale.gridx = 2;
-		gbc_lblTotale.gridy = 2;
-		add(lblTotale, gbc_lblTotale);
-
-		textField = new JTextField();
-		textField.setFont(new Font("Toledo", Font.PLAIN, 11));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 2;
-		add(textField, gbc_textField);
-		textField.setColumns(10);
 
 		JLabel lblMemoriaRam = new JLabel("Memoria RAM");
 		lblMemoriaRam.setFont(new Font("Toledo", Font.BOLD, 11));
@@ -90,17 +53,17 @@ public class ConfServerPanel extends JPanel {
 		gbc_lblMemoriaRam.anchor = GridBagConstraints.EAST;
 		gbc_lblMemoriaRam.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMemoriaRam.gridx = 0;
-		gbc_lblMemoriaRam.gridy = 3;
+		gbc_lblMemoriaRam.gridy = 2;
 		add(lblMemoriaRam, gbc_lblMemoriaRam);
 		// Radio Button della memoria RAM
 		int i;
-		int ultimo = 3;
+		int ultimo = 2;
 		ButtonGroup groupRam = new ButtonGroup();
 		JRadioButton[] rdbtnRam = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("RAM") == 0) {
 				rdbtnRam[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnRam[i].setBackground(Color.WHITE);
 				rdbtnRam[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnRam = new GridBagConstraints();
@@ -127,9 +90,10 @@ public class ConfServerPanel extends JPanel {
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("CPU") == 0) {
 				rdbtnCpu[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnCpu[i].setBackground(Color.WHITE);
 				rdbtnCpu[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnCpu[i].setAlignmentX(LEFT_ALIGNMENT);
 				GridBagConstraints gbc_rdbtnCpu = new GridBagConstraints();
 				gbc_rdbtnCpu.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnCpu.gridx = 1;
@@ -154,7 +118,7 @@ public class ConfServerPanel extends JPanel {
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("MLC") == 0) {
 				rdbtnMon[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnMon[i].setBackground(Color.WHITE);
 				rdbtnMon[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnMon = new GridBagConstraints();
@@ -181,7 +145,7 @@ public class ConfServerPanel extends JPanel {
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("PCI") == 0) {
 				rdbtnMon[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnMon[i].setBackground(Color.WHITE);
 				rdbtnMon[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnPci = new GridBagConstraints();
@@ -195,10 +159,11 @@ public class ConfServerPanel extends JPanel {
 		ultimo++;
 
 		JLabel lblCapacitDiscoRigido = new JLabel(
-				"Capacit\u00E0 disco rigido 1 (obbligatorio)");
+				"Capacit\u00E0 disco rigido 1 \n(obbligatorio)");
+		lblCapacitDiscoRigido.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblCapacitDiscoRigido.setFont(new Font("Toledo", Font.BOLD, 11));
 		GridBagConstraints gbc_lblCapacitDiscoRigido = new GridBagConstraints();
-		gbc_lblCapacitDiscoRigido.anchor = GridBagConstraints.EAST;
+		gbc_lblCapacitDiscoRigido.anchor = GridBagConstraints.WEST;
 		gbc_lblCapacitDiscoRigido.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCapacitDiscoRigido.gridx = 0;
 		gbc_lblCapacitDiscoRigido.gridy = ultimo;
@@ -209,9 +174,9 @@ public class ConfServerPanel extends JPanel {
 		for (i = 0; i < componenti.length; i++) {
 			System.out.println(componenti[i].getNome() + " - Prezzo: "
 					+ componenti[i].getPrezzo() + componenti[i].getTipo());
-			if (componenti[i].getTipo().compareTo("HD1") == 0) {
+			if (componenti[i].getTipo().compareTo("HDD") == 0) {
 				rdbtnHdd[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n  Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd[i].setBackground(Color.WHITE);
 				rdbtnHdd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnHdd = new GridBagConstraints();
@@ -237,9 +202,9 @@ public class ConfServerPanel extends JPanel {
 		ButtonGroup groupHdd1 = new ButtonGroup();
 		JRadioButton[] rdbtnHdd1 = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
-			if (componenti[i].getTipo().compareTo("HD2") == 0) {
+			if (componenti[i].getTipo().compareTo("HDD") == 0) {
 				rdbtnHdd1[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd1[i].setBackground(Color.WHITE);
 				rdbtnHdd1[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnHdd1 = new GridBagConstraints();
@@ -265,9 +230,9 @@ public class ConfServerPanel extends JPanel {
 		ButtonGroup groupHdd2 = new ButtonGroup();
 		JRadioButton[] rdbtnHdd2 = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
-			if (componenti[i].getTipo().compareTo("HD3") == 0) {
+			if (componenti[i].getTipo().compareTo("HDD") == 0) {
 				rdbtnHdd2[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd2[i].setBackground(Color.WHITE);
 				rdbtnHdd2[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnHdd2 = new GridBagConstraints();
@@ -293,9 +258,9 @@ public class ConfServerPanel extends JPanel {
 		ButtonGroup groupHdd3 = new ButtonGroup();
 		JRadioButton[] rdbtnHdd3 = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
-			if (componenti[i].getTipo().compareTo("HD4") == 0) {
+			if (componenti[i].getTipo().compareTo("HDD") == 0) {
 				rdbtnHdd3[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd3[i].setBackground(Color.WHITE);
 				rdbtnHdd3[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnHdd3 = new GridBagConstraints();
@@ -323,7 +288,7 @@ public class ConfServerPanel extends JPanel {
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("DVD") == 0) {
 				rdbtnDvd[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnDvd[i].setBackground(Color.WHITE);
 				rdbtnDvd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnDvd = new GridBagConstraints();
@@ -350,7 +315,7 @@ public class ConfServerPanel extends JPanel {
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("WAR") == 0) {
 				rdbtnWar[i] = new JRadioButton(componenti[i].getNome()
-						+ " - Prezzo: " + componenti[i].getPrezzo());
+						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnWar[i].setBackground(Color.WHITE);
 				rdbtnWar[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnWar = new GridBagConstraints();
@@ -361,10 +326,6 @@ public class ConfServerPanel extends JPanel {
 				groupWar.add(rdbtnWar[i]);
 			}
 		}
-
-		JScrollPane scroller = new JScrollPane(this);
-		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scroller.setPreferredSize(new Dimension(700, 400));
 
 	}
 
