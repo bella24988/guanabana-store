@@ -1,6 +1,8 @@
 package client;
 
 import javax.swing.JPanel;
+
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -14,6 +16,8 @@ import modello.Componente;
 
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class ConfServerPanel extends JPanel {
 	/**
@@ -336,7 +340,7 @@ public class ConfServerPanel extends JPanel {
 		lblEstenzioneGaranzia.setFont(new Font("Toledo", Font.BOLD, 11));
 		GridBagConstraints gbc_lblEstenzioneGaranzia = new GridBagConstraints();
 		gbc_lblEstenzioneGaranzia.anchor = GridBagConstraints.EAST;
-		gbc_lblEstenzioneGaranzia.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEstenzioneGaranzia.insets = new Insets(0, 0, 0, 5);
 		gbc_lblEstenzioneGaranzia.gridx = 0;
 		gbc_lblEstenzioneGaranzia.gridy = ultimo;
 		add(lblEstenzioneGaranzia, gbc_lblEstenzioneGaranzia);
@@ -357,6 +361,10 @@ public class ConfServerPanel extends JPanel {
 				groupWar.add(rdbtnWar[i]);
 			}
 		}
+
+		JScrollPane scroller = new JScrollPane(this);
+		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroller.setPreferredSize(new Dimension(700, 400));
 
 	}
 
