@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
 
 public class PreventivoPanel extends JPanel {
 
@@ -29,7 +30,7 @@ public class PreventivoPanel extends JPanel {
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 63, 102, 28, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 42, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0,

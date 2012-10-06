@@ -1,6 +1,7 @@
 package client;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
@@ -44,6 +45,7 @@ public class ModelloView extends JPanel {
 		laptopPanel.setVisible(false);
 		serverPanel.setVisible(false);
 		desktopPanel.setVisible(false);
+		setBackground(Color.white);
 	}
 
 	public void mostraButtons(int num, Computer[] computer, String tipo) {

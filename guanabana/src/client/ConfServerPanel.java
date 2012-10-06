@@ -144,10 +144,10 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnPci = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("PCI") == 0) {
-				rdbtnMon[i] = new JRadioButton(componenti[i].getNome()
+				rdbtnPci[i] = new JRadioButton(componenti[i].getNome()
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnMon[i].setBackground(Color.WHITE);
-				rdbtnMon[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnPci[i].setBackground(Color.WHITE);
+				rdbtnPci[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnPci = new GridBagConstraints();
 				gbc_rdbtnPci.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnPci.gridx = 1;
@@ -171,12 +171,17 @@ public class ConfServerPanel extends JPanel {
 
 		ButtonGroup groupHdd = new ButtonGroup();
 		JRadioButton[] rdbtnHdd = new JRadioButton[componenti.length];
+		boolean selected = false;
 		for (i = 0; i < componenti.length; i++) {
-			System.out.println(componenti[i].getNome() + " - Prezzo: "
-					+ componenti[i].getPrezzo() + componenti[i].getTipo());
-			if (componenti[i].getTipo().compareTo("HDD") == 0) {
+
+			if (componenti[i].getTipo().compareTo("HDD") == 0
+					&& componenti[i].getNome().compareTo("Nessuno") != 0) {
 				rdbtnHdd[i] = new JRadioButton(componenti[i].getNome()
 						+ "\n  Prezzo: " + componenti[i].getPrezzo());
+				if (selected == false) {
+					rdbtnHdd[i].setSelected(true);
+					selected = true;
+				}
 				rdbtnHdd[i].setBackground(Color.WHITE);
 				rdbtnHdd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				GridBagConstraints gbc_rdbtnHdd = new GridBagConstraints();

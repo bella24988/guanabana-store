@@ -25,7 +25,7 @@ public class ContenutoPanel extends JPanel {
 
 	public ContenutoPanel() {
 		super();
-		setBackground(new Color(204, 255, 153));
+		setBackground(Color.white);
 		setForeground(new Color(0, 0, 0));
 		registratiView = new RegistratiView(this);
 		registratiView.setBackground(new Color(204, 255, 153));
