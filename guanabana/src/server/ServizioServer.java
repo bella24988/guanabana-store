@@ -228,6 +228,14 @@ public class ServizioServer implements Collegare, Runnable{
 		}
 		comp.setComponente(componenti);
 	}
+	
+	private String[] cercaConfigurazioneDefault(String nome, String tipo){
+		
+		
+		
+		return null;
+		
+	}
 
 	@Override
 	public void cercaComponenti(String modello) {
