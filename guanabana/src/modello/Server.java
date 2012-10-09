@@ -5,21 +5,13 @@ package modello;
 public class Server extends Computer {
 	
 	private String tipo;
-	private String ram;
-	private String pci;
-	private String hdd;
-	private String hd1;
-	private String hd2;
-	private String hd3;
-	private String cpu;
-	private String mlc;
-	private String war;
-	private String dvd;
-	private String[] configurazioneStandard = {ram,pci,cpu,hdd,hd1,hd2,hd3,war,mlc,dvd};
+	private String[] configurazioneStandard;
+	private static int maxString=10;
 	
 	public Server(String nome, float prezzo) {
 		super(nome, prezzo);
 		setTipo("SERVER");
+		configurazioneStandard = new String[maxString];
 		// TODO Auto-generated constructor stub
 	}
 
@@ -43,6 +35,9 @@ public class Server extends Computer {
 	 */
 	public void setConfigurazioneStandard(String[] configurazioneStandard) {
 		this.configurazioneStandard = configurazioneStandard;
+		for(int i=0;i<configurazioneStandard.length;i++){
+			System.out.println(configurazioneStandard[i]);
+		}
 	}
 	
 	

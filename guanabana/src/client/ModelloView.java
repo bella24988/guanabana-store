@@ -165,7 +165,7 @@ public class ModelloView extends JPanel {
 		desktopPanel.setVisible(false);
 		if (tipo.compareTo("SERVER") == 0) {
 			confServerPanel = new ConfServerPanel(
-					computer.getComponente());
+					computer.getComponente(), computer.getConfigurazioneStandard());
 			preventivo = new PreventivoPanel();
 			JScrollPane scroller = new JScrollPane(confServerPanel);
 			scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);

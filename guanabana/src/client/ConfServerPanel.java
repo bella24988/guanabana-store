@@ -25,7 +25,7 @@ public class ConfServerPanel extends JPanel {
 	/**
 	 * @param componenti
 	 */
-	public ConfServerPanel(Componente[] componenti) {
+	public ConfServerPanel(Componente[] componenti, String[] configStandard) {
 		this.setComponenti(componenti);
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -66,6 +66,11 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnRam[i].setBackground(Color.WHITE);
 				rdbtnRam[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				System.out.println(configStandard[0] + " = "
+						+ componenti[i].getCodice());
+				if (configStandard[0].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnRam[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnRam = new GridBagConstraints();
 				gbc_rdbtnRam.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnRam.gridx = 1;
@@ -94,6 +99,9 @@ public class ConfServerPanel extends JPanel {
 				rdbtnCpu[i].setBackground(Color.WHITE);
 				rdbtnCpu[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				rdbtnCpu[i].setAlignmentX(LEFT_ALIGNMENT);
+				if (configStandard[1].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnCpu[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnCpu = new GridBagConstraints();
 				gbc_rdbtnCpu.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnCpu.gridx = 1;
@@ -121,6 +129,10 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnMon[i].setBackground(Color.WHITE);
 				rdbtnMon[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[3].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnMon[i].setSelected(true);
+				}
+
 				GridBagConstraints gbc_rdbtnMon = new GridBagConstraints();
 				gbc_rdbtnMon.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnMon.gridx = 1;
@@ -148,6 +160,9 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnPci[i].setBackground(Color.WHITE);
 				rdbtnPci[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[2].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnPci[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnPci = new GridBagConstraints();
 				gbc_rdbtnPci.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnPci.gridx = 1;
@@ -171,19 +186,17 @@ public class ConfServerPanel extends JPanel {
 
 		ButtonGroup groupHdd = new ButtonGroup();
 		JRadioButton[] rdbtnHdd = new JRadioButton[componenti.length];
-		boolean selected = false;
 		for (i = 0; i < componenti.length; i++) {
 
 			if (componenti[i].getTipo().compareTo("HDD") == 0
 					&& componenti[i].getNome().compareTo("Nessuno") != 0) {
 				rdbtnHdd[i] = new JRadioButton(componenti[i].getNome()
 						+ "\n  Prezzo: " + componenti[i].getPrezzo());
-				if (selected == false) {
-					rdbtnHdd[i].setSelected(true);
-					selected = true;
-				}
 				rdbtnHdd[i].setBackground(Color.WHITE);
 				rdbtnHdd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[4].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnHdd[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnHdd = new GridBagConstraints();
 				gbc_rdbtnHdd.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd.gridx = 1;
@@ -212,6 +225,9 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd1[i].setBackground(Color.WHITE);
 				rdbtnHdd1[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[5].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnHdd1[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnHdd1 = new GridBagConstraints();
 				gbc_rdbtnHdd1.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd1.gridx = 1;
@@ -240,6 +256,9 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd2[i].setBackground(Color.WHITE);
 				rdbtnHdd2[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[6].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnHdd2[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnHdd2 = new GridBagConstraints();
 				gbc_rdbtnHdd2.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd2.gridx = 1;
@@ -268,6 +287,9 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd3[i].setBackground(Color.WHITE);
 				rdbtnHdd3[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[7].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnHdd3[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnHdd3 = new GridBagConstraints();
 				gbc_rdbtnHdd3.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd3.gridx = 1;
@@ -296,6 +318,9 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnDvd[i].setBackground(Color.WHITE);
 				rdbtnDvd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[8].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnDvd[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnDvd = new GridBagConstraints();
 				gbc_rdbtnDvd.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnDvd.gridx = 1;
@@ -323,6 +348,9 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnWar[i].setBackground(Color.WHITE);
 				rdbtnWar[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				if (configStandard[9].compareTo(componenti[i].getCodice()) == 0) {
+					rdbtnWar[i].setSelected(true);
+				}
 				GridBagConstraints gbc_rdbtnWar = new GridBagConstraints();
 				gbc_rdbtnWar.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnWar.gridx = 1;

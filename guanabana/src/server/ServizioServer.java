@@ -188,16 +188,19 @@ public class ServizioServer implements Collegare, Runnable{
 					cercaComponentiComputer("lap",comp[i]);
 					System.out.println("Entro in cerca "+comp[i].getNome());
 					comp[i].setTipo("LAPTOP");
+					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "lap"));
 				}else if (tipo.compareTo("DESKTOP")==0){
 					comp[i]= new Desktop(nome[i],prezzo[i]);
 					comp[i].setTipo("DESKTOP");
 					System.out.println("Entro in cerca "+comp[i].getNome());
 					cercaComponentiComputer("des",comp[i]);
+					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "des"));
 				}else if (tipo.compareTo("SERVER")==0){
 					comp[i]= new Server(nome[i],prezzo[i]);
 					System.out.println("Entro in cerca "+comp[i].getNome());
 					cercaComponentiComputer("ser",comp[i]);
 					comp[i].setTipo("SERVER");
+					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "ser"));
 				}
 				
 				
@@ -229,11 +232,16 @@ public class ServizioServer implements Collegare, Runnable{
 		comp.setComponente(componenti);
 	}
 	
-	private String[] cercaConfigurazioneDefault(String nome, String tipo){
+	/**
+	 * @param nome
+	 * @param tipo
+	 * @return restituisce una parametro di tipo un array di String di lunghezza variabile
+	 * @throws SQLException
+	 */
+	private String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
 		
 		
-		
-		return null;
+		return db.cercaConfigurazioneDefault(nome, tipo);
 		
 	}
 

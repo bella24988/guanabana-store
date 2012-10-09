@@ -143,21 +143,28 @@ public class DataBase {
 		
 	}
 	
-	private String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
+	/**
+	 * @param nome
+	 * @param tipo
+	 * @return config, variabile locale di tipo Array di String, la sua lunghezza varia a seconda della variabile tipo.
+	 * @throws SQLException
+	 */
+	public String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
 		
 		ResultSet result = null;
 		int max = 0;
 		Statement stStandardPC = con.createStatement();
 		if (tipo=="ser"){
-			result = stStandardPC.executeQuery("select ram, cpu, pci, mlc, hd1, hd2,hd3,hd4,dvd,war from standard_computer where nome ="+nome);
+			result = stStandardPC.executeQuery("select ram, cpu, pci, mlc, hd1, hd2,hd3,hd4,dvd,war from standard_computer where nome ='"+nome+"'");
 			max=10;
 		}else if(tipo=="lap"){
-			result = stStandardPC.executeQuery("select ram, cpu, hd1, war, gpu from standard_computer where nome ="+nome);
+			result = stStandardPC.executeQuery("select ram, cpu, war, gpu from standard_computer where nome ='"+nome+"'");
 			max=5;
 		}else if(tipo=="des"){
-			result = stStandardPC.executeQuery("select ram, cpu, mlc, hd1, hd2,hd3,hd4,dvd,war from standard_computer where nome ="+nome);
+			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, key, mon from standard_computer where nome ='"+nome+"'");
 			max=10;
 		}
+		
 		String[] config = new String[max];
 		while(result.next()){
 			for(int i=0;i<max;i++)
