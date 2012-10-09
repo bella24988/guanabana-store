@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
 import modello.Computer;
+
 
 public class ModelloView extends JPanel {
 
@@ -32,8 +32,9 @@ public class ModelloView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ModelloController modelloController;
 	private ConfServerPanel confServerPanel;
-	private PreventivoPanel preventivo;
+	private PreventivoPanel preventivoPanel;
 	private Computer computer;
+	private PreventivoController preventivoController;
 
 	/**
 	 * Create the panel.
@@ -158,20 +159,26 @@ public class ModelloView extends JPanel {
 		controller = modelloController;
 	}
 
-	public void mostraComponente(String tipo) {
-		System.out.println(tipo + "Modello view");
+	public void mostraComponente(String nome, String tipo, float prezzo) {
 		laptopPanel.setVisible(false);
 		serverPanel.setVisible(false);
 		desktopPanel.setVisible(false);
+		preventivoController = new PreventivoController();
 		if (tipo.compareTo("SERVER") == 0) {
 			confServerPanel = new ConfServerPanel(
-					computer.getComponente(), computer.getConfigurazioneStandard());
-			preventivo = new PreventivoPanel();
+					computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController);
+			preventivoPanel = new PreventivoPanel(preventivoController);
+			preventivoController.setConfServerPanel(confServerPanel);
+			preventivoController.setPreventivoPanel(preventivoPanel);
+			preventivoController.setNome(nome);
+			preventivoController.setTipo(tipo);
+			preventivoController.setPrezzo(prezzo);
+			preventivoPanel.setTotalePreventivo(String.valueOf(prezzo));
 			JScrollPane scroller = new JScrollPane(confServerPanel);
 			scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 			scroller.setPreferredSize(new Dimension(550, 400));
 			add(scroller, BorderLayout.WEST);
-			add(preventivo, BorderLayout.EAST);
+			add(preventivoPanel, BorderLayout.EAST);
 			confServerPanel.setVisible(true);
 		}
 	}

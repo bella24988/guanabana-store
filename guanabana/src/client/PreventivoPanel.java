@@ -3,7 +3,6 @@ package client;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -12,7 +11,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
 
 public class PreventivoPanel extends JPanel {
 
@@ -20,12 +18,13 @@ public class PreventivoPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JTextField totalePreventivo;
+	private PreventivoController preventivoController;
 
 	/**
 	 * Create the panel.
 	 */
-	public PreventivoPanel() {
+	public PreventivoPanel(PreventivoController preventivoController) {
 		setBorder(new LineBorder(new Color(0, 153, 0), 2, true));
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -77,15 +76,15 @@ public class PreventivoPanel extends JPanel {
 		gbc_textField_1_1.gridx = 1;
 		gbc_textField_1_1.gridy = 1;
 
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField.setText("0,0");
-		textField.setForeground(Color.WHITE);
-		textField.setBackground(Color.BLACK);
-		textField.setEditable(false);
-		textField.setFont(new Font("Toledo", Font.BOLD, 11));
-		add(textField, gbc_textField_1_1);
-		textField.setColumns(10);
+		totalePreventivo = new JTextField();
+		totalePreventivo.setHorizontalAlignment(SwingConstants.RIGHT);
+		totalePreventivo.setText("0,0");
+		totalePreventivo.setForeground(Color.WHITE);
+		totalePreventivo.setBackground(Color.BLACK);
+		totalePreventivo.setEditable(false);
+		totalePreventivo.setFont(new Font("Toledo", Font.BOLD, 11));
+		add(totalePreventivo, gbc_textField_1_1);
+		totalePreventivo.setColumns(10);
 
 		JLabel lblEur = new JLabel("EUR");
 		lblEur.setFont(new Font("Toledo", Font.BOLD, 12));
@@ -95,8 +94,7 @@ public class PreventivoPanel extends JPanel {
 		gbc_lblEur.gridy = 1;
 		add(lblEur, gbc_lblEur);
 
-		JButton btnContinuaConilPagamento = new JButton(
-				"Continua con il pagamento");
+		JButton btnContinuaConilPagamento = new JButton("Conferma Ordine");
 		btnContinuaConilPagamento.setForeground(new Color(0, 153, 0));
 		btnContinuaConilPagamento.setFont(new Font("Toledo", Font.BOLD, 12));
 		GridBagConstraints gbc_btnContinuaConilPagamento = new GridBagConstraints();
@@ -106,6 +104,33 @@ public class PreventivoPanel extends JPanel {
 		gbc_btnContinuaConilPagamento.gridy = 2;
 		add(btnContinuaConilPagamento, gbc_btnContinuaConilPagamento);
 
+		// Listener di Conferma Ordine
+		btnContinuaConilPagamento.addActionListener(preventivoController);
+
+	}
+
+	public String getTotalePreventivo() {
+		return totalePreventivo.getText();
+	}
+
+	public void setTotalePreventivo(String totalePreventivo) {
+		this.totalePreventivo.setText(totalePreventivo);
+	}
+
+	/**
+	 * @return the preventivoController
+	 */
+	public PreventivoController getPreventivoController() {
+		return preventivoController;
+	}
+
+	/**
+	 * @param preventivoController
+	 *            the preventivoController to set
+	 */
+	public void setPreventivoController(
+			PreventivoController preventivoController) {
+		this.preventivoController = preventivoController;
 	}
 
 }

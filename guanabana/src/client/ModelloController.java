@@ -17,7 +17,7 @@ public class ModelloController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		if (e.getActionCommand().equalsIgnoreCase(computer.getNome() + ", Prezzo: " + String.valueOf(computer.getPrezzo()))){
-				modelloView.mostraComponente(computer.getTipo());
+				modelloView.mostraComponente(computer.getNome(), computer.getTipo(), computer.getPrezzo());
 		}
 	}
 	
