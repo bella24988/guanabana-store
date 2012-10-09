@@ -12,6 +12,8 @@ import modello.Server;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+
 import javax.swing.SwingConstants;
 
 public class ConfServerPanel extends JPanel {
@@ -21,6 +23,7 @@ public class ConfServerPanel extends JPanel {
 	private static final long serialVersionUID = 4215414321261368512L;
 	private Componente[] componenti;
 	private PreventivoController preventivoController;
+	private JRadioButton[] rdbtnRam;
 
 	/**
 	 * Create the panel.
@@ -63,7 +66,7 @@ public class ConfServerPanel extends JPanel {
 		int i;
 		int ultimo = 2;
 		ButtonGroup groupRam = new ButtonGroup();
-		JRadioButton[] rdbtnRam = new JRadioButton[componenti.length];
+		rdbtnRam = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("RAM") == 0) {
 				// Setta la configurazione di default
@@ -78,10 +81,7 @@ public class ConfServerPanel extends JPanel {
 				}
 				rdbtnRam[i].setBackground(Color.WHITE);
 				rdbtnRam[i].setFont(new Font("Toledo", Font.PLAIN, 11));
-				rdbtnRam[i].setActionCommand(Float.toString(componenti[i]
-						.getPrezzo()));
-				System.out.println(configStandard[0] + " = "
-						+ componenti[i].getCodice());
+				rdbtnRam[i].setActionCommand("ram" + i);
 
 				// Griglia, nettamente grafico
 				GridBagConstraints gbc_rdbtnRam = new GridBagConstraints();
@@ -117,11 +117,10 @@ public class ConfServerPanel extends JPanel {
 				rdbtnCpu[i].setBackground(Color.WHITE);
 				rdbtnCpu[i].setFont(new Font("Toledo", Font.PLAIN, 11));
 				rdbtnCpu[i].setAlignmentX(LEFT_ALIGNMENT);
+				rdbtnCpu[i].setActionCommand("cpu" + i);
 				if (configStandard[1].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnCpu[i].setSelected(true);
 				}
-				rdbtnCpu[i].setActionCommand(Float.toString(componenti[i]
-						.getPrezzo()));
 				GridBagConstraints gbc_rdbtnCpu = new GridBagConstraints();
 				gbc_rdbtnCpu.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnCpu.gridx = 1;
@@ -151,6 +150,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnMon[i].setBackground(Color.WHITE);
 				rdbtnMon[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnMon[i].setActionCommand("mlc" + i);
 				if (configStandard[3].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnMon[i].setSelected(true);
 				}
@@ -161,6 +161,8 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnMon.gridy = ultimo++;
 				add(rdbtnMon[i], gbc_rdbtnMon);
 				groupMon.add(rdbtnMon[i]);
+
+				rdbtnMon[i].addActionListener(preventivoController);
 			}
 		}
 
@@ -182,6 +184,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnPci[i].setBackground(Color.WHITE);
 				rdbtnPci[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnPci[i].setActionCommand("pci" + i);
 				if (configStandard[2].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnPci[i].setSelected(true);
 				}
@@ -191,6 +194,7 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnPci.gridy = ultimo++;
 				add(rdbtnPci[i], gbc_rdbtnPci);
 				groupPci.add(rdbtnPci[i]);
+				rdbtnPci[i].addActionListener(preventivoController);
 			}
 		}
 		ultimo++;
@@ -216,6 +220,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n  Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd[i].setBackground(Color.WHITE);
 				rdbtnHdd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd[i].setActionCommand("hdd" + i);
 				if (configStandard[4].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnHdd[i].setSelected(true);
 				}
@@ -225,6 +230,8 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnHdd.gridy = ultimo++;
 				add(rdbtnHdd[i], gbc_rdbtnHdd);
 				groupHdd.add(rdbtnHdd[i]);
+
+				rdbtnHdd[i].addActionListener(preventivoController);
 			}
 		}
 
@@ -247,6 +254,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd1[i].setBackground(Color.WHITE);
 				rdbtnHdd1[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd1[i].setActionCommand("hd1" + i);
 				if (configStandard[5].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnHdd1[i].setSelected(true);
 				}
@@ -256,6 +264,7 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnHdd1.gridy = ultimo++;
 				add(rdbtnHdd1[i], gbc_rdbtnHdd1);
 				groupHdd1.add(rdbtnHdd1[i]);
+				rdbtnHdd1[i].addActionListener(preventivoController);
 			}
 		}
 
@@ -278,6 +287,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd2[i].setBackground(Color.WHITE);
 				rdbtnHdd2[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd2[i].setActionCommand("hd2" + i);
 				if (configStandard[6].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnHdd2[i].setSelected(true);
 				}
@@ -287,6 +297,7 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnHdd2.gridy = ultimo++;
 				add(rdbtnHdd2[i], gbc_rdbtnHdd2);
 				groupHdd2.add(rdbtnHdd2[i]);
+				rdbtnHdd2[i].addActionListener(preventivoController);
 			}
 		}
 
@@ -309,6 +320,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnHdd3[i].setBackground(Color.WHITE);
 				rdbtnHdd3[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd3[i].setActionCommand("hd3" + i);
 				if (configStandard[7].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnHdd3[i].setSelected(true);
 				}
@@ -318,6 +330,7 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnHdd3.gridy = ultimo++;
 				add(rdbtnHdd3[i], gbc_rdbtnHdd3);
 				groupHdd3.add(rdbtnHdd3[i]);
+				rdbtnHdd3[i].addActionListener(preventivoController);
 			}
 		}
 
@@ -340,6 +353,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnDvd[i].setBackground(Color.WHITE);
 				rdbtnDvd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnDvd[i].setActionCommand("dvd" + i);
 				if (configStandard[8].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnDvd[i].setSelected(true);
 				}
@@ -349,6 +363,7 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnDvd.gridy = ultimo++;
 				add(rdbtnDvd[i], gbc_rdbtnDvd);
 				groupDvd.add(rdbtnDvd[i]);
+				rdbtnDvd[i].addActionListener(preventivoController);
 			}
 		}
 
@@ -370,6 +385,7 @@ public class ConfServerPanel extends JPanel {
 						+ "\n Prezzo: " + componenti[i].getPrezzo());
 				rdbtnWar[i].setBackground(Color.WHITE);
 				rdbtnWar[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnWar[i].setActionCommand("war" + i);
 				if (configStandard[9].compareTo(componenti[i].getCodice()) == 0) {
 					rdbtnWar[i].setSelected(true);
 				}
@@ -379,6 +395,7 @@ public class ConfServerPanel extends JPanel {
 				gbc_rdbtnWar.gridy = ultimo++;
 				add(rdbtnWar[i], gbc_rdbtnWar);
 				groupWar.add(rdbtnWar[i]);
+				rdbtnWar[i].addActionListener(preventivoController);
 			}
 		}
 
