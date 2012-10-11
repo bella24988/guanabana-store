@@ -401,6 +401,14 @@ public class ConfServerPanel extends JPanel {
 
 	}
 
+	public JRadioButton[] getRdbtnRam() {
+		return rdbtnRam;
+	}
+
+	public void setRdbtnRam(JRadioButton[] rdbtnRam) {
+		this.rdbtnRam = rdbtnRam;
+	}
+
 	/**
 	 * @return the componenti
 	 */
