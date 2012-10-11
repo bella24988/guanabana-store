@@ -91,8 +91,8 @@ public class MenuController  implements ActionListener{
 			e.printStackTrace();
 		}
 		
-		contenuto.nascondeModelli();
-		contenuto.mostraModelli(numComputers,modelli, tipoComputer);
+		//contenuto.nascondeModelli();
+		contenuto.mostraModelli(numComputers,modelli, tipoComputer, contenuto);
 	}
 	
 	/**

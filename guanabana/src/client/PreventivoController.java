@@ -3,11 +3,15 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import modello.Configurazione;
+
 public class PreventivoController implements ActionListener{
 	
 	private ConfServerPanel confServerPanel;
 	private PreventivoPanel preventivoPanel;
 	private String nome, tipo;
+	private Configurazione configurazione;
+	private float prezzoBrutto;
 	private float prezzoRamOld;
 	private float prezzoCpuOld;
 	private float prezzoPciOld;
@@ -18,7 +22,7 @@ public class PreventivoController implements ActionListener{
 	private float prezzoHd3Old;
 	private float prezzoDvdOld;
 	private float prezzoWarOld;
-	private ConfermaOrdinePanel confermaOrdinePanel;
+	private ContenutoPanel contenutoPanel;
 
 
 
@@ -28,7 +32,10 @@ public class PreventivoController implements ActionListener{
 		
 		
 		if (e.getActionCommand().equalsIgnoreCase("Conferma Ordine")){
-			confermaOrdinePanel = new ConfermaOrdinePanel(getNome(),preventivoPanel.getTotalePreventivo());
+			contenutoPanel.nascondeModelli();
+			configurazione = new Configurazione();
+			System.out.println(getNome());
+			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione);
 		}else {
 			int i = Integer.parseInt(e.getActionCommand().substring(3));	
 			if(e.getActionCommand().substring(0, 3).compareTo("ram")==0){//Controlla i buttons per la ram
@@ -137,6 +144,34 @@ public class PreventivoController implements ActionListener{
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	/**
+	 * @return the contenutoPanel
+	 */
+	public ContenutoPanel getContenutoPanel() {
+		return contenutoPanel;
+	}
+
+	/**
+	 * @param contenutoPanel the contenutoPanel to set
+	 */
+	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
+		this.contenutoPanel = contenutoPanel;
+	}
+
+	/**
+	 * @return the prezzoBrutto
+	 */
+	public float getPrezzoBrutto() {
+		return prezzoBrutto;
+	}
+
+	/**
+	 * @param prezzoBrutto the prezzoBrutto to set
+	 */
+	public void setPrezzoBrutto(float prezzoBrutto) {
+		this.prezzoBrutto = prezzoBrutto;
 	}
 
 

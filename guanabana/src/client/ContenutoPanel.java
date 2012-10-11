@@ -3,6 +3,7 @@ package client;
 import javax.swing.JPanel;
 
 import modello.Computer;
+import modello.Configurazione;
 
 import java.awt.Color;
 
@@ -22,6 +23,7 @@ public class ContenutoPanel extends JPanel {
 	 * @uml.association name="mostra"
 	 */
 	private ModelloView modelloView;
+	private ConfermaOrdinePanel confermaOrdinePanel;
 
 	public ContenutoPanel() {
 		super();
@@ -34,6 +36,7 @@ public class ContenutoPanel extends JPanel {
 		modelloView = new ModelloView();
 		modelloView.setVisible(false);
 		add(modelloView);
+		
 	}
 
 	public RegistratiView getRegistratiView() {
@@ -45,6 +48,7 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	public void mostraFormularioRegistrati(LogPanel panel) {
+		//confermaOrdinePanel.setVisible(false);
 		registratiView.setVisible(true);
 		registratiView.conoscePanel(panel);
 		modelloView.setVisible(false);
@@ -55,17 +59,24 @@ public class ContenutoPanel extends JPanel {
 		nascondeModelli();
 	}
 
-	public void mostraModelli(int num, Computer[] computers, String tipo) {
+	public void mostraModelli(int num, Computer[] computers, String tipo, ContenutoPanel contenutoPanel) {
 		modelloView.setVisible(true);
 		nascondeFormularioRegistrati();
 		modelloView = new ModelloView();
 		add(modelloView);
 		modelloView.mostraButtons(num, computers, tipo);
 		modelloView.setVisible(true);
+		modelloView.setContenutoPanel(contenutoPanel);
 	}
 
 	public void nascondeModelli() {
 		modelloView.setVisible(false);
+	}
+	
+	public void mostraConfermaOrdine(String nome, float prezzo, Configurazione configurazione){
+		confermaOrdinePanel = new ConfermaOrdinePanel(nome, prezzo, configurazione);
+		confermaOrdinePanel.setVisible(true);
+		add(confermaOrdinePanel);
 	}
 
 	/**

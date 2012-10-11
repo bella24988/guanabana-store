@@ -24,6 +24,7 @@ public class ModelloView extends JPanel {
 	/**
 	 * 
 	 */
+	private ContenutoPanel contenutoPanel;
 	private JPanel desktopPanel;
 	private int numButtons;
 	private String[] nome;
@@ -172,6 +173,8 @@ public class ModelloView extends JPanel {
 			preventivoController.setPreventivoPanel(preventivoPanel);
 			preventivoController.setNome(nome);
 			preventivoController.setTipo(tipo);
+			preventivoController.setPrezzoBrutto(prezzo);
+			preventivoController.setContenutoPanel(getContenutoPanel());
 			preventivoPanel.setTotalePreventivo(String.valueOf(prezzo));
 			JScrollPane scroller = new JScrollPane(confServerPanel);
 			scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -180,5 +183,19 @@ public class ModelloView extends JPanel {
 			add(preventivoPanel, BorderLayout.EAST);
 			confServerPanel.setVisible(true);
 		}
+	}
+
+	/**
+	 * @return the contenutoPanel
+	 */
+	public ContenutoPanel getContenutoPanel() {
+		return contenutoPanel;
+	}
+
+	/**
+	 * @param contenutoPanel the contenutoPanel to set
+	 */
+	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
+		this.contenutoPanel = contenutoPanel;
 	}
 }
