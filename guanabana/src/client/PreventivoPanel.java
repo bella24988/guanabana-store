@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
+import modello.Configurazione;
+
 public class PreventivoPanel extends JPanel {
 
 	/**

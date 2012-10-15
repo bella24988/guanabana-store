@@ -8,12 +8,10 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import modello.Componente;
-import modello.Server;
+import modello.Configurazione;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-
 import javax.swing.SwingConstants;
 
 public class ConfServerPanel extends JPanel {
@@ -24,6 +22,7 @@ public class ConfServerPanel extends JPanel {
 	private Componente[] componenti;
 	private PreventivoController preventivoController;
 	private JRadioButton[] rdbtnRam;
+	private Configurazione[] configurazione;
 
 	/**
 	 * Create the panel.
@@ -34,6 +33,7 @@ public class ConfServerPanel extends JPanel {
 	public ConfServerPanel(Componente[] componenti, String[] configStandard,
 			PreventivoController preventivoController) {
 		this.setComponenti(componenti);
+		configurazione = new Configurazione[10];
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 147, 0, 0 };
@@ -70,17 +70,11 @@ public class ConfServerPanel extends JPanel {
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("RAM") == 0) {
 				// Setta la configurazione di default
-				if (configStandard[0].compareTo(componenti[i].getCodice()) == 0) {
-					componenti[i].setPrezzo(0);
-					rdbtnRam[i] = new JRadioButton(componenti[i].getNome()
-							+ "\n Prezzo: " + componenti[i].getPrezzo());
-					rdbtnRam[i].setSelected(true);
-				} else {
-					rdbtnRam[i] = new JRadioButton(componenti[i].getNome()
-							+ "\n Prezzo: " + componenti[i].getPrezzo());
-				}
-				rdbtnRam[i].setBackground(Color.WHITE);
-				rdbtnRam[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnRam[i] = configButtons(rdbtnRam[i], componenti[i],
+						configStandard[0]);
+				System.out.println("Configurazione Ram " + configStandard[0]);
+				// getConfigurazione()[0].setCodice(configStandard[0]);
+				// getConfigurazione()[0].setPrezzo(componenti[i].getPrezzo());
 				rdbtnRam[i].setActionCommand("ram" + i);
 
 				// Griglia, nettamente grafico
@@ -112,15 +106,11 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnCpu = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("CPU") == 0) {
-				rdbtnCpu[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnCpu[i].setBackground(Color.WHITE);
-				rdbtnCpu[i].setFont(new Font("Toledo", Font.PLAIN, 11));
-				rdbtnCpu[i].setAlignmentX(LEFT_ALIGNMENT);
+				// Configurazione della lista dei button radio
+				rdbtnCpu[i] = configButtons(rdbtnCpu[i], componenti[i],
+						configStandard[1]);
 				rdbtnCpu[i].setActionCommand("cpu" + i);
-				if (configStandard[1].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnCpu[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnCpu = new GridBagConstraints();
 				gbc_rdbtnCpu.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnCpu.gridx = 1;
@@ -146,14 +136,10 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnMon = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("MLC") == 0) {
-				rdbtnMon[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnMon[i].setBackground(Color.WHITE);
-				rdbtnMon[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+
+				rdbtnMon[i] = configButtons(rdbtnMon[i], componenti[i],
+						configStandard[3]);
 				rdbtnMon[i].setActionCommand("mlc" + i);
-				if (configStandard[3].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnMon[i].setSelected(true);
-				}
 
 				GridBagConstraints gbc_rdbtnMon = new GridBagConstraints();
 				gbc_rdbtnMon.insets = new Insets(0, 0, 5, 5);
@@ -180,14 +166,10 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnPci = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("PCI") == 0) {
-				rdbtnPci[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnPci[i].setBackground(Color.WHITE);
-				rdbtnPci[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnPci[i] = configButtons(rdbtnPci[i], componenti[i],
+						configStandard[2]);
 				rdbtnPci[i].setActionCommand("pci" + i);
-				if (configStandard[2].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnPci[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnPci = new GridBagConstraints();
 				gbc_rdbtnPci.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnPci.gridx = 1;
@@ -214,16 +196,13 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnHdd = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 
-			if (componenti[i].getTipo().compareTo("HDD") == 0
+			if (componenti[i].getTipo().compareTo("HD0") == 0
 					&& componenti[i].getNome().compareTo("Nessuno") != 0) {
-				rdbtnHdd[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n  Prezzo: " + componenti[i].getPrezzo());
-				rdbtnHdd[i].setBackground(Color.WHITE);
-				rdbtnHdd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd[i] = configButtons(rdbtnHdd[i], componenti[i],
+						configStandard[4]);
+
 				rdbtnHdd[i].setActionCommand("hdd" + i);
-				if (configStandard[4].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnHdd[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnHdd = new GridBagConstraints();
 				gbc_rdbtnHdd.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd.gridx = 1;
@@ -250,14 +229,11 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnHdd1 = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("HDD") == 0) {
-				rdbtnHdd1[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnHdd1[i].setBackground(Color.WHITE);
-				rdbtnHdd1[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd1[i] = configButtons(rdbtnHdd1[i], componenti[i],
+						configStandard[5]);
+
 				rdbtnHdd1[i].setActionCommand("hd1" + i);
-				if (configStandard[5].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnHdd1[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnHdd1 = new GridBagConstraints();
 				gbc_rdbtnHdd1.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd1.gridx = 1;
@@ -283,14 +259,11 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnHdd2 = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("HDD") == 0) {
-				rdbtnHdd2[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnHdd2[i].setBackground(Color.WHITE);
-				rdbtnHdd2[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd2[i] = configButtons(rdbtnHdd2[i], componenti[i],
+						configStandard[6]);
+
 				rdbtnHdd2[i].setActionCommand("hd2" + i);
-				if (configStandard[6].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnHdd2[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnHdd2 = new GridBagConstraints();
 				gbc_rdbtnHdd2.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd2.gridx = 1;
@@ -316,14 +289,11 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnHdd3 = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("HDD") == 0) {
-				rdbtnHdd3[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnHdd3[i].setBackground(Color.WHITE);
-				rdbtnHdd3[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnHdd3[i] = configButtons(rdbtnHdd3[i], componenti[i],
+						configStandard[7]);
+
 				rdbtnHdd3[i].setActionCommand("hd3" + i);
-				if (configStandard[7].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnHdd3[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnHdd3 = new GridBagConstraints();
 				gbc_rdbtnHdd3.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnHdd3.gridx = 1;
@@ -349,14 +319,11 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnDvd = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("DVD") == 0) {
-				rdbtnDvd[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnDvd[i].setBackground(Color.WHITE);
-				rdbtnDvd[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnDvd[i] = configButtons(rdbtnDvd[i], componenti[i],
+						configStandard[8]);
+
 				rdbtnDvd[i].setActionCommand("dvd" + i);
-				if (configStandard[8].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnDvd[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnDvd = new GridBagConstraints();
 				gbc_rdbtnDvd.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnDvd.gridx = 1;
@@ -381,14 +348,11 @@ public class ConfServerPanel extends JPanel {
 		JRadioButton[] rdbtnWar = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("WAR") == 0) {
-				rdbtnWar[i] = new JRadioButton(componenti[i].getNome()
-						+ "\n Prezzo: " + componenti[i].getPrezzo());
-				rdbtnWar[i].setBackground(Color.WHITE);
-				rdbtnWar[i].setFont(new Font("Toledo", Font.PLAIN, 11));
+				rdbtnWar[i] = configButtons(rdbtnHdd[i], componenti[i],
+						configStandard[9]);
+
 				rdbtnWar[i].setActionCommand("war" + i);
-				if (configStandard[9].compareTo(componenti[i].getCodice()) == 0) {
-					rdbtnWar[i].setSelected(true);
-				}
+
 				GridBagConstraints gbc_rdbtnWar = new GridBagConstraints();
 				gbc_rdbtnWar.insets = new Insets(0, 0, 5, 5);
 				gbc_rdbtnWar.gridx = 1;
@@ -399,6 +363,23 @@ public class ConfServerPanel extends JPanel {
 			}
 		}
 
+	}
+
+	private JRadioButton configButtons(JRadioButton rdbtn,
+			Componente componente, String configStandard) {
+		if (configStandard.compareTo(componente.getCodice()) == 0) {
+			componente.setPrezzo(0);
+			rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
+					+ componente.getPrezzo());
+			rdbtn.setSelected(true);
+		} else {
+			rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
+					+ componente.getPrezzo());
+		}
+		rdbtn.setBackground(Color.WHITE);
+		rdbtn.setFont(new Font("Toledo", Font.PLAIN, 11));
+
+		return rdbtn;
 	}
 
 	public JRadioButton[] getRdbtnRam() {
@@ -422,6 +403,37 @@ public class ConfServerPanel extends JPanel {
 	 */
 	public void setComponenti(Componente[] componenti) {
 		this.componenti = componenti;
+	}
+
+	/**
+	 * @return the preventivoController
+	 */
+	public PreventivoController getPreventivoController() {
+		return preventivoController;
+	}
+
+	/**
+	 * @param preventivoController
+	 *            the preventivoController to set
+	 */
+	public void setPreventivoController(
+			PreventivoController preventivoController) {
+		this.preventivoController = preventivoController;
+	}
+
+	/**
+	 * @return the configurazione
+	 */
+	public Configurazione[] getConfigurazione() {
+		return configurazione;
+	}
+
+	/**
+	 * @param configurazione
+	 *            the configurazione to set
+	 */
+	public void setConfigurazione(Configurazione[] configurazione) {
+		this.configurazione = configurazione;
 	}
 
 }

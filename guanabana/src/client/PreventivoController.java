@@ -35,7 +35,7 @@ public class PreventivoController implements ActionListener{
 			contenutoPanel.nascondeModelli();
 			configurazione = new Configurazione();
 			System.out.println(getNome());
-			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione);
+			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione, new Float(preventivoPanel.getTotalePreventivo()));
 		}else {
 			int i = Integer.parseInt(e.getActionCommand().substring(3));	
 			if(e.getActionCommand().substring(0, 3).compareTo("ram")==0){//Controlla i buttons per la ram
