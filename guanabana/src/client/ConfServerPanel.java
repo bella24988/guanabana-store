@@ -23,6 +23,7 @@ public class ConfServerPanel extends JPanel {
 	private PreventivoController preventivoController;
 	private JRadioButton[] rdbtnRam;
 	private Configurazione[] configurazione;
+	static int maxElementiConfig = 10;
 
 	/**
 	 * Create the panel.
@@ -33,8 +34,14 @@ public class ConfServerPanel extends JPanel {
 	public ConfServerPanel(Componente[] componenti, String[] configStandard,
 			PreventivoController preventivoController) {
 		this.setComponenti(componenti);
-		configurazione = new Configurazione[10];
-		setBackground(Color.WHITE);
+
+		// Definisco un array di configurazione
+		configurazione = new Configurazione[maxElementiConfig];
+
+		// Definizione generale della finestra
+		setBackground(Color.WHITE); // Colore di sfondo
+
+		// Griglia generale
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 147, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 25, 25, 25, 25, 25, 25,
@@ -44,7 +51,8 @@ public class ConfServerPanel extends JPanel {
 				0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
-		JLabel lblServer = new JLabel("Server");
+		// Il tipo della finestra. Orientation Info
+		JLabel lblServer = new JLabel("Acquista Server: scegli configurazione");
 		lblServer.setForeground(new Color(0, 153, 0));
 		lblServer.setFont(new Font("Toledo", Font.BOLD, 14));
 		GridBagConstraints gbc_lblServer = new GridBagConstraints();
@@ -73,8 +81,9 @@ public class ConfServerPanel extends JPanel {
 				rdbtnRam[i] = configButtons(rdbtnRam[i], componenti[i],
 						configStandard[0]);
 				System.out.println("Configurazione Ram " + configStandard[0]);
-				// getConfigurazione()[0].setCodice(configStandard[0]);
-				// getConfigurazione()[0].setPrezzo(componenti[i].getPrezzo());
+				configurazione[0] = new Configurazione();
+				getConfigurazione()[0].setCodice(configStandard[0]);
+				getConfigurazione()[0].setPrezzo(componenti[i].getPrezzo());
 				rdbtnRam[i].setActionCommand("ram" + i);
 
 				// Griglia, nettamente grafico
