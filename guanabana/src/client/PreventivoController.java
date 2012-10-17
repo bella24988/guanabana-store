@@ -8,6 +8,7 @@ import modello.Configurazione;
 public class PreventivoController implements ActionListener{
 	
 	private ConfServerPanel confServerPanel;
+	private ConfDesktopPanel confDesktopPanel;
 	private PreventivoPanel preventivoPanel;
 	private String nome, tipo;
 	private Configurazione configurazione;
@@ -22,6 +23,10 @@ public class PreventivoController implements ActionListener{
 	private float prezzoHd3Old;
 	private float prezzoDvdOld;
 	private float prezzoWarOld;
+	private float prezzoMouOld;
+	private float prezzoGpuOld;
+	private float prezzoKeyOld;
+	private float prezzoMonOld;
 	private ContenutoPanel contenutoPanel;
 
 
@@ -38,35 +43,47 @@ public class PreventivoController implements ActionListener{
 			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione, new Float(preventivoPanel.getTotalePreventivo()));
 		}else {
 			int i = Integer.parseInt(e.getActionCommand().substring(3));	
-			if(e.getActionCommand().substring(0, 3).compareTo("ram")==0){//Controlla i buttons per la ram
+			if(e.getActionCommand().substring(0, 3).compareTo("RAM")==0){//Controlla i buttons per la ram
 				prezzoRamOld = calcolarePrezzoTotale(i, prezzoRamOld);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("cpu")==0){//CPU
+			}else if(e.getActionCommand().substring(0, 3).compareTo("CPU")==0){//CPU
 				prezzoCpuOld = calcolarePrezzoTotale(i, prezzoCpuOld);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("pci")==0){//PCI
+			}else if(e.getActionCommand().substring(0, 3).compareTo("PCI")==0){//PCI
 				prezzoPciOld = calcolarePrezzoTotale(i, prezzoPciOld);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("mlc")==0){//MLC
+			}else if(e.getActionCommand().substring(0, 3).compareTo("MLC")==0){//MLC
 				prezzoMlcOld = calcolarePrezzoTotale(i, prezzoMlcOld);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("hdd")==0){//HDD
+			}else if(e.getActionCommand().substring(0, 3).compareTo("HDD")==0){//HDD
 				prezzoHddOld = calcolarePrezzoTotale(i, prezzoHddOld);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("hd1")==0){//HD1
+			}else if(e.getActionCommand().substring(0, 3).compareTo("HD1")==0){//HD1
 				prezzoHd1Old = calcolarePrezzoTotale(i, prezzoHd1Old);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("hd2")==0){//HD2
+			}else if(e.getActionCommand().substring(0, 3).compareTo("HD2")==0){//HD2
 				prezzoHd2Old = calcolarePrezzoTotale(i, prezzoHd2Old);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("hd3")==0){//HD3
+			}else if(e.getActionCommand().substring(0, 3).compareTo("HD3")==0){//HD3
 				prezzoHd3Old = calcolarePrezzoTotale(i, prezzoHd3Old);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("dvd")==0){//Dvd
+			}else if(e.getActionCommand().substring(0, 3).compareTo("DVD")==0){//Dvd
 				prezzoDvdOld = calcolarePrezzoTotale(i, prezzoDvdOld);
 				
-			}else if(e.getActionCommand().substring(0, 3).compareTo("war")==0){//Garanzia
+			}else if(e.getActionCommand().substring(0, 3).compareTo("WAR")==0){//Garanzia
 				prezzoWarOld = calcolarePrezzoTotale(i, prezzoWarOld);
+				
+			}else if(e.getActionCommand().substring(0, 3).compareTo("MOU")==0){//Mouse
+				prezzoMouOld = calcolarePrezzoTotale(i, prezzoMouOld);
+				
+			}else if(e.getActionCommand().substring(0, 3).compareTo("GPU")==0){//Scheda grafica
+				prezzoGpuOld = calcolarePrezzoTotale(i, prezzoGpuOld);
+				
+			}else if(e.getActionCommand().substring(0, 3).compareTo("MON")==0){//Monitor
+				prezzoMonOld = calcolarePrezzoTotale(i, prezzoMonOld);
+				
+			}else if(e.getActionCommand().substring(0, 3).compareTo("KEY")==0){//Tastiera
+				prezzoKeyOld = calcolarePrezzoTotale(i, prezzoKeyOld);
 			}
 		}
 		
@@ -172,6 +189,14 @@ public class PreventivoController implements ActionListener{
 	 */
 	public void setPrezzoBrutto(float prezzoBrutto) {
 		this.prezzoBrutto = prezzoBrutto;
+	}
+
+	public ConfDesktopPanel getConfDesktopPanel() {
+		return confDesktopPanel;
+	}
+
+	public void setConfDesktopPanel(ConfDesktopPanel confDesktopPanel) {
+		this.confDesktopPanel = confDesktopPanel;
 	}
 
 

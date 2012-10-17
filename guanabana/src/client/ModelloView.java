@@ -33,6 +33,7 @@ public class ModelloView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ModelloController modelloController;
 	private ConfServerPanel confServerPanel;
+	private ConfDesktopPanel confDesktopPanel;
 	private PreventivoPanel preventivoPanel;
 	private Computer computer;
 	private PreventivoController preventivoController;
@@ -182,6 +183,23 @@ public class ModelloView extends JPanel {
 			add(scroller, BorderLayout.WEST);
 			add(preventivoPanel, BorderLayout.EAST);
 			confServerPanel.setVisible(true);
+		} else if (tipo.compareTo("DESKTOP") == 0) {
+			confDesktopPanel = new ConfDesktopPanel(
+					computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController);
+			preventivoPanel = new PreventivoPanel(preventivoController);
+			preventivoController.setConfDesktopPanel(confDesktopPanel);
+			preventivoController.setPreventivoPanel(preventivoPanel);
+			preventivoController.setNome(nome);
+			preventivoController.setTipo(tipo);
+			preventivoController.setPrezzoBrutto(prezzo);
+			preventivoController.setContenutoPanel(getContenutoPanel());
+			preventivoPanel.setTotalePreventivo(String.valueOf(prezzo));
+			JScrollPane scroller = new JScrollPane(confDesktopPanel);
+			scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+			scroller.setPreferredSize(new Dimension(550, 400));
+			add(scroller, BorderLayout.WEST);
+			add(preventivoPanel, BorderLayout.EAST);
+			confDesktopPanel.setVisible(true);
 		}
 	}
 

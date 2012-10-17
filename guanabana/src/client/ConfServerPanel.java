@@ -21,7 +21,6 @@ public class ConfServerPanel extends JPanel {
 	private static final long serialVersionUID = 4215414321261368512L;
 	private Componente[] componenti;
 	private PreventivoController preventivoController;
-	private JRadioButton[] rdbtnRam;
 	private Configurazione[] configurazione;
 	static int maxElementiConfig = 10;
 
@@ -74,7 +73,7 @@ public class ConfServerPanel extends JPanel {
 		int i;
 		int ultimo = 2;
 		ButtonGroup groupRam = new ButtonGroup();
-		rdbtnRam = new JRadioButton[componenti.length];
+		JRadioButton[] rdbtnRam = new JRadioButton[componenti.length];
 		for (i = 0; i < componenti.length; i++) {
 			if (componenti[i].getTipo().compareTo("RAM") == 0) {
 				// Setta la configurazione di default
@@ -391,13 +390,6 @@ public class ConfServerPanel extends JPanel {
 		return rdbtn;
 	}
 
-	public JRadioButton[] getRdbtnRam() {
-		return rdbtnRam;
-	}
-
-	public void setRdbtnRam(JRadioButton[] rdbtnRam) {
-		this.rdbtnRam = rdbtnRam;
-	}
 
 	/**
 	 * @return the componenti

@@ -161,7 +161,7 @@ public class DataBase {
 			result = stStandardPC.executeQuery("select ram, cpu, war, gpu from standard_computer where nome ='"+nome+"'");
 			max=5;
 		}else if(tipo=="des"){
-			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, key, mon from standard_computer where nome ='"+nome+"'");
+			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, kei, mon from standard_computer where nome ='"+nome+"'");
 			max=10;
 		}
 		
