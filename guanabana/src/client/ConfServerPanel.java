@@ -79,7 +79,6 @@ public class ConfServerPanel extends JPanel {
 				// Setta la configurazione di default
 				rdbtnRam[i] = configButtons(rdbtnRam[i], componenti[i],
 						configStandard[0]);
-				System.out.println("Configurazione Ram " + configStandard[0]);
 				configurazione[0] = new Configurazione();
 				getConfigurazione()[0].setCodice(configStandard[0]);
 				getConfigurazione()[0].setPrezzo(componenti[i].getPrezzo());
@@ -389,7 +388,6 @@ public class ConfServerPanel extends JPanel {
 
 		return rdbtn;
 	}
-
 
 	/**
 	 * @return the componenti

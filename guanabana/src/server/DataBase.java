@@ -158,7 +158,7 @@ public class DataBase {
 			result = stStandardPC.executeQuery("select ram, cpu, pci, mlc, hd1, hd2,hd3,hd4,dvd,war from standard_computer where nome ='"+nome+"'");
 			max=10;
 		}else if(tipo=="lap"){
-			result = stStandardPC.executeQuery("select ram, cpu, war, gpu from standard_computer where nome ='"+nome+"'");
+			result = stStandardPC.executeQuery("select ram, hd1, cpu, war, gpu from standard_computer where nome ='"+nome+"'");
 			max=5;
 		}else if(tipo=="des"){
 			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, kei, mon from standard_computer where nome ='"+nome+"'");
@@ -167,8 +167,9 @@ public class DataBase {
 		
 		String[] config = new String[max];
 		while(result.next()){
-			for(int i=0;i<max;i++)
+			for(int i=0;i<max;i++){
 				config[i]=result.getString(i+1);
+				}
 		}
 		return config;
 	}

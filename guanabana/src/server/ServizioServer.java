@@ -172,32 +172,26 @@ public class ServizioServer implements Collegare, Runnable{
 		//Dichiarazione variabile locali
 		String[][] modelli = new String[numComputer][2];
 		Computer[] comp = new Computer[numComputer];
-		System.out.println("Entro in cerca TIPO:"+tipo+numComputer);
 		try {
 			modelli = db.cercaModelli(tipo, numComputer);
-			System.out.println("Entro in cerca "+modelli);
 			String[] nome = new String[numComputer];
 			float[] prezzo = new float[numComputer];
 			
 			for(int i = 0; i < numComputer; i++){
 				nome[i]=modelli[i][0];
 				prezzo[i]=Float.parseFloat(modelli[i][1]);
-				System.out.println("Entro in cerca - CICLO; "+nome[i]);
 				if (tipo.compareTo("LAPTOP")==0){
 					comp[i]= new Laptop(nome[i],prezzo[i]);
 					cercaComponentiComputer("lap",comp[i]);
-					System.out.println("Entro in cerca "+comp[i].getNome());
 					comp[i].setTipo("LAPTOP");
 					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "lap"));
 				}else if (tipo.compareTo("DESKTOP")==0){
 					comp[i]= new Desktop(nome[i],prezzo[i]);
 					comp[i].setTipo("DESKTOP");
-					System.out.println("Entro in cerca "+comp[i].getNome());
 					cercaComponentiComputer("des",comp[i]);
 					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "des"));
 				}else if (tipo.compareTo("SERVER")==0){
 					comp[i]= new Server(nome[i],prezzo[i]);
-					System.out.println("Entro in cerca "+comp[i].getNome());
 					cercaComponentiComputer("ser",comp[i]);
 					comp[i].setTipo("SERVER");
 					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "ser"));
@@ -208,8 +202,9 @@ public class ServizioServer implements Collegare, Runnable{
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Non è possibile collegarsi con il db oppure db vuoto. ERRORE: "+e);
 			e.printStackTrace();
+			return null;
 		}//Chiamata funzione al db
 				
 		return comp;
@@ -297,6 +292,7 @@ public class ServizioServer implements Collegare, Runnable{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Non è possibile collegarsi con il DB. ERRORE: "+e);
 			return null;
 		}
 		setCliente(new Cliente(cf, nome, cognome, email, indirizzo, telefono, password));
