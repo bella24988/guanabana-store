@@ -79,10 +79,8 @@ public class ConfServerPanel extends JPanel {
 				// Setta la configurazione di default
 				rdbtnRam[i] = configButtons(rdbtnRam[i], componenti[i],
 						configStandard[0]);
-				configurazione[0] = new Configurazione();
-				getConfigurazione()[0].setCodice(configStandard[0]);
-				getConfigurazione()[0].setPrezzo(componenti[i].getPrezzo());
-				rdbtnRam[i].setActionCommand("ram" + i);
+
+				rdbtnRam[i].setActionCommand("RAM" + i);
 
 				// Griglia, nettamente grafico
 				GridBagConstraints gbc_rdbtnRam = new GridBagConstraints();
@@ -96,6 +94,14 @@ public class ConfServerPanel extends JPanel {
 
 				// Controller
 				rdbtnRam[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[0].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(0,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
+
 			}
 		}
 
@@ -116,7 +122,7 @@ public class ConfServerPanel extends JPanel {
 				// Configurazione della lista dei button radio
 				rdbtnCpu[i] = configButtons(rdbtnCpu[i], componenti[i],
 						configStandard[1]);
-				rdbtnCpu[i].setActionCommand("cpu" + i);
+				rdbtnCpu[i].setActionCommand("CPU" + i);
 
 				GridBagConstraints gbc_rdbtnCpu = new GridBagConstraints();
 				gbc_rdbtnCpu.insets = new Insets(0, 0, 5, 5);
@@ -126,6 +132,48 @@ public class ConfServerPanel extends JPanel {
 				groupCpuBtn.add(rdbtnCpu[i]);
 				// Controller
 				rdbtnCpu[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[1].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(1,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
+			}
+		}
+
+		ultimo++;
+		JLabel lblSchedaPci = new JLabel("Scheda PCI");
+		lblSchedaPci.setFont(new Font("Toledo", Font.BOLD, 11));
+		GridBagConstraints gbc_lblSchedaPci = new GridBagConstraints();
+		gbc_lblSchedaPci.anchor = GridBagConstraints.EAST;
+		gbc_lblSchedaPci.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSchedaPci.gridx = 0;
+		gbc_lblSchedaPci.gridy = ultimo;
+		add(lblSchedaPci, gbc_lblSchedaPci);
+
+		ButtonGroup groupPci = new ButtonGroup();
+		JRadioButton[] rdbtnPci = new JRadioButton[componenti.length];
+		for (i = 0; i < componenti.length; i++) {
+			if (componenti[i].getTipo().compareTo("PCI") == 0) {
+				rdbtnPci[i] = configButtons(rdbtnPci[i], componenti[i],
+						configStandard[2]);
+				rdbtnPci[i].setActionCommand("PCI" + i);
+
+				GridBagConstraints gbc_rdbtnPci = new GridBagConstraints();
+				gbc_rdbtnPci.insets = new Insets(0, 0, 5, 5);
+				gbc_rdbtnPci.gridx = 1;
+				gbc_rdbtnPci.gridy = ultimo++;
+				add(rdbtnPci[i], gbc_rdbtnPci);
+				groupPci.add(rdbtnPci[i]);
+				rdbtnPci[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[2].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(2,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 
@@ -146,7 +194,7 @@ public class ConfServerPanel extends JPanel {
 
 				rdbtnMon[i] = configButtons(rdbtnMon[i], componenti[i],
 						configStandard[3]);
-				rdbtnMon[i].setActionCommand("mlc" + i);
+				rdbtnMon[i].setActionCommand("MLC" + i);
 
 				GridBagConstraints gbc_rdbtnMon = new GridBagConstraints();
 				gbc_rdbtnMon.insets = new Insets(0, 0, 5, 5);
@@ -156,38 +204,16 @@ public class ConfServerPanel extends JPanel {
 				groupMon.add(rdbtnMon[i]);
 
 				rdbtnMon[i].addActionListener(preventivoController);
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[3].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(3,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 
 		ultimo++;
-		JLabel lblSchedaPci = new JLabel("Scheda PCI");
-		lblSchedaPci.setFont(new Font("Toledo", Font.BOLD, 11));
-		GridBagConstraints gbc_lblSchedaPci = new GridBagConstraints();
-		gbc_lblSchedaPci.anchor = GridBagConstraints.EAST;
-		gbc_lblSchedaPci.insets = new Insets(0, 0, 5, 5);
-		gbc_lblSchedaPci.gridx = 0;
-		gbc_lblSchedaPci.gridy = ultimo;
-		add(lblSchedaPci, gbc_lblSchedaPci);
-
-		ButtonGroup groupPci = new ButtonGroup();
-		JRadioButton[] rdbtnPci = new JRadioButton[componenti.length];
-		for (i = 0; i < componenti.length; i++) {
-			if (componenti[i].getTipo().compareTo("PCI") == 0) {
-				rdbtnPci[i] = configButtons(rdbtnPci[i], componenti[i],
-						configStandard[2]);
-				rdbtnPci[i].setActionCommand("pci" + i);
-
-				GridBagConstraints gbc_rdbtnPci = new GridBagConstraints();
-				gbc_rdbtnPci.insets = new Insets(0, 0, 5, 5);
-				gbc_rdbtnPci.gridx = 1;
-				gbc_rdbtnPci.gridy = ultimo++;
-				add(rdbtnPci[i], gbc_rdbtnPci);
-				groupPci.add(rdbtnPci[i]);
-				rdbtnPci[i].addActionListener(preventivoController);
-			}
-		}
-		ultimo++;
-
 		JLabel lblCapacitDiscoRigido = new JLabel(
 				"Capacit\u00E0 disco rigido 1 \n(obbligatorio)");
 		lblCapacitDiscoRigido.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -208,7 +234,7 @@ public class ConfServerPanel extends JPanel {
 				rdbtnHdd[i] = configButtons(rdbtnHdd[i], componenti[i],
 						configStandard[4]);
 
-				rdbtnHdd[i].setActionCommand("hdd" + i);
+				rdbtnHdd[i].setActionCommand("HDD" + i);
 
 				GridBagConstraints gbc_rdbtnHdd = new GridBagConstraints();
 				gbc_rdbtnHdd.insets = new Insets(0, 0, 5, 5);
@@ -218,6 +244,11 @@ public class ConfServerPanel extends JPanel {
 				groupHdd.add(rdbtnHdd[i]);
 
 				rdbtnHdd[i].addActionListener(preventivoController);
+				if (configStandard[3].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(4,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 
@@ -239,7 +270,7 @@ public class ConfServerPanel extends JPanel {
 				rdbtnHdd1[i] = configButtons(rdbtnHdd1[i], componenti[i],
 						configStandard[5]);
 
-				rdbtnHdd1[i].setActionCommand("hd1" + i);
+				rdbtnHdd1[i].setActionCommand("HD1" + i);
 
 				GridBagConstraints gbc_rdbtnHdd1 = new GridBagConstraints();
 				gbc_rdbtnHdd1.insets = new Insets(0, 0, 5, 5);
@@ -269,7 +300,7 @@ public class ConfServerPanel extends JPanel {
 				rdbtnHdd2[i] = configButtons(rdbtnHdd2[i], componenti[i],
 						configStandard[6]);
 
-				rdbtnHdd2[i].setActionCommand("hd2" + i);
+				rdbtnHdd2[i].setActionCommand("HD2" + i);
 
 				GridBagConstraints gbc_rdbtnHdd2 = new GridBagConstraints();
 				gbc_rdbtnHdd2.insets = new Insets(0, 0, 5, 5);
@@ -299,7 +330,7 @@ public class ConfServerPanel extends JPanel {
 				rdbtnHdd3[i] = configButtons(rdbtnHdd3[i], componenti[i],
 						configStandard[7]);
 
-				rdbtnHdd3[i].setActionCommand("hd3" + i);
+				rdbtnHdd3[i].setActionCommand("HD3" + i);
 
 				GridBagConstraints gbc_rdbtnHdd3 = new GridBagConstraints();
 				gbc_rdbtnHdd3.insets = new Insets(0, 0, 5, 5);
@@ -329,7 +360,7 @@ public class ConfServerPanel extends JPanel {
 				rdbtnDvd[i] = configButtons(rdbtnDvd[i], componenti[i],
 						configStandard[8]);
 
-				rdbtnDvd[i].setActionCommand("dvd" + i);
+				rdbtnDvd[i].setActionCommand("DVD" + i);
 
 				GridBagConstraints gbc_rdbtnDvd = new GridBagConstraints();
 				gbc_rdbtnDvd.insets = new Insets(0, 0, 5, 5);
@@ -358,7 +389,7 @@ public class ConfServerPanel extends JPanel {
 				rdbtnWar[i] = configButtons(rdbtnHdd[i], componenti[i],
 						configStandard[9]);
 
-				rdbtnWar[i].setActionCommand("war" + i);
+				rdbtnWar[i].setActionCommand("WAR" + i);
 
 				GridBagConstraints gbc_rdbtnWar = new GridBagConstraints();
 				gbc_rdbtnWar.insets = new Insets(0, 0, 5, 5);

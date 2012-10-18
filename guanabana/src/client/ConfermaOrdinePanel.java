@@ -28,11 +28,11 @@ public class ConfermaOrdinePanel extends JPanel {
 	private String nome;
 	private float prezzo;
 	private float prezzoTotale;
-	private Configurazione configurazioneScelta;
+	private Configurazione[] configurazioneScelta;
 	private JTable table;
 
 	public ConfermaOrdinePanel(String nome, float prezzo,
-			Configurazione configurazione, float prezzoTotale) {
+			Configurazione[] configurazione, float prezzoTotale) {
 		this.prezzo = prezzo;
 		this.nome = nome;
 		this.configurazioneScelta = configurazione;
@@ -58,13 +58,29 @@ public class ConfermaOrdinePanel extends JPanel {
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {
-				{ "Codice", "Nome", "Prezzo" }, { null, nome, prezzo },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null } }, new String[] { "Codice", "Descrizione",
-				"Prezzo" }));
+				{ "Codice", "Nome", "Prezzo" },
+				{ null, nome, prezzo },
+				{ configurazione[0].getCodice(), configurazione[0].getNome(),
+						configurazione[0].getPrezzo() },
+				{ configurazione[1].getCodice(), configurazione[1].getNome(),
+						configurazione[1].getPrezzo() },
+				{ configurazione[2].getCodice(), configurazione[2].getNome(),
+						configurazione[2].getPrezzo() },
+				{ configurazione[3].getCodice(), configurazione[3].getNome(),
+						configurazione[3].getPrezzo() },
+				{ configurazione[4].getCodice(), configurazione[4].getNome(),
+						configurazione[4].getPrezzo() },
+				{ configurazione[5].getCodice(), configurazione[5].getNome(),
+						configurazione[5].getPrezzo() },
+				{ configurazione[6].getCodice(), configurazione[6].getNome(),
+						configurazione[6].getPrezzo() },
+				{ configurazione[7].getCodice(), configurazione[7].getNome(),
+						configurazione[7].getPrezzo() },
+				{ configurazione[8].getCodice(), configurazione[8].getNome(),
+						configurazione[8].getPrezzo() },
+				{ configurazione[9].getCodice(), configurazione[9].getNome(),
+						configurazione[9].getPrezzo() } }, new String[] {
+				"Codice", "Descrizione", "Prezzo" }));
 		table.setBorder(new LineBorder(new Color(0, 153, 51)));
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridwidth = 2;
@@ -147,7 +163,7 @@ public class ConfermaOrdinePanel extends JPanel {
 	/**
 	 * @return the codice
 	 */
-	public Configurazione getConfigurazione() {
+	public Configurazione[] getConfigurazione() {
 		return configurazioneScelta;
 	}
 
@@ -155,7 +171,7 @@ public class ConfermaOrdinePanel extends JPanel {
 	 * @param codice
 	 *            the codice to set
 	 */
-	public void setConfigurazione(Configurazione codice) {
+	public void setConfigurazione(Configurazione[] codice) {
 		this.configurazioneScelta = codice;
 	}
 

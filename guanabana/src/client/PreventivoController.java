@@ -11,7 +11,7 @@ public class PreventivoController implements ActionListener{
 	private ConfDesktopPanel confDesktopPanel;
 	private PreventivoPanel preventivoPanel;
 	private String nome, tipo;
-	private Configurazione configurazione;
+	private Configurazione[] configurazione;
 	private float prezzoBrutto;
 	private float prezzoRamOld;
 	private float prezzoCpuOld;
@@ -29,7 +29,19 @@ public class PreventivoController implements ActionListener{
 	private float prezzoMonOld;
 	private ContenutoPanel contenutoPanel;
 
+	
+	
 
+
+	public PreventivoController() {
+		super();
+		configurazione = new Configurazione[10];
+		
+		for(int i = 0; i<10 ; i++){
+			configurazione[i] = new Configurazione();
+		}
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -38,40 +50,59 @@ public class PreventivoController implements ActionListener{
 		
 		if (e.getActionCommand().equalsIgnoreCase("Conferma Ordine")){
 			contenutoPanel.nascondeModelli();
-			configurazione = new Configurazione();
-			System.out.println(getNome());
 			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione, new Float(preventivoPanel.getTotalePreventivo()));
 		}else {
-			int i = Integer.parseInt(e.getActionCommand().substring(3));	
+			int i = Integer.parseInt(e.getActionCommand().substring(3));//NUMERO DEL COMANDO VA DA 0 A 9--- ESEMPIO RAM = 0
+			
 			if(e.getActionCommand().substring(0, 3).compareTo("RAM")==0){//Controlla i buttons per la ram
 				prezzoRamOld = calcolarePrezzoTotale(i, prezzoRamOld);
+				setElementiConfigurazione(0,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("CPU")==0){//CPU
 				prezzoCpuOld = calcolarePrezzoTotale(i, prezzoCpuOld);
+				setElementiConfigurazione(1,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("PCI")==0){//PCI
 				prezzoPciOld = calcolarePrezzoTotale(i, prezzoPciOld);
+				setElementiConfigurazione(2,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("MLC")==0){//MLC
 				prezzoMlcOld = calcolarePrezzoTotale(i, prezzoMlcOld);
+				setElementiConfigurazione(3,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HDD")==0){//HDD
 				prezzoHddOld = calcolarePrezzoTotale(i, prezzoHddOld);
+				setElementiConfigurazione(4,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HD1")==0){//HD1
 				prezzoHd1Old = calcolarePrezzoTotale(i, prezzoHd1Old);
+				setElementiConfigurazione(5,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HD2")==0){//HD2
 				prezzoHd2Old = calcolarePrezzoTotale(i, prezzoHd2Old);
+				setElementiConfigurazione(6,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HD3")==0){//HD3
 				prezzoHd3Old = calcolarePrezzoTotale(i, prezzoHd3Old);
+				setElementiConfigurazione(7,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("DVD")==0){//Dvd
 				prezzoDvdOld = calcolarePrezzoTotale(i, prezzoDvdOld);
+				setElementiConfigurazione(8,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("WAR")==0){//Garanzia
 				prezzoWarOld = calcolarePrezzoTotale(i, prezzoWarOld);
+				setElementiConfigurazione(9,confServerPanel.getComponenti()[i].getCodice(),
+						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("MOU")==0){//Mouse
 				prezzoMouOld = calcolarePrezzoTotale(i, prezzoMouOld);
@@ -99,6 +130,11 @@ public class PreventivoController implements ActionListener{
 	}
 
 
+	public void setElementiConfigurazione(int i, String codice, String nome, float prezzo){
+		configurazione[i].setCodice(codice);
+		configurazione[i].setNome(nome);
+		configurazione[i].setPrezzo(prezzo);
+	}
 
 	/**
 	 * @return the confServerPanel

@@ -73,7 +73,7 @@ public class ContenutoPanel extends JPanel {
 		modelloView.setVisible(false);
 	}
 	
-	public void mostraConfermaOrdine(String nome, float prezzo, Configurazione configurazione, float prezzoTotale){
+	public void mostraConfermaOrdine(String nome, float prezzo, Configurazione[] configurazione, float prezzoTotale){
 		confermaOrdinePanel = new ConfermaOrdinePanel(nome, prezzo, configurazione, prezzoTotale);
 		confermaOrdinePanel.setVisible(true);
 		add(confermaOrdinePanel);
