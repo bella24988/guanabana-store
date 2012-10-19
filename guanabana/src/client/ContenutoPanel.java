@@ -17,6 +17,7 @@ public class ContenutoPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private RegistratiView registratiView;
+	
 	/**
 	 * @uml.property name="modelloView"
 	 * @uml.associationEnd inverse="contenutoPanel:client.ModelloView"
@@ -29,13 +30,8 @@ public class ContenutoPanel extends JPanel {
 		super();
 		setBackground(Color.white);
 		setForeground(new Color(0, 0, 0));
-		registratiView = new RegistratiView(this);
-		registratiView.setBackground(new Color(204, 255, 153));
-		add(registratiView);
-		registratiView.setVisible(false);
-		modelloView = new ModelloView();
-		modelloView.setVisible(false);
-		add(modelloView);
+		//registratiView.setVisible(false);
+		
 		
 	}
 
@@ -48,10 +44,15 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	public void mostraFormularioRegistrati(LogPanel panel) {
-		//confermaOrdinePanel.setVisible(false);
+		removeAll();
+		pulisceSchermo();
+		registratiView = new RegistratiView(this);
+		registratiView.setVisible(false);
+		registratiView.setBackground(new Color(204, 255, 153));
+		add(registratiView);
 		registratiView.setVisible(true);
 		registratiView.conoscePanel(panel);
-		modelloView.setVisible(false);
+		//modelloView.setVisible(false);
 	}
 
 	public void nascondeFormularioRegistrati() {
@@ -60,10 +61,18 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	public void mostraModelli(int num, Computer[] computers, String tipo, ContenutoPanel contenutoPanel) {
+		
+		this.removeAll();
+		pulisceSchermo();
+		modelloView = new ModelloView();
+		modelloView.setVisible(false);
+		add(modelloView);
 		modelloView.setVisible(true);
-		nascondeFormularioRegistrati();
+		
+		//nascondeFormularioRegistrati();
 		modelloView = new ModelloView();
 		add(modelloView);
+		
 		modelloView.mostraButtons(num, computers, tipo);
 		modelloView.setVisible(true);
 		modelloView.setContenutoPanel(contenutoPanel);
@@ -73,10 +82,23 @@ public class ContenutoPanel extends JPanel {
 		modelloView.setVisible(false);
 	}
 	
-	public void mostraConfermaOrdine(String nome, float prezzo, Configurazione[] configurazione, float prezzoTotale){
-		confermaOrdinePanel = new ConfermaOrdinePanel(nome, prezzo, configurazione, prezzoTotale);
+	public void mostraConfermaOrdine(String nome, float prezzo, Configurazione[] configurazione, float prezzoTotale, JPanel panelDaRimuovere){
+		panelDaRimuovere.setVisible(false);
+		this.remove(panelDaRimuovere);
+		pulisceSchermo();
+		confermaOrdinePanel = new ConfermaOrdinePanel(nome, prezzo, configurazione, prezzoTotale, this);
 		confermaOrdinePanel.setVisible(true);
 		add(confermaOrdinePanel);
+	}
+	
+	private void pulisceSchermo(){
+		JPanel pulito;
+		pulito = new JPanel();
+		pulito.setVisible(false);
+		pulito.setBackground(Color.white);
+		pulito.setSize(800, 800);
+		this.add(pulito);
+		pulito.setVisible(true);
 	}
 
 	/**
@@ -121,6 +143,14 @@ public class ContenutoPanel extends JPanel {
 	 */
 	public void setModelloView(ModelloView modelloView) {
 		this.modelloView = modelloView;
+	}
+
+	public void aggiungePagamentoPanel(JPanel panelDaRimuovere) {
+		remove(panelDaRimuovere);
+		pulisceSchermo();
+		
+		
+		
 	}
 
 }

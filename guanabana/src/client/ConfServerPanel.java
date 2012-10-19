@@ -244,10 +244,11 @@ public class ConfServerPanel extends JPanel {
 				groupHdd.add(rdbtnHdd[i]);
 
 				rdbtnHdd[i].addActionListener(preventivoController);
-				if (configStandard[3].compareTo(componenti[i].getCodice()) == 0) {
+				if (configStandard[4].compareTo(componenti[i].getCodice()) == 0) {
 					preventivoController.setElementiConfigurazione(4,
 							componenti[i].getCodice(), componenti[i].getNome(),
 							componenti[i].getPrezzo());
+
 				}
 			}
 		}
@@ -279,6 +280,13 @@ public class ConfServerPanel extends JPanel {
 				add(rdbtnHdd1[i], gbc_rdbtnHdd1);
 				groupHdd1.add(rdbtnHdd1[i]);
 				rdbtnHdd1[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[5].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(5,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 
@@ -309,6 +317,13 @@ public class ConfServerPanel extends JPanel {
 				add(rdbtnHdd2[i], gbc_rdbtnHdd2);
 				groupHdd2.add(rdbtnHdd2[i]);
 				rdbtnHdd2[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[6].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(6,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 
@@ -339,6 +354,13 @@ public class ConfServerPanel extends JPanel {
 				add(rdbtnHdd3[i], gbc_rdbtnHdd3);
 				groupHdd3.add(rdbtnHdd3[i]);
 				rdbtnHdd3[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[7].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(7,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 
@@ -369,6 +391,13 @@ public class ConfServerPanel extends JPanel {
 				add(rdbtnDvd[i], gbc_rdbtnDvd);
 				groupDvd.add(rdbtnDvd[i]);
 				rdbtnDvd[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[8].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(8,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 
@@ -398,6 +427,13 @@ public class ConfServerPanel extends JPanel {
 				add(rdbtnWar[i], gbc_rdbtnWar);
 				groupWar.add(rdbtnWar[i]);
 				rdbtnWar[i].addActionListener(preventivoController);
+
+				// Mettilo più bello io non c'è l'ho fatta
+				if (configStandard[9].compareTo(componenti[i].getCodice()) == 0) {
+					preventivoController.setElementiConfigurazione(9,
+							componenti[i].getCodice(), componenti[i].getNome(),
+							componenti[i].getPrezzo());
+				}
 			}
 		}
 

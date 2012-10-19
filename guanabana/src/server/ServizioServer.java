@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
-
 import modello.Cliente;
 import modello.Componente;
 import modello.Computer;
@@ -14,11 +13,9 @@ import modello.Desktop;
 import modello.Laptop;
 import modello.Ordine;
 import modello.Server;
-
 import conexionInterface.Collegare;
 import java.util.Collection;
 
-import javax.security.auth.Subject;
 
 /**
  * @author Veronica
@@ -31,7 +28,6 @@ public class ServizioServer implements Collegare, Runnable{
 	
 	private Socket client;
 	private DataBase db;
-	private int daCancellare;
 	/**
 	 * @uml.property  name="cliente1"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="servizioServer:modello.Cliente"

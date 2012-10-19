@@ -50,7 +50,7 @@ public class PreventivoController implements ActionListener{
 		
 		if (e.getActionCommand().equalsIgnoreCase("Conferma Ordine")){
 			contenutoPanel.nascondeModelli();
-			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione, new Float(preventivoPanel.getTotalePreventivo()));
+			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione, new Float(preventivoPanel.getTotalePreventivo()), contenutoPanel.getModelloView());
 		}else {
 			int i = Integer.parseInt(e.getActionCommand().substring(3));//NUMERO DEL COMANDO VA DA 0 A 9--- ESEMPIO RAM = 0
 			

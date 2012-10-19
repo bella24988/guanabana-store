@@ -1,7 +1,6 @@
 package client;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
@@ -30,13 +29,16 @@ public class ConfermaOrdinePanel extends JPanel {
 	private float prezzoTotale;
 	private Configurazione[] configurazioneScelta;
 	private JTable table;
+	private ConfermaOrdineController controller;
 
 	public ConfermaOrdinePanel(String nome, float prezzo,
-			Configurazione[] configurazione, float prezzoTotale) {
+			Configurazione[] configurazione, float prezzoTotale,
+			ContenutoPanel contenutoPanel2) {
 		this.prezzo = prezzo;
 		this.nome = nome;
 		this.configurazioneScelta = configurazione;
 		this.prezzoTotale = prezzoTotale;
+		this.contenutoPanel = contenutoPanel2;
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 241, 230, 0 };
@@ -57,31 +59,25 @@ public class ConfermaOrdinePanel extends JPanel {
 		add(lblConfermaOrdine, gbc_lblConfermaOrdine);
 
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {
-				{ "Codice", "Nome", "Prezzo" },
-				{ null, nome, prezzo },
-				{ configurazione[0].getCodice(), configurazione[0].getNome(),
-						configurazione[0].getPrezzo() },
-				{ configurazione[1].getCodice(), configurazione[1].getNome(),
-						configurazione[1].getPrezzo() },
-				{ configurazione[2].getCodice(), configurazione[2].getNome(),
-						configurazione[2].getPrezzo() },
-				{ configurazione[3].getCodice(), configurazione[3].getNome(),
-						configurazione[3].getPrezzo() },
-				{ configurazione[4].getCodice(), configurazione[4].getNome(),
-						configurazione[4].getPrezzo() },
-				{ configurazione[5].getCodice(), configurazione[5].getNome(),
-						configurazione[5].getPrezzo() },
-				{ configurazione[6].getCodice(), configurazione[6].getNome(),
-						configurazione[6].getPrezzo() },
-				{ configurazione[7].getCodice(), configurazione[7].getNome(),
-						configurazione[7].getPrezzo() },
-				{ configurazione[8].getCodice(), configurazione[8].getNome(),
-						configurazione[8].getPrezzo() },
-				{ configurazione[9].getCodice(), configurazione[9].getNome(),
-						configurazione[9].getPrezzo() } }, new String[] {
+		table.setEnabled(false);
+		table.setShowHorizontalLines(false);
+		table.setModel(new DefaultTableModel(new Object[12][3], new String[] {
 				"Codice", "Descrizione", "Prezzo" }));
+
+		table.setValueAt("Codice", 0, 0);
+		table.setValueAt("Descrizione", 0, 1);
+		table.setValueAt("Prezzo", 0, 2);
+		table.setValueAt(nome, 1, 1);
+		table.setValueAt(prezzo, 1, 2);
+
+		for (int numRow = 2; numRow < 12; numRow++) {
+			table.setValueAt(configurazione[numRow - 2].getCodice(), numRow, 0);
+			table.setValueAt(configurazione[numRow - 2].getNome(), numRow, 1);
+			table.setValueAt(configurazione[numRow - 2].getPrezzo(), numRow, 2);
+		}
+
 		table.setBorder(new LineBorder(new Color(0, 153, 51)));
+		table.setRowSelectionAllowed(false);
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridwidth = 2;
 		gbc_table.insets = new Insets(0, 0, 5, 0);
@@ -113,6 +109,11 @@ public class ConfermaOrdinePanel extends JPanel {
 		gbc_btnContinuaConIl.gridy = 3;
 		add(btnContinuaConIl, gbc_btnContinuaConIl);
 		setVisible(true);
+
+		controller = new ConfermaOrdineController(this);
+
+		btnContinuaConIl.addActionListener(controller);
+
 	}
 
 	/**
