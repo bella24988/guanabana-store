@@ -122,11 +122,15 @@ public class LogPanel extends JPanel {
 		// Inizializzazione e posizionamento di salutoPanel
 		salutoPanel = new SalutoPanel(nome, this);
 		add(salutoPanel, BorderLayout.NORTH);
-
+		
+		if(contenuto.getAttessaCompra()==true){
+			contenuto.continuaOperazione();
+		}
 	}
 
 	public void nascondiFormRegistrazione() {
-		contenuto.getRegistratiView().setVisible(false);
+		contenuto.pulisceSchermo();
+		contenuto.setClienteLogato(logController.getCliente());
 	}
 
 	/**
@@ -146,6 +150,7 @@ public class LogPanel extends JPanel {
 	public void logoutFatto() {
 		salutoPanel.setVisible(false);
 		sbloccareInserimento();
+		contenuto.setClienteLogato(null);
 	}
 
 	public void mostraMessaggioErrore(String messaggio) {

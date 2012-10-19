@@ -21,6 +21,7 @@ public class ConfermaOrdinePanel extends JPanel {
 	 */
 	private ContenutoPanel contenutoPanel;
 	private static final long serialVersionUID = 1L;
+	private JLabel lblMess;
 	/**
 	 * Create the panel.
 	 */
@@ -110,9 +111,25 @@ public class ConfermaOrdinePanel extends JPanel {
 		add(btnContinuaConIl, gbc_btnContinuaConIl);
 		setVisible(true);
 
+		lblMess = new JLabel();
+		lblMess.setForeground(Color.RED);
+		lblMess.setBackground(Color.white);
+		lblMess.setVisible(false);
+
+		GridBagConstraints gbc_lblErrore = new GridBagConstraints();
+		gbc_lblErrore.gridx = 0;
+		gbc_lblErrore.gridy = 4;
+		add(lblMess, gbc_lblErrore);
+
 		controller = new ConfermaOrdineController(this);
 
 		btnContinuaConIl.addActionListener(controller);
+
+	}
+
+	public void mostraMessaggioErrore(String messaggio) {
+		lblMess.setText(messaggio);
+		lblMess.setVisible(true);
 
 	}
 

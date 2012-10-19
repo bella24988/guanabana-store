@@ -2,8 +2,10 @@ package client;
 
 import javax.swing.JPanel;
 
+import modello.Cliente;
 import modello.Computer;
 import modello.Configurazione;
+import modello.Pagamento;
 
 import java.awt.Color;
 
@@ -25,11 +27,14 @@ public class ContenutoPanel extends JPanel {
 	 */
 	private ModelloView modelloView;
 	private ConfermaOrdinePanel confermaOrdinePanel;
+	private Cliente clienteLogato;
+	private boolean attessaCompra;
 
 	public ContenutoPanel() {
 		super();
 		setBackground(Color.white);
 		setForeground(new Color(0, 0, 0));
+		this.setAttessaCompra(false);
 		//registratiView.setVisible(false);
 		
 		
@@ -91,7 +96,7 @@ public class ContenutoPanel extends JPanel {
 		add(confermaOrdinePanel);
 	}
 	
-	private void pulisceSchermo(){
+	public void pulisceSchermo(){
 		JPanel pulito;
 		pulito = new JPanel();
 		pulito.setVisible(false);
@@ -145,12 +150,51 @@ public class ContenutoPanel extends JPanel {
 		this.modelloView = modelloView;
 	}
 
-	public void aggiungePagamentoPanel(JPanel panelDaRimuovere) {
-		remove(panelDaRimuovere);
+	public void aggiungePagamentoPanel(ConfermaOrdinePanel panelDaRimuovere) {
+		if(clienteLogato!=null){
+			remove(panelDaRimuovere);
+			continuaOperazione();
+		}else{
+			setAttessaCompra(true);
+			panelDaRimuovere.mostraMessaggioErrore("Per continuare con l'acquisto, devi fare il log-in o registrarti");
+		}
+	}
+	
+	public void continuaOperazione(){
+		removeAll();
 		pulisceSchermo();
-		
-		
-		
+		setAttessaCompra(false);
+		PagamentoPanel pagamentoPanel = new PagamentoPanel(this);
+		add(pagamentoPanel);
+		setVisible(true);
+	}
+
+	/**
+	 * @return the clienteLogato
+	 */
+	public Cliente getClienteLogato() {
+		return clienteLogato;
+	}
+
+	/**
+	 * @param clienteLogato the clienteLogato to set
+	 */
+	public void setClienteLogato(Cliente clienteLogato) {
+		this.clienteLogato = clienteLogato;
+	}
+
+	/**
+	 * @return the attessaCompra
+	 */
+	public boolean getAttessaCompra() {
+		return attessaCompra;
+	}
+
+	/**
+	 * @param b the attessaCompra to set
+	 */
+	public void setAttessaCompra(boolean b) {
+		this.attessaCompra = b;
 	}
 
 }

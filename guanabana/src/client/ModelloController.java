@@ -86,4 +86,18 @@ public class ModelloController implements ActionListener {
 		this.computer = computer;
 	}
 
+	/**
+	 * @return the tipo
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 }

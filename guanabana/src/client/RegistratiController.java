@@ -38,8 +38,8 @@ public class RegistratiController implements ActionListener{
 		if (e.getActionCommand().equalsIgnoreCase("Annulla")){
 			registrati.dehabilitaRegistrati();
 			registrati.inizializza();
-		}
-		if (e.getActionCommand().equalsIgnoreCase("Conferma Registrazione")){
+		}else if (e.getActionCommand().equalsIgnoreCase("Conferma Registrazione")){
+			
 			registrati.togliMessaggio();
 			if(ciSonoCampiVuoti(registrati)==false){
 				
@@ -54,8 +54,19 @@ public class RegistratiController implements ActionListener{
 						try {
 							cliente=client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
 									registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),registrati.getTxtPassword());
-							if(client!=null)registrati.setTxtNome(cliente.getNome()+" "+cliente.getCognome());
-							else registrati.mostraMessaggio("Errore al registrarsi");
+							
+							if(client!=null){
+								
+								registrati.setTxtNome(cliente.getNome()+" "+cliente.getCognome());
+								registrati.getLogPanel().getContenuto().setClienteLogato(cliente);
+								
+								if(registrati.getLogPanel().getContenuto().getAttessaCompra()==true){
+									
+									registrati.getLogPanel().getContenuto().continuaOperazione();
+									
+								}
+								
+							}else registrati.mostraMessaggio("Errore al registrarsi");
 						} catch (ClassNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -63,7 +74,8 @@ public class RegistratiController implements ActionListener{
 					} catch (IOException e1) {
 						e1.printStackTrace();
 						registrati.mostraMessaggio("Errore con il server");
-					}					
+					}	
+					
 					registrati.ocultaFinestra();
 				
 				}else{
