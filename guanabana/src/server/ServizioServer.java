@@ -31,6 +31,7 @@ public class ServizioServer implements Collegare, Runnable{
 	
 	private Socket client;
 	private DataBase db;
+	private int daCancellare;
 	/**
 	 * @uml.property  name="cliente1"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="servizioServer:modello.Cliente"
