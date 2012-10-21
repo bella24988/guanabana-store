@@ -63,6 +63,7 @@ public class ConfDesktopPanel extends JPanel {
 		gbc_lblServer.gridy = 0;
 		add(lblServer, gbc_lblServer);
 		int ultimo = 2;
+		System.out.println("Lunghezza componenti" + tipoComponenti.length);
 		ButtonGroup[] group = new ButtonGroup[tipoComponenti.length];
 		for (int indiceComponenti=0; indiceComponenti<tipoComponenti.length; indiceComponenti++){
 			JLabel lblComponenti = new JLabel(labels[indiceComponenti]); //Definisce nome dell'etichetta
@@ -77,6 +78,7 @@ public class ConfDesktopPanel extends JPanel {
 			int indiceGroupConf;
 			int max;
 			max=contaComponentiGruppo(tipoComponenti[indiceComponenti], componenti);
+			System.out.println("conta componenti" + max);
 			group[indiceComponenti] = new ButtonGroup();
 			JRadioButton[] rdbtnGroup = new JRadioButton[max];
 			for (indiceGroupConf = 0; indiceGroupConf < max; indiceGroupConf++) {
@@ -112,12 +114,14 @@ public class ConfDesktopPanel extends JPanel {
 	}
 	private JRadioButton configButtons(JRadioButton rdbtn,
 			Componente componente, String configStandard) {
-		System.out.println("configurazionestandard"+ configStandard + "getcodice" + componente.getCodice());
+		System.out.println("configurazionestandard "+ configStandard + "getcodice " + componente.getCodice());
 		if (configStandard.compareTo(componente.getCodice()) == 0) {
 			componente.setPrezzo(0);
 			rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
 					+ componente.getPrezzo());
 			rdbtn.setSelected(true);
+			System.out.println("prova in configButtons" + componente.getNome() + "\n Prezzo: "
+					+ componente.getPrezzo());
 		} else {
 			rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
 					+ componente.getPrezzo());
