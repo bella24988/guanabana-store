@@ -78,34 +78,39 @@ public class ConfDesktopPanel extends JPanel {
 			int indiceGroupConf;
 			int max;
 			max=contaComponentiGruppo(tipoComponenti[indiceComponenti], componenti);
-			System.out.println("conta componenti" + max);
+			System.out.println("conta componenti" + max );
 			group[indiceComponenti] = new ButtonGroup();
 			JRadioButton[] rdbtnGroup = new JRadioButton[max];
+			
 			for (indiceGroupConf = 0; indiceGroupConf < max; indiceGroupConf++) {
-				if (componenti[indiceGroupConf].getTipo().compareTo(tipoComponenti[indiceComponenti]) == 0) {
-					// Setta la configurazione di default
-					rdbtnGroup[indiceGroupConf] = configButtons(rdbtnGroup[indiceGroupConf], componenti[indiceGroupConf],
-							configStandard[indiceComponenti]);
-					System.out.println("Configurazione "+ tipoComponenti[indiceComponenti] + configStandard[indiceComponenti]);
-					configurazione[indiceComponenti] = new Configurazione();
-					getConfigurazione()[indiceComponenti].setCodice(configStandard[indiceComponenti]);
-					getConfigurazione()[indiceComponenti].setPrezzo(componenti[indiceGroupConf].getPrezzo());
-					rdbtnGroup[indiceGroupConf].setActionCommand(tipoComponenti[indiceComponenti] + indiceGroupConf);
+				for(int k=0; k<tipoComponenti.length; k++){
+					System.out.println("PROVA IF "+componenti[indiceGroupConf].getTipo() +" ==== "+ tipoComponenti[indiceComponenti]);
+					if (componenti[indiceGroupConf].getTipo().compareTo(tipoComponenti[k]) == 0) {
+					
+						// Setta la configurazione di default
+						rdbtnGroup[indiceGroupConf] = configButtons(rdbtnGroup[indiceGroupConf], componenti[indiceGroupConf],
+							configStandard[k]);
+						System.out.println("Configurazione "+ tipoComponenti[indiceComponenti] + configStandard[indiceComponenti]);
+						configurazione[indiceComponenti] = new Configurazione();
+						getConfigurazione()[indiceComponenti].setCodice(configStandard[indiceComponenti]);
+						getConfigurazione()[indiceComponenti].setPrezzo(componenti[indiceGroupConf].getPrezzo());
+						rdbtnGroup[indiceGroupConf].setActionCommand(tipoComponenti[indiceComponenti] + indiceGroupConf);
 	
-					// Griglia, nettamente grafico
-					GridBagConstraints grigliaGruppo = new GridBagConstraints();
-					grigliaGruppo.insets = new Insets(0, 0, 5, 5);
-					grigliaGruppo.gridx = 1;
-					grigliaGruppo.gridy = ultimo++;
-					add(rdbtnGroup[indiceGroupConf], grigliaGruppo);
+						// Griglia, nettamente grafico
+						GridBagConstraints grigliaGruppo = new GridBagConstraints();
+						grigliaGruppo.insets = new Insets(0, 0, 5, 5);
+						grigliaGruppo.gridx = 1;
+						grigliaGruppo.gridy = ultimo++;
+						add(rdbtnGroup[indiceGroupConf], grigliaGruppo);
 	
-					// Ragruppamento dei buttons
-					group[indiceComponenti].add(rdbtnGroup[indiceGroupConf]);
+						// Ragruppamento dei buttons
+						group[indiceComponenti].add(rdbtnGroup[indiceGroupConf]);
 	
-					// Controller
-					rdbtnGroup[indiceGroupConf].addActionListener(preventivoController);
+						// Controller
+						rdbtnGroup[indiceGroupConf].addActionListener(preventivoController);
+					}
 				}
-			}
+		}
 	
 			ultimo++;
 		}
