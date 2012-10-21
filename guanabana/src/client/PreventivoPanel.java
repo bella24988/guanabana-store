@@ -78,7 +78,6 @@ public class PreventivoPanel extends JPanel {
 
 		totalePreventivo = new JTextField();
 		totalePreventivo.setHorizontalAlignment(SwingConstants.RIGHT);
-		totalePreventivo.setText("0,0");
 		totalePreventivo.setForeground(Color.WHITE);
 		totalePreventivo.setBackground(Color.BLACK);
 		totalePreventivo.setEditable(false);

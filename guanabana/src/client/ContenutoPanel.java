@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import modello.Cliente;
 import modello.Computer;
 import modello.Configurazione;
+import modello.Ordine;
 import modello.Pagamento;
 
 import java.awt.Color;
@@ -29,6 +30,9 @@ public class ContenutoPanel extends JPanel {
 	private ConfermaOrdinePanel confermaOrdinePanel;
 	private Cliente clienteLogato;
 	private boolean attessaCompra;
+	private Computer computer;
+	private Ordine ordine;
+	private Pagamento pagamento;
 
 	public ContenutoPanel() {
 		super();
@@ -87,11 +91,12 @@ public class ContenutoPanel extends JPanel {
 		modelloView.setVisible(false);
 	}
 	
-	public void mostraConfermaOrdine(String nome, float prezzo, Configurazione[] configurazione, float prezzoTotale, JPanel panelDaRimuovere){
+	public void mostraConfermaOrdine(Computer comp, Configurazione[] configurazione, float prezzoTotale, JPanel panelDaRimuovere){
 		panelDaRimuovere.setVisible(false);
 		this.remove(panelDaRimuovere);
 		pulisceSchermo();
-		confermaOrdinePanel = new ConfermaOrdinePanel(nome, prezzo, configurazione, prezzoTotale, this);
+		setComputer(comp);
+		confermaOrdinePanel = new ConfermaOrdinePanel(comp.getNome(), comp.getPrezzo(), configurazione, prezzoTotale, this);
 		confermaOrdinePanel.setVisible(true);
 		add(confermaOrdinePanel);
 	}
@@ -167,6 +172,7 @@ public class ContenutoPanel extends JPanel {
 		PagamentoPanel pagamentoPanel = new PagamentoPanel(this);
 		add(pagamentoPanel);
 		setVisible(true);
+		
 	}
 
 	/**
@@ -195,6 +201,20 @@ public class ContenutoPanel extends JPanel {
 	 */
 	public void setAttessaCompra(boolean b) {
 		this.attessaCompra = b;
+	}
+
+	/**
+	 * @return the computer
+	 */
+	public Computer getComputer() {
+		return computer;
+	}
+
+	/**
+	 * @param computer the computer to set
+	 */
+	public void setComputer(Computer computer) {
+		this.computer = computer;
 	}
 
 }

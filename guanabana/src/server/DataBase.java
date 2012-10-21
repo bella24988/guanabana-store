@@ -13,7 +13,7 @@ public class DataBase {
 	private Connection con;
 	private Statement st;
 	private PreparedStatement stConsultaLog;
-	private PreparedStatement stNuevoCliente;
+	private PreparedStatement stNuevoCliente, stNuovaOrdine;
 	private PreparedStatement stConsultaComputer;
 	private PreparedStatement stConta;
 	private Statement stModello;
@@ -34,7 +34,10 @@ public class DataBase {
 		setStConsultaLog(con.prepareStatement("select * from clienti where email = UPPER(?) and password = ? ;"));
 		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaComputer(con.prepareStatement("select nome,prezzo from standard_computer where nome like concat(?,'%')"));
-		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));		
+		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));	
+		setStNuovaOrdine(con.prepareStatement("insert into ordini (codice, totale, stato, cliente, indirizzo_invio, data_modifica, nome_computer, " +
+				"ram, cpu, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
+				"VALUES(?,?,UPPER(?),UPPER(?),UPPER(?),?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?),UPPER(?),UPPER(?),UPPER(?),UPPER(?),UPPER(?));"));
 		
 	}/*End of the constructor*/
 	
@@ -242,5 +245,19 @@ public class DataBase {
 	 */
 	public void setStConta(PreparedStatement stConta) {
 		this.stConta = stConta;
+	}
+
+	/**
+	 * @return the stNuovaOrdine
+	 */
+	public PreparedStatement getStNuovaOrdine() {
+		return stNuovaOrdine;
+	}
+
+	/**
+	 * @param stNuovaOrdine the stNuovaOrdine to set
+	 */
+	public void setStNuovaOrdine(PreparedStatement stNuovaOrdine) {
+		this.stNuovaOrdine = stNuovaOrdine;
 	}
 }

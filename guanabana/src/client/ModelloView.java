@@ -161,46 +161,37 @@ public class ModelloView extends JPanel {
 		controller = modelloController;
 	}
 
-	public void mostraComponente(String nome, String tipo, float prezzo) {
+	public void mostraComponente(Computer comp) {
 		laptopPanel.setVisible(false);
 		serverPanel.setVisible(false);
 		desktopPanel.setVisible(false);
 		preventivoController = new PreventivoController();
-		if (tipo.compareTo("SERVER") == 0) {
+		if (comp.getTipo().compareTo("SERVER") == 0) {
 			confServerPanel = new ConfServerPanel(
 					computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController);
-			preventivoPanel = new PreventivoPanel(preventivoController);
-			preventivoController.setConfServerPanel(confServerPanel);
-			preventivoController.setPreventivoPanel(preventivoPanel);
-			preventivoController.setNome(nome);
-			preventivoController.setTipo(tipo);
-			preventivoController.setPrezzoBrutto(prezzo);
-			preventivoController.setContenutoPanel(getContenutoPanel());
-			preventivoPanel.setTotalePreventivo(String.valueOf(prezzo));
-			JScrollPane scroller = new JScrollPane(confServerPanel);
-			scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-			scroller.setPreferredSize(new Dimension(550, 400));
-			add(scroller, BorderLayout.WEST);
-			add(preventivoPanel, BorderLayout.EAST);
+			setSecondoComputer(comp);
 			confServerPanel.setVisible(true);
-		} else if (tipo.compareTo("DESKTOP") == 0) {
+		} else if (comp.getTipo().compareTo("DESKTOP") == 0) {
 			confDesktopPanel = new ConfDesktopPanel(
 					computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController);
-			preventivoPanel = new PreventivoPanel(preventivoController);
-			preventivoController.setConfDesktopPanel(confDesktopPanel);
-			preventivoController.setPreventivoPanel(preventivoPanel);
-			preventivoController.setNome(nome);
-			preventivoController.setTipo(tipo);
-			preventivoController.setPrezzoBrutto(prezzo);
-			preventivoController.setContenutoPanel(getContenutoPanel());
-			preventivoPanel.setTotalePreventivo(String.valueOf(prezzo));
-			JScrollPane scroller = new JScrollPane(confDesktopPanel);
-			scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-			scroller.setPreferredSize(new Dimension(550, 400));
-			add(scroller, BorderLayout.WEST);
-			add(preventivoPanel, BorderLayout.EAST);
+			setSecondoComputer(comp);
 			confDesktopPanel.setVisible(true);
 		}
+	}
+	
+	private void setSecondoComputer (Computer comp){
+		
+		preventivoPanel = new PreventivoPanel(preventivoController);
+		preventivoController.setConfServerPanel(confServerPanel);
+		preventivoController.setPreventivoPanel(preventivoPanel);
+		preventivoController.setComputer(comp);
+		preventivoController.setContenutoPanel(getContenutoPanel());
+		preventivoPanel.setTotalePreventivo(String.valueOf(comp.getPrezzo()));
+		JScrollPane scroller = new JScrollPane(confServerPanel);
+		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scroller.setPreferredSize(new Dimension(550, 400));
+		add(scroller, BorderLayout.WEST);
+		add(preventivoPanel, BorderLayout.EAST);
 	}
 
 	/**

@@ -27,6 +27,8 @@ public interface Collegare {
 		
 		public abstract void consultaOrdini();
 		
+		public abstract Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente) throws IOException;
+		
 		public abstract Cliente registreNuovoCliente(String cf, String nome, String cognome,String email, String indirizzo, 
 				 String telefono, String password) throws IOException, ClassNotFoundException; 
 		

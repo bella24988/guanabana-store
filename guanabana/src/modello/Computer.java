@@ -10,6 +10,7 @@ public abstract class Computer implements Serializable{
 	private static final long serialVersionUID = 8391044426886288876L;
 	Componente[] componenti;
 	private String[] configurazioneStandard;
+	private Configurazione[] configurazioneScelta;
 	
 	public Computer(String nome, float prezzo) {
 		super();
@@ -129,6 +130,20 @@ public abstract class Computer implements Serializable{
 		 */
 		public void setConfigurazioneStandard(String[] configurazioneStandard) {
 			this.configurazioneStandard = configurazioneStandard;
+		}
+
+		/**
+		 * @return the configurazioneScelta
+		 */
+		public Configurazione[] getConfigurazioneScelta() {
+			return configurazioneScelta;
+		}
+
+		/**
+		 * @param configurazioneScelta the configurazioneScelta to set
+		 */
+		public void setConfigurazioneScelta(Configurazione[] configurazioneScelta) {
+			this.configurazioneScelta = configurazioneScelta;
 		}
 		
 		

@@ -1,5 +1,6 @@
 package server;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -130,6 +131,25 @@ public class ServizioServer implements Collegare, Runnable{
 				tipo = (String) ricevo.readObject();
 				System.out.println("Sono il server, ricevo la variabile tipo: "+tipo);
 				scrive.writeObject(conta(tipo));
+				scrive.flush();
+			}else if (richiestaClient.compareTo("creaOrdine")==0){
+				
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Computer comp = (Computer) ricevo.readObject();
+				
+				scrive.writeObject("ok");//ricevuto computer
+				scrive.flush();
+				
+				float prezzoTotale = (float) ricevo.readObject();
+				
+				scrive.writeObject("ok");//ricevuto prezzo totale
+				scrive.flush();
+				
+				Cliente cliente = (Cliente) ricevo.readObject();//ricevuto cliente
+				
+				scrive.writeObject(creaOrdine(comp, prezzoTotale, cliente));
 				scrive.flush();
 			}
 			
@@ -393,6 +413,17 @@ public class ServizioServer implements Collegare, Runnable{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	@Override
+	public Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente)
+			throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
 
 
 }

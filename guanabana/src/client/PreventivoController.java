@@ -3,6 +3,7 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import modello.Computer;
 import modello.Configurazione;
 
 public class PreventivoController implements ActionListener{
@@ -10,9 +11,8 @@ public class PreventivoController implements ActionListener{
 	private ConfServerPanel confServerPanel;
 	private ConfDesktopPanel confDesktopPanel;
 	private PreventivoPanel preventivoPanel;
-	private String nome, tipo;
+	private Computer computer;
 	private Configurazione[] configurazione;
-	private float prezzoBrutto;
 	private float prezzoRamOld;
 	private float prezzoCpuOld;
 	private float prezzoPciOld;
@@ -50,7 +50,7 @@ public class PreventivoController implements ActionListener{
 		
 		if (e.getActionCommand().equalsIgnoreCase("Conferma Ordine")){
 			contenutoPanel.nascondeModelli();
-			contenutoPanel.mostraConfermaOrdine(getNome(), getPrezzoBrutto(), configurazione, new Float(preventivoPanel.getTotalePreventivo()), contenutoPanel.getModelloView());
+			contenutoPanel.mostraConfermaOrdine(computer, configurazione, new Float(preventivoPanel.getTotalePreventivo()), contenutoPanel.getModelloView());
 		}else {
 			int i = Integer.parseInt(e.getActionCommand().substring(3));//NUMERO DEL COMANDO VA DA 0 A 9--- ESEMPIO RAM = 0
 			
@@ -168,36 +168,7 @@ public class PreventivoController implements ActionListener{
 	}
 
 
-	/**
-	 * @return the nome
-	 */
-	public String getNome() {
-		return nome;
-	}
-
-
-	/**
-	 * @param nome the nome to set
-	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-
-	/**
-	 * @return the tipo
-	 */
-	public String getTipo() {
-		return tipo;
-	}
-
-
-	/**
-	 * @param tipo the tipo to set
-	 */
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 
 	/**
 	 * @return the contenutoPanel
@@ -213,19 +184,6 @@ public class PreventivoController implements ActionListener{
 		this.contenutoPanel = contenutoPanel;
 	}
 
-	/**
-	 * @return the prezzoBrutto
-	 */
-	public float getPrezzoBrutto() {
-		return prezzoBrutto;
-	}
-
-	/**
-	 * @param prezzoBrutto the prezzoBrutto to set
-	 */
-	public void setPrezzoBrutto(float prezzoBrutto) {
-		this.prezzoBrutto = prezzoBrutto;
-	}
 
 	public ConfDesktopPanel getConfDesktopPanel() {
 		return confDesktopPanel;
@@ -233,6 +191,20 @@ public class PreventivoController implements ActionListener{
 
 	public void setConfDesktopPanel(ConfDesktopPanel confDesktopPanel) {
 		this.confDesktopPanel = confDesktopPanel;
+	}
+
+	/**
+	 * @return the computer
+	 */
+	public Computer getComputer() {
+		return computer;
+	}
+
+	/**
+	 * @param computer the computer to set
+	 */
+	public void setComputer(Computer computer) {
+		this.computer = computer;
 	}
 
 

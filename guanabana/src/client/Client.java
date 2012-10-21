@@ -253,4 +253,49 @@ public class Client implements Collegare {
 		this.num = num;
 	}
 
+	@Override
+	public Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente)
+			throws IOException {
+	Ordine ordine = null;
+		
+		writer = new ObjectOutputStream(scritura);
+		writer.writeObject("creaOrdine");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		
+		String risposta;
+		try {
+			risposta = (String) buffer.readObject();
+			if (risposta.compareTo("pronto")==0){
+				writer.writeObject(comp);
+				writer.flush();
+				
+				if (buffer.readObject().toString().compareTo("ok")==0){
+					
+					writer.writeObject(prezzoTotale);
+					writer.flush();
+					
+					if (buffer.readObject().toString().compareTo("ok")==0){
+						writer.writeObject(cliente);
+						writer.flush();
+						
+						ordine = (Ordine) buffer.readObject();
+					}
+					
+					
+				}
+				
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); //Collegamento non reuscito
+		}
+		
+		
+		// TODO Auto-generated method stub
+		return ordine;
+	}
+
 }
