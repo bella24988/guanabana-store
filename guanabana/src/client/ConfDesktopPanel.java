@@ -90,7 +90,7 @@ public class ConfDesktopPanel extends JPanel {
 						// Setta la configurazione di default
 						rdbtnGroup[indiceGroupConf] = configButtons(rdbtnGroup[indiceGroupConf], componenti[indiceGroupConf],
 							configStandard[k]);
-						System.out.println("Configurazione "+ tipoComponenti[indiceComponenti] + configStandard[indiceComponenti]);
+						System.out.println("Configurazione "+ tipoComponenti[indiceComponenti] + configStandard[indiceComponenti] + "il KAPPA VALE " + k + " INDICE COMPONENTI VALE " + indiceComponenti);
 						configurazione[indiceComponenti] = new Configurazione();
 						getConfigurazione()[indiceComponenti].setCodice(configStandard[indiceComponenti]);
 						getConfigurazione()[indiceComponenti].setPrezzo(componenti[indiceGroupConf].getPrezzo());
