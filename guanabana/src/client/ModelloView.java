@@ -174,7 +174,7 @@ public class ModelloView extends JPanel {
 		} else if (comp.getTipo().compareTo("DESKTOP") == 0) {
 			confDesktopPanel = new ConfDesktopPanel(
 					computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController);
-			setSecondoComputer(comp);
+			setSecondoComputer2(comp);
 			confDesktopPanel.setVisible(true);
 		}
 	}
@@ -188,6 +188,21 @@ public class ModelloView extends JPanel {
 		preventivoController.setContenutoPanel(getContenutoPanel());
 		preventivoPanel.setTotalePreventivo(String.valueOf(comp.getPrezzo()));
 		JScrollPane scroller = new JScrollPane(confServerPanel);
+		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scroller.setPreferredSize(new Dimension(550, 400));
+		add(scroller, BorderLayout.WEST);
+		add(preventivoPanel, BorderLayout.EAST);
+	}
+	//solo per provare, altrimenti non funziona piu con desktop: poi far˜ meglio!
+	private void setSecondoComputer2 (Computer comp){
+		
+		preventivoPanel = new PreventivoPanel(preventivoController);
+		preventivoController.setConfDesktopPanel(confDesktopPanel);
+		preventivoController.setPreventivoPanel(preventivoPanel);
+		preventivoController.setComputer(comp);
+		preventivoController.setContenutoPanel(getContenutoPanel());
+		preventivoPanel.setTotalePreventivo(String.valueOf(comp.getPrezzo()));
+		JScrollPane scroller = new JScrollPane(confDesktopPanel);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroller.setPreferredSize(new Dimension(550, 400));
 		add(scroller, BorderLayout.WEST);
