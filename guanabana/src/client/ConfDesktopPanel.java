@@ -81,9 +81,9 @@ public class ConfDesktopPanel extends JPanel {
 			System.out.println("conta componenti" + max );
 			group[indiceComponenti] = new ButtonGroup();
 			JRadioButton[] rdbtnGroup = new JRadioButton[max];
-			for(int k=0; k<tipoComponenti.length; k++){
+			
 			for (indiceGroupConf = 0; indiceGroupConf < max; indiceGroupConf++) {
-				
+				for(int k=0; k<tipoComponenti.length; k++){
 					System.out.println("PROVA IF "+componenti[indiceGroupConf].getTipo() +" ==== "+ tipoComponenti[k]);
 					if (componenti[indiceGroupConf].getTipo().compareTo(tipoComponenti[k]) == 0) {
 					
