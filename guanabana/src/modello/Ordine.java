@@ -7,14 +7,16 @@ public class Ordine {
 	private String numeroOrdine;
 	private Computer computer;
 	private float prezzo;
+	private Cliente cliente;
 	
 	
 
-	public Ordine(String numeroOrdine, Computer computer, float prezzo) {
+	public Ordine(String numeroOrdine, Computer computer, float prezzo, Cliente cliente) {
 		super();
 		this.numeroOrdine = numeroOrdine;
 		this.computer = computer;
 		this.prezzo = prezzo;
+		this.cliente = cliente;
 	}
 
 	/**
@@ -71,6 +73,20 @@ public class Ordine {
 	 */
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
+	}
+
+	/**
+	 * @return the cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	/**
+	 * @param cliente the cliente to set
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 

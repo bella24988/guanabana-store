@@ -417,8 +417,14 @@ public class ServizioServer implements Collegare, Runnable{
 	@Override
 	public Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente)
 			throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+		 
+		String numOrdine = null;
+		
+		numOrdine= db.creaNuovaOrdine(comp, prezzoTotale, cliente);
+		
+		Ordine ordine = new Ordine(numOrdine, comp, prezzoTotale, cliente);
+		
+		return ordine;
 	}
 
 	

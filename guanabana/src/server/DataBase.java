@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
+import modello.Cliente;
+import modello.Computer;
+import modello.Ordine;
+
 public class DataBase {
 	
 	/* Global variables definition*/
@@ -14,7 +18,7 @@ public class DataBase {
 	private Statement st;
 	private PreparedStatement stConsultaLog;
 	private PreparedStatement stNuevoCliente, stNuovaOrdine;
-	private PreparedStatement stConsultaComputer;
+	private PreparedStatement stConsultaComputer, stConsultaUltimaOrd;
 	private PreparedStatement stConta;
 	private Statement stModello;
 	
@@ -37,7 +41,8 @@ public class DataBase {
 		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));	
 		setStNuovaOrdine(con.prepareStatement("insert into ordini (codice, totale, stato, cliente, indirizzo_invio, data_modifica, nome_computer, " +
 				"ram, cpu, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
-				"VALUES(?,?,UPPER(?),UPPER(?),UPPER(?),?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?),UPPER(?),UPPER(?),UPPER(?),UPPER(?),UPPER(?));"));
+				"VALUES(?, ?, UPPER(?), UPPER(?), UPPER(?), ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
+		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		
 	}/*End of the constructor*/
 	
@@ -177,6 +182,22 @@ public class DataBase {
 		return config;
 	}
 	
+	
+	public String creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente){
+		
+		ResultSet result = null;
+		int numOrdineMax = 0;
+		
+		try {
+			result = stConsultaUltimaOrd.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	/**
 	 * @return the st
 	 */
@@ -259,5 +280,19 @@ public class DataBase {
 	 */
 	public void setStNuovaOrdine(PreparedStatement stNuovaOrdine) {
 		this.stNuovaOrdine = stNuovaOrdine;
+	}
+
+	/**
+	 * @return the stConsultaUltimaOrd
+	 */
+	public PreparedStatement getStConsultaUltimaOrd() {
+		return stConsultaUltimaOrd;
+	}
+
+	/**
+	 * @param stConsultaUltimaOrd the stConsultaUltimaOrd to set
+	 */
+	public void setStConsultaUltimaOrd(PreparedStatement stConsultaUltimaOrd) {
+		this.stConsultaUltimaOrd = stConsultaUltimaOrd;
 	}
 }
