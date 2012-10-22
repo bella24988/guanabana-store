@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import modello.Cliente;
 import modello.Computer;
 import modello.Ordine;
+import modello.Pagamento;
 
 public interface Collegare {
 
@@ -33,4 +34,6 @@ public interface Collegare {
 				 String telefono, String password) throws IOException, ClassNotFoundException; 
 		
 		public abstract int conta(String cosa) throws IOException;
+		
+		public abstract Pagamento registrarePagamento(Ordine ordine, String tipoPagamento) throws IOException;
 }

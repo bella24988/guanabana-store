@@ -18,7 +18,7 @@ public class DataBase {
 	private PreparedStatement stConsultaLog;
 	private PreparedStatement stNuevoCliente, stNuovaOrdine;
 	private PreparedStatement stConsultaComputer, stConsultaUltimaOrd;
-	private PreparedStatement stConta;
+	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento;
 	private Statement stModello;
 	
 	/*Begin of the constructor*/
@@ -42,6 +42,8 @@ public class DataBase {
 				"ram, cpu,pci, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
 				"VALUES(?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
+		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
+		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo) values (?,?,?,UPPER(?))"));
 		
 	}/*End of the constructor*/
 	
@@ -311,5 +313,62 @@ public class DataBase {
 	 */
 	public void setStConsultaUltimaOrd(PreparedStatement stConsultaUltimaOrd) {
 		this.stConsultaUltimaOrd = stConsultaUltimaOrd;
+	}
+
+	public int registrarePagamento(int numeroOrdine, float prezzo,
+			String tipoPagamento) {
+		ResultSet result = null;
+		int numMaxPago = 1;
+		
+		try {
+			result = stMaxPagamento.executeQuery();
+			if (result!=null){
+			while(result.next()){
+				numMaxPago = result.getInt(1)+1;
+			}
+			}
+			
+			stInsertPagamento.setInt(1, numMaxPago);
+			stInsertPagamento.setInt(2, numeroOrdine);
+			stInsertPagamento.setFloat(3, prezzo);
+			stInsertPagamento.setString(4, tipoPagamento);
+			
+			
+			stInsertPagamento.executeUpdate();
+		} catch (SQLException e) {
+			System.out.print("Errore al db "+e);
+			e.printStackTrace();
+		}
+		
+		
+		return numMaxPago;
+	}
+
+	/**
+	 * @return the stMaxPagamento
+	 */
+	public PreparedStatement getStMaxPagamento() {
+		return stMaxPagamento;
+	}
+
+	/**
+	 * @param stMaxPagamento the stMaxPagamento to set
+	 */
+	public void setStMaxPagamento(PreparedStatement stMaxPagamento) {
+		this.stMaxPagamento = stMaxPagamento;
+	}
+
+	/**
+	 * @return the stInsertPagamento
+	 */
+	public PreparedStatement getStInsertPagamento() {
+		return stInsertPagamento;
+	}
+
+	/**
+	 * @param stInsertPagamento the stInsertPagamento to set
+	 */
+	public void setStInsertPagamento(PreparedStatement stInsertPagamento) {
+		this.stInsertPagamento = stInsertPagamento;
 	}
 }

@@ -13,6 +13,7 @@ import modello.Computer;
 import modello.Desktop;
 import modello.Laptop;
 import modello.Ordine;
+import modello.Pagamento;
 import modello.Server;
 import conexionInterface.Collegare;
 import java.util.Collection;
@@ -150,10 +151,22 @@ public class ServizioServer implements Collegare, Runnable{
 				Cliente cliente = (Cliente) ricevo.readObject();//ricevuto cliente
 				
 				Ordine ordine = creaOrdine(comp, prezzoTotale, cliente);
-				
-				System.out.println("ordine: "+ordine.getNumeroOrdine());
 				scrive.writeObject(ordine);//Envia Ordine a client
 				scrive.flush();
+			}else if (richiestaClient.compareTo("registraPagamento")==0){
+				
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Ordine ordine = (Ordine) ricevo.readObject();
+				
+				scrive.writeObject("ok");//ricevuto ordine
+				scrive.flush();
+				
+				String tipoPagamento = (String) ricevo.readObject();
+				Pagamento pagamento = registrarePagamento(ordine, tipoPagamento);
+				scrive.writeObject(pagamento);//Envia Pagamento creato
+				scrive.flush();				
 			}
 			
 			
@@ -428,6 +441,17 @@ public class ServizioServer implements Collegare, Runnable{
 		Ordine ordine = new Ordine(numOrdine, comp, prezzoTotale, cliente);
 		
 		return ordine;
+	}
+
+	@Override
+	public Pagamento registrarePagamento(Ordine ordine, String tipoPagamento)
+			throws IOException {
+		int numPagamento =0;
+		
+		numPagamento = db.registrarePagamento(ordine.getNumeroOrdine(), ordine.getPrezzo(), tipoPagamento);
+		
+		Pagamento pagamento = new Pagamento(ordine, tipoPagamento, numPagamento);		
+		return pagamento;
 	}
 
 	

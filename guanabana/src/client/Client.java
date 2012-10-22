@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import modello.Cliente;
 import modello.Computer;
 import modello.Ordine;
+import modello.Pagamento;
 
 
 import conexionInterface.Collegare;
@@ -299,6 +300,46 @@ public class Client implements Collegare {
 		}
 		chiudereCollegamento();
 		return ordine;
+	}
+
+	@Override
+	public Pagamento registrarePagamento(Ordine ordine, String tipoPagamento)
+			throws IOException {
+		Pagamento pagamento = null;
+		
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("registraPagamento");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		
+		
+		
+		try {
+			String risposta;
+			risposta = (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(ordine);
+				writer.flush();
+				
+				risposta = (String) buffer.readObject();
+				
+				if(risposta.compareTo("ok")==0){
+					writer.writeObject(tipoPagamento);
+					writer.flush();
+					
+					pagamento = (Pagamento) buffer.readObject();
+				}
+				
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return pagamento;
 	}
 
 }
