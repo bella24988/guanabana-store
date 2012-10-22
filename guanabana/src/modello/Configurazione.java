@@ -1,10 +1,15 @@
 package modello;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 
-public class Configurazione {
+public class Configurazione implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** 
 	 * @uml.property name="preventivo"
 	 * @uml.associationEnd multiplicity="(1 -1)" aggregation="shared" inverse="configurazione:guanabana.Preventivo"

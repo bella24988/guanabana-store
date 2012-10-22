@@ -259,6 +259,7 @@ public class Client implements Collegare {
 	Ordine ordine = null;
 		
 		writer = new ObjectOutputStream(scritura);
+		
 		writer.writeObject("creaOrdine");
 		writer.flush();
 		
@@ -267,34 +268,36 @@ public class Client implements Collegare {
 		String risposta;
 		try {
 			risposta = (String) buffer.readObject();
+			
 			if (risposta.compareTo("pronto")==0){
+				
 				writer.writeObject(comp);
 				writer.flush();
 				
-				if (buffer.readObject().toString().compareTo("ok")==0){
+				risposta = (String) buffer.readObject();
+				
+				if (risposta.compareTo("ok")==0){
 					
 					writer.writeObject(prezzoTotale);
 					writer.flush();
 					
-					if (buffer.readObject().toString().compareTo("ok")==0){
+					risposta = (String) buffer.readObject();
+					
+					if (risposta.compareTo("ok")==0){
 						writer.writeObject(cliente);
 						writer.flush();
 						
 						ordine = (Ordine) buffer.readObject();
-					}
-					
-					
+						System.out.println("Server ha risposto "+ordine.getNumeroOrdine());
+					}	
 				}
-				
 			}
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace(); //Collegamento non reuscito
 		}
-		
-		
-		// TODO Auto-generated method stub
+		chiudereCollegamento();
 		return ordine;
 	}
 

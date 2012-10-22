@@ -8,6 +8,9 @@ import javax.swing.JTextField;
 import client.LogController;
 import client.RegistratiController;
 import javax.swing.SwingConstants;
+
+import modello.Cliente;
+
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -114,16 +117,17 @@ public class LogPanel extends JPanel {
 	 * @param cognome
 	 *            Mostra salutoPanel una volta fatto il login
 	 */
-	public void loginFatto(String nome) {
+	public void loginFatto(Cliente cliente) {
 		// Nasconde gli elementi
 		nascondiFormRegistrazione();
 		panelLogin.setVisible(false);
 		setTxaMessaggio("");
 		// Inizializzazione e posizionamento di salutoPanel
-		salutoPanel = new SalutoPanel(nome, this);
+		salutoPanel = new SalutoPanel(cliente.getNome()+" "+cliente.getCognome(), this);
 		add(salutoPanel, BorderLayout.NORTH);
 		
 		if(contenuto.getAttessaCompra()==true){
+			contenuto.setClienteLogato(cliente);
 			contenuto.continuaOperazione();
 		}
 	}

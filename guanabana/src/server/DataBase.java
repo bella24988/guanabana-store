@@ -6,10 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
-
 import modello.Cliente;
 import modello.Computer;
-import modello.Ordine;
+
 
 public class DataBase {
 	
@@ -39,9 +38,9 @@ public class DataBase {
 		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaComputer(con.prepareStatement("select nome,prezzo from standard_computer where nome like concat(?,'%')"));
 		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));	
-		setStNuovaOrdine(con.prepareStatement("insert into ordini (codice, totale, stato, cliente, indirizzo_invio, data_modifica, nome_computer, " +
-				"ram, cpu, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
-				"VALUES(?, ?, UPPER(?), UPPER(?), UPPER(?), ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
+		setStNuovaOrdine(con.prepareStatement("insert into ordini (codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+				"ram, cpu,pci, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
+				"VALUES(?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		
 	}/*End of the constructor*/
@@ -183,19 +182,35 @@ public class DataBase {
 	}
 	
 	
-	public String creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente){
+	public int creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente){
 		
 		ResultSet result = null;
 		int numOrdineMax = 0;
 		
 		try {
 			result = stConsultaUltimaOrd.executeQuery();
+			while(result.next()){
+				numOrdineMax = result.getInt(1)+1;
+			}
+			stNuovaOrdine.setInt(1, numOrdineMax);
+			stNuovaOrdine.setFloat(2, prezzoTotale);
+			stNuovaOrdine.setString(3, "ORDINATO");
+			stNuovaOrdine.setString(4, cliente.getCf());
+			stNuovaOrdine.setString(5, cliente.getIndirizzo());
+			stNuovaOrdine.setString(6, comp.getNome());
+			
+			int i;
+			for(i=0; i<comp.getConfigurazioneScelta().length;i++){
+				stNuovaOrdine.setString(i+7, comp.getConfigurazioneScelta()[i].getCodice());
+			}
+			
+			stNuovaOrdine.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.print("Errore al db "+e);
 			e.printStackTrace();
 		}
 		
-		return null;
+		return numOrdineMax;
 	}
 	
 	/**

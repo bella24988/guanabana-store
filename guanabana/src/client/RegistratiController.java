@@ -75,8 +75,7 @@ public class RegistratiController implements ActionListener{
 						e1.printStackTrace();
 						registrati.mostraMessaggio("Errore con il server");
 					}	
-					
-					registrati.ocultaFinestra();
+					registrati.ocultaFinestra(cliente);
 				
 				}else{
 					registrati.mostraMessaggio("Le password non coincidono");

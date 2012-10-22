@@ -49,8 +49,7 @@ public class LogController implements ActionListener{
 				setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), logPanel.getTxtPassword()));
 				if (cliente != null){
 					logPanel.mostraMessaggioErrore("");
-					logPanel.loginFatto(cliente.getNome() + " "
-							+ cliente.getCognome());				
+					logPanel.loginFatto(cliente);				
 				}else{
 					logPanel.sbloccareInserimento();
 					logPanel.mostraMessaggioErrore("La email e la password non coincidono, per favore verifichi i dati.");

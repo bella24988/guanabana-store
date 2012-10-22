@@ -9,6 +9,7 @@ import modello.Ordine;
 import modello.Pagamento;
 
 import java.awt.Color;
+import java.io.IOException;
 
 public class ContenutoPanel extends JPanel {
 
@@ -155,17 +156,29 @@ public class ContenutoPanel extends JPanel {
 		this.modelloView = modelloView;
 	}
 
-	public void aggiungePagamentoPanel(ConfermaOrdinePanel panelDaRimuovere) {
+	public void aggiungePagamentoPanel(ConfermaOrdinePanel panelDaRimuovere, float prezzoTotale) {
+		confermaOrdinePanel.setPrezzoTotale(prezzoTotale);
+		
 		if(clienteLogato!=null){
 			remove(panelDaRimuovere);
 			continuaOperazione();
+			
 		}else{
 			setAttessaCompra(true);
 			panelDaRimuovere.mostraMessaggioErrore("Per continuare con l'acquisto, devi fare il log-in o registrarti");
 		}
+		
+		
 	}
 	
 	public void continuaOperazione(){
+		try {
+			Client client = new Client();
+			setOrdine(client.creaOrdine(getComputer(), confermaOrdinePanel.getPrezzoTotale(), clienteLogato));
+			
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		removeAll();
 		pulisceSchermo();
 		setAttessaCompra(false);
@@ -215,6 +228,34 @@ public class ContenutoPanel extends JPanel {
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;
+	}
+
+	/**
+	 * @return the ordine
+	 */
+	public Ordine getOrdine() {
+		return ordine;
+	}
+
+	/**
+	 * @param ordine the ordine to set
+	 */
+	public void setOrdine(Ordine ordine) {
+		this.ordine = ordine;
+	}
+
+	/**
+	 * @return the pagamento
+	 */
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	/**
+	 * @param pagamento the pagamento to set
+	 */
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 
 }

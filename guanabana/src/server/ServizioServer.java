@@ -59,7 +59,7 @@ public class ServizioServer implements Collegare, Runnable{
 			
 			ObjectInputStream ricevo = new ObjectInputStream(is);
 			String richiestaClient = (String) ricevo.readObject();//Legge 1
-			System.out.println("Sono il server, ricevo messaggio dal client: no blocco if"+richiestaClient);
+			System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
 			String datiLetti;
 			
 			ObjectOutputStream scrive = new ObjectOutputStream(s.getOutputStream());
@@ -84,7 +84,7 @@ public class ServizioServer implements Collegare, Runnable{
 				scrive.flush();
 				
 			}else if (richiestaClient.compareTo("registrati")==0){
-				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
+				
 				
 				scrive.writeObject("pronto");
 				scrive.flush();
@@ -107,7 +107,7 @@ public class ServizioServer implements Collegare, Runnable{
 				scrive.flush();
 				
 			}else if(richiestaClient.compareTo("cercaModelli")==0){
-				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
+				
 				scrive.writeObject("pronto");//Scrive 1
 				scrive.flush();
 				
@@ -123,7 +123,6 @@ public class ServizioServer implements Collegare, Runnable{
 				
 			}else if (richiestaClient.compareTo("conta")==0){
 				String tipo;
-				System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
 				
 				scrive.writeObject("pronto");
 				scrive.flush();
@@ -132,6 +131,7 @@ public class ServizioServer implements Collegare, Runnable{
 				System.out.println("Sono il server, ricevo la variabile tipo: "+tipo);
 				scrive.writeObject(conta(tipo));
 				scrive.flush();
+				
 			}else if (richiestaClient.compareTo("creaOrdine")==0){
 				
 				scrive.writeObject("pronto");
@@ -149,7 +149,10 @@ public class ServizioServer implements Collegare, Runnable{
 				
 				Cliente cliente = (Cliente) ricevo.readObject();//ricevuto cliente
 				
-				scrive.writeObject(creaOrdine(comp, prezzoTotale, cliente));
+				Ordine ordine = creaOrdine(comp, prezzoTotale, cliente);
+				
+				System.out.println("ordine: "+ordine.getNumeroOrdine());
+				scrive.writeObject(ordine);//Envia Ordine a client
 				scrive.flush();
 			}
 			
@@ -418,7 +421,7 @@ public class ServizioServer implements Collegare, Runnable{
 	public Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente)
 			throws IOException {
 		 
-		String numOrdine = null;
+		int numOrdine = 0;
 		
 		numOrdine= db.creaNuovaOrdine(comp, prezzoTotale, cliente);
 		

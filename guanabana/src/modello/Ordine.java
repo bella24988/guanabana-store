@@ -1,17 +1,23 @@
 package modello;
 
+import java.io.Serializable;
 
-public class Ordine {
+
+public class Ordine implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Pagamento pagamento;
-	private String numeroOrdine;
+	private int numeroOrdine;
 	private Computer computer;
 	private float prezzo;
 	private Cliente cliente;
 	
 	
 
-	public Ordine(String numeroOrdine, Computer computer, float prezzo, Cliente cliente) {
+	public Ordine(int numeroOrdine, Computer computer, float prezzo, Cliente cliente) {
 		super();
 		this.numeroOrdine = numeroOrdine;
 		this.computer = computer;
@@ -36,14 +42,14 @@ public class Ordine {
 	/**
 	 * @return the numeroOrdine
 	 */
-	public String getNumeroOrdine() {
+	public int getNumeroOrdine() {
 		return numeroOrdine;
 	}
 
 	/**
 	 * @param numeroOrdine the numeroOrdine to set
 	 */
-	public void setNumeroOrdine(String numeroOrdine) {
+	public void setNumeroOrdine(int numeroOrdine) {
 		this.numeroOrdine = numeroOrdine;
 	}
 

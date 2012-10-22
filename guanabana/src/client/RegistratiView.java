@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import client.RegistratiController;
 import javax.swing.JTextPane;
 
+import modello.Cliente;
+
 public class RegistratiView extends JPanel {
 	/**
 	 * 
@@ -493,8 +495,8 @@ public class RegistratiView extends JPanel {
 		this.setLogPanel(logPanel);
 	}
 
-	public void ocultaFinestra() {
-		logPanel.loginFatto(getTxtNome());
+	public void ocultaFinestra(Cliente cliente) {
+		logPanel.loginFatto(cliente);
 	}
 
 	/**
