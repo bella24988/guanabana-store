@@ -185,12 +185,14 @@ public class DataBase {
 	public int creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente){
 		
 		ResultSet result = null;
-		int numOrdineMax = 0;
+		int numOrdineMax = 1;
 		
 		try {
 			result = stConsultaUltimaOrd.executeQuery();
+			if (result!=null){
 			while(result.next()){
 				numOrdineMax = result.getInt(1)+1;
+			}
 			}
 			stNuovaOrdine.setInt(1, numOrdineMax);
 			stNuovaOrdine.setFloat(2, prezzoTotale);

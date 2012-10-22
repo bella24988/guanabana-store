@@ -496,6 +496,7 @@ public class RegistratiView extends JPanel {
 	}
 
 	public void ocultaFinestra(Cliente cliente) {
+		this.setVisible(false);
 		logPanel.loginFatto(cliente);
 	}
 

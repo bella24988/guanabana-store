@@ -118,6 +118,7 @@ public class LogPanel extends JPanel {
 	 *            Mostra salutoPanel una volta fatto il login
 	 */
 	public void loginFatto(Cliente cliente) {
+		logController.setCliente(cliente);
 		// Nasconde gli elementi
 		nascondiFormRegistrazione();
 		panelLogin.setVisible(false);
