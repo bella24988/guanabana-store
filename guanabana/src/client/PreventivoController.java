@@ -8,8 +8,9 @@ import modello.Configurazione;
 
 public class PreventivoController implements ActionListener{
 	
-	private ConfServerPanel confServerPanel;
-	private ConfDesktopPanel confDesktopPanel;
+	private ConfigPanel configPanel;
+	
+
 	private PreventivoPanel preventivoPanel;
 	private Computer computer;
 	private Configurazione[] configurazione;
@@ -56,53 +57,53 @@ public class PreventivoController implements ActionListener{
 			
 			if(e.getActionCommand().substring(0, 3).compareTo("RAM")==0){//Controlla i buttons per la ram
 				prezzoRamOld = calcolarePrezzoTotale(i, prezzoRamOld);
-				setElementiConfigurazione(0,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(0,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("CPU")==0){//CPU
 				prezzoCpuOld = calcolarePrezzoTotale(i, prezzoCpuOld);
-				setElementiConfigurazione(1,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(1,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("PCI")==0){//PCI
 				prezzoPciOld = calcolarePrezzoTotale(i, prezzoPciOld);
-				setElementiConfigurazione(2,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(2,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("MLC")==0){//MLC
 				prezzoMlcOld = calcolarePrezzoTotale(i, prezzoMlcOld);
-				setElementiConfigurazione(3,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(3,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HDD")==0){//HDD
 				prezzoHddOld = calcolarePrezzoTotale(i, prezzoHddOld);
-				setElementiConfigurazione(4,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(4,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HD1")==0){//HD1
 				prezzoHd1Old = calcolarePrezzoTotale(i, prezzoHd1Old);
-				setElementiConfigurazione(5,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(5,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HD2")==0){//HD2
 				prezzoHd2Old = calcolarePrezzoTotale(i, prezzoHd2Old);
-				setElementiConfigurazione(6,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(6,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("HD3")==0){//HD3
 				prezzoHd3Old = calcolarePrezzoTotale(i, prezzoHd3Old);
-				setElementiConfigurazione(7,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(7,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("DVD")==0){//Dvd
 				prezzoDvdOld = calcolarePrezzoTotale(i, prezzoDvdOld);
-				setElementiConfigurazione(8,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(8,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("WAR")==0){//Garanzia
 				prezzoWarOld = calcolarePrezzoTotale(i, prezzoWarOld);
-				setElementiConfigurazione(9,confServerPanel.getComponenti()[i].getCodice(),
-						confServerPanel.getComponenti()[i].getNome(), confServerPanel.getComponenti()[i].getPrezzo());
+				setElementiConfigurazione(9,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("MOU")==0){//Mouse
 				prezzoMouOld = calcolarePrezzoTotale(i, prezzoMouOld);
@@ -122,7 +123,7 @@ public class PreventivoController implements ActionListener{
 	}
 	
 	private float calcolarePrezzoTotale(int i, float prezzoVecchio){
-		float prezzo = confServerPanel.getComponenti()[i].getPrezzo();
+		float prezzo = configPanel.getComponenti()[i].getPrezzo();
 		float temp = new Float( preventivoPanel.getTotalePreventivo());
 		float prezzoTotale = temp + prezzo - prezzoVecchio;
 		preventivoPanel.setTotalePreventivo(String.valueOf(prezzoTotale));
@@ -135,22 +136,6 @@ public class PreventivoController implements ActionListener{
 		configurazione[i].setNome(nome);
 		configurazione[i].setPrezzo(prezzo);
 	}
-
-	/**
-	 * @return the confServerPanel
-	 */
-	public ConfServerPanel getConfServerPanel() {
-		return confServerPanel;
-	}
-
-
-	/**
-	 * @param confServerPanel the confServerPanel to set
-	 */
-	public void setConfServerPanel(ConfServerPanel confServerPanel) {
-		this.confServerPanel = confServerPanel;
-	}
-
 
 	/**
 	 * @return the preventivoPanel
@@ -185,12 +170,13 @@ public class PreventivoController implements ActionListener{
 	}
 
 
-	public ConfDesktopPanel getConfDesktopPanel() {
-		return confDesktopPanel;
+	
+	public ConfigPanel getConfigPanel() {
+		return configPanel;
 	}
 
-	public void setConfDesktopPanel(ConfDesktopPanel confDesktopPanel) {
-		this.confDesktopPanel = confDesktopPanel;
+	public void setConfigPanel(ConfigPanel configPanel) {
+		this.configPanel = configPanel;
 	}
 
 	/**

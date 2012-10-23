@@ -23,8 +23,8 @@ public class ConfigPanel extends JPanel {
 	private Componente[] componenti;
 	private PreventivoController preventivoController;
 	private Configurazione[] configurazione;
-	
-	private static int[] maxElementiConfig = {6,10,12};
+	//numero massimo di componenti configurabili rispettivamente per laptop, desktop e server
+	private static int[] maxElementiConfig = {6,10,10};
 	//doppi array contenente i tipi di componenti configurabili rispettivamente per laptop, desktop e server
 	private static String[] lblComp = {"Laptop","Desktop","Server"};
 	private static String[][] tipoComponenti = {

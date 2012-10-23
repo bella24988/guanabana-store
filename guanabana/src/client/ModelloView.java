@@ -16,6 +16,9 @@ public class ModelloView extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel modelsPanel;
+	private ConfigPanel configPanel;
+	
 	private JPanel serverPanel;
 	/**
 	 * 
@@ -32,8 +35,6 @@ public class ModelloView extends JPanel {
 	private JButton[] btnModelli;
 	private static final long serialVersionUID = 1L;
 	private ModelloController modelloController;
-	private ConfServerPanel confServerPanel;
-	private ConfDesktopPanel confDesktopPanel;
 	private PreventivoPanel preventivoPanel;
 	private Computer computer;
 	private PreventivoController preventivoController;
@@ -162,52 +163,38 @@ public class ModelloView extends JPanel {
 	}
 
 	public void mostraComponente(Computer comp) {
+		int type = 0;
 		laptopPanel.setVisible(false);
 		serverPanel.setVisible(false);
 		desktopPanel.setVisible(false);
 		preventivoController = new PreventivoController();
-		if (comp.getTipo().compareTo("SERVER") == 0) {
-			confServerPanel = new ConfServerPanel(
-					computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController);
-			setSecondoComputer(comp);
-			confServerPanel.setVisible(true);
+		if (comp.getTipo().compareTo("LAPTOP") == 0) {
+			type = 0;
 		} else if (comp.getTipo().compareTo("DESKTOP") == 0) {
-			confDesktopPanel = new ConfDesktopPanel(
-					computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController);
-			setSecondoComputer2(comp);
-			confDesktopPanel.setVisible(true);
+			type = 1;
+		} else if (comp.getTipo().compareTo("SERVER") == 0) {
+			type = 2;
 		}
+		configPanel = new ConfigPanel(computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController, type);
+		configPanel.setVisible(true);
+		setSecondoComputer(comp);
 	}
 	
 	private void setSecondoComputer (Computer comp){
 		
 		preventivoPanel = new PreventivoPanel(preventivoController);
-		preventivoController.setConfServerPanel(confServerPanel);
+		preventivoController.setConfigPanel(configPanel);
 		preventivoController.setPreventivoPanel(preventivoPanel);
 		preventivoController.setComputer(comp);
 		preventivoController.setContenutoPanel(getContenutoPanel());
 		preventivoPanel.setTotalePreventivo(String.valueOf(comp.getPrezzo()));
-		JScrollPane scroller = new JScrollPane(confServerPanel);
+		JScrollPane scroller = new JScrollPane(configPanel);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroller.setPreferredSize(new Dimension(550, 400));
 		add(scroller, BorderLayout.WEST);
 		add(preventivoPanel, BorderLayout.EAST);
 	}
-	//solo per provare, altrimenti non funziona piu con desktop: poi far˜ meglio!
-	private void setSecondoComputer2 (Computer comp){
-		
-		preventivoPanel = new PreventivoPanel(preventivoController);
-		preventivoController.setConfDesktopPanel(confDesktopPanel);
-		preventivoController.setPreventivoPanel(preventivoPanel);
-		preventivoController.setComputer(comp);
-		preventivoController.setContenutoPanel(getContenutoPanel());
-		preventivoPanel.setTotalePreventivo(String.valueOf(comp.getPrezzo()));
-		JScrollPane scroller = new JScrollPane(confDesktopPanel);
-		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scroller.setPreferredSize(new Dimension(550, 400));
-		add(scroller, BorderLayout.WEST);
-		add(preventivoPanel, BorderLayout.EAST);
-	}
+	
 
 	/**
 	 * @return the contenutoPanel
