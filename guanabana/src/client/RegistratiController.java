@@ -53,7 +53,7 @@ public class RegistratiController implements ActionListener{
 					try {
 						try {
 							cliente=client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),
-									registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),registrati.getTxtPassword());
+									registrati.getTxtEmail(),indirizzo,registrati.getTxtTelefono(),String.valueOf(registrati.getTxtPassword()));
 							
 							if(client!=null){
 								
@@ -107,8 +107,8 @@ public class RegistratiController implements ActionListener{
 				if(r.getTxtCognome().compareTo("")!=0){
 					if(r.getTxtEmail().compareTo("")!=0){
 						if(r.getTxtTelefono().compareTo("")!=0){
-							if(r.getTxtPassword().compareTo("")!=0){
-								if(r.getTxtPasswordConferma().compareTo("")!=0){
+							if(String.valueOf(r.getTxtPassword()).compareTo("")!=0){
+								if(String.valueOf(r.getTxtPasswordConferma()).compareTo("")!=0){
 									if(r.getTxtVia().compareTo("")!=0){
 										if(r.getTxtCap().compareTo("")!=0){
 											if(r.getTxtCitta().compareTo("")!=0){

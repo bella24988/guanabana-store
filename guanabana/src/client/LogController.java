@@ -46,7 +46,7 @@ public class LogController implements ActionListener{
 			try {
 				Client servizioClient = new Client();
 				System.out.println("Sono il client, mi ho instanciado al server");
-				setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), logPanel.getTxtPassword()));
+				setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), String.valueOf(logPanel.getTxtPassword())));
 				if (cliente != null){
 					logPanel.mostraMessaggioErrore("");
 					logPanel.loginFatto(cliente);				

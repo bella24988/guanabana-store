@@ -1,6 +1,8 @@
 package client;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -27,8 +29,8 @@ public class RegistratiView extends JPanel {
 	private JTextField txtVia;
 	private JTextField txtTelefono;
 	private JTextField txtCap;
-	private JTextField txtPassword;
-	private JTextField txtPasswordConferma;
+	private JPasswordField txtPassword;
+	private JPasswordField txtPasswordConferma;
 	private ContenutoPanel panelContenitore;
 	private RegistratiController controller;
 	private JTextField txtCitta;
@@ -263,7 +265,7 @@ public class RegistratiView extends JPanel {
 		gbc_lblPassword.gridy = 13;
 		add(lblPassword, gbc_lblPassword);
 
-		txtPassword = new JTextField();
+		txtPassword = new JPasswordField();
 		GridBagConstraints gbc_txtPassword = new GridBagConstraints();
 		gbc_txtPassword.insets = new Insets(0, 0, 5, 5);
 		gbc_txtPassword.fill = GridBagConstraints.HORIZONTAL;
@@ -280,7 +282,7 @@ public class RegistratiView extends JPanel {
 		gbc_lblConfermaPassword.gridy = 14;
 		add(lblConfermaPassword, gbc_lblConfermaPassword);
 
-		txtPasswordConferma = new JTextField();
+		txtPasswordConferma = new JPasswordField();
 		GridBagConstraints gbc_txtPasswordConferma = new GridBagConstraints();
 		gbc_txtPasswordConferma.insets = new Insets(0, 0, 5, 5);
 		gbc_txtPasswordConferma.fill = GridBagConstraints.HORIZONTAL;
@@ -424,16 +426,16 @@ public class RegistratiView extends JPanel {
 		this.txtCap.setText(txtCap);
 	}
 
-	public String getTxtPassword() {
-		return txtPassword.getText();
+	public char[] getTxtPassword() {
+		return txtPassword.getPassword();
 	}
 
 	public void setTxtPassword(String txtPassword) {
 		this.txtPassword.setText(txtPassword);
 	}
 
-	public String getTxtPasswordConferma() {
-		return txtPasswordConferma.getText();
+	public char[] getTxtPasswordConferma() {
+		return txtPasswordConferma.getPassword();
 	}
 
 	public void setTxtPasswordConferma(String txtPasswordConferma) {

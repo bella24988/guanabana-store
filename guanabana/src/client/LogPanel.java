@@ -3,6 +3,7 @@ package client;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import client.LogController;
@@ -34,7 +35,7 @@ public class LogPanel extends JPanel {
 	public JButton btnRegistrati; // Bottone registrati
 	public JButton btnLog; // Bottone login
 	public JTextField txtUser; // Campo di testo email
-	public JTextField txtPassword; // Campo di testo password
+	public JPasswordField txtPassword; // Campo di testo password
 	private LogController logController; // Controllore per il bottone login
 	private RegistratiController registratiController; // Controllore per il
 														// bottone registrati
@@ -62,7 +63,7 @@ public class LogPanel extends JPanel {
 		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT); // allineamento
 																	// testo
 		txtUser = new JTextField(15); // inizializza campo di testo Email
-		txtPassword = new JTextField(15); // inizializza campo di testo password
+		txtPassword = new JPasswordField(15); // inizializza campo di testo password
 		lblUser.setLabelFor(txtUser); // associa etichetta a campo di testo
 		lblPassword.setLabelFor(txtPassword); // associa etichetta a campo di
 												// testo
@@ -178,8 +179,8 @@ public class LogPanel extends JPanel {
 		this.txtUser.setText(txtUser);
 	}
 
-	public String getTxtPassword() {
-		return txtPassword.getText();
+	public char[] getTxtPassword() {
+		return txtPassword.getPassword();
 	}
 
 	public void setTxtPassword(String txtPassword) {
