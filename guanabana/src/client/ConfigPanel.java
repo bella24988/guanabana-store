@@ -131,6 +131,7 @@ public class ConfigPanel extends JPanel {
 				}
 			}
 			ultimo++;
+			ultimo++;
 		}
 
 	}
@@ -154,18 +155,6 @@ public class ConfigPanel extends JPanel {
 		rdbtn.setFont(new Font("Toledo", Font.PLAIN, 11));
 
 		return rdbtn;
-	}
-
-	private int contaComponentiGruppo(String tipo, Componente[] componenti) {
-		int i, num = 0;
-		for (i = 0; i < componenti.length; i++) {
-			if (componenti[i].getTipo().compareTo(tipo) == 0) {
-				num++;
-			}
-
-		}
-		return num;
-
 	}
 
 	public Componente[] getComponenti() {

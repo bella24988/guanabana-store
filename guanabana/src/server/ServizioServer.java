@@ -19,13 +19,6 @@ import conexionInterface.Collegare;
 import java.util.Collection;
 
 
-/**
- * @author Veronica
- * @version 0.1
- * 			Classe che permette la comunicazione con il client, ed il passaggio di 
- *			informazione.
- *
- */
 public class ServizioServer implements Collegare, Runnable{
 	
 	private Socket client;
