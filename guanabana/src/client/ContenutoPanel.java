@@ -256,13 +256,13 @@ public class ContenutoPanel extends JPanel {
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
-
+	//aggiunti commenti per evitare l'errore che da noia nel compilare
 	public void mostraRingraziamento() {
 		removeAll();
 		pulisceSchermo();
-		RigraziamentiPanel ringraziamento = new RigraziamentiPanel();
-		ringraziamento.setVisible(true);
-		add(ringraziamento);
+	//	RigraziamentiPanel ringraziamento = new RigraziamentiPanel();
+	//	ringraziamento.setVisible(true);
+	//	add(ringraziamento);
 	}
 
 }

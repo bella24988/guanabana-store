@@ -23,11 +23,13 @@ public class ConfigPanel extends JPanel {
 	private Componente[] componenti;
 	private PreventivoController preventivoController;
 	private Configurazione[] configurazione;
+	
 	// numero massimo di componenti configurabili rispettivamente per laptop,
 	// desktop e server
 	private static int[] maxElementiConfig = { 6, 10, 10 };
 	// doppi array contenente i tipi di componenti configurabili rispettivamente
 	// per laptop, desktop e server
+	
 	private static String[] lblComp = { "Laptop", "Desktop", "Server" };
 	private static String[][] tipoComponenti = {
 			{ "RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
@@ -105,12 +107,11 @@ public class ConfigPanel extends JPanel {
 			gbc_lblComponents.gridx = 0;
 			gbc_lblComponents.gridy = ultimo;
 			add(lblComponents, gbc_lblComponents);
+			
 			// Radio Button
-			int i;
-
 			ButtonGroup groupComponents = new ButtonGroup();
 			JRadioButton[] rdbtnComponents = new JRadioButton[componenti.length];
-			for (i = 0; i < componenti.length; i++) {
+			for (int i = 0; i < componenti.length; i++) {
 				if (componenti[i].getTipo().compareTo(
 						tipoComponenti[computerType][indiceComponenti]) == 0) {
 					// Setta la configurazione di default
