@@ -10,7 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import modello.Computer;
 
-
 public class ModelloView extends JPanel {
 
 	/**
@@ -18,7 +17,7 @@ public class ModelloView extends JPanel {
 	 */
 	private JPanel modelsPanel;
 	private ConfigPanel configPanel;
-	
+
 	private JPanel serverPanel;
 	/**
 	 * 
@@ -150,7 +149,7 @@ public class ModelloView extends JPanel {
 		return controller;
 	}
 
-	//ann
+	// ann
 	/**
 	 * Setter of the property <tt>modelloController</tt>
 	 * 
@@ -175,13 +174,14 @@ public class ModelloView extends JPanel {
 		} else if (comp.getTipo().compareTo("SERVER") == 0) {
 			type = 2;
 		}
-		configPanel = new ConfigPanel(computer.getComponente(), computer.getConfigurazioneStandard(), preventivoController, type);
+		configPanel = new ConfigPanel(comp.getComponente(),
+				comp.getConfigurazioneStandard(), preventivoController, type);
 		configPanel.setVisible(true);
 		setSecondoComputer(comp);
 	}
-	
-	private void setSecondoComputer (Computer comp){
-		
+
+	private void setSecondoComputer(Computer comp) {
+
 		preventivoPanel = new PreventivoPanel(preventivoController);
 		preventivoController.setConfigPanel(configPanel);
 		preventivoController.setPreventivoPanel(preventivoPanel);
@@ -194,7 +194,6 @@ public class ModelloView extends JPanel {
 		add(scroller, BorderLayout.WEST);
 		add(preventivoPanel, BorderLayout.EAST);
 	}
-	
 
 	/**
 	 * @return the contenutoPanel
@@ -204,7 +203,8 @@ public class ModelloView extends JPanel {
 	}
 
 	/**
-	 * @param contenutoPanel the contenutoPanel to set
+	 * @param contenutoPanel
+	 *            the contenutoPanel to set
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;

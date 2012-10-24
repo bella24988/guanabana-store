@@ -163,13 +163,13 @@ public class DataBase {
 		ResultSet result = null;
 		int max = 0;
 		Statement stStandardPC = con.createStatement();
-		if (tipo=="ser"){
-			result = stStandardPC.executeQuery("select ram, cpu, pci, mlc, hd1, hd2,hd3,hd4,dvd,war from standard_computer where nome ='"+nome+"'");
+		if (tipo=="ser"){//{"RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI", "WAR"}
+			result = stStandardPC.executeQuery("select ram, cpu, mlc, hd1, hd2, hd3, hd4,dvd, pci,war from standard_computer where nome ='"+nome+"'");
 			max=10;
-		}else if(tipo=="lap"){
-			result = stStandardPC.executeQuery("select ram, hd1, cpu, war, gpu, dvd from standard_computer where nome ='"+nome+"'");
+		}else if(tipo=="lap"){//{"RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
+			result = stStandardPC.executeQuery("select ram, cpu, hd1, gpu, dvd, war from standard_computer where nome ='"+nome+"'");
 			max=6;
-		}else if(tipo=="des"){
+		}else if(tipo=="des"){//{"RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY", "MON"},
 			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, kei, mon from standard_computer where nome ='"+nome+"'");
 			max=10;
 		}

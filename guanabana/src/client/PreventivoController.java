@@ -36,9 +36,9 @@ public class PreventivoController implements ActionListener{
 
 	public PreventivoController() {
 		super();
-		configurazione = new Configurazione[10];
+		configurazione = new Configurazione[14];
 		
-		for(int i = 0; i<10 ; i++){
+		for(int i = 0; i<14 ; i++){
 			configurazione[i] = new Configurazione();
 		}
 		// TODO Auto-generated constructor stub
@@ -107,15 +107,22 @@ public class PreventivoController implements ActionListener{
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("MOU")==0){//Mouse
 				prezzoMouOld = calcolarePrezzoTotale(i, prezzoMouOld);
+				setElementiConfigurazione(10,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("GPU")==0){//Scheda grafica
 				prezzoGpuOld = calcolarePrezzoTotale(i, prezzoGpuOld);
+				setElementiConfigurazione(11,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 				
 			}else if(e.getActionCommand().substring(0, 3).compareTo("MON")==0){//Monitor
 				prezzoMonOld = calcolarePrezzoTotale(i, prezzoMonOld);
-				
+				setElementiConfigurazione(12,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 			}else if(e.getActionCommand().substring(0, 3).compareTo("KEY")==0){//Tastiera
 				prezzoKeyOld = calcolarePrezzoTotale(i, prezzoKeyOld);
+				setElementiConfigurazione(13,configPanel.getComponenti()[i].getCodice(),
+						configPanel.getComponenti()[i].getNome(), configPanel.getComponenti()[i].getPrezzo());
 			}
 		}
 		

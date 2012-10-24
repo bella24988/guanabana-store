@@ -23,27 +23,36 @@ public class ConfigPanel extends JPanel {
 	private Componente[] componenti;
 	private PreventivoController preventivoController;
 	private Configurazione[] configurazione;
-	//numero massimo di componenti configurabili rispettivamente per laptop, desktop e server
-	private static int[] maxElementiConfig = {6,10,10};
-	//doppi array contenente i tipi di componenti configurabili rispettivamente per laptop, desktop e server
-	private static String[] lblComp = {"Laptop","Desktop","Server"};
+	// numero massimo di componenti configurabili rispettivamente per laptop,
+	// desktop e server
+	private static int[] maxElementiConfig = { 6, 10, 10 };
+	// doppi array contenente i tipi di componenti configurabili rispettivamente
+	// per laptop, desktop e server
+	private static String[] lblComp = { "Laptop", "Desktop", "Server" };
 	private static String[][] tipoComponenti = {
-		{"RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
-		{"RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY", "MON"},
-		{"RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI", "WAR"}
-	};
+			{ "RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
+			{ "RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY",
+					"MON" },
+			{ "RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI",
+					"WAR" } };
 	private static String[][] labels = {
-		{"Memoria RAM:", "Processore:", "Hard Disk (obbligatorio):", 
-			"Scheda Grafica:", "Unitˆ ottica:", "Garanzia:"},
-		{"Memoria RAM:", "Processore:", "Mouse:",
-			"Hard Disk (obbligatorio):", "Hard Disk (opzionale):",
-			"Scheda Grafica:", "Unitˆ ottica:", "Garanzia:", "Tastiera:",
-			"Monitor:" },
-		{"Memoria RAM:", "Processore:", "Multilevel Cell:",
-			"Hard Disk (obbligatorio):", "Hard Disk (opzionale 1):", "Hard Disk (opzionale2):", 
-			"Hard Disk (opzionale 3):", "Unitˆ ottica:", "Scheda PCI:", "Garanzia:"}
-	};
+			{ "Memoria RAM:", "Processore:", "Hard Disk (obbligatorio):",
+					"Scheda Grafica:", "Unitˆ ottica:", "Garanzia:" },
+			{ "Memoria RAM:", "Processore:", "Mouse:",
+					"Hard Disk (obbligatorio):", "Hard Disk (opzionale):",
+					"Scheda Grafica:", "Unitˆ ottica:", "Garanzia:",
+					"Tastiera:", "Monitor:" },
+			{ "Memoria RAM:", "Processore:", "Multilevel Cell:",
+					"Hard Disk (obbligatorio):", "Hard Disk (opzionale 1):",
+					"Hard Disk (opzionale2):", "Hard Disk (opzionale 3):",
+					"Unitˆ ottica:", "Scheda PCI:", "Garanzia:" } };
 
+	/**
+	 * @param componenti
+	 * @param configStandard
+	 * @param preventivoController
+	 * @param computerType
+	 */
 	public ConfigPanel(Componente[] componenti, String[] configStandard,
 			PreventivoController preventivoController, int computerType) {
 		super();
@@ -71,7 +80,8 @@ public class ConfigPanel extends JPanel {
 		setLayout(gridBagLayout);
 
 		// window style
-		JLabel lblTitle = new JLabel("Acquista " + lblComp[computerType] + ": scegli configurazione");
+		JLabel lblTitle = new JLabel("Acquista " + lblComp[computerType]
+				+ ": scegli configurazione");
 		lblTitle.setForeground(new Color(0, 153, 0));
 		lblTitle.setFont(new Font("Toledo", Font.BOLD, 14));
 		GridBagConstraints gbc_lbl = new GridBagConstraints();
@@ -80,12 +90,14 @@ public class ConfigPanel extends JPanel {
 		gbc_lbl.gridx = 0;
 		gbc_lbl.gridy = 0;
 		add(lblTitle, gbc_lbl);
-		
-		System.out.println("Lunghezza componenti" + tipoComponenti[computerType].length);
+
+		System.out.println("Lunghezza componenti"
+				+ tipoComponenti[computerType].length);
 		ButtonGroup[] group = new ButtonGroup[tipoComponenti[computerType].length];
 		for (int indiceComponenti = 0; indiceComponenti < tipoComponenti[computerType].length; indiceComponenti++) {
 
-			JLabel lblComponents = new JLabel(labels[computerType][indiceComponenti]);
+			JLabel lblComponents = new JLabel(
+					labels[computerType][indiceComponenti]);
 			lblComponents.setFont(new Font("Toledo", Font.BOLD, 11));
 			GridBagConstraints gbc_lblComponents = new GridBagConstraints();
 			gbc_lblComponents.anchor = GridBagConstraints.EAST;
@@ -102,10 +114,12 @@ public class ConfigPanel extends JPanel {
 				if (componenti[i].getTipo().compareTo(
 						tipoComponenti[computerType][indiceComponenti]) == 0) {
 					// Setta la configurazione di default
-					rdbtnComponents[i] = configButtons(rdbtnComponents[i], componenti[i],
-							configStandard[indiceComponenti]);
+					rdbtnComponents[i] = configButtons(rdbtnComponents[i],
+							componenti[i], configStandard[indiceComponenti]);
 
-					rdbtnComponents[i].setActionCommand(tipoComponenti[computerType][indiceComponenti] + i);
+					rdbtnComponents[i]
+							.setActionCommand(tipoComponenti[computerType][indiceComponenti]
+									+ i);
 
 					// Griglia, nettamente grafico
 					GridBagConstraints grid_radio = new GridBagConstraints();
@@ -132,7 +146,7 @@ public class ConfigPanel extends JPanel {
 
 				}
 			}
-			
+
 			ultimo++;
 		}
 

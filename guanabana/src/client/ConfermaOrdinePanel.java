@@ -62,8 +62,9 @@ public class ConfermaOrdinePanel extends JPanel {
 		table = new JTable();
 		table.setEnabled(false);
 		table.setShowHorizontalLines(false);
-		table.setModel(new DefaultTableModel(new Object[12][3], new String[] {
-				"Codice", "Descrizione", "Prezzo" }));
+		table.setModel(new DefaultTableModel(
+				new Object[configurazione.length + 2][3], new String[] {
+						"Codice", "Descrizione", "Prezzo" }));
 
 		table.setValueAt("Codice", 0, 0);
 		table.setValueAt("Descrizione", 0, 1);
@@ -71,7 +72,7 @@ public class ConfermaOrdinePanel extends JPanel {
 		table.setValueAt(nome, 1, 1);
 		table.setValueAt(prezzo, 1, 2);
 
-		for (int numRow = 2; numRow < 12; numRow++) {
+		for (int numRow = 2; numRow < configurazione.length; numRow++) {
 			table.setValueAt(configurazione[numRow - 2].getCodice(), numRow, 0);
 			table.setValueAt(configurazione[numRow - 2].getNome(), numRow, 1);
 			table.setValueAt(configurazione[numRow - 2].getPrezzo(), numRow, 2);
