@@ -30,7 +30,7 @@ public class ConfigPanel extends JPanel {
 	private static String[][] tipoComponenti = {
 		{"RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
 		{"RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY", "MON"},
-		{"RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "WAR", "PCI"}
+		{"RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI", "WAR"}
 	};
 	private static String[][] labels = {
 		{"Memoria RAM:", "Processore:", "Hard Disk (obbligatorio):", 
@@ -41,8 +41,7 @@ public class ConfigPanel extends JPanel {
 			"Monitor:" },
 		{"Memoria RAM:", "Processore:", "Multilevel Cell:",
 			"Hard Disk (obbligatorio):", "Hard Disk (opzionale 1):", "Hard Disk (opzionale2):", 
-			"Hard Disk (opzionale 3):", "Scheda Grafica:", "Unitˆ ottica:", "Garanzia:", 
-			"Tastiera:", "Monitor:"}
+			"Hard Disk (opzionale 3):", "Unitˆ ottica:", "Scheda PCI:", "Garanzia:"}
 	};
 
 	public ConfigPanel(Componente[] componenti, String[] configStandard,
