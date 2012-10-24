@@ -22,30 +22,43 @@ public class RegistratiView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField txtNome;
 	private JTextField txtCognome;
 	private JTextField txtCf;
 	private JTextField txtEmail;
+	private JTextField txtCitta;
 	private JTextField txtVia;
-	private JTextField txtTelefono;
+	private JTextField txtProvincia;
 	private JTextField txtCap;
+	private JTextField txtStato;
+	private JTextField txtTelefono;
 	private JPasswordField txtPassword;
 	private JPasswordField txtPasswordConferma;
+	
+	private JTextField[] txtArray ={txtNome, txtCognome, txtCf, txtEmail, txtCitta, txtVia, 
+			txtProvincia, txtCap, txtStato, txtTelefono };
+	
+	private static String[] labels = { "Nome:", "Cognome:", "C.F.:", "Email:", "Cittˆ:", "Via:", 
+			"Provincia:", "CAP:", "Stato:", "Telefono:", "Password:", "Conferma Password:" };
+	
+	JTextPane txaMessaggioErrore;
+	
+	private LogPanel logPanel;
 	private ContenutoPanel panelContenitore;
 	private RegistratiController controller;
-	private JTextField txtCitta;
-	private JTextField txtProvincia;
-	private JTextField txtStato;
-	JTextPane txaMessaggioErrore;
-	private LogPanel logPanel;
+	
 
 	/**
 	 * Create the panel.
 	 */
 	public RegistratiView(ContenutoPanel panelContenitore) {
+		
 		setBackground(Color.WHITE);
-		this.setPanelContenitore(panelContenitore);
 		setForeground(Color.BLACK);
+		
+		this.setPanelContenitore(panelContenitore);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 122, 125, 40, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -57,7 +70,7 @@ public class RegistratiView extends JPanel {
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
-		JLabel lblRegistrati = new JLabel("REGISTRATI");
+		JLabel lblRegistrati = new JLabel("Registrati");
 		lblRegistrati.setForeground(new Color(0, 102, 0));
 		lblRegistrati.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		GridBagConstraints gbc_lblRegistrati = new GridBagConstraints();
@@ -66,231 +79,49 @@ public class RegistratiView extends JPanel {
 		gbc_lblRegistrati.gridx = 1;
 		gbc_lblRegistrati.gridy = 0;
 		add(lblRegistrati, gbc_lblRegistrati);
-
-		JLabel lblCF = new JLabel("C.F.");
-		GridBagConstraints gbc_lblCF = new GridBagConstraints();
-		gbc_lblCF.anchor = GridBagConstraints.EAST;
-		gbc_lblCF.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCF.gridx = 1;
-		gbc_lblCF.gridy = 1;
-		add(lblCF, gbc_lblCF);
-
-		txtCf = new JTextField();
-		txtCf.setForeground(new Color(0, 102, 51));
-		GridBagConstraints gbc_txtCf = new GridBagConstraints();
-		gbc_txtCf.insets = new Insets(0, 0, 5, 5);
-		gbc_txtCf.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCf.gridx = 2;
-		gbc_txtCf.gridy = 1;
-		add(txtCf, gbc_txtCf);
-		txtCf.setColumns(10);
-
-		JLabel lblNome = new JLabel("Nome:");
-		GridBagConstraints gbc_lblNome = new GridBagConstraints();
-		gbc_lblNome.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNome.anchor = GridBagConstraints.EAST;
-		gbc_lblNome.gridx = 1;
-		gbc_lblNome.gridy = 2;
-		add(lblNome, gbc_lblNome);
-
-		txtNome = new JTextField();
-		txtNome.setForeground(new Color(0, 102, 51));
-		GridBagConstraints gbc_txtNome = new GridBagConstraints();
-		gbc_txtNome.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNome.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNome.gridx = 2;
-		gbc_txtNome.gridy = 2;
-		add(txtNome, gbc_txtNome);
-		txtNome.setColumns(10);
-
-		JLabel lblCognome = new JLabel("Cognome:");
-		GridBagConstraints gbc_lblCognome = new GridBagConstraints();
-		gbc_lblCognome.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCognome.anchor = GridBagConstraints.EAST;
-		gbc_lblCognome.gridx = 1;
-		gbc_lblCognome.gridy = 3;
-		add(lblCognome, gbc_lblCognome);
-
-		txtCognome = new JTextField();
-		txtCognome.setForeground(new Color(0, 102, 51));
-		GridBagConstraints gbc_txtCognome = new GridBagConstraints();
-		gbc_txtCognome.insets = new Insets(0, 0, 5, 5);
-		gbc_txtCognome.anchor = GridBagConstraints.NORTH;
-		gbc_txtCognome.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCognome.gridx = 2;
-		gbc_txtCognome.gridy = 3;
-		add(txtCognome, gbc_txtCognome);
-		txtCognome.setColumns(10);
-
-		JLabel lblEmail = new JLabel("Email:");
-		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
-		gbc_lblEmail.anchor = GridBagConstraints.EAST;
-		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEmail.gridx = 1;
-		gbc_lblEmail.gridy = 4;
-		add(lblEmail, gbc_lblEmail);
-
-		txtEmail = new JTextField();
-		txtEmail.setForeground(new Color(0, 102, 51));
-		GridBagConstraints gbc_txtEmail = new GridBagConstraints();
-		gbc_txtEmail.anchor = GridBagConstraints.NORTH;
-		gbc_txtEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_txtEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtEmail.gridx = 2;
-		gbc_txtEmail.gridy = 4;
-		add(txtEmail, gbc_txtEmail);
-		txtEmail.setColumns(10);
-
-		JLabel lblIndirizzo = new JLabel("INDIRIZZO");
-		GridBagConstraints gbc_lblIndirizzo = new GridBagConstraints();
-		gbc_lblIndirizzo.gridwidth = 3;
-		gbc_lblIndirizzo.insets = new Insets(0, 0, 5, 0);
-		gbc_lblIndirizzo.gridx = 1;
-		gbc_lblIndirizzo.gridy = 5;
-		add(lblIndirizzo, gbc_lblIndirizzo);
-
-		JLabel lblVia = new JLabel("Via:");
-		GridBagConstraints gbc_lblVia = new GridBagConstraints();
-		gbc_lblVia.anchor = GridBagConstraints.EAST;
-		gbc_lblVia.insets = new Insets(0, 0, 5, 5);
-		gbc_lblVia.gridx = 1;
-		gbc_lblVia.gridy = 6;
-		add(lblVia, gbc_lblVia);
-
-		txtVia = new JTextField();
-		txtVia.setForeground(new Color(0, 102, 51));
-		GridBagConstraints gbc_txtVia = new GridBagConstraints();
-		gbc_txtVia.insets = new Insets(0, 0, 5, 5);
-		gbc_txtVia.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtVia.gridx = 2;
-		gbc_txtVia.gridy = 6;
-		add(txtVia, gbc_txtVia);
-		txtVia.setColumns(10);
-
-		JLabel lblCitta = new JLabel("Citt\u00E0:");
-		GridBagConstraints gbc_lblCitta = new GridBagConstraints();
-		gbc_lblCitta.anchor = GridBagConstraints.EAST;
-		gbc_lblCitta.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCitta.gridx = 1;
-		gbc_lblCitta.gridy = 7;
-		add(lblCitta, gbc_lblCitta);
-
-		txtCitta = new JTextField();
-		GridBagConstraints gbc_txtCitta = new GridBagConstraints();
-		gbc_txtCitta.anchor = GridBagConstraints.NORTH;
-		gbc_txtCitta.insets = new Insets(0, 0, 5, 5);
-		gbc_txtCitta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCitta.gridx = 2;
-		gbc_txtCitta.gridy = 7;
-		add(txtCitta, gbc_txtCitta);
-		txtCitta.setColumns(10);
-
-		JLabel lblProvincia = new JLabel("Provincia:");
-		GridBagConstraints gbc_lblProvincia = new GridBagConstraints();
-		gbc_lblProvincia.anchor = GridBagConstraints.EAST;
-		gbc_lblProvincia.insets = new Insets(0, 0, 5, 5);
-		gbc_lblProvincia.gridx = 1;
-		gbc_lblProvincia.gridy = 8;
-		add(lblProvincia, gbc_lblProvincia);
-
-		txtProvincia = new JTextField();
-		GridBagConstraints gbc_txtProvincia = new GridBagConstraints();
-		gbc_txtProvincia.anchor = GridBagConstraints.NORTH;
-		gbc_txtProvincia.insets = new Insets(0, 0, 5, 5);
-		gbc_txtProvincia.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtProvincia.gridx = 2;
-		gbc_txtProvincia.gridy = 8;
-		add(txtProvincia, gbc_txtProvincia);
-		txtProvincia.setColumns(10);
-
-		JLabel lblCap = new JLabel("C.A.P.");
-		GridBagConstraints gbc_lblCap = new GridBagConstraints();
-		gbc_lblCap.anchor = GridBagConstraints.EAST;
-		gbc_lblCap.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCap.gridx = 1;
-		gbc_lblCap.gridy = 9;
-		add(lblCap, gbc_lblCap);
-
-		txtCap = new JTextField();
-		txtCap.setForeground(new Color(0, 102, 51));
-		GridBagConstraints gbc_txtCap = new GridBagConstraints();
-		gbc_txtCap.anchor = GridBagConstraints.NORTH;
-		gbc_txtCap.insets = new Insets(0, 0, 5, 5);
-		gbc_txtCap.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCap.gridx = 2;
-		gbc_txtCap.gridy = 9;
-		add(txtCap, gbc_txtCap);
-		txtCap.setColumns(10);
-
-		JLabel lblStato = new JLabel("Stato:");
-		GridBagConstraints gbc_lblStato = new GridBagConstraints();
-		gbc_lblStato.insets = new Insets(0, 0, 5, 5);
-		gbc_lblStato.anchor = GridBagConstraints.EAST;
-		gbc_lblStato.gridx = 1;
-		gbc_lblStato.gridy = 10;
-		add(lblStato, gbc_lblStato);
-
-		txtStato = new JTextField();
-		GridBagConstraints gbc_txtStato = new GridBagConstraints();
-		gbc_txtStato.anchor = GridBagConstraints.NORTH;
-		gbc_txtStato.insets = new Insets(0, 0, 5, 5);
-		gbc_txtStato.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtStato.gridx = 2;
-		gbc_txtStato.gridy = 10;
-		add(txtStato, gbc_txtStato);
-		txtStato.setColumns(10);
-
-		JLabel lblTelefono = new JLabel("Telefono:");
-		GridBagConstraints gbc_lblTelefono = new GridBagConstraints();
-		gbc_lblTelefono.anchor = GridBagConstraints.EAST;
-		gbc_lblTelefono.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTelefono.gridx = 1;
-		gbc_lblTelefono.gridy = 11;
-		add(lblTelefono, gbc_lblTelefono);
-
-		txtTelefono = new JTextField();
-		txtTelefono.setForeground(new Color(0, 102, 51));
-		GridBagConstraints gbc_txtTelefono = new GridBagConstraints();
-		gbc_txtTelefono.insets = new Insets(0, 0, 5, 5);
-		gbc_txtTelefono.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtTelefono.gridx = 2;
-		gbc_txtTelefono.gridy = 11;
-		add(txtTelefono, gbc_txtTelefono);
-		txtTelefono.setColumns(10);
-
-		JLabel lblPassword = new JLabel("Password:");
-		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
-		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPassword.anchor = GridBagConstraints.EAST;
-		gbc_lblPassword.gridx = 1;
-		gbc_lblPassword.gridy = 13;
-		add(lblPassword, gbc_lblPassword);
-
+		
+		for(int i = 1; i<13; i++){
+				
+				JLabel lblReg = new JLabel(labels[i-1]);
+				GridBagConstraints lblGrid = new GridBagConstraints();
+				lblGrid.anchor = GridBagConstraints.EAST;
+				lblGrid.insets = new Insets(0, 0, 5, 5);
+				lblGrid.gridx = 1;
+				lblGrid.gridy = i;
+				add(lblReg, lblGrid);
+		}
+		
+		for(int j = 0; j<10; j++){
+			
+			txtArray[j] = new JTextField();
+			txtArray[j].setForeground(new Color(0, 102, 51));
+			GridBagConstraints txtGrid = new GridBagConstraints();
+			txtGrid.insets = new Insets(0, 0, 5, 5);
+			txtGrid.fill = GridBagConstraints.HORIZONTAL;
+			txtGrid.gridx = 2;
+			txtGrid.gridy = j+1;
+			add(txtArray[j], txtGrid);
+			txtArray[j].setColumns(10);
+		}
+		
 		txtPassword = new JPasswordField();
 		GridBagConstraints gbc_txtPassword = new GridBagConstraints();
 		gbc_txtPassword.insets = new Insets(0, 0, 5, 5);
 		gbc_txtPassword.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPassword.gridx = 2;
-		gbc_txtPassword.gridy = 13;
+		gbc_txtPassword.gridy = 11;
 		add(txtPassword, gbc_txtPassword);
 		txtPassword.setColumns(10);
-
-		JLabel lblConfermaPassword = new JLabel("Conferma Password:");
-		GridBagConstraints gbc_lblConfermaPassword = new GridBagConstraints();
-		gbc_lblConfermaPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblConfermaPassword.anchor = GridBagConstraints.EAST;
-		gbc_lblConfermaPassword.gridx = 1;
-		gbc_lblConfermaPassword.gridy = 14;
-		add(lblConfermaPassword, gbc_lblConfermaPassword);
 
 		txtPasswordConferma = new JPasswordField();
 		GridBagConstraints gbc_txtPasswordConferma = new GridBagConstraints();
 		gbc_txtPasswordConferma.insets = new Insets(0, 0, 5, 5);
 		gbc_txtPasswordConferma.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPasswordConferma.gridx = 2;
-		gbc_txtPasswordConferma.gridy = 14;
+		gbc_txtPasswordConferma.gridy = 12;
 		add(txtPasswordConferma, gbc_txtPasswordConferma);
 		txtPasswordConferma.setColumns(10);
+
 
 		txaMessaggioErrore = new JTextPane();
 		txaMessaggioErrore.setForeground(Color.RED);
@@ -302,15 +133,18 @@ public class RegistratiView extends JPanel {
 		gbc_txaMessaggioErrore.insets = new Insets(0, 0, 5, 5);
 		gbc_txaMessaggioErrore.fill = GridBagConstraints.VERTICAL;
 		gbc_txaMessaggioErrore.gridx = 1;
-		gbc_txaMessaggioErrore.gridy = 15;
+		gbc_txaMessaggioErrore.gridy = 13;
 		add(txaMessaggioErrore, gbc_txaMessaggioErrore);
+		
+		
+		
 
 		JButton btnAnnulla = new JButton("Annulla");
 		GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
 		gbc_btnAnnulla.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnAnnulla.insets = new Insets(0, 0, 0, 5);
 		gbc_btnAnnulla.gridx = 1;
-		gbc_btnAnnulla.gridy = 16;
+		gbc_btnAnnulla.gridy = 14;
 		add(btnAnnulla, gbc_btnAnnulla);
 
 		JButton btnRegistrati = new JButton("Conferma Registrazione");
@@ -318,7 +152,7 @@ public class RegistratiView extends JPanel {
 		gbc_btnRegistrati.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnRegistrati.insets = new Insets(0, 0, 0, 5);
 		gbc_btnRegistrati.gridx = 2;
-		gbc_btnRegistrati.gridy = 16;
+		gbc_btnRegistrati.gridy = 14;
 		add(btnRegistrati, gbc_btnRegistrati);
 
 		inizializza();
@@ -328,6 +162,8 @@ public class RegistratiView extends JPanel {
 		btnAnnulla.addActionListener(controller);
 		btnRegistrati.addActionListener(controller);
 	}
+	
+	
 
 	public void inizializza() {
 		setTxtCap("");
@@ -343,14 +179,17 @@ public class RegistratiView extends JPanel {
 		setTxtStato("");
 		togliMessaggio();
 	}
-
-	public String getTxtStato() {
-		return txtStato.getText();
+	
+	public void setPanelContenitore(ContenutoPanel panelContenitore) {
+		this.panelContenitore = panelContenitore;
 	}
 
-	public void setTxtStato(String txtStato) {
-		this.txtStato.setText(txtStato);
+	public void dehabilitaRegistrati() {
+		panelContenitore.getRegistratiView().setVisible(false);
 	}
+
+
+	
 
 	/**
 	 * @return the panelContenitore
@@ -363,68 +202,85 @@ public class RegistratiView extends JPanel {
 	 * @param panelContenitore
 	 *            the panelContenitore to set
 	 */
-	public void setPanelContenitore(ContenutoPanel panelContenitore) {
-		this.panelContenitore = panelContenitore;
-	}
-
-	public void dehabilitaRegistrati() {
-		panelContenitore.getRegistratiView().setVisible(false);
-	}
-
+	
 	public String getTxtNome() {
-		return txtNome.getText();
+		return txtArray[0].getText();
 	}
 
 	public void setTxtNome(String txtNome) {
-		this.txtNome.setText(txtNome);
+		this.txtArray[0].setText(txtNome);
 	}
 
 	public String getTxtCognome() {
-		return txtCognome.getText();
+		return txtArray[1].getText();
 	}
 
 	public void setTxtCognome(String txtCognome) {
-		this.txtCognome.setText(txtCognome);
+		this.txtArray[1].setText(txtCognome);
 	}
 
 	public String getTxtCf() {
-		return txtCf.getText();
+		return txtArray[2].getText();
 	}
 
 	public void setTxtCf(String txtCf) {
-		this.txtCf.setText(txtCf);
+		this.txtArray[2].setText(txtCf);
 	}
 
 	public String getTxtEmail() {
-		return txtEmail.getText();
+		return txtArray[3].getText();
 	}
 
 	public void setTxtEmail(String txtEmail) {
-		this.txtEmail.setText(txtEmail);
+		this.txtArray[3].setText(txtEmail);
+	}
+	
+	public String getTxtCitta() {
+		return txtArray[4].getText();
+	}
+
+	public void setTxtCitta(String txtCitta) {
+		this.txtArray[4].setText(txtCitta);
 	}
 
 	public String getTxtVia() {
-		return txtVia.getText();
+		return txtArray[5].getText();
 	}
 
 	public void setTxtVia(String string) {
-		this.txtVia.setText(string);
+		this.txtArray[5].setText(string);
+	}
+	
+	public String getTxtProvincia() {
+		return txtArray[6].getText();
 	}
 
-	public String getTxtTelefono() {
-		return txtTelefono.getText();
+	public void setTxtProvincia(String txtProvincia) {
+		this.txtArray[6].setText(txtProvincia);
 	}
-
-	public void setTxtTelefono(String txtTelefono) {
-		this.txtTelefono.setText(txtTelefono);
-	}
-
+	
 	public String getTxtCap() {
-		return txtCap.getText();
+		return txtArray[7].getText();
 	}
 
 	public void setTxtCap(String txtCap) {
-		this.txtCap.setText(txtCap);
+		this.txtArray[7].setText(txtCap);
+	}
+	
+	public String getTxtStato() {
+		return txtArray[8].getText();
+	}
+
+	public void setTxtStato(String txtStato) {
+		this.txtArray[8].setText(txtStato);
+	}
+
+	public String getTxtTelefono() {
+		return txtArray[9].getText();
+	}
+
+	public void setTxtTelefono(String txtTelefono) {
+		this.txtArray[9].setText(txtTelefono);
 	}
 
 	public char[] getTxtPassword() {
@@ -443,21 +299,9 @@ public class RegistratiView extends JPanel {
 		this.txtPasswordConferma.setText(txtPasswordConferma);
 	}
 
-	public String getTxtCitta() {
-		return txtCitta.getText();
-	}
+	
 
-	public void setTxtCitta(String txtCitta) {
-		this.txtCitta.setText(txtCitta);
-	}
-
-	public String getTxtProvincia() {
-		return txtProvincia.getText();
-	}
-
-	public void setTxtProvincia(String txtProvincia) {
-		this.txtProvincia.setText(txtProvincia);
-	}
+	
 
 	public String getTxaMessaggioErrore() {
 		return txaMessaggioErrore.getText();
