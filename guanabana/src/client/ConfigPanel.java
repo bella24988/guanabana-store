@@ -49,6 +49,7 @@ public class ConfigPanel extends JPanel {
 		super();
 		this.setComponenti(componenti);
 		this.setPreventivoController(preventivoController);
+		int ultimo = 2;
 
 		for (int k = 0; k < configStandard.length; k++) {
 			System.out.print("Conf " + k + " - " + configStandard[k]);
@@ -79,7 +80,7 @@ public class ConfigPanel extends JPanel {
 		gbc_lbl.gridx = 0;
 		gbc_lbl.gridy = 0;
 		add(lblTitle, gbc_lbl);
-		int ultimo = 2;
+		
 		System.out.println("Lunghezza componenti" + tipoComponenti[computerType].length);
 		ButtonGroup[] group = new ButtonGroup[tipoComponenti[computerType].length];
 		for (int indiceComponenti = 0; indiceComponenti < tipoComponenti[computerType].length; indiceComponenti++) {
@@ -108,6 +109,7 @@ public class ConfigPanel extends JPanel {
 
 					// Griglia, nettamente grafico
 					GridBagConstraints grid_radio = new GridBagConstraints();
+					grid_radio.anchor = GridBagConstraints.WEST;
 					grid_radio.insets = new Insets(0, 0, 5, 5);
 					grid_radio.gridx = 1;
 					grid_radio.gridy = ultimo++;
@@ -130,7 +132,7 @@ public class ConfigPanel extends JPanel {
 
 				}
 			}
-			ultimo++;
+			
 			ultimo++;
 		}
 
