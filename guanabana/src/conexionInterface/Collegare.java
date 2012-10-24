@@ -26,7 +26,7 @@ public interface Collegare {
 		
 		public abstract void cambiaStatoOrdine(String codOrdine);
 		
-		public abstract void consultaOrdini();
+		public abstract Ordine[] consultaOrdini(Cliente cliente) throws IOException;
 		
 		public abstract Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente) throws IOException;
 		

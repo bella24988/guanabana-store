@@ -138,12 +138,6 @@ public class Client implements Collegare {
 
 	}
 
-	@Override
-	public void consultaOrdini() {
-		// TODO Auto-generated method stub
-
-	}
-
 
 	/**
 	 * @return the host
@@ -338,8 +332,40 @@ public class Client implements Collegare {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		chiudereCollegamento();
 		return pagamento;
 	}
+
+	@Override
+	public Ordine[] consultaOrdini(Cliente cliente) throws IOException {
+		Ordine[] ordini = null;
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("consultaOrdini");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		
+		
+		try {
+			String risposta;
+			risposta = (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(cliente);
+				writer.flush();
+			
+				ordini = (Ordine[]) buffer.readObject();
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//chiudereCollegamento();
+		return ordini;
+	}
+
+	
 
 }

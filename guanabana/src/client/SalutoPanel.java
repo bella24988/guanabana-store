@@ -79,6 +79,7 @@ public class SalutoPanel extends JPanel {
 		// Controller
 		logController = new LogController(this, panel);
 		btnLogOut.addActionListener(logController);
+		btnGestioneOrdine.addActionListener(logController);
 	}
 
 	/**

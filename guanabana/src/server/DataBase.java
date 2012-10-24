@@ -18,7 +18,7 @@ public class DataBase {
 	private PreparedStatement stConsultaLog;
 	private PreparedStatement stNuevoCliente, stNuovaOrdine;
 	private PreparedStatement stConsultaComputer, stConsultaUltimaOrd;
-	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento;
+	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento, stConsultaOrdini;
 	private Statement stModello;
 	
 	/*Begin of the constructor*/
@@ -45,6 +45,7 @@ public class DataBase {
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
 		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo, data) values (?,?,?,UPPER(?),NOW())"));
+		setStConsultaOrdini(con.prepareStatement("select ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer from pagamenti, ordini where ordini.codice = ordine_codice and cliente_CF = UPPER(?) order by data;"));
 		
 	}/*End of the constructor*/
 	
@@ -371,5 +372,53 @@ public class DataBase {
 	 */
 	public void setStInsertPagamento(PreparedStatement stInsertPagamento) {
 		this.stInsertPagamento = stInsertPagamento;
+	}
+
+	/**
+	 * @return the stConsultaOrdini
+	 */
+	public PreparedStatement getStConsultaOrdini() {
+		return stConsultaOrdini;
+	}
+
+	/**
+	 * @param stConsultaOrdini the stConsultaOrdini to set
+	 */
+	public void setStConsultaOrdini(PreparedStatement stConsultaOrdini) {
+		this.stConsultaOrdini = stConsultaOrdini;
+	}
+
+	public String[][] consultaOrdini(String cf) {
+		//ordini.codice, ordini.data, ordini.totale, stato, nome_computer, tipo
+		String[][] ordini = null;
+		ResultSet result = null;
+		
+		try {
+			stConsultaOrdini.setString(1, cf);
+			
+			result = stConsultaOrdini.executeQuery();
+			int j=0;
+			while(result.next()){
+				j++;
+			}
+			ordini = new String[j][6];
+			j=0;
+			while(result.next()){
+				ordini[j][0]=String.valueOf(result.getInt(j+1));
+				ordini[j][1]=result.getString(j+1);
+				ordini[j][2]=String.valueOf(result.getFloat(j+1));
+				ordini[j][3]=result.getString(j+1);
+				ordini[j][4]=result.getString(j+1);
+				ordini[j][5]=result.getString(j+1);
+				j++;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ordini;
 	}
 }

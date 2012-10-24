@@ -9,7 +9,7 @@ public abstract class Computer implements Serializable{
 	 */
 	private static final long serialVersionUID = 8391044426886288876L;
 	Componente[] componenti;
-	private String[] configurazioneStandard;
+	protected String[] configurazioneStandard;
 	private Configurazione[] configurazioneScelta;
 	
 	public Computer(String nome, float prezzo) {
@@ -17,6 +17,16 @@ public abstract class Computer implements Serializable{
 		this.nome = nome;
 		this.prezzo = prezzo;
 	}
+	
+	
+
+	public Computer(String nome) {
+		super();
+		this.nome = nome;
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	/**
 	 * @uml.property  name="componente"

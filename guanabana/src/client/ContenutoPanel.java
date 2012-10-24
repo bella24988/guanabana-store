@@ -21,7 +21,7 @@ public class ContenutoPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private RegistratiView registratiView;
-	
+
 	/**
 	 * @uml.property name="modelloView"
 	 * @uml.associationEnd inverse="contenutoPanel:client.ModelloView"
@@ -40,9 +40,8 @@ public class ContenutoPanel extends JPanel {
 		setBackground(Color.white);
 		setForeground(new Color(0, 0, 0));
 		this.setAttessaCompra(false);
-		//registratiView.setVisible(false);
-		
-		
+		// registratiView.setVisible(false);
+
 	}
 
 	public RegistratiView getRegistratiView() {
@@ -61,7 +60,7 @@ public class ContenutoPanel extends JPanel {
 		add(registratiView);
 		registratiView.setVisible(true);
 		registratiView.conoscePanel(panel);
-		//modelloView.setVisible(false);
+		// modelloView.setVisible(false);
 	}
 
 	public void nascondeFormularioRegistrati() {
@@ -69,19 +68,20 @@ public class ContenutoPanel extends JPanel {
 		nascondeModelli();
 	}
 
-	public void mostraModelli(int num, Computer[] computers, String tipo, ContenutoPanel contenutoPanel) {
-		
+	public void mostraModelli(int num, Computer[] computers, String tipo,
+			ContenutoPanel contenutoPanel) {
+
 		this.removeAll();
 		pulisceSchermo();
 		modelloView = new ModelloView();
 		modelloView.setVisible(false);
 		add(modelloView);
 		modelloView.setVisible(true);
-		
-		//nascondeFormularioRegistrati();
+
+		// nascondeFormularioRegistrati();
 		modelloView = new ModelloView();
 		add(modelloView);
-		
+
 		modelloView.mostraButtons(num, computers, tipo);
 		modelloView.setVisible(true);
 		modelloView.setContenutoPanel(contenutoPanel);
@@ -90,18 +90,21 @@ public class ContenutoPanel extends JPanel {
 	public void nascondeModelli() {
 		modelloView.setVisible(false);
 	}
-	
-	public void mostraConfermaOrdine(Computer comp, Configurazione[] configurazione, float prezzoTotale, JPanel panelDaRimuovere){
+
+	public void mostraConfermaOrdine(Computer comp,
+			Configurazione[] configurazione, float prezzoTotale,
+			JPanel panelDaRimuovere) {
 		panelDaRimuovere.setVisible(false);
 		this.remove(panelDaRimuovere);
 		pulisceSchermo();
 		setComputer(comp);
-		confermaOrdinePanel = new ConfermaOrdinePanel(comp.getNome(), comp.getPrezzo(), configurazione, prezzoTotale, this);
+		confermaOrdinePanel = new ConfermaOrdinePanel(comp.getNome(),
+				comp.getPrezzo(), configurazione, prezzoTotale, this);
 		confermaOrdinePanel.setVisible(true);
 		add(confermaOrdinePanel);
 	}
-	
-	public void pulisceSchermo(){
+
+	public void pulisceSchermo() {
 		JPanel pulito;
 		pulito = new JPanel();
 		pulito.setVisible(false);
@@ -155,26 +158,28 @@ public class ContenutoPanel extends JPanel {
 		this.modelloView = modelloView;
 	}
 
-	public void aggiungePagamentoPanel(ConfermaOrdinePanel panelDaRimuovere, float prezzoTotale) {
+	public void aggiungePagamentoPanel(ConfermaOrdinePanel panelDaRimuovere,
+			float prezzoTotale) {
 		confermaOrdinePanel.setPrezzoTotale(prezzoTotale);
-		
-		if(clienteLogato!=null){
+
+		if (clienteLogato != null) {
 			remove(panelDaRimuovere);
 			continuaOperazione();
-			
-		}else{
+
+		} else {
 			setAttessaCompra(true);
-			panelDaRimuovere.mostraMessaggioErrore("Per continuare con l'acquisto, devi fare il log-in o registrarti");
+			panelDaRimuovere
+					.mostraMessaggioErrore("Per continuare con l'acquisto, devi fare il log-in o registrarti");
 		}
-		
-		
+
 	}
-	
-	public void continuaOperazione(){
+
+	public void continuaOperazione() {
 		try {
 			Client client = new Client();
-			setOrdine(client.creaOrdine(getComputer(), confermaOrdinePanel.getPrezzoTotale(), clienteLogato));
-			
+			setOrdine(client.creaOrdine(getComputer(),
+					confermaOrdinePanel.getPrezzoTotale(), clienteLogato));
+
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -184,7 +189,7 @@ public class ContenutoPanel extends JPanel {
 		PagamentoPanel pagamentoPanel = new PagamentoPanel(this);
 		add(pagamentoPanel);
 		setVisible(true);
-		
+
 	}
 
 	/**
@@ -195,7 +200,8 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @param clienteLogato the clienteLogato to set
+	 * @param clienteLogato
+	 *            the clienteLogato to set
 	 */
 	public void setClienteLogato(Cliente clienteLogato) {
 		this.clienteLogato = clienteLogato;
@@ -209,7 +215,8 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @param b the attessaCompra to set
+	 * @param b
+	 *            the attessaCompra to set
 	 */
 	public void setAttessaCompra(boolean b) {
 		this.attessaCompra = b;
@@ -223,7 +230,8 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @param computer the computer to set
+	 * @param computer
+	 *            the computer to set
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;
@@ -237,7 +245,8 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @param ordine the ordine to set
+	 * @param ordine
+	 *            the ordine to set
 	 */
 	public void setOrdine(Ordine ordine) {
 		this.ordine = ordine;
@@ -251,7 +260,8 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @param pagamento the pagamento to set
+	 * @param pagamento
+	 *            the pagamento to set
 	 */
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
@@ -263,6 +273,14 @@ public class ContenutoPanel extends JPanel {
 		RigraziamentiPanel ringraziamento = new RigraziamentiPanel();
 		ringraziamento.setVisible(true);
 		add(ringraziamento);
+	}
+
+	public void mostraTuoiOrdini(Ordine[] ordini) {
+		removeAll();
+		pulisceSchermo();
+		TuoiOrdiniPanel tuoiOrdiniPanel = new TuoiOrdiniPanel(ordini);
+		add(tuoiOrdiniPanel);
+		tuoiOrdiniPanel.setVisible(true);
 	}
 
 }

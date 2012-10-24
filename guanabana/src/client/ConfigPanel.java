@@ -53,6 +53,7 @@ public class ConfigPanel extends JPanel {
 	 * @param preventivoController
 	 * @param computerType
 	 */
+	@SuppressWarnings("unused")
 	public ConfigPanel(Componente[] componenti, String[] configStandard,
 			PreventivoController preventivoController, int computerType) {
 		super();

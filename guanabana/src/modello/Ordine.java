@@ -14,6 +14,8 @@ public class Ordine implements Serializable{
 	private Computer computer;
 	private float prezzo;
 	private Cliente cliente;
+	private String data;
+	private String stato;
 	
 	
 
@@ -93,6 +95,34 @@ public class Ordine implements Serializable{
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	/**
+	 * @return the data
+	 */
+	public String getData() {
+		return data;
+	}
+
+	/**
+	 * @param data the data to set
+	 */
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	/**
+	 * @return the stato
+	 */
+	public String getStato() {
+		return stato;
+	}
+
+	/**
+	 * @param stato the stato to set
+	 */
+	public void setStato(String stato) {
+		this.stato = stato;
 	}
 	
 

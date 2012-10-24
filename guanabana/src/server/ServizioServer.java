@@ -160,6 +160,19 @@ public class ServizioServer implements Collegare, Runnable{
 				Pagamento pagamento = registrarePagamento(ordine, tipoPagamento);
 				scrive.writeObject(pagamento);//Envia Pagamento creato
 				scrive.flush();				
+			}else if (richiestaClient.compareTo("consultaOrdini")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Cliente cliente = (Cliente) ricevo.readObject();
+				
+				
+				Ordine[] ordini = consultaOrdini(cliente);
+				
+				scrive.writeObject(ordini);//ricevuto client
+				scrive.flush();
+				
+				
 			}
 			
 			
@@ -281,12 +294,6 @@ public class ServizioServer implements Collegare, Runnable{
 
 	@Override
 	public void cambiaStatoOrdine(String codOrdine) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void consultaOrdini() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -445,6 +452,33 @@ public class ServizioServer implements Collegare, Runnable{
 		
 		Pagamento pagamento = new Pagamento(ordine, tipoPagamento, numPagamento);		
 		return pagamento;
+	}
+
+	@Override
+	public Ordine[] consultaOrdini(Cliente cliente) throws IOException {
+		Ordine[] ordini;
+		
+		String [][] risultato = db.consultaOrdini(cliente.getCf());
+		ordini = new Ordine[risultato.length];
+		System.out.print(risultato.length + "lunghezza di ordini");
+		Computer[] computer = new Computer[risultato.length];
+		//Componente[] componente = new Componente[risultato.length];
+		int j;
+		for (j = 0; j<risultato.length; j++){//[cols][rows]
+			String tipoComputer = risultato[5][j].substring(0, 3);
+			if (tipoComputer.compareTo("SER")==0){
+				computer[j] = new Server(risultato[5][j]);
+			}else if (tipoComputer.compareTo("LAP")==0){
+				computer[j] = new Laptop(risultato[5][j]);
+			}else if (tipoComputer.compareTo("DES")==0){
+				computer[j] = new Desktop(risultato[5][j]);
+			}
+			
+			ordini[j] = new Ordine(Integer.parseInt(risultato[0][j]), computer[j] , new Float(risultato[2][j]), cliente);
+			//ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer
+		}
+		
+		return ordini;
 	}
 
 	

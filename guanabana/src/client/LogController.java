@@ -4,8 +4,10 @@ package client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import modello.Cliente;
+import modello.Ordine;
 
 import client.SalutoPanel;
 import client.LogPanel;
@@ -45,7 +47,6 @@ public class LogController implements ActionListener{
 			logPanel.bloccareInserimento();
 			try {
 				Client servizioClient = new Client();
-				System.out.println("Sono il client, mi ho instanciado al server");
 				setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), String.valueOf(logPanel.getTxtPassword())));
 				if (cliente != null){
 					logPanel.mostraMessaggioErrore("");
@@ -65,6 +66,23 @@ public class LogController implements ActionListener{
 		
 		if (e.getActionCommand().equalsIgnoreCase("Logout")){
 			logPanel.logoutFatto();
+		}
+		
+		if (e.getActionCommand().equalsIgnoreCase("I tuoi ordini")){
+			Ordine[] ordini=null;
+			Client servizioClient = new Client();
+			try {
+				ordini = servizioClient.consultaOrdini(logPanel.getContenuto().getClienteLogato());
+			} catch (IOException e1) {
+				logPanel.mostraMessaggioErrore("Non è possibile collegarsi al server");
+				e1.printStackTrace();
+			}
+			
+			if (ordini != null){
+				logPanel.getContenuto().mostraTuoiOrdini(ordini);
+			}else{
+				logPanel.mostraMessaggioErrore("lei non ha fatto nessuna ordine");
+			}
 		}
 			
 	}

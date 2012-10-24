@@ -4,8 +4,11 @@ package modello;
 
 public class Server extends Computer {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String tipo;
-	private String[] configurazioneStandard;
 	private static int maxString=10;
 	
 	public Server(String nome, float prezzo) {
@@ -14,6 +17,15 @@ public class Server extends Computer {
 		configurazioneStandard = new String[maxString];
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Server(String nome) {
+		super(nome);
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public String getTipo() {
 		return tipo;
