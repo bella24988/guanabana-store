@@ -38,12 +38,13 @@ public class DataBase {
 		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaComputer(con.prepareStatement("select nome,prezzo from standard_computer where nome like concat(?,'%')"));
 		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));	
-		setStNuovaOrdine(con.prepareStatement("insert into ordini (codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
-				"ram, cpu,pci, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
-				"VALUES(?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
+		setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+				"ram, cpu,pci, mlc, hd1, hd2, hd3, hd4, dvd, war, mou, gpu, mon, kei) " +
+				"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), " +
+				"UPPER(?), UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
-		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo) values (?,?,?,UPPER(?))"));
+		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo, data) values (?,?,?,UPPER(?),NOW())"));
 		
 	}/*End of the constructor*/
 	

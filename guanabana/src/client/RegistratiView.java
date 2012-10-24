@@ -43,8 +43,9 @@ public class RegistratiView extends JPanel {
 	 * Create the panel.
 	 */
 	public RegistratiView(ContenutoPanel panelContenitore) {
+		setBackground(Color.WHITE);
 		this.setPanelContenitore(panelContenitore);
-		setForeground(new Color(0, 102, 51));
+		setForeground(Color.BLACK);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 122, 125, 40, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

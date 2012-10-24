@@ -39,26 +39,31 @@ public class PagamentoController implements ActionListener{
 				
 				Client client = new Client();
 				
-				switch (pagamentoPanel.getTipoPagamentoScelto()) {
-					case 0: pagamentoPanel.mostraMessaggioErrore();
-					
-					case 1:	{setTipoPagamento("Carta di Credito");}						
-					case 2: {setTipoPagamento("Bonifico"); }
-					case 3: {setTipoPagamento("Contrasegno"); }
-						
+				if (pagamentoPanel.getTipoPagamentoScelto()==0) {
+					pagamentoPanel.mostraMessaggioErrore();
+					}else {
+						if (pagamentoPanel.getTipoPagamentoScelto()==1) {
+						setTipoPagamento("Carta di Credito");
+						}else if (pagamentoPanel.getTipoPagamentoScelto()==2) {
+						setTipoPagamento("Bonifico"); 
+						}else if (pagamentoPanel.getTipoPagamentoScelto()==3) {
+						setTipoPagamento("Contrasegno"); 
+						}
 						try {
 							client.registrarePagamento(pagamentoPanel.getContenutoPanel().getOrdine(), getTipoPagamento());
+							pagamentoPanel.getContenutoPanel().mostraRingraziamento();
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+					}
 				}
 			}else{
 				
 			}
 			
 		}		
-	}
+	
 
 	/**
 	 * @return the pagamentoPanel

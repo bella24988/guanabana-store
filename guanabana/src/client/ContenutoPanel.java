@@ -58,7 +58,6 @@ public class ContenutoPanel extends JPanel {
 		pulisceSchermo();
 		registratiView = new RegistratiView(this);
 		registratiView.setVisible(false);
-		registratiView.setBackground(new Color(204, 255, 153));
 		add(registratiView);
 		registratiView.setVisible(true);
 		registratiView.conoscePanel(panel);
@@ -256,6 +255,14 @@ public class ContenutoPanel extends JPanel {
 	 */
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
+	}
+
+	public void mostraRingraziamento() {
+		removeAll();
+		pulisceSchermo();
+		RigraziamentiPanel ringraziamento = new RigraziamentiPanel();
+		ringraziamento.setVisible(true);
+		add(ringraziamento);
 	}
 
 }

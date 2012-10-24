@@ -1,7 +1,13 @@
 package modello;
 
-public class Pagamento{
+import java.io.Serializable;
+
+public class Pagamento implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Ordine ordine;
 	private String tipoPagamento;
 	private int numPagamento;
