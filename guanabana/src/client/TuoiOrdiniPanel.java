@@ -17,13 +17,18 @@ public class TuoiOrdiniPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Ordine[] ordini;
+	private boolean carrello;
+	private ContenutoPanel contenutoPanel;
+	private TuoiOrdiniController tOrdinicontroller;
 
 	/**
 	 * Create the panel.
 	 */
-	public TuoiOrdiniPanel(Ordine[] ordini) {
+	public TuoiOrdiniPanel(Ordine[] ordini, boolean carr) {
+		this.carrello = carr;
 		setBackground(Color.WHITE);
 		this.setOrdini(ordini);
+		tOrdinicontroller = new TuoiOrdiniController(this);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[5];
 		gridBagLayout.rowHeights = new int[ordini.length * 2];
@@ -72,13 +77,15 @@ public class TuoiOrdiniPanel extends JPanel {
 		gbc_lblStato.gridy = 1;
 		add(lblStato, gbc_lblStato);
 
-		JLabel lblTipoPagamento = new JLabel("Tipo pagamento");
-		lblTipoPagamento.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_lblTipoPagamento = new GridBagConstraints();
-		gbc_lblTipoPagamento.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTipoPagamento.gridx = 4;
-		gbc_lblTipoPagamento.gridy = 1;
-		add(lblTipoPagamento, gbc_lblTipoPagamento);
+		if (carrello == false) {
+			JLabel lblTipoPagamento = new JLabel("Tipo pagamento");
+			lblTipoPagamento.setFont(new Font("Tahoma", Font.BOLD, 11));
+			GridBagConstraints gbc_lblTipoPagamento = new GridBagConstraints();
+			gbc_lblTipoPagamento.insets = new Insets(0, 0, 5, 5);
+			gbc_lblTipoPagamento.gridx = 4;
+			gbc_lblTipoPagamento.gridy = 1;
+			add(lblTipoPagamento, gbc_lblTipoPagamento);
+		}
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBackground(Color.GRAY);
@@ -123,23 +130,40 @@ public class TuoiOrdiniPanel extends JPanel {
 			gbc_lblStatox.gridy = numRow;
 			add(lblStatox, gbc_lblStatox);
 
-			JLabel lblTipoPagamentox = new JLabel(ordini[indiceArray]
-					.getPagamento().getTipoPagamento());
-			GridBagConstraints gbc_lblTipoPagamentox = new GridBagConstraints();
-			gbc_lblTipoPagamentox.insets = new Insets(0, 0, 5, 5);
-			gbc_lblTipoPagamentox.gridx = 4;
-			gbc_lblTipoPagamentox.gridy = numRow;
-			add(lblTipoPagamentox, gbc_lblTipoPagamentox);
+			if (carrello == false) {
+				JLabel lblTipoPagamentox = new JLabel(ordini[indiceArray]
+						.getPagamento().getTipoPagamento());
+				GridBagConstraints gbc_lblTipoPagamentox = new GridBagConstraints();
+				gbc_lblTipoPagamentox.insets = new Insets(0, 0, 5, 5);
+				gbc_lblTipoPagamentox.gridx = 4;
+				gbc_lblTipoPagamentox.gridy = numRow;
+				add(lblTipoPagamentox, gbc_lblTipoPagamentox);
+			}
 
-			JButton btnAnnullaOrdine = new JButton("Annulla");
-			btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
-			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
-			gbc_btnAnnulla.gridx = 5;
-			gbc_btnAnnulla.gridy = numRow;
-			add(btnAnnullaOrdine, gbc_btnAnnulla);
-			btnAnnullaOrdine.setActionCommand(String
-					.valueOf(ordini[indiceArray].getNumeroOrdine()));
+			if (ordini[indiceArray].getStato().compareTo("SPEDITO") != 0
+					&& carrello == false) {
+				JButton btnAnnullaOrdine = new JButton("Annulla");
+				btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
+				GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
+				gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
+				gbc_btnAnnulla.gridx = 5;
+				gbc_btnAnnulla.gridy = numRow;
+				add(btnAnnullaOrdine, gbc_btnAnnulla);
+				btnAnnullaOrdine.setActionCommand("Annu" + indiceArray);
+				btnAnnullaOrdine.addActionListener(tOrdinicontroller);
+			}
+
+			if (carrello == true) {
+				JButton btnAnnullaOrdine = new JButton("Paga");
+				btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
+				GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
+				gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
+				gbc_btnAnnulla.gridx = 5;
+				gbc_btnAnnulla.gridy = numRow;
+				add(btnAnnullaOrdine, gbc_btnAnnulla);
+				btnAnnullaOrdine.setActionCommand("Paga" + indiceArray);
+				btnAnnullaOrdine.addActionListener(tOrdinicontroller);
+			}
 
 			JSeparator separator = new JSeparator();
 			separator.setBackground(Color.GRAY);
@@ -169,6 +193,51 @@ public class TuoiOrdiniPanel extends JPanel {
 	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
+	}
+
+	/**
+	 * @return the carrello
+	 */
+	public boolean isCarrello() {
+		return carrello;
+	}
+
+	/**
+	 * @param carrello
+	 *            the carrello to set
+	 */
+	public void setCarrello(boolean carrello) {
+		this.carrello = carrello;
+	}
+
+	/**
+	 * @return the contenutoPanel
+	 */
+	public ContenutoPanel getContenutoPanel() {
+		return contenutoPanel;
+	}
+
+	/**
+	 * @param contenutoPanel
+	 *            the contenutoPanel to set
+	 */
+	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
+		this.contenutoPanel = contenutoPanel;
+	}
+
+	/**
+	 * @return the tOrdinicontroller
+	 */
+	public TuoiOrdiniController gettOrdinicontroller() {
+		return tOrdinicontroller;
+	}
+
+	/**
+	 * @param tOrdinicontroller
+	 *            the tOrdinicontroller to set
+	 */
+	public void settOrdinicontroller(TuoiOrdiniController tOrdinicontroller) {
+		this.tOrdinicontroller = tOrdinicontroller;
 	}
 
 }

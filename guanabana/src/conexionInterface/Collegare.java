@@ -36,4 +36,6 @@ public interface Collegare {
 		public abstract int conta(String cosa) throws IOException;
 		
 		public abstract Pagamento registrarePagamento(Ordine ordine, String tipoPagamento) throws IOException;
+		
+		public abstract Ordine[] consultaCarrello(Cliente cliente)throws IOException;
 }

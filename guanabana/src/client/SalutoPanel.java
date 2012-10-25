@@ -78,6 +78,7 @@ public class SalutoPanel extends JPanel {
 		gbc_btnCarrello.gridx = 1;
 		gbc_btnCarrello.gridy = 1;
 		add(btnCarrello, gbc_btnCarrello);
+		btnCarrello.addActionListener(logController);
 		btnGestioneOrdine.addActionListener(logController);
 	}
 

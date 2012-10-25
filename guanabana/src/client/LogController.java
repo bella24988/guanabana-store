@@ -68,25 +68,34 @@ public class LogController implements ActionListener{
 			logPanel.logoutFatto();
 		}
 		
-		try {
-			if (e.getActionCommand().equalsIgnoreCase("I tuoi ordini")){
+		if (e.getActionCommand().equalsIgnoreCase("I tuoi ordini")){
 				
 				Client servizioClient = new Client();
 				try {
 					Ordine[] ordini = servizioClient.consultaOrdini(logPanel.getContenuto().getClienteLogato());
 					if (ordini != null){
-						logPanel.getContenuto().mostraTuoiOrdini(ordini);
+						logPanel.getContenuto().mostraTuoiOrdini(ordini, false);
 					}else{
-						logPanel.getContenuto().mostraTuoiOrdini(null);
+						logPanel.getContenuto().mostraTuoiOrdini(null, false);
 					}
 				} catch (IOException e1) {
-					logPanel.getContenuto().mostraTuoiOrdini(null);
+					logPanel.getContenuto().mostraTuoiOrdini(null, false);
 					e1.printStackTrace();
 				}
+		}else if (e.getActionCommand().equalsIgnoreCase("Carrello")){
+			
+			Client servizioClient = new Client();
+			try {
+				Ordine[] ordini = servizioClient.consultaCarrello(logPanel.getContenuto().getClienteLogato());
+				if (ordini != null){
+					logPanel.getContenuto().mostraTuoiOrdini(ordini, true);
+				}else{
+					logPanel.getContenuto().mostraTuoiOrdini(null, true);
+				}
+			} catch (IOException e1) {
+				logPanel.getContenuto().mostraTuoiOrdini(null, true);
+				e1.printStackTrace();
 			}
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 			
 	}

@@ -173,9 +173,19 @@ public class ServizioServer implements Collegare, Runnable{
 				scrive.flush();
 				
 				
-			}
+			}else if (richiestaClient.compareTo("carrello")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Cliente cliente = (Cliente) ricevo.readObject();
+				
+				
+				Ordine[] ordini = consultaCarrello(cliente);
+				
+				scrive.writeObject(ordini);//ricevuto client
+				scrive.flush();
 			
-			
+			}	
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -475,7 +485,7 @@ public class ServizioServer implements Collegare, Runnable{
 			int numPagamento = Integer.parseInt(risultato[j][6]);
 			
 			//Creo i computer ordinati 
-			String tipoComputer = risultato[j][5].substring(0, 3);
+			String tipoComputer = nomeComputer.substring(0, 3);
 			if (tipoComputer.compareTo("SER")==0){
 				computer[j] = new Server(nomeComputer);
 			}else if (tipoComputer.compareTo("LAP")==0){
@@ -488,6 +498,43 @@ public class ServizioServer implements Collegare, Runnable{
 			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato, cliente);
 			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento);
 			ordini[j].setPagamento(pagamento[j]);
+			ordini[j].setStato(statoOrdine);
+			ordini[j].setData(dataOrdine);
+		}
+		
+		return ordini;
+	}
+
+	@Override
+	public Ordine[] consultaCarrello(Cliente cliente) throws IOException {
+		Ordine[] ordini;//Dichiarazione delle ordine
+		
+		String [][] risultato = db.cercaOrdiniNonPagate(cliente.getCf());//Consulta al Data Base qualle sono le ordini
+		ordini = new Ordine[risultato.length];
+		Computer[] computer = new Computer[risultato.length];
+		
+		int j;
+		for (j = 0; j<risultato.length; j++){//[rows][columns]
+			//Inizializzare variabile con dati pescati dal db nel pasizione: codice, data, totale, stato, nome_computer
+			int codiceOrdine = Integer.parseInt(risultato[j][0]);
+			String dataOrdine = risultato[j][1];
+			float totalePagato = new Float(risultato[j][2]);
+			String statoOrdine = risultato[j][3];
+			String nomeComputer = risultato[j][4];
+			
+			
+			//Creo i computer ordinati 
+			String tipoComputer = nomeComputer.substring(0, 3);
+			if (tipoComputer.compareTo("SER")==0){
+				computer[j] = new Server(nomeComputer);
+			}else if (tipoComputer.compareTo("LAP")==0){
+				computer[j] = new Laptop(nomeComputer);
+			}else if (tipoComputer.compareTo("DES")==0){
+				computer[j] = new Desktop(nomeComputer);
+			}
+			
+			//Creo ordine e pagamento
+			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato, cliente);
 			ordini[j].setStato(statoOrdine);
 			ordini[j].setData(dataOrdine);
 		}

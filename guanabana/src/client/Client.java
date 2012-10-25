@@ -367,6 +367,37 @@ public class Client implements Collegare {
 		return ordini;
 	}
 
+	@Override
+	public Ordine[] consultaCarrello(Cliente cliente) throws IOException {
+		Ordine[] ordini = null;
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("carrello");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		
+		
+		try {
+			String risposta;
+			risposta = (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(cliente);
+				writer.flush();
+			
+				ordini = (Ordine[]) buffer.readObject();
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			 
+			e.printStackTrace();
+		}
+		chiudereCollegamento();
+		return ordini;
+	}
+
 	
 
 }

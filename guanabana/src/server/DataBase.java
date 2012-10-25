@@ -45,7 +45,7 @@ public class DataBase {
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
 		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo, data) values (?,?,?,UPPER(?),NOW())"));
-		setStAggiornaStatoOrdine(con.prepareStatement("Update ordini set stato = 'ORDINATO-PAGATO' where codice=?;"));
+		setStAggiornaStatoOrdine(con.prepareStatement("Update ordini set stato = ? where codice=?;"));
 		
 	}/*End of the constructor*/
 	
@@ -337,15 +337,21 @@ public class DataBase {
 			
 			
 			stInsertPagamento.executeUpdate();
+			aggiornaStatoOrdine("ORDINATO-PAGATO", numeroOrdine);
 			
-			stAggiornaStatoOrdine.setInt(1,numeroOrdine);
-			stAggiornaStatoOrdine.executeUpdate();
 		} catch (SQLException e) {
 			System.out.print("Errore al db "+e);
 			e.printStackTrace();
 		}
 		
 		return numMaxPago;
+	}
+
+	private void aggiornaStatoOrdine(String stato, int numeroOrdine) throws SQLException {
+		stAggiornaStatoOrdine.setString(1, stato);
+		stAggiornaStatoOrdine.setInt(2,numeroOrdine);
+		stAggiornaStatoOrdine.executeUpdate();
+		
 	}
 
 	/**
@@ -397,7 +403,8 @@ public class DataBase {
 		try {
 			//Conta righe
 			stConsultaOrdini = con.createStatement();
-			ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato<>'NON PAGATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"';");
+			ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'ANNULLATO' " +
+					"and ordini.codice = ordine_codice and cliente_CF = '"+cf+"';");
 			int j=0;
 			while(result.next()){
 				j= result.getInt(1);
@@ -405,8 +412,8 @@ public class DataBase {
 			
 			//chiama lista di ordini
 			ordini = new String[j][7];
-			result = stConsultaOrdini.executeQuery("select ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer," +
-					" pagamenti.codice from pagamenti, ordini where stato<>'NON PAGATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"' order by ordini.data");
+			result = stConsultaOrdini.executeQuery("select distinct(ordini.codice), ordini.data, ordini.totale, stato, tipo, nome_computer," +
+					" pagamenti.codice from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'ANNULLATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"' order by ordini.data");
 			j=0;
 			while(result.next()){
 				ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
@@ -427,6 +434,41 @@ public class DataBase {
 		return ordini;
 	}
 
+	public String[][] cercaOrdiniNonPagate(String cf){
+
+				String[][] ordini = null;
+					
+				try {
+					//Conta righe
+					stConsultaOrdini = con.createStatement();//select count(*) from ordini where stato='NON PAGATO' and cliente_CF = 'KJDFS' order by data
+					ResultSet result = stConsultaOrdini.executeQuery("select count(*) from ordini where stato='NON PAGATO' and cliente_CF = '"+cf+"';");
+					int j=0;
+					while(result.next()){
+						j= result.getInt(1);
+					}
+					
+					//chiama lista di ordini
+					ordini = new String[j][5];
+					result = stConsultaOrdini.executeQuery("select distinct(codice), data, totale, stato, nome_computer" +
+							" from ordini where stato='NON PAGATO' and cliente_CF = '"+cf+"' order by data");
+					j=0;
+					while(result.next()){
+						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
+						ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data è un timestamp
+						ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale è un float
+						ordini[j][3]=result.getString(4);//stato è un string
+						ordini[j][4]=result.getString(5);// nomecomputer è un string
+						System.out.println(ordini[j][0]);
+						j++;
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				return ordini;
+	}
 	/**
 	 * @return the stAggiornaStatoOrdine
 	 */

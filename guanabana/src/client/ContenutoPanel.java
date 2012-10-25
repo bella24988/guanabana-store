@@ -183,13 +183,17 @@ public class ContenutoPanel extends JPanel {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		mostraPagamentoPanel();
+
+	}
+	
+	public void mostraPagamentoPanel(){
 		removeAll();
 		pulisceSchermo();
 		setAttessaCompra(false);
 		PagamentoPanel pagamentoPanel = new PagamentoPanel(this);
 		add(pagamentoPanel);
 		setVisible(true);
-
 	}
 
 	/**
@@ -270,17 +274,27 @@ public class ContenutoPanel extends JPanel {
 	public void mostraRingraziamento() {
 		removeAll();
 		pulisceSchermo();
-	//	RigraziamentiPanel ringraziamento = new RigraziamentiPanel();
-	//	ringraziamento.setVisible(true);
-	//	add(ringraziamento);
+		RigraziamentiPanel ringraziamento = new RigraziamentiPanel();
+		ringraziamento.setVisible(true);
+		add(ringraziamento);
 	}
 
-	public void mostraTuoiOrdini(Ordine[] ordini) {
+	public void mostraTuoiOrdini(Ordine[] ordini, boolean carr) {
 		removeAll();
 		pulisceSchermo();
-		TuoiOrdiniPanel tuoiOrdiniPanel = new TuoiOrdiniPanel(ordini);
+		TuoiOrdiniPanel tuoiOrdiniPanel = new TuoiOrdiniPanel(ordini, carr);
+		tuoiOrdiniPanel.setContenutoPanel(this);
 		add(tuoiOrdiniPanel);
 		tuoiOrdiniPanel.setVisible(true);
+	}
+
+	public void mostraAnnullaOrdine() {
+		removeAll();
+		pulisceSchermo();
+		AnnullaOrdinePanel annullaOrdinePanel = new AnnullaOrdinePanel(getOrdine());
+		annullaOrdinePanel.setContenutoPanel(this);
+		add(annullaOrdinePanel);
+		annullaOrdinePanel.setVisible(true);
 	}
 
 }
