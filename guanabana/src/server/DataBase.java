@@ -18,7 +18,7 @@ public class DataBase {
 	private PreparedStatement stConsultaLog;
 	private PreparedStatement stNuevoCliente, stNuovaOrdine;
 	private PreparedStatement stConsultaComputer, stConsultaUltimaOrd;
-	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento;
+	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento, stAggiornaStatoOrdine;
 	private Statement stModello, stConsultaOrdini;
 	
 	/*Begin of the constructor*/
@@ -45,7 +45,7 @@ public class DataBase {
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
 		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo, data) values (?,?,?,UPPER(?),NOW())"));
-		//setStConsultaOrdini(con.prepareStatement("select ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer, pagamenti.codice from pagamenti, ordini where ordini.codice = ordine_codice and cliente_CF = UPPER(?) order by ordini.data;"));
+		setStAggiornaStatoOrdine(con.prepareStatement("Update ordini set stato = 'ORDINATO-PAGATO' where codice=?;"));
 		
 	}/*End of the constructor*/
 	
@@ -200,7 +200,7 @@ public class DataBase {
 			}
 			stNuovaOrdine.setInt(1, numOrdineMax);
 			stNuovaOrdine.setFloat(2, prezzoTotale);
-			stNuovaOrdine.setString(3, "ORDINATO");
+			stNuovaOrdine.setString(3, "NON PAGATO");
 			stNuovaOrdine.setString(4, cliente.getCf());
 			stNuovaOrdine.setString(5, cliente.getIndirizzo());
 			stNuovaOrdine.setString(6, comp.getNome());
@@ -337,11 +337,13 @@ public class DataBase {
 			
 			
 			stInsertPagamento.executeUpdate();
+			
+			stAggiornaStatoOrdine.setInt(1,numeroOrdine);
+			stAggiornaStatoOrdine.executeUpdate();
 		} catch (SQLException e) {
 			System.out.print("Errore al db "+e);
 			e.printStackTrace();
 		}
-		
 		
 		return numMaxPago;
 	}
@@ -395,16 +397,16 @@ public class DataBase {
 		try {
 			//Conta righe
 			stConsultaOrdini = con.createStatement();
-			ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where ordini.codice = ordine_codice and cliente_CF = '"+cf+"';");
+			ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato<>'NON PAGATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"';");
 			int j=0;
 			while(result.next()){
 				j= result.getInt(1);
 			}
 			
 			//chiama lista di ordini
-			ordini = new String[8][7];
+			ordini = new String[j][7];
 			result = stConsultaOrdini.executeQuery("select ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer," +
-					" pagamenti.codice from pagamenti, ordini where ordini.codice = ordine_codice and cliente_CF = '"+cf+"' order by ordini.data");
+					" pagamenti.codice from pagamenti, ordini where stato<>'NON PAGATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"' order by ordini.data");
 			j=0;
 			while(result.next()){
 				ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
@@ -423,5 +425,19 @@ public class DataBase {
 		
 		
 		return ordini;
+	}
+
+	/**
+	 * @return the stAggiornaStatoOrdine
+	 */
+	public PreparedStatement getStAggiornaStatoOrdine() {
+		return stAggiornaStatoOrdine;
+	}
+
+	/**
+	 * @param stAggiornaStatoOrdine the stAggiornaStatoOrdine to set
+	 */
+	public void setStAggiornaStatoOrdine(PreparedStatement stAggiornaStatoOrdine) {
+		this.stAggiornaStatoOrdine = stAggiornaStatoOrdine;
 	}
 }
