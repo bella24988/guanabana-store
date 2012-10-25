@@ -63,7 +63,8 @@ public class LogPanel extends JPanel {
 		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT); // allineamento
 																	// testo
 		txtUser = new JTextField(15); // inizializza campo di testo Email
-		txtPassword = new JPasswordField(15); // inizializza campo di testo password
+		txtPassword = new JPasswordField(15); // inizializza campo di testo
+												// password
 		lblUser.setLabelFor(txtUser); // associa etichetta a campo di testo
 		lblPassword.setLabelFor(txtPassword); // associa etichetta a campo di
 												// testo
@@ -125,10 +126,11 @@ public class LogPanel extends JPanel {
 		panelLogin.setVisible(false);
 		setTxaMessaggio("");
 		// Inizializzazione e posizionamento di salutoPanel
-		salutoPanel = new SalutoPanel(cliente.getNome()+" "+cliente.getCognome(), this);
+		salutoPanel = new SalutoPanel(cliente.getNome() + " "
+				+ cliente.getCognome(), this);
 		add(salutoPanel, BorderLayout.NORTH);
-		
-		if(contenuto.getAttessaCompra()==true){
+
+		if (contenuto.getAttessaCompra() == true) {
 			contenuto.setClienteLogato(cliente);
 			contenuto.continuaOperazione();
 		}
@@ -157,6 +159,8 @@ public class LogPanel extends JPanel {
 		salutoPanel.setVisible(false);
 		sbloccareInserimento();
 		contenuto.setClienteLogato(null);
+		contenuto.removeAll();
+		contenuto.pulisceSchermo();
 	}
 
 	public void mostraMessaggioErrore(String messaggio) {

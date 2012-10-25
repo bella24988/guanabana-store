@@ -77,10 +77,10 @@ public class LogController implements ActionListener{
 					if (ordini != null){
 						logPanel.getContenuto().mostraTuoiOrdini(ordini);
 					}else{
-						logPanel.mostraMessaggioErrore("lei non ha fatto nessuna ordine");
+						logPanel.getContenuto().mostraTuoiOrdini(null);
 					}
 				} catch (IOException e1) {
-					logPanel.mostraMessaggioErrore("Non è possibile collegarsi al server");
+					logPanel.getContenuto().mostraTuoiOrdini(null);
 					e1.printStackTrace();
 				}
 			}

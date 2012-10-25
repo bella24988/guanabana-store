@@ -3,13 +3,13 @@ package client;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
 import client.LogController;
-
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.SystemColor;
 
 public class SalutoPanel extends JPanel {
 
@@ -34,51 +34,50 @@ public class SalutoPanel extends JPanel {
 		this.setPanel(panel);
 		this.setNome(nome);
 
+		// Controller
+		logController = new LogController(this, panel);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[] { 265, 98, 87, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 20, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+		setLayout(gridBagLayout);
+
 		lblSaluto = new JLabel("Ciao " + nome + "!");
 		lblSaluto.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 11));
 		lblSaluto.setForeground(new Color(0, 100, 0));
+		GridBagConstraints gbc_lblSaluto = new GridBagConstraints();
+		gbc_lblSaluto.fill = GridBagConstraints.BOTH;
+		gbc_lblSaluto.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSaluto.gridx = 0;
+		gbc_lblSaluto.gridy = 0;
+		add(lblSaluto, gbc_lblSaluto);
 		btnLogOut = new JButton("Logout");
-		btnGestioneOrdine = new JButton("I tuoi ordini");
-
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				groupLayout
-						.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(lblSaluto, GroupLayout.PREFERRED_SIZE,
-								265, GroupLayout.PREFERRED_SIZE)
-						.addGap(64)
-						.addComponent(btnGestioneOrdine)
-						.addGap(18)
-						.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE,
-								98, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(39, Short.MAX_VALUE)));
-		groupLayout
-				.setVerticalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addGap(9)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																lblSaluto,
-																GroupLayout.DEFAULT_SIZE,
-																54,
-																Short.MAX_VALUE)
-														.addComponent(btnLogOut)
-														.addComponent(
-																btnGestioneOrdine))
-										.addContainerGap()));
-		setLayout(groupLayout);
-
-		// Controller
-		logController = new LogController(this, panel);
+		GridBagConstraints gbc_btnLogOut = new GridBagConstraints();
+		gbc_btnLogOut.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnLogOut.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLogOut.gridx = 1;
+		gbc_btnLogOut.gridy = 0;
+		add(btnLogOut, gbc_btnLogOut);
 		btnLogOut.addActionListener(logController);
+		btnGestioneOrdine = new JButton("I tuoi ordini");
+		GridBagConstraints gbc_btnGestioneOrdine = new GridBagConstraints();
+		gbc_btnGestioneOrdine.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGestioneOrdine.anchor = GridBagConstraints.WEST;
+		gbc_btnGestioneOrdine.gridx = 2;
+		gbc_btnGestioneOrdine.gridy = 0;
+		add(btnGestioneOrdine, gbc_btnGestioneOrdine);
+
+		btnCarrello = new JButton("Carrello");
+		btnCarrello.setBackground(SystemColor.activeCaption);
+		GridBagConstraints gbc_btnCarrello = new GridBagConstraints();
+		gbc_btnCarrello.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCarrello.gridwidth = 2;
+		gbc_btnCarrello.insets = new Insets(0, 0, 0, 5);
+		gbc_btnCarrello.gridx = 1;
+		gbc_btnCarrello.gridy = 1;
+		add(btnCarrello, gbc_btnCarrello);
 		btnGestioneOrdine.addActionListener(logController);
 	}
 
@@ -161,6 +160,7 @@ public class SalutoPanel extends JPanel {
 	 * @uml.association name="si mostra in"
 	 */
 	private LogPanel logPanel;
+	private JButton btnCarrello;
 
 	/**
 	 * Getter of the property <tt>logPanel</tt>
