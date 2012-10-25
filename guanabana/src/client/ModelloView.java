@@ -15,24 +15,15 @@ public class ModelloView extends JPanel {
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel modelsPanel;
 	private ConfigPanel configPanel;
-
-	private JPanel serverPanel;
-	/**
-	 * 
-	 */
-	private JPanel laptopPanel;
-	/**
-	 * 
-	 */
 	private ContenutoPanel contenutoPanel;
-	private JPanel desktopPanel;
 	private int numButtons;
 	private String[] nome;
 	private float[] prezzo;
-	private JButton[] btnModelli;
-	private static final long serialVersionUID = 1L;
+	private JButton[] btnModels;
+	
 	private ModelloController modelloController;
 	private PreventivoPanel preventivoPanel;
 	private Computer computer;
@@ -42,43 +33,30 @@ public class ModelloView extends JPanel {
 	 * Create the panel.
 	 */
 	public ModelloView() {
-		laptopPanel = new JPanel();
-		desktopPanel = new JPanel();
-		serverPanel = new JPanel();
-		laptopPanel.setVisible(false);
-		serverPanel.setVisible(false);
-		desktopPanel.setVisible(false);
+
+		modelsPanel = new JPanel();
+		modelsPanel.setVisible(false);
 		setBackground(Color.white);
 	}
-
+	
+	
 	public void mostraButtons(int num, Computer[] computer, String tipo) {
 
 		int i = 0;
-		btnModelli = new JButton[num];
+		btnModels = new JButton[num];
 		setNumButtons(num);
 		while (i < num) {
-			btnModelli[i] = new JButton();
-			btnModelli[i].setText(computer[i].getNome() + ", Prezzo: "
+			btnModels[i] = new JButton();
+			btnModels[i].setText(computer[i].getNome() + ", Prezzo: "
 					+ String.valueOf(computer[i].getPrezzo()));
-
-			if (tipo == "LAPTOP") {
-				laptopPanel.add(btnModelli[i]);
-				laptopPanel.setVisible(true);
-				add(laptopPanel);
-			} else if (tipo == "DESKTOP") {
-
-				desktopPanel.add(btnModelli[i]);
-				desktopPanel.setVisible(true);
-				add(desktopPanel);
-			} else {
-
-				serverPanel.add(btnModelli[i]);
-				serverPanel.setVisible(true);
-				add(serverPanel);
-			}
-			this.computer = computer[i];
+			
+			modelsPanel.add(btnModels[i]);
+			modelsPanel.setVisible(true);
+			add(modelsPanel);
+			
+			this.setComputer(computer[i]);
 			modelloController = new ModelloController(computer[i], this);
-			btnModelli[i].addActionListener(modelloController);
+			btnModels[i].addActionListener(modelloController);
 			i++;
 		}
 	}
@@ -163,9 +141,7 @@ public class ModelloView extends JPanel {
 
 	public void mostraComponente(Computer comp) {
 		int type = 0;
-		laptopPanel.setVisible(false);
-		serverPanel.setVisible(false);
-		desktopPanel.setVisible(false);
+		modelsPanel.setVisible(false);
 		preventivoController = new PreventivoController();
 		if (comp.getTipo().compareTo("LAPTOP") == 0) {
 			type = 0;
@@ -208,5 +184,13 @@ public class ModelloView extends JPanel {
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
+	}
+
+	public Computer getComputer() {
+		return computer;
+	}
+
+	public void setComputer(Computer computer) {
+		this.computer = computer;
 	}
 }
