@@ -347,7 +347,7 @@ public class DataBase {
 		return numMaxPago;
 	}
 
-	private void aggiornaStatoOrdine(String stato, int numeroOrdine) throws SQLException {
+	public void aggiornaStatoOrdine(String stato, int numeroOrdine) throws SQLException {
 		stAggiornaStatoOrdine.setString(1, stato);
 		stAggiornaStatoOrdine.setInt(2,numeroOrdine);
 		stAggiornaStatoOrdine.executeUpdate();

@@ -185,6 +185,21 @@ public class ServizioServer implements Collegare, Runnable{
 				scrive.writeObject(ordini);//ricevuto client
 				scrive.flush();
 			
+			}else if (richiestaClient.compareTo("aggiornaStato")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				int numOrdine = (int) ricevo.readObject();
+				
+				scrive.writeObject("ok");
+				scrive.flush();
+				
+				String nuovoStato= (String) ricevo.readObject();
+				
+				aggiornaOrdine(numOrdine, nuovoStato);
+				
+				scrive.writeObject("aggiornato");
+				scrive.flush();
 			}	
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -540,6 +555,18 @@ public class ServizioServer implements Collegare, Runnable{
 		}
 		
 		return ordini;
+	}
+
+	@Override
+	public void aggiornaOrdine(int numOrdine, String nuovoStato)
+			throws IOException {
+		try {
+			db.aggiornaStatoOrdine(nuovoStato, numOrdine);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	

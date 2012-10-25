@@ -18,13 +18,14 @@ public class TuoiOrdiniController implements ActionListener{
 		
 		String comand = e.getActionCommand().substring(0, 4);
 		int indiceArray = Integer.parseInt(e.getActionCommand().substring(4));
-		tOrdiniPanel.getContenutoPanel().setOrdine(tOrdiniPanel.getOrdini()[indiceArray]);
+		
 		
 		if (comand.compareTo("Annu")==0){
-			//Client servizioClient = new Client();	
+			tOrdiniPanel.getContenutoPanel().setOrdine(tOrdiniPanel.getOrdini()[indiceArray]);
 			tOrdiniPanel.getContenutoPanel().mostraAnnullaOrdine();
 		   
 		}else if (comand.compareTo("Paga")==0){
+			tOrdiniPanel.getContenutoPanel().setOrdine(tOrdiniPanel.getOrdini()[indiceArray]);
 			tOrdiniPanel.getContenutoPanel().mostraPagamentoPanel();
 		}
 		

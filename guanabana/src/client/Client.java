@@ -398,6 +398,38 @@ public class Client implements Collegare {
 		return ordini;
 	}
 
+	@Override
+	public void aggiornaOrdine(int numOrdine, String nuovoStato)
+			throws IOException {
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("aggiornaStato");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		try {
+			String risposta;
+			risposta = (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(numOrdine);
+				writer.flush();
+				
+				risposta = (String) buffer.readObject();
+				
+				if(risposta.compareTo("ok")==0){
+					writer.writeObject(nuovoStato);
+					writer.flush();
+					
+					risposta = (String) buffer.readObject();
+				}
+				}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		chiudereCollegamento();
+	}
+
 	
 
 }

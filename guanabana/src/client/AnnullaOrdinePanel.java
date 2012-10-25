@@ -30,6 +30,8 @@ public class AnnullaOrdinePanel extends JPanel {
 	 */
 	public AnnullaOrdinePanel(Ordine ordine) {
 		this.ordine = ordine;
+		AnnullaOrdineController annullaController = new AnnullaOrdineController(
+				this);
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 106, 269, 0 };
@@ -47,7 +49,7 @@ public class AnnullaOrdinePanel extends JPanel {
 		gbc_lblNumeroOrdine.gridy = 0;
 		add(lblNumeroOrdine, gbc_lblNumeroOrdine);
 
-		txtNroOrdine = new JTextField(ordine.getNumeroOrdine());
+		txtNroOrdine = new JTextField(String.valueOf(ordine.getNumeroOrdine()));
 		txtNroOrdine.setEditable(false);
 		GridBagConstraints gbc_txtNroOrdine = new GridBagConstraints();
 		gbc_txtNroOrdine.insets = new Insets(0, 0, 5, 0);
@@ -129,12 +131,14 @@ public class AnnullaOrdinePanel extends JPanel {
 		gbc_btnSi.gridx = 0;
 		gbc_btnSi.gridy = 5;
 		add(btnSi, gbc_btnSi);
+		btnSi.addActionListener(annullaController);
 
 		JButton btnNo = new JButton("No");
 		GridBagConstraints gbc_btnNo = new GridBagConstraints();
 		gbc_btnNo.gridx = 1;
 		gbc_btnNo.gridy = 5;
 		add(btnNo, gbc_btnNo);
+		btnNo.addActionListener(annullaController);
 
 	}
 
