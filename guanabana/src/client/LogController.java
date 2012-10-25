@@ -70,19 +70,18 @@ public class LogController implements ActionListener{
 		
 		try {
 			if (e.getActionCommand().equalsIgnoreCase("I tuoi ordini")){
-				Ordine[] ordini=null;
+				
 				Client servizioClient = new Client();
 				try {
-					ordini = servizioClient.consultaOrdini(logPanel.getContenuto().getClienteLogato());
+					Ordine[] ordini = servizioClient.consultaOrdini(logPanel.getContenuto().getClienteLogato());
+					if (ordini != null){
+						logPanel.getContenuto().mostraTuoiOrdini(ordini);
+					}else{
+						logPanel.mostraMessaggioErrore("lei non ha fatto nessuna ordine");
+					}
 				} catch (IOException e1) {
 					logPanel.mostraMessaggioErrore("Non è possibile collegarsi al server");
 					e1.printStackTrace();
-				}
-				
-				if (ordini != null){
-					logPanel.getContenuto().mostraTuoiOrdini(ordini);
-				}else{
-					logPanel.mostraMessaggioErrore("lei non ha fatto nessuna ordine");
 				}
 			}
 		} catch (Exception e1) {

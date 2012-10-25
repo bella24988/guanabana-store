@@ -456,26 +456,40 @@ public class ServizioServer implements Collegare, Runnable{
 
 	@Override
 	public Ordine[] consultaOrdini(Cliente cliente) throws IOException {
-		Ordine[] ordini;
+		Ordine[] ordini;//Dichiarazione delle ordine
 		
-		String [][] risultato = db.consultaOrdini(cliente.getCf());
+		String [][] risultato = db.consultaOrdini(cliente.getCf());//Consulta al Data Base qualle sono le ordini
 		ordini = new Ordine[risultato.length];
-		System.out.print(risultato.length + "lunghezza di ordini");
 		Computer[] computer = new Computer[risultato.length];
+		Pagamento[] pagamento = new Pagamento[risultato.length];
 		//Componente[] componente = new Componente[risultato.length];
 		int j;
-		for (j = 0; j<risultato.length; j++){//[cols][rows]
-			String tipoComputer = risultato[5][j].substring(0, 3);
+		for (j = 0; j<risultato.length; j++){//[rows][columns]
+			//Inizializzare variabile con dati pescati dal db nel pasizione: ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer, numPagamento
+			int codiceOrdine = Integer.parseInt(risultato[j][0]);
+			String dataOrdine = risultato[j][1];
+			float totalePagato = new Float(risultato[j][2]);
+			String statoOrdine = risultato[j][3];
+			String tipoPagamento = risultato[j][4];
+			String nomeComputer = risultato[j][5];
+			int numPagamento = Integer.parseInt(risultato[j][6]);
+			
+			//Creo i computer ordinati 
+			String tipoComputer = risultato[j][5].substring(0, 3);
 			if (tipoComputer.compareTo("SER")==0){
-				computer[j] = new Server(risultato[5][j]);
+				computer[j] = new Server(nomeComputer);
 			}else if (tipoComputer.compareTo("LAP")==0){
-				computer[j] = new Laptop(risultato[5][j]);
+				computer[j] = new Laptop(nomeComputer);
 			}else if (tipoComputer.compareTo("DES")==0){
-				computer[j] = new Desktop(risultato[5][j]);
+				computer[j] = new Desktop(nomeComputer);
 			}
 			
-			ordini[j] = new Ordine(Integer.parseInt(risultato[0][j]), computer[j] , new Float(risultato[2][j]), cliente);
-			//ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer
+			//Creo ordine e pagamento
+			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato, cliente);
+			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento);
+			ordini[j].setPagamento(pagamento[j]);
+			ordini[j].setStato(statoOrdine);
+			ordini[j].setData(dataOrdine);
 		}
 		
 		return ordini;
