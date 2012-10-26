@@ -220,12 +220,10 @@ public class ServizioServer implements Collegare, Runnable{
 			if (consultaDB[0]!=null){
 				Cliente cliente = new Cliente(consultaDB[0],consultaDB[1],consultaDB[2],consultaDB[3],
 					consultaDB[4],consultaDB[5],consultaDB[6]);
-				System.out.println("Cliente Trovato");
 				return cliente;				
 			}else{
 				return null;}
 		} catch (SQLException e) {
-			System.out.println("Cliente NON Trovato");
 			e.printStackTrace();
 			return null;
 		}

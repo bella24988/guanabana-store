@@ -18,8 +18,8 @@ public class DataBase {
 	private PreparedStatement stConsultaLog;
 	private PreparedStatement stNuevoCliente, stNuovaOrdine;
 	private PreparedStatement stConsultaComputer, stConsultaUltimaOrd;
-	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento, stAggiornaStatoOrdine;
-	private Statement stModello, stConsultaOrdini;
+	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento, stAggiornaStatoOrdine, stConsultaDipendente;
+	private Statement stModello, stConsultaOrdini, stCliente;
 	
 	/*Begin of the constructor*/
 	public DataBase() throws SQLException, ClassNotFoundException{
@@ -46,6 +46,7 @@ public class DataBase {
 		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
 		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo, data) values (?,?,?,UPPER(?),NOW())"));
 		setStAggiornaStatoOrdine(con.prepareStatement("Update ordini set stato = ? where codice=?;"));
+		setStConsultaDipendente(con.prepareStatement("select nome, cognome, dipartimento from dipendenti where iduser=? and password=?;"));
 		
 	}/*End of the constructor*/
 	
@@ -481,5 +482,95 @@ public class DataBase {
 	 */
 	public void setStAggiornaStatoOrdine(PreparedStatement stAggiornaStatoOrdine) {
 		this.stAggiornaStatoOrdine = stAggiornaStatoOrdine;
+	}
+
+	/**
+	 * @return the stConsultaDipendente
+	 */
+	public PreparedStatement getStConsultaDipendente() {
+		return stConsultaDipendente;
+	}
+
+	/**
+	 * @param stConsultaDipendente the stConsultaDipendente to set
+	 */
+	public void setStConsultaDipendente(PreparedStatement stConsultaDipendente) {
+		this.stConsultaDipendente = stConsultaDipendente;
+	}
+	
+	public String[] cercaDipendente(int id, String password) throws SQLException{
+		String[] datiImpiegato = new String[3];
+		stConsultaDipendente.setInt(1, id);
+		stConsultaDipendente.setString(2, password);
+		
+		ResultSet result = stConsultaDipendente.executeQuery();
+		while(result.next()){
+			for (int i = 0; i < 3; i++) {
+				datiImpiegato[i]=result.getString(i+1);
+			}
+			
+		}
+		
+		return datiImpiegato;
+		
+	}
+
+	public String[][] cercaOrdinePerSpedizione() {
+		//ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer, pagamenti.codice
+				String[][] ordini = null;
+					
+				try {
+					//Conta righe
+					stConsultaOrdini = con.createStatement();
+					ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'SPEDITO' and stato<>'ANNULLATO' " +
+							"and ordini.codice = ordine_codice;");
+					int j=0;
+					while(result.next()){
+						j= result.getInt(1);
+					}
+					
+					//chiama lista di ordini
+					ordini = new String[j][8];
+					result = stConsultaOrdini.executeQuery("select distinct(ordini.codice), ordini.data, ordini.totale, stato, tipo, nome_computer," +
+							" pagamenti.codice, cliente_CF from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'SPEDITO' and stato<>'ANNULLATO' and ordini.codice = ordine_codice order by ordini.data");
+					j=0;
+					while(result.next()){
+						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
+						ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data è un timestamp
+						ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale è un float
+						ordini[j][3]=result.getString(4);//stato è un string
+						ordini[j][4]=result.getString(5); // tipo è un string
+						ordini[j][5]=result.getString(6);// nomecomputer è un string
+						ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice è un float
+						ordini[j][7]=result.getString(8);
+						j++;
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				return ordini;
+	}
+	
+	public String[] cercaCliente(String cf){
+		String[] cliente = null;
+		try {
+			cliente= new String[5];
+			stCliente = con.createStatement();
+			ResultSet result =stCliente.executeQuery("select CF,nome,cognome,indirizzo,telefono from clienti where CF='"+cf+"';");
+			while(result.next()){
+				for (int i = 0; i < 5; i++) {
+					cliente[i]=result.getString(i+1);
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cliente;
+		
 	}
 }
