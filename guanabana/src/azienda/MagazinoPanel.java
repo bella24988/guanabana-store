@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import modello.Ordine;
 import java.awt.Insets;
 
-public class PanelPrincipalGestione extends JPanel {
+public class MagazinoPanel extends JPanel {
 
 	/**
 	 * Create the panel.
@@ -21,10 +21,10 @@ public class PanelPrincipalGestione extends JPanel {
 	private Ordine[] ordini;
 	private GestioneOrdine gestioneOrdine;
 
-	public PanelPrincipalGestione(Ordine[] ordini, GestioneOrdine gestioneOrdine) {
+	public MagazinoPanel(Ordine[] ordini, GestioneOrdine gestioneOrdine) {
 		this.setGestioneOrdine(gestioneOrdine);
 		this.setOrdini(ordini);
-		PrincipalGestioneController controller = new PrincipalGestioneController(
+		MagazinoController controller = new MagazinoController(
 				this);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[5];
@@ -33,13 +33,29 @@ public class PanelPrincipalGestione extends JPanel {
 		gridBagLayout.rowWeights = new double[ordini.length + 2];
 		setLayout(gridBagLayout);
 
+		JButton btnLogout = new JButton("Logout");
+		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
+		gbc_btnLogout.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnLogout.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLogout.gridx = 0;
+		gbc_btnLogout.gridy = 0;
+		add(btnLogout, gbc_btnLogout);
+		btnLogout.addActionListener(controller);
+
+		JButton btnAggiorna = new JButton("Aggiorna");
+		GridBagConstraints gbc_btnAggiorna = new GridBagConstraints();
+		gbc_btnAggiorna.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAggiorna.gridx = 1;
+		gbc_btnAggiorna.gridy = 0;
+		add(btnAggiorna, gbc_btnAggiorna);
+		btnAggiorna.addActionListener(controller);
+
 		JLabel lblUtente = new JLabel("Utente:");
 		GridBagConstraints gbc_lblUtente = new GridBagConstraints();
 		gbc_lblUtente.anchor = GridBagConstraints.EAST;
-		gbc_lblUtente.gridwidth = 2;
 		gbc_lblUtente.insets = new Insets(0, 0, 5, 5);
 		gbc_lblUtente.gridx = 0;
-		gbc_lblUtente.gridy = 0;
+		gbc_lblUtente.gridy = 1;
 		add(lblUtente, gbc_lblUtente);
 
 		JLabel lblNomeUtente = new JLabel(gestioneOrdine.getImpiegato()
@@ -48,42 +64,25 @@ public class PanelPrincipalGestione extends JPanel {
 		gbc_lblNomeUtente.anchor = GridBagConstraints.WEST;
 		gbc_lblNomeUtente.gridwidth = 3;
 		gbc_lblNomeUtente.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNomeUtente.gridx = 2;
-		gbc_lblNomeUtente.gridy = 0;
+		gbc_lblNomeUtente.gridx = 1;
+		gbc_lblNomeUtente.gridy = 1;
 		add(lblNomeUtente, gbc_lblNomeUtente);
 
-		JButton btnLogout = new JButton("Logout");
-		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
-		gbc_btnLogout.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnLogout.insets = new Insets(0, 0, 5, 0);
-		gbc_btnLogout.gridx = 6;
-		gbc_btnLogout.gridy = 0;
-		add(btnLogout, gbc_btnLogout);
-		btnLogout.addActionListener(controller);
-
-		JLabel lblITuoiOrdini = new JLabel("I tuoi Ordini");
+		JLabel lblITuoiOrdini = new JLabel("Ordini da Spedire");
 		lblITuoiOrdini.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblITuoiOrdini = new GridBagConstraints();
-		gbc_lblITuoiOrdini.insets = new Insets(0, 0, 5, 5);
+		gbc_lblITuoiOrdini.insets = new Insets(0, 0, 5, 0);
 		gbc_lblITuoiOrdini.gridwidth = 6;
 		gbc_lblITuoiOrdini.gridx = 0;
-		gbc_lblITuoiOrdini.gridy = 1;
+		gbc_lblITuoiOrdini.gridy = 2;
 		add(lblITuoiOrdini, gbc_lblITuoiOrdini);
-
-		JButton btnAggiorna = new JButton("Aggiorna");
-		GridBagConstraints gbc_btnAggiorna = new GridBagConstraints();
-		gbc_btnAggiorna.insets = new Insets(0, 0, 5, 0);
-		gbc_btnAggiorna.gridx = 6;
-		gbc_btnAggiorna.gridy = 1;
-		add(btnAggiorna, gbc_btnAggiorna);
-		btnAggiorna.addActionListener(controller);
 
 		JLabel lblData = new JLabel("Data");
 		lblData.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblData = new GridBagConstraints();
 		gbc_lblData.insets = new Insets(0, 0, 5, 5);
 		gbc_lblData.gridx = 0;
-		gbc_lblData.gridy = 2;
+		gbc_lblData.gridy = 3;
 		add(lblData, gbc_lblData);
 
 		JLabel lblNOrdine = new JLabel("N\u00B0 Ordine");
@@ -91,7 +90,7 @@ public class PanelPrincipalGestione extends JPanel {
 		GridBagConstraints gbc_lblNOrdine = new GridBagConstraints();
 		gbc_lblNOrdine.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNOrdine.gridx = 1;
-		gbc_lblNOrdine.gridy = 2;
+		gbc_lblNOrdine.gridy = 3;
 		add(lblNOrdine, gbc_lblNOrdine);
 
 		JLabel lblComputer = new JLabel("Computer");
@@ -99,7 +98,7 @@ public class PanelPrincipalGestione extends JPanel {
 		GridBagConstraints gbc_lblComputer = new GridBagConstraints();
 		gbc_lblComputer.insets = new Insets(0, 0, 5, 5);
 		gbc_lblComputer.gridx = 2;
-		gbc_lblComputer.gridy = 2;
+		gbc_lblComputer.gridy = 3;
 		add(lblComputer, gbc_lblComputer);
 
 		JLabel lblStato = new JLabel("Stato");
@@ -107,7 +106,7 @@ public class PanelPrincipalGestione extends JPanel {
 		GridBagConstraints gbc_lblStato = new GridBagConstraints();
 		gbc_lblStato.insets = new Insets(0, 0, 5, 5);
 		gbc_lblStato.gridx = 3;
-		gbc_lblStato.gridy = 2;
+		gbc_lblStato.gridy = 3;
 		add(lblStato, gbc_lblStato);
 
 		JLabel lblTipoPagamento = new JLabel("Tipo pagamento");
@@ -115,20 +114,19 @@ public class PanelPrincipalGestione extends JPanel {
 		GridBagConstraints gbc_lblTipoPagamento = new GridBagConstraints();
 		gbc_lblTipoPagamento.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTipoPagamento.gridx = 4;
-		gbc_lblTipoPagamento.gridy = 2;
+		gbc_lblTipoPagamento.gridy = 3;
 		add(lblTipoPagamento, gbc_lblTipoPagamento);
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBackground(Color.GRAY);
 		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
-		gbc_separator_1.insets = new Insets(0, 0, 0, 5);
 		gbc_separator_1.fill = GridBagConstraints.BOTH;
 		gbc_separator_1.gridwidth = 6;
 		gbc_separator_1.gridx = 0;
-		gbc_separator_1.gridy = 3;
+		gbc_separator_1.gridy = 4;
 		add(separator_1, gbc_separator_1);
 
-		int numRow = 3;
+		int numRow = 5;
 		for (int indiceArray = 0; indiceArray < ordini.length; indiceArray++) {
 
 			JLabel lblDatax = new JLabel(ordini[indiceArray].getData());

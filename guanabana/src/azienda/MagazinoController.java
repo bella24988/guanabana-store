@@ -6,13 +6,13 @@ import java.io.IOException;
 
 import modello.Ordine;
 
-public class PrincipalGestioneController implements ActionListener{
-	private PanelPrincipalGestione panelPrincipalGestione;
+public class MagazinoController implements ActionListener{
+	private MagazinoPanel panelPrincipalGestione;
 	
 	
 
-	public PrincipalGestioneController(
-			PanelPrincipalGestione panelPrincipalGestione) {
+	public MagazinoController(
+			MagazinoPanel panelPrincipalGestione) {
 		super();
 		this.setPanelPrincipalGestione(panelPrincipalGestione);
 	}
@@ -49,7 +49,7 @@ public class PrincipalGestioneController implements ActionListener{
 	/**
 	 * @return the panelPrincipalGestione
 	 */
-	public PanelPrincipalGestione getPanelPrincipalGestione() {
+	public MagazinoPanel getPanelPrincipalGestione() {
 		return panelPrincipalGestione;
 	}
 
@@ -58,7 +58,7 @@ public class PrincipalGestioneController implements ActionListener{
 	/**
 	 * @param panelPrincipalGestione the panelPrincipalGestione to set
 	 */
-	public void setPanelPrincipalGestione(PanelPrincipalGestione panelPrincipalGestione) {
+	public void setPanelPrincipalGestione(MagazinoPanel panelPrincipalGestione) {
 		this.panelPrincipalGestione = panelPrincipalGestione;
 	}
 

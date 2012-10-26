@@ -116,7 +116,7 @@ public class GestioneOrdine {
 	public void refreshOrdini() {
 		frame.getContentPane().removeAll();
 		setOrdini(enlistaOrdini());
-		PanelPrincipalGestione panelPrincipale = new PanelPrincipalGestione(
+		MagazinoPanel panelPrincipale = new MagazinoPanel(
 				ordini, this);
 		frame.getContentPane().add(panelPrincipale);
 		if (ok) {
