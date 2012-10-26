@@ -4,19 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import modello.Dipendente;
 import modello.Ordine;
-
-import server.DataBase;
-
 import java.awt.BorderLayout;
-import java.sql.SQLException;
+import java.io.IOException;
 
 public class GestioneOrdine {
 
 	private JFrame frame;
 	private LogAzienda logAzienda;
-	private DataBase db;
-	private String[] impiegato;
+	private Dipendente impiegato;
+	private Ordine[] ordini;
+	private boolean ok = false;
 
 	/**
 	 * Launch the application.
@@ -39,37 +38,34 @@ public class GestioneOrdine {
 	 */
 	public GestioneOrdine() {
 		initialize();
-		try {
-			db = new DataBase();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 300, 300);
+		frame = new JFrame("Gestione delle spedizione");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		inizializza();
+	}
 
+	private void inizializza() {
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 300, 120);
 		setLogAzienda(new LogAzienda(this));
 		frame.getContentPane().add(logAzienda, BorderLayout.CENTER);
 	}
 
-	public void mostraPanelPrincipale(String nome, String cognome,
-			String dipartimento, Ordine[] ordini) {
+	public void mostraPanelPrincipale(Dipendente impiegato) {
 		frame.getContentPane().removeAll();
-		frame.setBounds(100, 100, 800, 500);
-		PanelPrincipalGestione panelPrincipale = new PanelPrincipalGestione(
-				ordini);
+		setImpiegato(impiegato);
+		refreshOrdini();
+	}
 
-		frame.getContentPane().add(panelPrincipale);
+	public void logOut() {
+		frame.getContentPane().removeAll();
+		inizializza();
+		setImpiegato(null);
 	}
 
 	/**
@@ -88,18 +84,62 @@ public class GestioneOrdine {
 	}
 
 	/**
-	 * @return the db
+	 * @return the ordini
 	 */
-	public DataBase getDb() {
-		return db;
+	public Ordine[] getOrdini() {
+		return ordini;
 	}
 
 	/**
-	 * @param db
-	 *            the db to set
+	 * @param ordini
+	 *            the ordini to set
 	 */
-	public void setDb(DataBase db) {
-		this.db = db;
+	public void setOrdini(Ordine[] ordini) {
+		this.ordini = ordini;
+	}
+
+	/**
+	 * @return the impiegato
+	 */
+	public Dipendente getImpiegato() {
+		return impiegato;
+	}
+
+	/**
+	 * @param impiegato
+	 *            the impiegato to set
+	 */
+	public void setImpiegato(Dipendente impiegato) {
+		this.impiegato = impiegato;
+	}
+
+	public void refreshOrdini() {
+		frame.getContentPane().removeAll();
+		setOrdini(enlistaOrdini());
+		PanelPrincipalGestione panelPrincipale = new PanelPrincipalGestione(
+				ordini, this);
+		frame.getContentPane().add(panelPrincipale);
+		if (ok) {
+			frame.setBounds(100, 100, 800, 500);
+			ok = false;
+		}
+		if (!ok) {
+			frame.setBounds(100, 100, 800, 501);
+			ok = true;
+		}
+		panelPrincipale.setVisible(true);
+	}
+
+	public Ordine[] enlistaOrdini() {
+		ClientAzienda servizioClientAzienda = new ClientAzienda();
+		Ordine[] ordini = null;
+		try {
+			ordini = servizioClientAzienda.cercaOrdini();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ordini;
 	}
 
 }

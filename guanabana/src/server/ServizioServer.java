@@ -11,15 +11,17 @@ import modello.Cliente;
 import modello.Componente;
 import modello.Computer;
 import modello.Desktop;
+import modello.Dipendente;
 import modello.Laptop;
 import modello.Ordine;
 import modello.Pagamento;
 import modello.Server;
-import conexionInterface.Collegare;
+import conexionInterface.InterfacciaAzienda;
+import conexionInterface.InterfacciaCliente;
 import java.util.Collection;
 
 
-public class ServizioServer implements Collegare, Runnable{
+public class ServizioServer implements InterfacciaCliente, Runnable, InterfacciaAzienda{
 	
 	private Socket client;
 	private DataBase db;
@@ -199,6 +201,23 @@ public class ServizioServer implements Collegare, Runnable{
 				aggiornaOrdine(numOrdine, nuovoStato);
 				
 				scrive.writeObject("aggiornato");
+				scrive.flush();
+			}else if (richiestaClient.compareTo("logDipendente")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				
+				int id = (int) ricevo.readObject();
+				
+				scrive.writeObject("ok");
+				scrive.flush();
+				
+				String password = (String) ricevo.readObject();
+				
+				scrive.writeObject(logDipendente(id, password));
+				scrive.flush();
+			}else if (richiestaClient.compareTo("ordini da spedire")==0){
+				scrive.writeObject(cercaOrdini());
 				scrive.flush();
 			}	
 		} catch (Exception e) {
@@ -558,6 +577,90 @@ public class ServizioServer implements Collegare, Runnable{
 	@Override
 	public void aggiornaOrdine(int numOrdine, String nuovoStato)
 			throws IOException {
+		try {
+			db.aggiornaStatoOrdine(nuovoStato, numOrdine);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public Dipendente logDipendente(int id, String password) throws SQLException {
+		Dipendente impiegato;
+		String[] ricercadb = db.cercaDipendente(id, password);
+		//nome, cognome, dipartimento
+		String nome=ricercadb[0];
+		String cognome=ricercadb[1];
+		String dipartimento=ricercadb[2];
+		
+		impiegato = new Dipendente(nome, cognome, id, dipartimento);
+		return impiegato;
+	}
+
+	@Override
+	public Cliente cercaListaCliente(String cf) {
+		// Del cliente
+					String[] clienteDb = db.cercaCliente(cf);
+					String nome = clienteDb[1];
+					String cognome = clienteDb[2];
+					String indirizzo = clienteDb[3];
+					String telefono = clienteDb[4];
+
+					Cliente cliente = new Cliente(cf, nome, cognome, "", "",
+							indirizzo, telefono);
+		return cliente;
+	}
+
+	@Override
+	public Ordine[] cercaOrdini() {
+		Ordine[] ordini;// Dichiarazione delle ordine
+
+		String[][] risultato = db.cercaOrdinePerSpedizione();
+		ordini = new Ordine[risultato.length];
+		Computer[] computer = new Computer[risultato.length];
+		Pagamento[] pagamento = new Pagamento[risultato.length];
+		// Componente[] componente = new Componente[risultato.length];
+		int j;
+		for (j = 0; j < risultato.length; j++) {// [rows][columns]
+			// Inizializzare variabile con dati pescati dal db nel pasizione:
+			// ordini.codice, ordini.data, ordini.totale, stato, tipo,
+			// nome_computer, numPagamento
+			int codiceOrdine = Integer.parseInt(risultato[j][0]);
+			String dataOrdine = risultato[j][1];
+			float totalePagato = new Float(risultato[j][2]);
+			String statoOrdine = risultato[j][3];
+			String tipoPagamento = risultato[j][4];
+			String nomeComputer = risultato[j][5];
+			int numPagamento = Integer.parseInt(risultato[j][6]);
+			String cfCliente = risultato[j][7];
+
+			Cliente cliente = cercaListaCliente(cfCliente);
+			// Creo i computer ordinati
+			String tipoComputer = nomeComputer.substring(0, 3);
+			if (tipoComputer.compareTo("SER") == 0) {
+				computer[j] = new Server(nomeComputer);
+			} else if (tipoComputer.compareTo("LAP") == 0) {
+				computer[j] = new Laptop(nomeComputer);
+			} else if (tipoComputer.compareTo("DES") == 0) {
+				computer[j] = new Desktop(nomeComputer);
+			}
+
+			// Creo ordine e pagamento
+			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato,
+					cliente);
+			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento);
+			ordini[j].setPagamento(pagamento[j]);
+			ordini[j].setStato(statoOrdine);
+			ordini[j].setData(dataOrdine);
+		}
+
+		return ordini;
+	}
+
+	@Override
+	public void aggiornaStatoOrdine(String nuovoStato, int numOrdine) {
 		try {
 			db.aggiornaStatoOrdine(nuovoStato, numOrdine);
 		} catch (SQLException e) {

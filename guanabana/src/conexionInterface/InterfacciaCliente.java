@@ -8,7 +8,7 @@ import modello.Computer;
 import modello.Ordine;
 import modello.Pagamento;
 
-public interface Collegare {
+public interface InterfacciaCliente {
 
 		/**
 		 * @throws IOException 

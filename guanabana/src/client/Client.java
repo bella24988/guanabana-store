@@ -14,9 +14,9 @@ import modello.Ordine;
 import modello.Pagamento;
 
 
-import conexionInterface.Collegare;
+import conexionInterface.InterfacciaCliente;
 
-public class Client implements Collegare {
+public class Client implements InterfacciaCliente {
 	
 	private String host;
 	private InputStream lettura;
