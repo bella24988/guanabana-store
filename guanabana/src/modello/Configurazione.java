@@ -1,154 +1,102 @@
 package modello;
 
 import java.io.Serializable;
-import java.util.Collection;
-
 
 public class Configurazione implements Serializable{
+	
+	
+	
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="preventivo"
-	 * @uml.associationEnd  multiplicity="(1 -1)" aggregation="shared" inverse="configurazione:guanabana.Preventivo"
-	 * @uml.association  name="genera"
-	 */
-	private Collection preventivo;
 
 	/** 
-	 * Getter of the property <tt>preventivo</tt>
-	 * @return  Returns the preventivo.
-	 * @uml.property  name="preventivo"
+	 * @uml.property name="componenti"
+	 * @uml.associationEnd multiplicity="(0 -1)" dimension="1" ordering="true" inverse="configurazione:modello.Componente"
+	 * @uml.association name="composta"
 	 */
-	public Collection getPreventivo() {
-		return preventivo;
+	private Componente[] componentiConfigurabili;
+	private Componente[] componentiScelti;
+	private Componente[] componentiStandard;
+
+	public Configurazione(Componente[] componenti, String[] codiceConfigStandard) {
+		super();
+		this.componentiConfigurabili = componenti;
+		setConfigurazioneStandard(componenti, codiceConfigStandard);
+	}
+
+	/**
+	 * @param componenti
+	 * @param configStandard
+	 * Serve per stabilire quali dei componenti configurabili è standard.
+	 */
+	private void setConfigurazioneStandard(Componente[] componenti, String[] configStandard) {
+		int numComponenti = configStandard.length;
+		componentiStandard = new Componente[numComponenti];
+		for(int i=0; i<numComponenti; i++){
+			for(int j=0; j<componenti.length; j++){
+				if(componenti[j].getCodice().compareTo(configStandard[i])==0){
+					componenti[j].setStandard(true);
+					componenti[j].setScelto(true);
+					componentiStandard[i]=componenti[j];
+				}else{
+					componenti[j].setStandard(false);
+					componenti[j].setScelto(false);
+				}
+			}
+		}
 	}
 
 	/** 
-	 * Setter of the property <tt>preventivo</tt>
-	 * @param preventivo  The preventivo to set.
-	 * @uml.property  name="preventivo"
+	 * Getter of the property <tt>componenti</tt>
+	 * @return  Returns the componenti.
+	 * @uml.property  name="componenti"
 	 */
-	public void setPreventivo(Collection preventivo) {
-		this.preventivo = preventivo;
+	public Componente[] getComponenti() {
+		return componentiConfigurabili;
 	}
 
-	/**
-	 * @uml.property  name="nome"
+	/** 
+	 * Setter of the property <tt>componenti</tt>
+	 * @param componenti  The componenti to set.
+	 * @uml.property  name="componenti"
 	 */
-	private String nome;
-
-	/**
-	 * Getter of the property <tt>nome</tt>
-	 * @return  Returns the nome.
-	 * @uml.property  name="nome"
-	 */
-	public String getNome() {
-		return nome;
+	public void setComponenti(Componente[] componenti) {
+		this.componentiConfigurabili = componenti;
 	}
 
-	/**
-	 * Setter of the property <tt>nome</tt>
-	 * @param nome  The nome to set.
-	 * @uml.property  name="nome"
-	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+		
+		/**
+		 */
+		public void setConfigurazioneScelta(int indexComponenti, int indexConfigScelta){
+			componentiConfigurabili[indexComponenti].setScelto(true);
+			componentiScelti[indexConfigScelta]=componentiConfigurabili[indexComponenti];
+		}
 
-	/**
-	 * @uml.property  name="codice"
-	 */
-	private String codice;
+		public Componente[] getComponentiScelti() {
+			return componentiScelti;
+		}
 
-	/**
-	 * Getter of the property <tt>codice</tt>
-	 * @return  Returns the codice.
-	 * @uml.property  name="codice"
-	 */
-	public String getCodice() {
-		return codice;
-	}
+		public void setComponentiScelti(Componente[] componentiScelti) {
+			this.componentiScelti = componentiScelti;
+		}
 
-	/**
-	 * Setter of the property <tt>codice</tt>
-	 * @param codice  The codice to set.
-	 * @uml.property  name="codice"
-	 */
-	public void setCodice(String codice) {
-		this.codice = codice;
-	}
+		/**
+		 * @return the componentiStandard
+		 */
+		public Componente[] getComponentiStandard() {
+			return componentiStandard;
+		}
 
-	/**
-	 * @uml.property  name="descrizione"
-	 */
-	private String descrizione;
-
-	/**
-	 * Getter of the property <tt>descrizione</tt>
-	 * @return  Returns the descrizione.
-	 * @uml.property  name="descrizione"
-	 */
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-	/**
-	 * Setter of the property <tt>descrizione</tt>
-	 * @param descrizione  The descrizione to set.
-	 * @uml.property  name="descrizione"
-	 */
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
-
-	/**
-	 * @uml.property  name="prezzo"
-	 */
-	private float prezzo;
-
-	/**
-	 * Getter of the property <tt>prezzo</tt>
-	 * @return  Returns the prezzo.
-	 * @uml.property  name="prezzo"
-	 */
-	public float getPrezzo() {
-		return prezzo;
-	}
-
-	/**
-	 * Setter of the property <tt>prezzo</tt>
-	 * @param prezzo  The prezzo to set.
-	 * @uml.property  name="prezzo"
-	 */
-	public void setPrezzo(float prezzo) {
-		this.prezzo = prezzo;
-	}
-
-	/**
-	 * @uml.property  name="standard"
-	 */
-	private boolean standard = false;
-
-	/**
-	 * Getter of the property <tt>standard</tt>
-	 * @return  Returns the standard.
-	 * @uml.property  name="standard"
-	 */
-	public boolean isStandard() {
-		return standard;
-	}
-
-	/**
-	 * Setter of the property <tt>standard</tt>
-	 * @param standard  The standard to set.
-	 * @uml.property  name="standard"
-	 */
-	public void setStandard(boolean standard) {
-		this.standard = standard;
-	}
-
+		/**
+		 * @param componentiStandard the componentiStandard to set
+		 */
+		public void setComponentiStandard(Componente[] componentiStandard) {
+			this.componentiStandard = componentiStandard;
+		}
+		
+		
 
 }

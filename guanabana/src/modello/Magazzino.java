@@ -1,8 +1,5 @@
 package modello;
 
-import java.util.Collection;
-
-
 public class Magazzino {
 
 	/**
@@ -28,32 +25,5 @@ public class Magazzino {
 	public void setRichiestaSpedizione(RichiestaSpedizione richiestaSpedizione) {
 		this.richiestaSpedizione = richiestaSpedizione;
 	}
-
-	/**
-	 * @uml.property  name="componentiMagazino"
-	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="magazzino:guanabana.ComponenteMagazino"
-	 * @uml.association  name="assembla"
-	 */
-	private Collection componentiMagazino;
-
-	/**
-	 * Getter of the property <tt>componentiMagazino</tt>
-	 * @return  Returns the componentiMagazino.
-	 * @uml.property  name="componentiMagazino"
-	 */
-	public Collection getComponentiMagazino() {
-		return componentiMagazino;
-	}
-
-	/**
-	 * Setter of the property <tt>componentiMagazino</tt>
-	 * @param componentiMagazino  The componentiMagazino to set.
-	 * @uml.property  name="componentiMagazino"
-	 */
-	public void setComponentiMagazino(Collection componentiMagazino) {
-		this.componentiMagazino = componentiMagazino;
-	}
-
-
 	
 }

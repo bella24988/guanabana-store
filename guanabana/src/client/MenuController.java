@@ -74,29 +74,14 @@ public class MenuController  implements ActionListener{
 
 
 	public void gesticeModelli(String tipoComputer) throws ClassNotFoundException{
-			
-		int numComputers = 0;
-		Client servizioClientConta, servizioClientModelli;
-		servizioClientConta = new Client();
-		try {
-			numComputers = servizioClientConta.conta(tipoComputer);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
+		Client servizioClientModelli;
 		Computer[] modelli = null;	
-		System.out.println(numComputers);
-		if (tipoComputer == "LAPTOP"){
-			modelli=new Laptop [numComputers];
-		}else if (tipoComputer == "DESKTOP"){
-			modelli=new Desktop [numComputers];
-		}else if (tipoComputer == "SERVER"){
-			modelli=new Server [numComputers];
-		}
+		int numComputers =0;
 		try {
 			servizioClientModelli = new Client();
 			modelli = servizioClientModelli.cercaModelli(tipoComputer,numComputers);
-			
+			numComputers = modelli.length;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

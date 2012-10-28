@@ -12,19 +12,28 @@ public abstract class Computer implements Serializable{
 	 */
 	private static final long serialVersionUID = 8391044426886288876L;
 	/**
-	 * @uml.property  name="componenti"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 * @uml.property  name="tipo"
 	 */
-	Componente[] componenti;
+	private String tipo;
+	/** 
+	 * @uml.property name="configurazioneStandard"
+	 * @uml.associationEnd multiplicity="(1 1)" inverse="computer:modello.Configurazione"
+	 * @uml.association name="configurazioneStandard"
+	 */
+	private Configurazione configurazione;
 	/**
-	 * @uml.property  name="configurazioneStandard"
+	 * @uml.property  name="nome"
 	 */
-	protected String[] configurazioneStandard;
+	protected String nome;
 	/**
-	 * @uml.property  name="configurazioneScelta"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 * @uml.property  name="prezzo"
 	 */
-	private Configurazione[] configurazioneScelta;
+	protected float prezzo;
+	/** 
+	 * @uml.property name="configurazioneScelta"
+	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * @uml.association name="configurazione scelta dal cliente"
+	 */
 	
 	public Computer(String nome, float prezzo) {
 		super();
@@ -40,36 +49,6 @@ public abstract class Computer implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-	/**
-	 * @uml.property  name="componente"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
-	 */
-	private Componente[] componente;
-
-	/**
-	 * Getter of the property <tt>componente</tt>
-	 * @return  Returns the componente.
-	 * @uml.property  name="componente"
-	 */
-	public Componente[] getComponente() {
-		return componente;
-	}
-
-	/**
-	 * Setter of the property <tt>componente</tt>
-	 * @param componenti2  The componente to set.
-	 * @uml.property  name="componente"
-	 */
-	public void setComponente(Componente[] componenti2) {
-		this.componente = componenti2;
-	}
-
-	/**
-	 * @uml.property  name="nome"
-	 */
-	protected String nome;
 
 	/**
 	 * Getter of the property <tt>nome</tt>
@@ -90,11 +69,6 @@ public abstract class Computer implements Serializable{
 	}
 
 	/**
-	 * @uml.property  name="tipo"
-	 */
-	private String tipo;
-
-	/**
 	 * Getter of the property <tt>tipo</tt>
 	 * @return  Returns the tipo.
 	 * @uml.property  name="tipo"
@@ -111,11 +85,6 @@ public abstract class Computer implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
-	/**
-	 * @uml.property  name="prezzo"
-	 */
-	protected float prezzo;
 
 	/**
 	 * Getter of the property <tt>prezzo</tt>
@@ -141,37 +110,27 @@ public abstract class Computer implements Serializable{
 		public void mostrareComputer(){
 		}
 
-		/**
-		 * @return  the configurazioneStandard
+
+		/** 
+		 * Getter of the property <tt>configurazioneStandard</tt>
+		 * @return  Returns the configurazione.
 		 * @uml.property  name="configurazioneStandard"
 		 */
-		public String[] getConfigurazioneStandard() {
-			return configurazioneStandard;
+		public Configurazione getConfigurazione() {
+			return configurazione;
 		}
 
-		/**
-		 * @param configurazioneStandard  the configurazioneStandard to set
+
+
+		/** 
+		 * Setter of the property <tt>configurazioneStandard</tt>
+		 * @param configurazioneStandard  The configurazione to set.
 		 * @uml.property  name="configurazioneStandard"
 		 */
-		public void setConfigurazioneStandard(String[] configurazioneStandard) {
-			this.configurazioneStandard = configurazioneStandard;
-		}
-
-		/**
-		 * @return  the configurazioneScelta
-		 * @uml.property  name="configurazioneScelta"
-		 */
-		public Configurazione[] getConfigurazioneScelta() {
-			return configurazioneScelta;
-		}
-
-		/**
-		 * @param configurazioneScelta  the configurazioneScelta to set
-		 * @uml.property  name="configurazioneScelta"
-		 */
-		public void setConfigurazioneScelta(Configurazione[] configurazioneScelta) {
-			this.configurazioneScelta = configurazioneScelta;
-		}
+		public void setConfigurazioneStandard(
+				Configurazione configurazioneStandard) {
+					configurazione = configurazioneStandard;
+				}
 		
 		
 

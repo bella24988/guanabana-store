@@ -12,10 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import modello.Componente;
+import modello.Computer;
 import modello.Configurazione;
 
 /**
- * @author  Veronica
+ * @author Veronica
  */
 public class ConfigPanel extends JPanel {
 
@@ -24,35 +25,30 @@ public class ConfigPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * @uml.property  name="componenti"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
-	 */
-	private Componente[] componenti;
-	/**
-	 * @uml.property  name="preventivoController"
-	 * @uml.associationEnd  
+	 * @uml.property name="preventivoController"
+	 * @uml.associationEnd
 	 */
 	private PreventivoController preventivoController;
 	/**
-	 * @uml.property  name="configurazione"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 * @uml.property name="configurazione"
+	 * @uml.associationEnd multiplicity="(0 -1)"
 	 */
-	private Configurazione[] configurazione;
-	
+	private Configurazione configurazione;
+
 	// numero massimo di componenti configurabili rispettivamente per laptop,
 	// desktop e server
-	private static int[] maxElementiConfig = { 6, 10, 10 };
+	private static final int[] maxElementiConfig = { 6, 10, 10 };
 	// doppi array contenente i tipi di componenti configurabili rispettivamente
 	// per laptop, desktop e server
-	
-	private static String[] lblComp = { "Laptop", "Desktop", "Server" };
-	private static String[][] tipoComponenti = {
+
+	private static final String[] lblComp = { "Laptop", "Desktop", "Server" };
+	private static final String[][] tipoComponenti = {
 			{ "RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
 			{ "RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY",
 					"MON" },
 			{ "RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI",
 					"WAR" } };
-	private static String[][] labels = {
+	private static final String[][] labels = {
 			{ "Memoria RAM:", "Processore:", "Hard Disk (obbligatorio):",
 					"Scheda Grafica:", "Unitˆ ottica:", "Garanzia:" },
 			{ "Memoria RAM:", "Processore:", "Mouse:",
@@ -70,19 +66,20 @@ public class ConfigPanel extends JPanel {
 	 * @param preventivoController
 	 * @param computerType
 	 */
-	@SuppressWarnings("unused")
-	public ConfigPanel(Componente[] componenti, String[] configStandard,
+
+	public ConfigPanel(Configurazione configurazione,
 			PreventivoController preventivoController, int computerType) {
 		super();
-		this.setComponenti(componenti);
+		this.setConfigurazione(configurazione);
 		this.setPreventivoController(preventivoController);
 		int ultimo = 2;
 
-		for (int k = 0; k < configStandard.length; k++) {
-			System.out.print("Conf " + k + " - " + configStandard[k]);
+		for (int k = 0; k < configurazione.getComponentiStandard().length; k++) {
+			System.out.print("Conf " + k + " - "
+					+ configurazione.getComponentiStandard()[k].getCodice());
 		}
 		// Definisco un array di configurazione
-		configurazione = new Configurazione[maxElementiConfig[computerType]];
+		// configurazione = new Configurazione[maxElementiConfig[computerType]];
 
 		// Definizione generale della finestra
 		setBackground(Color.WHITE); // Colore di sfondo
@@ -123,16 +120,17 @@ public class ConfigPanel extends JPanel {
 			gbc_lblComponents.gridx = 0;
 			gbc_lblComponents.gridy = ultimo;
 			add(lblComponents, gbc_lblComponents);
-			
+
 			// Radio Button
 			ButtonGroup groupComponents = new ButtonGroup();
-			JRadioButton[] rdbtnComponents = new JRadioButton[componenti.length];
-			for (int i = 0; i < componenti.length; i++) {
-				if (componenti[i].getTipo().compareTo(
+			JRadioButton[] rdbtnComponents = new JRadioButton[configurazione
+					.getComponenti().length];
+			for (int i = 0; i < configurazione.getComponenti().length; i++) {
+				if (configurazione.getComponenti()[i].getTipo().compareTo(
 						tipoComponenti[computerType][indiceComponenti]) == 0) {
 					// Setta la configurazione di default
 					rdbtnComponents[i] = configButtons(rdbtnComponents[i],
-							componenti[i], configStandard[indiceComponenti]);
+							configurazione.getComponenti()[i]);
 
 					rdbtnComponents[i]
 							.setActionCommand(tipoComponenti[computerType][indiceComponenti]
@@ -152,15 +150,6 @@ public class ConfigPanel extends JPanel {
 					// Controller
 					rdbtnComponents[i].addActionListener(preventivoController);
 
-					// Mettilo più bello io non c'è l'ho fatta
-					if (configStandard[indiceComponenti]
-							.compareTo(componenti[i].getCodice()) == 0) {
-						preventivoController.setElementiConfigurazione(
-								indiceComponenti, componenti[i].getCodice(),
-								componenti[i].getNome(),
-								componenti[i].getPrezzo());
-					}
-
 				}
 			}
 
@@ -169,20 +158,12 @@ public class ConfigPanel extends JPanel {
 
 	}
 
-	private JRadioButton configButtons(JRadioButton rdbtn,
-			Componente componente, String configStandard) {
-		System.out.println("configurazionestandard " + configStandard
-				+ "getcodice " + componente.getCodice());
-		if (configStandard.compareTo(componente.getCodice()) == 0) {
+	private JRadioButton configButtons(JRadioButton rdbtn, Componente componente) {
+		rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
+				+ componente.getPrezzo());
+		if (componente.isStandard()) {
 			componente.setPrezzo(0);
-			rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
-					+ componente.getPrezzo());
 			rdbtn.setSelected(true);
-			System.out.println("prova in configButtons" + componente.getNome()
-					+ "\n Prezzo: " + componente.getPrezzo());
-		} else {
-			rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
-					+ componente.getPrezzo());
 		}
 		rdbtn.setBackground(Color.WHITE);
 		rdbtn.setFont(new Font("Toledo", Font.PLAIN, 11));
@@ -192,23 +173,7 @@ public class ConfigPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property  name="componenti"
-	 */
-	public Componente[] getComponenti() {
-		return componenti;
-	}
-
-	/**
-	 * @param componenti
-	 * @uml.property  name="componenti"
-	 */
-	public void setComponenti(Componente[] componenti) {
-		this.componenti = componenti;
-	}
-
-	/**
-	 * @return
-	 * @uml.property  name="preventivoController"
+	 * @uml.property name="preventivoController"
 	 */
 	public PreventivoController getPreventivoController() {
 		return preventivoController;
@@ -216,7 +181,7 @@ public class ConfigPanel extends JPanel {
 
 	/**
 	 * @param preventivoController
-	 * @uml.property  name="preventivoController"
+	 * @uml.property name="preventivoController"
 	 */
 	public void setPreventivoController(
 			PreventivoController preventivoController) {
@@ -225,17 +190,17 @@ public class ConfigPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property  name="configurazione"
+	 * @uml.property name="configurazione"
 	 */
-	public Configurazione[] getConfigurazione() {
+	public Configurazione getConfigurazione() {
 		return configurazione;
 	}
 
 	/**
 	 * @param configurazione
-	 * @uml.property  name="configurazione"
+	 * @uml.property name="configurazione"
 	 */
-	public void setConfigurazione(Configurazione[] configurazione) {
+	public void setConfigurazione(Configurazione configurazione) {
 		this.configurazione = configurazione;
 	}
 

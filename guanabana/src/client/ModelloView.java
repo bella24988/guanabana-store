@@ -11,7 +11,7 @@ import javax.swing.ScrollPaneConstants;
 import modello.Computer;
 
 /**
- * @author  Veronica
+ * @author Veronica
  */
 public class ModelloView extends JPanel {
 
@@ -21,47 +21,47 @@ public class ModelloView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JPanel modelsPanel;
 	/**
-	 * @uml.property  name="configPanel"
-	 * @uml.associationEnd  
+	 * @uml.property name="configPanel"
+	 * @uml.associationEnd
 	 */
 	private ConfigPanel configPanel;
 	/**
-	 * @uml.property  name="contenutoPanel"
-	 * @uml.associationEnd  
+	 * @uml.property name="contenutoPanel"
+	 * @uml.associationEnd
 	 */
 	private ContenutoPanel contenutoPanel;
 	/**
-	 * @uml.property  name="numButtons"
+	 * @uml.property name="numButtons"
 	 */
 	private int numButtons;
 	/**
-	 * @uml.property  name="nome"
+	 * @uml.property name="nome"
 	 */
 	private String[] nome;
 	/**
-	 * @uml.property  name="prezzo"
+	 * @uml.property name="prezzo"
 	 */
 	private float[] prezzo;
 	private JButton[] btnModels;
-	
+
 	/**
-	 * @uml.property  name="modelloController"
-	 * @uml.associationEnd  
+	 * @uml.property name="modelloController"
+	 * @uml.associationEnd
 	 */
 	private ModelloController modelloController;
 	/**
-	 * @uml.property  name="preventivoPanel"
-	 * @uml.associationEnd  
+	 * @uml.property name="preventivoPanel"
+	 * @uml.associationEnd
 	 */
 	private PreventivoPanel preventivoPanel;
 	/**
-	 * @uml.property  name="computer"
-	 * @uml.associationEnd  
+	 * @uml.property name="computer"
+	 * @uml.associationEnd
 	 */
 	private Computer computer;
 	/**
-	 * @uml.property  name="preventivoController"
-	 * @uml.associationEnd  
+	 * @uml.property name="preventivoController"
+	 * @uml.associationEnd
 	 */
 	private PreventivoController preventivoController;
 
@@ -74,8 +74,7 @@ public class ModelloView extends JPanel {
 		modelsPanel.setVisible(false);
 		setBackground(Color.white);
 	}
-	
-	
+
 	public void mostraButtons(int num, Computer[] computer, String tipo) {
 
 		int i = 0;
@@ -85,11 +84,11 @@ public class ModelloView extends JPanel {
 			btnModels[i] = new JButton();
 			btnModels[i].setText(computer[i].getNome() + ", Prezzo: "
 					+ String.valueOf(computer[i].getPrezzo()));
-			
+
 			modelsPanel.add(btnModels[i]);
 			modelsPanel.setVisible(true);
 			add(modelsPanel);
-			
+
 			this.setComputer(computer[i]);
 			modelloController = new ModelloController(computer[i], this);
 			btnModels[i].addActionListener(modelloController);
@@ -102,56 +101,59 @@ public class ModelloView extends JPanel {
 	}
 
 	/**
-	 * @return  the numButtons
-	 * @uml.property  name="numButtons"
+	 * @return the numButtons
+	 * @uml.property name="numButtons"
 	 */
 	public int getNumButtons() {
 		return numButtons;
 	}
 
 	/**
-	 * @param numButtons  the numButtons to set
-	 * @uml.property  name="numButtons"
+	 * @param numButtons
+	 *            the numButtons to set
+	 * @uml.property name="numButtons"
 	 */
 	public void setNumButtons(int numButtons) {
 		this.numButtons = numButtons;
 	}
 
 	/**
-	 * @return  the nome
-	 * @uml.property  name="nome"
+	 * @return the nome
+	 * @uml.property name="nome"
 	 */
 	public String[] getNome() {
 		return nome;
 	}
 
 	/**
-	 * @param nome  the nome to set
-	 * @uml.property  name="nome"
+	 * @param nome
+	 *            the nome to set
+	 * @uml.property name="nome"
 	 */
 	public void setNome(String[] nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @return  the prezzo
-	 * @uml.property  name="prezzo"
+	 * @return the prezzo
+	 * @uml.property name="prezzo"
 	 */
 	public float[] getPrezzo() {
 		return prezzo;
 	}
 
 	/**
-	 * @param prezzo  the prezzo to set
-	 * @uml.property  name="prezzo"
+	 * @param prezzo
+	 *            the prezzo to set
+	 * @uml.property name="prezzo"
 	 */
 	public void setPrezzo(float[] prezzo) {
 		this.prezzo = prezzo;
 	}
 
 	/**
-	 * @uml.property  name="modelloController"
-	 * @uml.associationEnd  
+	 * @uml.property name="modelloController"
+	 * @uml.associationEnd
 	 */
 	private ModelloController controller;
 
@@ -188,8 +190,8 @@ public class ModelloView extends JPanel {
 		} else if (comp.getTipo().compareTo("SERVER") == 0) {
 			type = 2;
 		}
-		configPanel = new ConfigPanel(comp.getComponente(),
-				comp.getConfigurazioneStandard(), preventivoController, type);
+		configPanel = new ConfigPanel(comp.getConfigurazione(),
+				preventivoController, type);
 		configPanel.setVisible(true);
 		setSecondoComputer(comp);
 	}
@@ -210,16 +212,17 @@ public class ModelloView extends JPanel {
 	}
 
 	/**
-	 * @return  the contenutoPanel
-	 * @uml.property  name="contenutoPanel"
+	 * @return the contenutoPanel
+	 * @uml.property name="contenutoPanel"
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel  the contenutoPanel to set
-	 * @uml.property  name="contenutoPanel"
+	 * @param contenutoPanel
+	 *            the contenutoPanel to set
+	 * @uml.property name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
@@ -227,7 +230,7 @@ public class ModelloView extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property  name="computer"
+	 * @uml.property name="computer"
 	 */
 	public Computer getComputer() {
 		return computer;
@@ -235,7 +238,7 @@ public class ModelloView extends JPanel {
 
 	/**
 	 * @param computer
-	 * @uml.property  name="computer"
+	 * @uml.property name="computer"
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;

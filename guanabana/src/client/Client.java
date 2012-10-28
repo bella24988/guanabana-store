@@ -99,7 +99,7 @@ public class Client implements InterfacciaCliente {
 	@Override
 	public Computer[] cercaModelli(String tipo, int numComputer) throws IOException, ClassNotFoundException {
 		writer = new ObjectOutputStream(scritura);
-		Computer[] modelli = new Computer[numComputer];
+		Computer[] modelli;
 		
 		writer.writeObject("cercaModelli");//scrivo 1
 		writer.flush();
@@ -111,11 +111,6 @@ public class Client implements InterfacciaCliente {
 		if (risposta.compareTo("pronto")==0){
 			
 			System.out.println("Sono il client, mi ha risposto il server: "+risposta);
-			
-			writer.writeObject(numComputer); //scrivo 2
-			writer.flush();
-			
-			risposta = (String) buffer.readObject(); //lego 2
 			
 			writer.writeObject(tipo); //scrivo 3
 			writer.flush();

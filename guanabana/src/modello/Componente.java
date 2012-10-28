@@ -1,9 +1,20 @@
 package modello;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 
 public class Componente implements Serializable{
+	
+	
+
+	public Componente(String codice, String nome, float prezzo, String tipo) {
+		super();
+		this.codice = codice;
+		this.tipo = tipo;
+		this.nome = nome;
+		this.prezzo = prezzo;
+	}
 
 	/**
 	 * 
@@ -128,6 +139,77 @@ public class Componente implements Serializable{
 	 */
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
+	}
+
+	/**
+	 * @uml.property  name="componenti"
+	 * @uml.associationEnd  multiplicity="(1 -1)"
+	 * @uml.association  name="contiene"
+	 */
+	private Collection componenti;
+
+	/**
+	 * Getter of the property <tt>componenti</tt>
+	 * @return  Returns the componenti.
+	 * @uml.property  name="componenti"
+	 */
+	public Collection getComponenti() {
+		return componenti;
+	}
+
+	/**
+	 * Setter of the property <tt>componenti</tt>
+	 * @param componenti  The componenti to set.
+	 * @uml.property  name="componenti"
+	 */
+	public void setComponenti(Collection componenti) {
+		this.componenti = componenti;
+	}
+
+	/**
+	 * @uml.property  name="standard"
+	 */
+	private boolean standard;
+
+	/**
+	 * Getter of the property <tt>standard</tt>
+	 * @return  Returns the standard.
+	 * @uml.property  name="standard"
+	 */
+	public boolean isStandard() {
+		return standard;
+	}
+
+	/**
+	 * Setter of the property <tt>standard</tt>
+	 * @param standard  The standard to set.
+	 * @uml.property  name="standard"
+	 */
+	public void setStandard(boolean standard) {
+		this.standard = standard;
+	}
+
+	/**
+	 * @uml.property  name="scelto"
+	 */
+	private boolean scelto;
+
+	/**
+	 * Getter of the property <tt>scelto</tt>
+	 * @return  Returns the scelto.
+	 * @uml.property  name="scelto"
+	 */
+	public boolean isScelto() {
+		return scelto;
+	}
+
+	/**
+	 * Setter of the property <tt>scelto</tt>
+	 * @param scelto  The scelto to set.
+	 * @uml.property  name="scelto"
+	 */
+	public void setScelto(boolean scelto) {
+		this.scelto = scelto;
 	}
 
 

@@ -12,7 +12,7 @@ import java.awt.Color;
 import java.io.IOException;
 
 /**
- * @author  Veronica
+ * @author Veronica
  */
 public class ContenutoPanel extends JPanel {
 
@@ -22,43 +22,44 @@ public class ContenutoPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * Create the panel.
-	 * @uml.property  name="registratiView"
-	 * @uml.associationEnd  
+	 * 
+	 * @uml.property name="registratiView"
+	 * @uml.associationEnd
 	 */
 	private RegistratiView registratiView;
 
 	/**
-	 * @uml.property  name="modelloView"
-	 * @uml.associationEnd  
+	 * @uml.property name="modelloView"
+	 * @uml.associationEnd
 	 */
 	private ModelloView modelloView;
 	/**
-	 * @uml.property  name="confermaOrdinePanel"
-	 * @uml.associationEnd  
+	 * @uml.property name="confermaOrdinePanel"
+	 * @uml.associationEnd
 	 */
 	private ConfermaOrdinePanel confermaOrdinePanel;
 	/**
-	 * @uml.property  name="clienteLogato"
-	 * @uml.associationEnd  
+	 * @uml.property name="clienteLogato"
+	 * @uml.associationEnd
 	 */
 	private Cliente clienteLogato;
 	/**
-	 * @uml.property  name="attessaCompra"
+	 * @uml.property name="attessaCompra"
 	 */
 	private boolean attessaCompra;
 	/**
-	 * @uml.property  name="computer"
-	 * @uml.associationEnd  
+	 * @uml.property name="computer"
+	 * @uml.associationEnd
 	 */
 	private Computer computer;
 	/**
-	 * @uml.property  name="ordine"
-	 * @uml.associationEnd  
+	 * @uml.property name="ordine"
+	 * @uml.associationEnd
 	 */
 	private Ordine ordine;
 	/**
-	 * @uml.property  name="pagamento"
-	 * @uml.associationEnd  
+	 * @uml.property name="pagamento"
+	 * @uml.associationEnd
 	 */
 	private Pagamento pagamento;
 
@@ -73,7 +74,7 @@ public class ContenutoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property  name="registratiView"
+	 * @uml.property name="registratiView"
 	 */
 	public RegistratiView getRegistratiView() {
 		return registratiView;
@@ -81,7 +82,7 @@ public class ContenutoPanel extends JPanel {
 
 	/**
 	 * @param registratiView
-	 * @uml.property  name="registratiView"
+	 * @uml.property name="registratiView"
 	 */
 	public void setRegistratiView(RegistratiView registratiView) {
 		this.registratiView = registratiView;
@@ -127,7 +128,7 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	public void mostraConfermaOrdine(Computer comp,
-			Configurazione[] configurazione, float prezzoTotale,
+			Configurazione configurazione, float prezzoTotale,
 			JPanel panelDaRimuovere) {
 		panelDaRimuovere.setVisible(false);
 		this.remove(panelDaRimuovere);
@@ -150,8 +151,8 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @uml.property  name="registratiController"
-	 * @uml.associationEnd  
+	 * @uml.property name="registratiController"
+	 * @uml.associationEnd
 	 */
 	private RegistratiController registratiController;
 
@@ -178,16 +179,17 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @return  the modelloView
-	 * @uml.property  name="modelloView"
+	 * @return the modelloView
+	 * @uml.property name="modelloView"
 	 */
 	public ModelloView getModelloView() {
 		return modelloView;
 	}
 
 	/**
-	 * @param modelloView  the modelloView to set
-	 * @uml.property  name="modelloView"
+	 * @param modelloView
+	 *            the modelloView to set
+	 * @uml.property name="modelloView"
 	 */
 	public void setModelloView(ModelloView modelloView) {
 		this.modelloView = modelloView;
@@ -232,80 +234,85 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * @return  the clienteLogato
-	 * @uml.property  name="clienteLogato"
+	 * @return the clienteLogato
+	 * @uml.property name="clienteLogato"
 	 */
 	public Cliente getClienteLogato() {
 		return clienteLogato;
 	}
 
 	/**
-	 * @param clienteLogato  the clienteLogato to set
-	 * @uml.property  name="clienteLogato"
+	 * @param clienteLogato
+	 *            the clienteLogato to set
+	 * @uml.property name="clienteLogato"
 	 */
 	public void setClienteLogato(Cliente clienteLogato) {
 		this.clienteLogato = clienteLogato;
 	}
 
 	/**
-	 * @return  the attessaCompra
-	 * @uml.property  name="attessaCompra"
+	 * @return the attessaCompra
+	 * @uml.property name="attessaCompra"
 	 */
 	public boolean getAttessaCompra() {
 		return attessaCompra;
 	}
 
 	/**
-	 * @param b  the attessaCompra to set
-	 * @uml.property  name="attessaCompra"
+	 * @param b
+	 *            the attessaCompra to set
+	 * @uml.property name="attessaCompra"
 	 */
 	public void setAttessaCompra(boolean b) {
 		this.attessaCompra = b;
 	}
 
 	/**
-	 * @return  the computer
-	 * @uml.property  name="computer"
+	 * @return the computer
+	 * @uml.property name="computer"
 	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
 	/**
-	 * @param computer  the computer to set
-	 * @uml.property  name="computer"
+	 * @param computer
+	 *            the computer to set
+	 * @uml.property name="computer"
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}
 
 	/**
-	 * @return  the ordine
-	 * @uml.property  name="ordine"
+	 * @return the ordine
+	 * @uml.property name="ordine"
 	 */
 	public Ordine getOrdine() {
 		return ordine;
 	}
 
 	/**
-	 * @param ordine  the ordine to set
-	 * @uml.property  name="ordine"
+	 * @param ordine
+	 *            the ordine to set
+	 * @uml.property name="ordine"
 	 */
 	public void setOrdine(Ordine ordine) {
 		this.ordine = ordine;
 	}
 
 	/**
-	 * @return  the pagamento
-	 * @uml.property  name="pagamento"
+	 * @return the pagamento
+	 * @uml.property name="pagamento"
 	 */
 	public Pagamento getPagamento() {
 		return pagamento;
 	}
 
 	/**
-	 * @param pagamento  the pagamento to set
-	 * @uml.property  name="pagamento"
+	 * @param pagamento
+	 *            the pagamento to set
+	 * @uml.property name="pagamento"
 	 */
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;

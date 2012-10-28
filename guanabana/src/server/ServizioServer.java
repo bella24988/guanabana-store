@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import modello.Cliente;
 import modello.Componente;
 import modello.Computer;
+import modello.Configurazione;
 import modello.Desktop;
 import modello.Dipendente;
 import modello.Laptop;
@@ -121,13 +122,8 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				scrive.writeObject("pronto");//Scrive 1
 				scrive.flush();
 				
-				int numComputer = (int) ricevo.readObject();//Legge 2
-				
-				scrive.writeObject("ok");//Scrive 2
-				scrive.flush();
-				
-				String tipo = (String) ricevo.readObject();//lego 3
-				
+				String tipo = (String) ricevo.readObject();//lego 2
+				int numComputer = conta(tipo);
 				scrive.writeObject(cercaModelli(tipo, numComputer));//scrivo 3
 				scrive.flush();
 				
@@ -138,7 +134,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				scrive.flush();
 				
 				tipo = (String) ricevo.readObject();
-				System.out.println("Sono il server, ricevo la variabile tipo: "+tipo);
+				
 				scrive.writeObject(conta(tipo));
 				scrive.flush();
 				
@@ -266,30 +262,37 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	public Computer[] cercaModelli(String tipo, int numComputer) {
 		//Dichiarazione variabile locali
 		String[][] modelli = new String[numComputer][2];
+		
 		Computer[] comp = new Computer[numComputer];
+		System.out.println(numComputer);
 		try {
 			modelli = db.cercaModelli(tipo, numComputer);
 			String[] nome = new String[numComputer];
 			float[] prezzo = new float[numComputer];
 			
+			Configurazione[] componentiConfigurabili = new Configurazione[numComputer];
+			String type = tipo.substring(0, 3); 
+			Componente[] componenti=cercaComponentiComputer(type);
+			String[] codiceConfigStandard;// = new String[14];
 			for(int i = 0; i < numComputer; i++){
+				System.out.println("ciclo numero "+i);
+				//Modelli: nome e prezzo
 				nome[i]=modelli[i][0];
 				prezzo[i]=Float.parseFloat(modelli[i][1]);
-				if (tipo.compareTo("LAPTOP")==0){
+				
+				if(type.compareTo("LAP")==0){
 					comp[i]= new Laptop(nome[i],prezzo[i]);
-					cercaComponentiComputer("lap",comp[i]);
-					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "lap"));
-				}else if (tipo.compareTo("DESKTOP")==0){
-					comp[i]= new Desktop(nome[i],prezzo[i]);
-					cercaComponentiComputer("des",comp[i]);
-					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "des"));
-				}else if (tipo.compareTo("SERVER")==0){
-					comp[i]= new Server(nome[i],prezzo[i]);
-					cercaComponentiComputer("ser",comp[i]);
-					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "ser"));
+				}else if(type.compareTo("SER")==0){
+					comp[i] = new Server(nome[i],prezzo[i]);
+				}else if (type.compareTo("DES")==0) {
+					comp[i] = new Desktop(nome[i],prezzo[i]);
 				}
 				
+				codiceConfigStandard = cercaConfigurazioneDefault(nome[i], type);
 				
+				componentiConfigurabili[i] = new Configurazione(componenti, codiceConfigStandard);
+				
+				comp[i].setConfigurazioneStandard(componentiConfigurabili[i]);
 			}
 			
 			
@@ -302,7 +305,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		return comp;
 	}
 	
-	private void cercaComponentiComputer(String tipo,  Computer comp) throws SQLException{
+	private Componente[] cercaComponentiComputer(String tipo) throws SQLException{
 		int rows = 0;
 		int maxCol = 3;
 		rows = db.countComponentiModello(tipo);
@@ -310,13 +313,11 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		components = db.getComponentiModello(tipo);
 		componenti = new Componente[rows];
 		for(int i = 0; i < rows; i++){
-			componenti[i] = new Componente();
-			componenti[i].setCodice(components[i][0]);
-			componenti[i].setNome(components[i][1]);
-			componenti[i].setPrezzo(Float.parseFloat(components[i][2]));
-			componenti[i].setTipo(components[i][0].substring(0, 3));
+			componenti[i] = new Componente(components[i][0], components[i][1],Float.parseFloat(components[i][2]),components[i][0].substring(0, 3));
+			System.out.println(components[i][0]+" "+components[i][1] +" "+components[i][2]);
 		}
-		comp.setComponente(componenti);
+		
+		return componenti;
 	}
 	
 	/**
@@ -326,9 +327,11 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	 * @throws SQLException
 	 */
 	private String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
-		
-		
-		return db.cercaConfigurazioneDefault(nome, tipo);
+		System.out.println("codigo: "+tipo+" "+nome);
+		String[] configDefault = db.cercaConfigurazioneDefault(nome, tipo);
+		for(int i=0; i<configDefault.length;i++)
+			System.out.println("codigo: "+configDefault[i]);
+		return configDefault;
 		
 	}
 
@@ -406,12 +409,11 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	public int conta(String cosa) {
 		
 			try {
-				System.out.print("Entro en conta: "+cosa);
 				int numComputers = db.conta(cosa);
 				return numComputers;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.out.print("C'e errore");
+				System.out.print("C'e errore" + e);
 				return 0;
 			}
 		

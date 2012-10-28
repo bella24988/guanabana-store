@@ -213,13 +213,14 @@ public class DataBase {
 		ResultSet result = null;
 		int max = 0;
 		Statement stStandardPC = con.createStatement();
-		if (tipo=="ser"){//{"RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI", "WAR"}
+		if (tipo.compareTo("SER")==0){//{"RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI", "WAR"}
 			result = stStandardPC.executeQuery("select ram, cpu, mlc, hd1, hd2, hd3, hd4,dvd, pci,war from standard_computer where nome ='"+nome+"'");
 			max=10;
-		}else if(tipo=="lap"){//{"RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
+		}else if(tipo.compareTo("LAP")==0){//{"RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
 			result = stStandardPC.executeQuery("select ram, cpu, hd1, gpu, dvd, war from standard_computer where nome ='"+nome+"'");
+			System.out.println(nome + " db. cerca config " +tipo);
 			max=6;
-		}else if(tipo=="des"){//{"RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY", "MON"},
+		}else if(tipo.compareTo("DES")==0){//{"RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY", "MON"},
 			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, kei, mon from standard_computer where nome ='"+nome+"'");
 			max=10;
 		}
@@ -228,6 +229,7 @@ public class DataBase {
 		while(result.next()){
 			for(int i=0;i<max;i++){
 				config[i]=result.getString(i+1);
+				System.out.println(config[i]+" default");
 				}
 		}
 		return config;
@@ -254,8 +256,8 @@ public class DataBase {
 			stNuovaOrdine.setString(6, comp.getNome());
 			
 			int i;
-			for(i=0; i<comp.getConfigurazioneScelta().length;i++){
-				stNuovaOrdine.setString(i+7, comp.getConfigurazioneScelta()[i].getCodice());
+			for(i=0; i<comp.getConfigurazione().getComponentiScelti().length;i++){
+				stNuovaOrdine.setString(i+7, comp.getConfigurazione().getComponentiScelti()[i].getCodice());
 			}
 			
 			stNuovaOrdine.executeUpdate();
