@@ -270,12 +270,13 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			String[] nome = new String[numComputer];
 			float[] prezzo = new float[numComputer];
 			
-			Configurazione[] componentiConfigurabili = new Configurazione[numComputer];
+			
 			String type = tipo.substring(0, 3); 
-			Componente[] componenti=cercaComponentiComputer(type);
+			
 			String[] codiceConfigStandard;// = new String[14];
 			for(int i = 0; i < numComputer; i++){
-				System.out.println("ciclo numero "+i);
+				Configurazione[] componentiConfigurabili = new Configurazione[numComputer];
+				Componente[] componenti=cercaComponentiComputer(type);
 				//Modelli: nome e prezzo
 				nome[i]=modelli[i][0];
 				prezzo[i]=Float.parseFloat(modelli[i][1]);
@@ -290,7 +291,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				
 				codiceConfigStandard = cercaConfigurazioneDefault(nome[i], type);
 				
-				componentiConfigurabili[i] = new Configurazione(componenti, codiceConfigStandard);
+				componentiConfigurabili[i] = new Configurazione(componenti, codiceConfigStandard, codiceConfigStandard.length);
 				
 				comp[i].setConfigurazioneStandard(componentiConfigurabili[i]);
 			}
@@ -314,7 +315,6 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		componenti = new Componente[rows];
 		for(int i = 0; i < rows; i++){
 			componenti[i] = new Componente(components[i][0], components[i][1],Float.parseFloat(components[i][2]),components[i][0].substring(0, 3));
-			System.out.println(components[i][0]+" "+components[i][1] +" "+components[i][2]);
 		}
 		
 		return componenti;
@@ -327,12 +327,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	 * @throws SQLException
 	 */
 	private String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
-		System.out.println("codigo: "+tipo+" "+nome);
-		String[] configDefault = db.cercaConfigurazioneDefault(nome, tipo);
-		for(int i=0; i<configDefault.length;i++)
-			System.out.println("codigo: "+configDefault[i]);
-		return configDefault;
-		
+		return db.cercaConfigurazioneDefault(nome, tipo);
 	}
 
 	@Override
@@ -492,7 +487,12 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		 
 		int numOrdine = 0;
 		
-		numOrdine= db.creaNuovaOrdine(comp, prezzoTotale, cliente);
+		try {
+			numOrdine= db.creaNuovaOrdine(comp, prezzoTotale, cliente);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Ordine ordine = new Ordine(numOrdine, comp, prezzoTotale, cliente);
 		

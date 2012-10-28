@@ -60,6 +60,8 @@ public class ConfigPanel extends JPanel {
 					"Hard Disk (opzionale2):", "Hard Disk (opzionale 3):",
 					"Unitˆ ottica:", "Scheda PCI:", "Garanzia:" } };
 
+	private int compTipo;
+
 	/**
 	 * @param componenti
 	 * @param configStandard
@@ -67,17 +69,14 @@ public class ConfigPanel extends JPanel {
 	 * @param computerType
 	 */
 
-	public ConfigPanel(Configurazione configurazione,
+	public ConfigPanel(Configurazione config,
 			PreventivoController preventivoController, int computerType) {
 		super();
-		this.setConfigurazione(configurazione);
+		this.setCompTipo(computerType);
+		this.setConfigurazione(config);
 		this.setPreventivoController(preventivoController);
 		int ultimo = 2;
 
-		for (int k = 0; k < configurazione.getComponentiStandard().length; k++) {
-			System.out.print("Conf " + k + " - "
-					+ configurazione.getComponentiStandard()[k].getCodice());
-		}
 		// Definisco un array di configurazione
 		// configurazione = new Configurazione[maxElementiConfig[computerType]];
 
@@ -123,15 +122,14 @@ public class ConfigPanel extends JPanel {
 
 			// Radio Button
 			ButtonGroup groupComponents = new ButtonGroup();
-			JRadioButton[] rdbtnComponents = new JRadioButton[configurazione
+			JRadioButton[] rdbtnComponents = new JRadioButton[config
 					.getComponenti().length];
 			for (int i = 0; i < configurazione.getComponenti().length; i++) {
 				if (configurazione.getComponenti()[i].getTipo().compareTo(
 						tipoComponenti[computerType][indiceComponenti]) == 0) {
 					// Setta la configurazione di default
 					rdbtnComponents[i] = configButtons(rdbtnComponents[i],
-							configurazione.getComponenti()[i]);
-
+							indiceComponenti, i, configurazione);
 					rdbtnComponents[i]
 							.setActionCommand(tipoComponenti[computerType][indiceComponenti]
 									+ i);
@@ -158,12 +156,20 @@ public class ConfigPanel extends JPanel {
 
 	}
 
-	private JRadioButton configButtons(JRadioButton rdbtn, Componente componente) {
-		rdbtn = new JRadioButton(componente.getNome() + "\n Prezzo: "
-				+ componente.getPrezzo());
-		if (componente.isStandard()) {
-			componente.setPrezzo(0);
+	private JRadioButton configButtons(JRadioButton rdbtn, int indexTipoComp,
+			int indexComp, Configurazione conf) {
+
+		if (conf.getComponenti()[indexComp].isStandard() == true) {
+			conf.getComponenti()[indexComp].setPrezzo(0);
+			conf.setConfigurazioneScelta(indexComp, indexTipoComp);
+			rdbtn = new JRadioButton(conf.getComponenti()[indexComp].getNome()
+					+ "\n Prezzo: "
+					+ conf.getComponenti()[indexComp].getPrezzo());
 			rdbtn.setSelected(true);
+		} else {
+			rdbtn = new JRadioButton(conf.getComponenti()[indexComp].getNome()
+					+ "\n Prezzo: "
+					+ conf.getComponenti()[indexComp].getPrezzo());
 		}
 		rdbtn.setBackground(Color.WHITE);
 		rdbtn.setFont(new Font("Toledo", Font.PLAIN, 11));
@@ -202,6 +208,25 @@ public class ConfigPanel extends JPanel {
 	 */
 	public void setConfigurazione(Configurazione configurazione) {
 		this.configurazione = configurazione;
+	}
+
+	/**
+	 * @return the compTipo
+	 */
+	public int getCompTipo() {
+		return compTipo;
+	}
+
+	/**
+	 * @param compTipo
+	 *            the compTipo to set
+	 */
+	public void setCompTipo(int compTipo) {
+		this.compTipo = compTipo;
+	}
+
+	public static String[][] getTipocomponenti() {
+		return tipoComponenti;
 	}
 
 }

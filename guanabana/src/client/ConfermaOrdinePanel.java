@@ -78,7 +78,7 @@ public class ConfermaOrdinePanel extends JPanel {
 		gbc_lblConfermaOrdine.gridx = 0;
 		gbc_lblConfermaOrdine.gridy = 0;
 		add(lblConfermaOrdine, gbc_lblConfermaOrdine);
-		int maxComponentiScelti = configurazione.getComponentiScelti().length;
+		int maxComponentiScelti = configurazione.getMaxComponentiScelti() + 2;
 		table = new JTable();
 		table.setEnabled(false);
 		table.setShowHorizontalLines(false);
@@ -98,9 +98,8 @@ public class ConfermaOrdinePanel extends JPanel {
 			table.setValueAt(
 					configurazione.getComponentiScelti()[numRow - 2].getNome(),
 					numRow, 1);
-			table.setValueAt(
-					configurazione.getComponenti()[numRow - 2].getPrezzo(),
-					numRow, 2);
+			table.setValueAt(configurazione.getComponentiScelti()[numRow - 2]
+					.getPrezzo(), numRow, 2);
 		}
 
 		table.setBorder(new LineBorder(new Color(0, 153, 51)));

@@ -85,10 +85,6 @@ public class DataBase {
 		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaComputer(con.prepareStatement("select nome,prezzo from standard_computer where nome like concat(?,'%')"));
 		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));	
-		setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
-				"ram, cpu,pci, mlc, hd1, hd2, hd3, hd4, dvd, war, mou, gpu, mon, kei) " +
-				"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), " +
-				"UPPER(?), UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
 		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo, data) values (?,?,?,UPPER(?),NOW())"));
@@ -218,7 +214,6 @@ public class DataBase {
 			max=10;
 		}else if(tipo.compareTo("LAP")==0){//{"RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
 			result = stStandardPC.executeQuery("select ram, cpu, hd1, gpu, dvd, war from standard_computer where nome ='"+nome+"'");
-			System.out.println(nome + " db. cerca config " +tipo);
 			max=6;
 		}else if(tipo.compareTo("DES")==0){//{"RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY", "MON"},
 			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, kei, mon from standard_computer where nome ='"+nome+"'");
@@ -229,18 +224,37 @@ public class DataBase {
 		while(result.next()){
 			for(int i=0;i<max;i++){
 				config[i]=result.getString(i+1);
-				System.out.println(config[i]+" default");
 				}
 		}
 		return config;
 	}
 	
 	
-	public int creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente){
+	public int creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente) throws SQLException{
 		
 		ResultSet result = null;
 		int numOrdineMax = 1;
+		if(comp.getTipo().compareTo("SERVER")==0){
+			setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+					"ram, cpu,pci, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
+					"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), " +
+					"UPPER(?), UPPER(?));"));
+		}else if(comp.getTipo().compareTo("DESKTOP")==0){
+			setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+					"ram, cpu,mou, hd1, hd2,gpu, dvd, war, kei, mon) " +
+					"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), " +
+					"UPPER(?), UPPER(?));"));
+		}else{
+			setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+					"ram, cpu,hd1,gpu, dvd, war) " +
+					"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
+		}
 		
+		/*{ "RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
+			{ "RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY",
+					"MON" },
+		 * 
+		 * */
 		try {
 			result = stConsultaUltimaOrd.executeQuery();
 			if (result!=null){

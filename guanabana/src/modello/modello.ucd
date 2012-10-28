@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1432,1233" id="modello" metadata="uml2-1.0" initialized="true" scrolledY="40" tag="1000" key="32303037303533312D31303030206775616E6162616E612F5665726F6E696361">
-  <children xsi:type="editmodel:ClassEditModel" name="Bonifico" location="236,886" size="108,103" id="modello/Bonifico" runTimeClassModel="codice,Bonifico(Lmodello.Ordine;Ljava.lang.String;I),banca">
+  <children xsi:type="editmodel:ClassEditModel" name="Bonifico" location="236,886" size="108,103" id="modello/Bonifico" runTimeClassModel="codice,banca,Bonifico(Lmodello.Ordine;Ljava.lang.String;I)">
     <children xsi:type="editmodel:CompartmentEditModel" size="85,36">
       <children xsi:type="editmodel:AttributeEditModel" name="banca" id="modello/Bonifico#banca"/>
       <children xsi:type="editmodel:AttributeEditModel" name="codice" id="modello/Bonifico#codice"/>
@@ -32,7 +32,7 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="ComponenteMagazino" location="972,720" size="185,75" id="modello/ComponenteMagazino" runTimeClassModel="sn,stato">
+  <children xsi:type="editmodel:ClassEditModel" name="ComponenteMagazino" location="972,720" size="185,75" id="modello/ComponenteMagazino" runTimeClassModel="stato,sn">
     <children xsi:type="editmodel:CompartmentEditModel" size="77,36">
       <children xsi:type="editmodel:AttributeEditModel" name="sn" id="modello/ComponenteMagazino#sn"/>
       <children xsi:type="editmodel:AttributeEditModel" name="stato" id="modello/ComponenteMagazino#stato"/>
@@ -173,7 +173,7 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.0/@sourceConnections.0 //@children.3/@sourceConnections.0 //@children.13/@sourceConnections.0" name="Pagamento" location="236,705" size="146,103" id="modello/Pagamento" runTimeClassModel="Pagamento(Lmodello.Ordine;Ljava.lang.String;I),tipoPagamento,numPagamento">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.0/@sourceConnections.0 //@children.3/@sourceConnections.0 //@children.13/@sourceConnections.0" name="Pagamento" location="236,705" size="146,103" id="modello/Pagamento" runTimeClassModel="Pagamento(Lmodello.Ordine;Ljava.lang.String;I),numPagamento,tipoPagamento">
     <children xsi:type="editmodel:CompartmentEditModel" size="123,36">
       <children xsi:type="editmodel:AttributeEditModel" name="numPagamento" id="modello/Pagamento#numPagamento"/>
       <children xsi:type="editmodel:AttributeEditModel" name="tipoPagamento" id="modello/Pagamento#tipoPagamento"/>
@@ -220,13 +220,13 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.15/@sourceConnections.1" name="Configurazione" location="723,45" size="238,211" id="modello/Configurazione" runTimeClassModel="getComponentiStandard(),setComponentiScelti([Lmodello.Componente;),Configurazione([Lmodello.Componente;[Ljava.lang.String;),setComponentiStandard([Lmodello.Componente;),setConfigurazioneScelta(II),getComponentiScelti(),componentiStandard,componentiScelti">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.15/@sourceConnections.1" name="Configurazione" location="723,45" size="238,211" id="modello/Configurazione" runTimeClassModel="getComponentiStandard(),setComponentiScelti([Lmodello.Componente;),setComponentiStandard([Lmodello.Componente;),Configurazione([Lmodello.Componente;[Ljava.lang.String;),setConfigurazioneScelta(II),componentiScelti,componentiStandard,getComponentiScelti()">
     <children xsi:type="editmodel:CompartmentEditModel" size="215,54">
       <children xsi:type="editmodel:AttributeEditModel" name="componentiScelti" id="modello/Configurazione#componentiScelti"/>
       <children xsi:type="editmodel:AttributeEditModel" name="componentiStandard" id="modello/Configurazione#componentiStandard"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="148,126">
-      <children xsi:type="editmodel:MethodEditModel" name="Configurazione" id="modello/Configurazione#Configurazione([Lmodello.Componente;[Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Configurazione" id="modello/Configurazione#Configurazione([Lmodello.Componente;[Ljava.lang.String;I)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setConfigurazioneScelta"/>
       <children xsi:type="editmodel:MethodEditModel" name="setComponentiScelti" id="modello/Configurazione#setComponentiScelti([Lmodello.Componente;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="getComponentiScelti" id="modello/Configurazione#getComponentiScelti()"/>
@@ -275,7 +275,7 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0" name="Componente" location="1065,300" size="129,193" id="modello/Componente" runTimeClassModel="codice,standard,prezzo,modello,tipo,scelto,nome,Componente(Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;)">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0" name="Componente" location="1065,300" size="129,193" id="modello/Componente" runTimeClassModel="codice,prezzo,standard,tipo,modello,scelto,nome,Componente(Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="106,126">
       <children xsi:type="editmodel:AttributeEditModel" name="codice" id="modello/Componente#codice"/>
       <children xsi:type="editmodel:AttributeEditModel" name="modello" id="modello/Componente#modello"/>
@@ -291,7 +291,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="Cliente" location="50,320" size="132,229" id="modello/Cliente" runTimeClassModel="Cliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),email,Cliente(),indirizzo,telefono,nome,registrareCliente(),cf,cognome,password">
+  <children xsi:type="editmodel:ClassEditModel" name="Cliente" location="50,320" size="132,229" id="modello/Cliente" runTimeClassModel="Cliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),email,indirizzo,Cliente(),telefono,nome,registrareCliente(),password,cognome,cf">
     <children xsi:type="editmodel:CompartmentEditModel" size="103,126">
       <children xsi:type="editmodel:AttributeEditModel" name="cf" id="modello/Cliente#cf"/>
       <children xsi:type="editmodel:AttributeEditModel" name="cognome" id="modello/Cliente#cognome"/>
