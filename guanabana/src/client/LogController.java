@@ -13,13 +13,24 @@ import client.SalutoPanel;
 import client.LogPanel;
 
 /**
- * @author Lele
- * Classe che implementa l'action listener per il pulsante login e logout
+ * @author  Lele  Classe che implementa l'action listener per il pulsante login e logout
  */
 public class LogController implements ActionListener{
 	
+	/**
+	 * @uml.property  name="logPanel"
+	 * @uml.associationEnd  
+	 */
 	private LogPanel logPanel; //pannello login da cui � chiamato LogController (funzionalitˆ login)
+	/**
+	 * @uml.property  name="salutoPanel"
+	 * @uml.associationEnd  
+	 */
 	private SalutoPanel salutoPanel; //pannello saluto da cui � chiamato LogController (funzionalitˆ logout)
+	/**
+	 * @uml.property  name="cliente"
+	 * @uml.associationEnd  
+	 */
 	private Cliente cliente;
 	
 	
@@ -130,8 +141,7 @@ public class LogController implements ActionListener{
 
 	/**
 	 * @uml.property  name="logPanel1"
-	 * @uml.associationEnd  inverse="logController1:client.LogPanel"
-	 * @uml.association  name="controllato"
+	 * @uml.associationEnd  
 	 */
 	private LogPanel logPanel1;
 
@@ -160,10 +170,10 @@ public class LogController implements ActionListener{
 	 * @uml.association name="controllato"
 	 */
 
-	/** 
-	 * Getter of the property <tt>salutoPanel</tt>
-	 * @return  Returns the salutoPanel.
+	/**
 	 * @uml.property  name="salutoPanel"
+	 * @uml.associationEnd  inverse="logController1:client.SalutoPanel"
+	 * @uml.association  name="controllato"
 	 */
 	public SalutoPanel getSalutoPanel() {
 		return salutoPanel;
@@ -179,14 +189,16 @@ public class LogController implements ActionListener{
 	}
 
 	/**
-	 * @return the cliente
+	 * @return  the cliente
+	 * @uml.property  name="cliente"
 	 */
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 	/**
-	 * @param cliente the cliente to set
+	 * @param cliente  the cliente to set
+	 * @uml.property  name="cliente"
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;

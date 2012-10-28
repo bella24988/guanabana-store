@@ -4,18 +4,42 @@ import java.io.Serializable;
 
 
 
+/**
+ * @author  Veronica
+ */
 public class Cliente implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -321784570519146557L;
+	/**
+	 * @uml.property  name="cf"
+	 */
 	private String cf;
+	/**
+	 * @uml.property  name="nome"
+	 */
 	private String nome;
+	/**
+	 * @uml.property  name="cognome"
+	 */
 	private String cognome;
+	/**
+	 * @uml.property  name="email"
+	 */
 	private String email;
+	/**
+	 * @uml.property  name="password"
+	 */
 	private String password;
+	/**
+	 * @uml.property  name="indirizzo"
+	 */
 	private String indirizzo;
+	/**
+	 * @uml.property  name="telefono"
+	 */
 	private String telefono;
 
 	/**
@@ -46,6 +70,10 @@ public class Cliente implements Serializable{
 	}
 
 
+	/**
+	 * @return
+	 * @uml.property  name="cf"
+	 */
 	public String getCf() {
 		return cf;
 	}
@@ -60,6 +88,10 @@ public class Cliente implements Serializable{
 	}
 
 	
+	/**
+	 * @return
+	 * @uml.property  name="nome"
+	 */
 	public String getNome() {
 		return nome;
 	}
@@ -74,6 +106,10 @@ public class Cliente implements Serializable{
 	}
 
 	
+	/**
+	 * @return
+	 * @uml.property  name="cognome"
+	 */
 	public String getCognome() {
 		return cognome;
 	}
@@ -105,6 +141,10 @@ public class Cliente implements Serializable{
 	}
 
 	
+	/**
+	 * @return
+	 * @uml.property  name="indirizzo"
+	 */
 	public String getIndirizzo() {
 		return indirizzo;
 	}
@@ -119,6 +159,10 @@ public class Cliente implements Serializable{
 	}
 
 	
+	/**
+	 * @return
+	 * @uml.property  name="telefono"
+	 */
 	public String getTelefono() {
 		return telefono;
 	}
@@ -133,6 +177,10 @@ public class Cliente implements Serializable{
 	}
 
 
+	/**
+	 * @return
+	 * @uml.property  name="password"
+	 */
 	public String getPassword() {
 		return password;
 	}

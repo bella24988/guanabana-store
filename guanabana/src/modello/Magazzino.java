@@ -7,8 +7,7 @@ public class Magazzino {
 
 	/**
 	 * @uml.property  name="richiestaSpedizione"
-	 * @uml.associationEnd  inverse="magazzino:guanabana.RichiestaSpedizione"
-	 * @uml.association  name="controlla"
+	 * @uml.associationEnd  
 	 */
 	private RichiestaSpedizione richiestaSpedizione;
 
@@ -31,9 +30,9 @@ public class Magazzino {
 	}
 
 	/**
-	 * @uml.property   name="componentiMagazino"
-	 * @uml.associationEnd   multiplicity="(1 -1)" inverse="magazzino:guanabana.ComponenteMagazino"
-	 * @uml.association   name="assembla"
+	 * @uml.property  name="componentiMagazino"
+	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="magazzino:guanabana.ComponenteMagazino"
+	 * @uml.association  name="assembla"
 	 */
 	private Collection componentiMagazino;
 

@@ -7,7 +7,14 @@ import java.io.IOException;
 import modello.Dipendente;
 
 
+/**
+ * @author  Veronica
+ */
 public class LogControllerAzienda implements ActionListener{
+	/**
+	 * @uml.property  name="logAzienda"
+	 * @uml.associationEnd  
+	 */
 	LogAzienda logAzienda;
 
 	public LogControllerAzienda(LogAzienda logAzienda) {

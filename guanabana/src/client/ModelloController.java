@@ -5,8 +5,18 @@ import java.awt.event.ActionListener;
 
 import modello.Computer;
 
+/**
+ * @author  Veronica
+ */
 public class ModelloController implements ActionListener {
+	/**
+	 * @uml.property  name="tipo"
+	 */
 	private String tipo;
+	/**
+	 * @uml.property  name="computer"
+	 * @uml.associationEnd  
+	 */
 	private Computer computer;
 
 	public ModelloController(Computer computer, ModelloView modView) {
@@ -24,8 +34,7 @@ public class ModelloController implements ActionListener {
 
 	/**
 	 * @uml.property  name="modelloView"
-	 * @uml.associationEnd  inverse="modelloController:client.ModelloView"
-	 * @uml.association  name="controllato"
+	 * @uml.associationEnd  
 	 */
 	private ModelloView modelloView;
 
@@ -49,8 +58,7 @@ public class ModelloController implements ActionListener {
 
 	/**
 	 * @uml.property  name="client"
-	 * @uml.associationEnd  inverse="modelloController:client.Client"
-	 * @uml.association  name="utilizza"
+	 * @uml.associationEnd  
 	 */
 	private Client client;
 
@@ -73,28 +81,32 @@ public class ModelloController implements ActionListener {
 	}
 
 	/**
-	 * @return the computer
+	 * @return  the computer
+	 * @uml.property  name="computer"
 	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
 	/**
-	 * @param computer the computer to set
+	 * @param computer  the computer to set
+	 * @uml.property  name="computer"
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}
 
 	/**
-	 * @return the tipo
+	 * @return  the tipo
+	 * @uml.property  name="tipo"
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * @param tipo  the tipo to set
+	 * @uml.property  name="tipo"
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;

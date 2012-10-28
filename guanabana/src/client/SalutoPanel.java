@@ -11,6 +11,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.SystemColor;
 
+/**
+ * @author  Veronica
+ */
 public class SalutoPanel extends JPanel {
 
 	/**
@@ -19,12 +22,24 @@ public class SalutoPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * Dichiarazione Variabile
+	 * @uml.property  name="lblSaluto"
 	 */
 	private JLabel lblSaluto; // Etichette
 	public JButton btnLogOut;
 	public JButton btnGestioneOrdine;
+	/**
+	 * @uml.property  name="logController"
+	 * @uml.associationEnd  
+	 */
 	private LogController logController;
+	/**
+	 * @uml.property  name="nome"
+	 */
 	private String nome;
+	/**
+	 * @uml.property  name="panel"
+	 * @uml.associationEnd  
+	 */
 	private LogPanel panel;
 
 	// COSTRUTTORE
@@ -83,54 +98,56 @@ public class SalutoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the nome
+	 * @return  the nome
+	 * @uml.property  name="nome"
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * @param nome
-	 *            the nome to set
+	 * @param nome  the nome to set
+	 * @uml.property  name="nome"
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @return the lblSaluto
+	 * @return  the lblSaluto
+	 * @uml.property  name="lblSaluto"
 	 */
 	public JLabel getLblSaluto() {
 		return lblSaluto;
 	}
 
 	/**
-	 * @param lblSaluto
-	 *            the lblSaluto to set
+	 * @param lblSaluto  the lblSaluto to set
+	 * @uml.property  name="lblSaluto"
 	 */
 	public void setLblSaluto(JLabel lblSaluto) {
 		this.lblSaluto = lblSaluto;
 	}
 
 	/**
-	 * @return the panel
+	 * @return  the panel
+	 * @uml.property  name="panel"
 	 */
 	public LogPanel getPanel() {
 		return panel;
 	}
 
 	/**
-	 * @param panel
-	 *            the panel to set
+	 * @param panel  the panel to set
+	 * @uml.property  name="panel"
 	 */
 	public void setPanel(LogPanel panel) {
 		this.panel = panel;
 	}
 
 	/**
-	 * @uml.property name="logController1"
-	 * @uml.associationEnd inverse="salutoPanel:client.LogController"
-	 * @uml.association name="controllato"
+	 * @uml.property  name="logController1"
+	 * @uml.associationEnd  
 	 */
 	private LogController logController1;
 
@@ -156,9 +173,8 @@ public class SalutoPanel extends JPanel {
 	}
 
 	/**
-	 * @uml.property name="logPanel"
-	 * @uml.associationEnd inverse="salutoPanel:client.LogPanel"
-	 * @uml.association name="si mostra in"
+	 * @uml.property  name="logPanel"
+	 * @uml.associationEnd  
 	 */
 	private LogPanel logPanel;
 	private JButton btnCarrello;

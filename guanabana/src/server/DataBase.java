@@ -10,16 +10,63 @@ import modello.Cliente;
 import modello.Computer;
 
 
+/**
+ * @author  Veronica
+ */
 public class DataBase {
 	
 	/* Global variables definition*/
 	private Connection con;
+	/**
+	 * @uml.property  name="st"
+	 */
 	private Statement st;
+	/**
+	 * @uml.property  name="stConsultaLog"
+	 */
 	private PreparedStatement stConsultaLog;
-	private PreparedStatement stNuevoCliente, stNuovaOrdine;
-	private PreparedStatement stConsultaComputer, stConsultaUltimaOrd;
-	private PreparedStatement stConta, stMaxPagamento, stInsertPagamento, stAggiornaStatoOrdine, stConsultaDipendente;
-	private Statement stModello, stConsultaOrdini, stCliente;
+	/**
+	 * @uml.property  name="stNuevoCliente"
+	 */
+	private PreparedStatement stNuevoCliente;
+	/**
+	 * @uml.property  name="stNuovaOrdine"
+	 */
+	private PreparedStatement stNuovaOrdine;
+	/**
+	 * @uml.property  name="stConsultaComputer"
+	 */
+	private PreparedStatement stConsultaComputer;
+	/**
+	 * @uml.property  name="stConsultaUltimaOrd"
+	 */
+	private PreparedStatement stConsultaUltimaOrd;
+	/**
+	 * @uml.property  name="stConta"
+	 */
+	private PreparedStatement stConta;
+	/**
+	 * @uml.property  name="stMaxPagamento"
+	 */
+	private PreparedStatement stMaxPagamento;
+	/**
+	 * @uml.property  name="stInsertPagamento"
+	 */
+	private PreparedStatement stInsertPagamento;
+	/**
+	 * @uml.property  name="stAggiornaStatoOrdine"
+	 */
+	private PreparedStatement stAggiornaStatoOrdine;
+	/**
+	 * @uml.property  name="stConsultaDipendente"
+	 */
+	private PreparedStatement stConsultaDipendente;
+	private Statement stModello;
+	/**
+	 * @uml.property  name="stConsultaOrdini"
+	 */
+	private Statement stConsultaOrdini;
+	private Statement stCliente;
 	
 	/*Begin of the constructor*/
 	public DataBase() throws SQLException, ClassNotFoundException{
@@ -221,98 +268,112 @@ public class DataBase {
 	}
 	
 	/**
-	 * @return the st
+	 * @return  the st
+	 * @uml.property  name="st"
 	 */
 	public Statement getSt() {
 		return st;
 	}
 
 	/**
-	 * @param st the st to set
+	 * @param st  the st to set
+	 * @uml.property  name="st"
 	 */
 	public void setSt(Statement st) {
 		this.st = st;
 	}
 
 	/**
-	 * @return the stConsultaLog
+	 * @return  the stConsultaLog
+	 * @uml.property  name="stConsultaLog"
 	 */
 	public PreparedStatement getStConsultaLog() {
 		return stConsultaLog;
 	}
 
 	/**
-	 * @param stConsultaLog the stConsultaLog to set
+	 * @param stConsultaLog  the stConsultaLog to set
+	 * @uml.property  name="stConsultaLog"
 	 */
 	public void setStConsultaLog(PreparedStatement stConsultaLog) {
 		this.stConsultaLog = stConsultaLog;
 	}
 
 	/**
-	 * @return the stNuevoCliente
+	 * @return  the stNuevoCliente
+	 * @uml.property  name="stNuevoCliente"
 	 */
 	public PreparedStatement getStNuevoCliente() {
 		return stNuevoCliente;
 	}
 
 	/**
-	 * @param stNuevoCliente the stNuevoCliente to set
+	 * @param stNuevoCliente  the stNuevoCliente to set
+	 * @uml.property  name="stNuevoCliente"
 	 */
 	public void setStNuevoCliente(PreparedStatement stNuevoCliente) {
 		this.stNuevoCliente = stNuevoCliente;
 	}
 
 	/**
-	 * @return the stConsultaComputer
+	 * @return  the stConsultaComputer
+	 * @uml.property  name="stConsultaComputer"
 	 */
 	public PreparedStatement getStConsultaComputer() {
 		return stConsultaComputer;
 	}
 
 	/**
-	 * @param stConsultaComputer the stConsultaComputer to set
+	 * @param stConsultaComputer  the stConsultaComputer to set
+	 * @uml.property  name="stConsultaComputer"
 	 */
 	public void setStConsultaComputer(PreparedStatement stConsultaComputer) {
 		this.stConsultaComputer = stConsultaComputer;
 	}
 
 	/**
-	 * @return the stConta
+	 * @return  the stConta
+	 * @uml.property  name="stConta"
 	 */
 	public PreparedStatement getStConta() {
 		return stConta;
 	}
 
 	/**
-	 * @param stConta the stConta to set
+	 * @param stConta  the stConta to set
+	 * @uml.property  name="stConta"
 	 */
 	public void setStConta(PreparedStatement stConta) {
 		this.stConta = stConta;
 	}
 
 	/**
-	 * @return the stNuovaOrdine
+	 * @return  the stNuovaOrdine
+	 * @uml.property  name="stNuovaOrdine"
 	 */
 	public PreparedStatement getStNuovaOrdine() {
 		return stNuovaOrdine;
 	}
 
 	/**
-	 * @param stNuovaOrdine the stNuovaOrdine to set
+	 * @param stNuovaOrdine  the stNuovaOrdine to set
+	 * @uml.property  name="stNuovaOrdine"
 	 */
 	public void setStNuovaOrdine(PreparedStatement stNuovaOrdine) {
 		this.stNuovaOrdine = stNuovaOrdine;
 	}
 
 	/**
-	 * @return the stConsultaUltimaOrd
+	 * @return  the stConsultaUltimaOrd
+	 * @uml.property  name="stConsultaUltimaOrd"
 	 */
 	public PreparedStatement getStConsultaUltimaOrd() {
 		return stConsultaUltimaOrd;
 	}
 
 	/**
-	 * @param stConsultaUltimaOrd the stConsultaUltimaOrd to set
+	 * @param stConsultaUltimaOrd  the stConsultaUltimaOrd to set
+	 * @uml.property  name="stConsultaUltimaOrd"
 	 */
 	public void setStConsultaUltimaOrd(PreparedStatement stConsultaUltimaOrd) {
 		this.stConsultaUltimaOrd = stConsultaUltimaOrd;
@@ -356,35 +417,40 @@ public class DataBase {
 	}
 
 	/**
-	 * @return the stMaxPagamento
+	 * @return  the stMaxPagamento
+	 * @uml.property  name="stMaxPagamento"
 	 */
 	public PreparedStatement getStMaxPagamento() {
 		return stMaxPagamento;
 	}
 
 	/**
-	 * @param stMaxPagamento the stMaxPagamento to set
+	 * @param stMaxPagamento  the stMaxPagamento to set
+	 * @uml.property  name="stMaxPagamento"
 	 */
 	public void setStMaxPagamento(PreparedStatement stMaxPagamento) {
 		this.stMaxPagamento = stMaxPagamento;
 	}
 
 	/**
-	 * @return the stInsertPagamento
+	 * @return  the stInsertPagamento
+	 * @uml.property  name="stInsertPagamento"
 	 */
 	public PreparedStatement getStInsertPagamento() {
 		return stInsertPagamento;
 	}
 
 	/**
-	 * @param stInsertPagamento the stInsertPagamento to set
+	 * @param stInsertPagamento  the stInsertPagamento to set
+	 * @uml.property  name="stInsertPagamento"
 	 */
 	public void setStInsertPagamento(PreparedStatement stInsertPagamento) {
 		this.stInsertPagamento = stInsertPagamento;
 	}
 
 	/**
-	 * @return the stConsultaOrdini
+	 * @return  the stConsultaOrdini
+	 * @uml.property  name="stConsultaOrdini"
 	 */
 	public Statement getStConsultaOrdini() {
 		return stConsultaOrdini;
@@ -471,28 +537,32 @@ public class DataBase {
 				return ordini;
 	}
 	/**
-	 * @return the stAggiornaStatoOrdine
+	 * @return  the stAggiornaStatoOrdine
+	 * @uml.property  name="stAggiornaStatoOrdine"
 	 */
 	public PreparedStatement getStAggiornaStatoOrdine() {
 		return stAggiornaStatoOrdine;
 	}
 
 	/**
-	 * @param stAggiornaStatoOrdine the stAggiornaStatoOrdine to set
+	 * @param stAggiornaStatoOrdine  the stAggiornaStatoOrdine to set
+	 * @uml.property  name="stAggiornaStatoOrdine"
 	 */
 	public void setStAggiornaStatoOrdine(PreparedStatement stAggiornaStatoOrdine) {
 		this.stAggiornaStatoOrdine = stAggiornaStatoOrdine;
 	}
 
 	/**
-	 * @return the stConsultaDipendente
+	 * @return  the stConsultaDipendente
+	 * @uml.property  name="stConsultaDipendente"
 	 */
 	public PreparedStatement getStConsultaDipendente() {
 		return stConsultaDipendente;
 	}
 
 	/**
-	 * @param stConsultaDipendente the stConsultaDipendente to set
+	 * @param stConsultaDipendente  the stConsultaDipendente to set
+	 * @uml.property  name="stConsultaDipendente"
 	 */
 	public void setStConsultaDipendente(PreparedStatement stConsultaDipendente) {
 		this.stConsultaDipendente = stConsultaDipendente;

@@ -10,8 +10,7 @@ import java.awt.Insets;
 import javax.swing.UIManager;
 
 /**
- * @author Lele Classe MenuPanel: contiene 3 bottoni per selezionare l'acquisto
- *         di Ser, Lap, Des
+ * @author  Lele Classe MenuPanel: contiene 3 bottoni per selezionare l'acquisto  di Ser, Lap, Des
  */
 public class MenuPanel extends JPanel {
 
@@ -22,7 +21,15 @@ public class MenuPanel extends JPanel {
 	public JButton btnLaptop; // Bottone Acquista Laptop
 	public JButton btnServer; // Bottone Acquista Server
 	public JButton btnDesktop;// Bottone Acquista Desktop
+	/**
+	 * @uml.property  name="contenuto"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel contenuto; // Pannello contenuto
+	/**
+	 * @uml.property  name="menuController"
+	 * @uml.associationEnd  
+	 */
 	private MenuController menuController; // Controllore di questo pannello
 
 	/**
@@ -88,15 +95,16 @@ public class MenuPanel extends JPanel {
 
 	// inizio getter and setter
 	/**
-	 * @return the contenuto
+	 * @return  the contenuto
+	 * @uml.property  name="contenuto"
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 	/**
-	 * @param contenuto
-	 *            the contenuto to set
+	 * @param contenuto  the contenuto to set
+	 * @uml.property  name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;

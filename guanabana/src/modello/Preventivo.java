@@ -7,10 +7,10 @@ public class Preventivo {
 
 	
 
-	/** 
-	 * @uml.property name="configurazione"
-	 * @uml.associationEnd multiplicity="(1 -1)" inverse="preventivo:guanabana.Configurazione"
-	 * @uml.association name="genera"
+	/**
+	 * @uml.property  name="configurazione"
+	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="preventivo:guanabana.Configurazione"
+	 * @uml.association  name="genera"
 	 */
 	private Collection configurazione;
 

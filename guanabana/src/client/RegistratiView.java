@@ -17,23 +17,62 @@ import javax.swing.JTextPane;
 
 import modello.Cliente;
 
+/**
+ * @author  Veronica
+ */
 public class RegistratiView extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * @uml.property  name="txtNome"
+	 */
 	private JTextField txtNome;
+	/**
+	 * @uml.property  name="txtCognome"
+	 */
 	private JTextField txtCognome;
+	/**
+	 * @uml.property  name="txtCf"
+	 */
 	private JTextField txtCf;
+	/**
+	 * @uml.property  name="txtEmail"
+	 */
 	private JTextField txtEmail;
+	/**
+	 * @uml.property  name="txtCitta"
+	 */
 	private JTextField txtCitta;
+	/**
+	 * @uml.property  name="txtVia"
+	 */
 	private JTextField txtVia;
+	/**
+	 * @uml.property  name="txtProvincia"
+	 */
 	private JTextField txtProvincia;
+	/**
+	 * @uml.property  name="txtCap"
+	 */
 	private JTextField txtCap;
+	/**
+	 * @uml.property  name="txtStato"
+	 */
 	private JTextField txtStato;
+	/**
+	 * @uml.property  name="txtTelefono"
+	 */
 	private JTextField txtTelefono;
+	/**
+	 * @uml.property  name="txtPassword"
+	 */
 	private JPasswordField txtPassword;
+	/**
+	 * @uml.property  name="txtPasswordConferma"
+	 */
 	private JPasswordField txtPasswordConferma;
 	
 	private JTextField[] txtArray ={txtNome, txtCognome, txtCf, txtEmail, txtCitta, txtVia, 
@@ -42,10 +81,25 @@ public class RegistratiView extends JPanel {
 	private static String[] labels = { "Nome:", "Cognome:", "C.F.:", "Email:", "Cittˆ:", "Via:", 
 			"Provincia:", "CAP:", "Stato:", "Telefono:", "Password:", "Conferma Password:" };
 	
+	/**
+	 * @uml.property  name="txaMessaggioErrore"
+	 */
 	JTextPane txaMessaggioErrore;
 	
+	/**
+	 * @uml.property  name="logPanel"
+	 * @uml.associationEnd  
+	 */
 	private LogPanel logPanel;
+	/**
+	 * @uml.property  name="panelContenitore"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel panelContenitore;
+	/**
+	 * @uml.property  name="controller"
+	 * @uml.associationEnd  
+	 */
 	private RegistratiController controller;
 	
 
@@ -180,6 +234,10 @@ public class RegistratiView extends JPanel {
 		togliMessaggio();
 	}
 	
+	/**
+	 * @param panelContenitore
+	 * @uml.property  name="panelContenitore"
+	 */
 	public void setPanelContenitore(ContenutoPanel panelContenitore) {
 		this.panelContenitore = panelContenitore;
 	}
@@ -192,15 +250,16 @@ public class RegistratiView extends JPanel {
 	
 
 	/**
-	 * @return the panelContenitore
+	 * @return  the panelContenitore
+	 * @uml.property  name="panelContenitore"
 	 */
 	public ContenutoPanel getPanelContenitore() {
 		return panelContenitore;
 	}
 
 	/**
-	 * @param panelContenitore
-	 *            the panelContenitore to set
+	 * @param panelContenitore  the panelContenitore to set
+	 * @uml.property  name="txtNome"
 	 */
 	
 	public String getTxtNome() {
@@ -211,6 +270,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[0].setText(txtNome);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtCognome"
+	 */
 	public String getTxtCognome() {
 		return txtArray[1].getText();
 	}
@@ -219,6 +282,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[1].setText(txtCognome);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtCf"
+	 */
 	public String getTxtCf() {
 		return txtArray[2].getText();
 	}
@@ -227,6 +294,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[2].setText(txtCf);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtEmail"
+	 */
 	public String getTxtEmail() {
 		return txtArray[3].getText();
 	}
@@ -235,6 +306,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[3].setText(txtEmail);
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="txtCitta"
+	 */
 	public String getTxtCitta() {
 		return txtArray[4].getText();
 	}
@@ -243,6 +318,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[4].setText(txtCitta);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtVia"
+	 */
 	public String getTxtVia() {
 		return txtArray[5].getText();
 	}
@@ -251,6 +330,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[5].setText(string);
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="txtProvincia"
+	 */
 	public String getTxtProvincia() {
 		return txtArray[6].getText();
 	}
@@ -259,6 +342,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[6].setText(txtProvincia);
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="txtCap"
+	 */
 	public String getTxtCap() {
 		return txtArray[7].getText();
 	}
@@ -267,6 +354,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[7].setText(txtCap);
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="txtStato"
+	 */
 	public String getTxtStato() {
 		return txtArray[8].getText();
 	}
@@ -275,6 +366,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[8].setText(txtStato);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtTelefono"
+	 */
 	public String getTxtTelefono() {
 		return txtArray[9].getText();
 	}
@@ -283,6 +378,10 @@ public class RegistratiView extends JPanel {
 		this.txtArray[9].setText(txtTelefono);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtPassword"
+	 */
 	public char[] getTxtPassword() {
 		return txtPassword.getPassword();
 	}
@@ -291,6 +390,10 @@ public class RegistratiView extends JPanel {
 		this.txtPassword.setText(txtPassword);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtPasswordConferma"
+	 */
 	public char[] getTxtPasswordConferma() {
 		return txtPasswordConferma.getPassword();
 	}
@@ -303,6 +406,10 @@ public class RegistratiView extends JPanel {
 
 	
 
+	/**
+	 * @return
+	 * @uml.property  name="txaMessaggioErrore"
+	 */
 	public String getTxaMessaggioErrore() {
 		return txaMessaggioErrore.getText();
 	}
@@ -324,15 +431,16 @@ public class RegistratiView extends JPanel {
 	}
 
 	/**
-	 * @return the logPanel
+	 * @return  the logPanel
+	 * @uml.property  name="logPanel"
 	 */
 	public LogPanel getLogPanel() {
 		return logPanel;
 	}
 
 	/**
-	 * @param logPanel
-	 *            the logPanel to set
+	 * @param logPanel  the logPanel to set
+	 * @uml.property  name="logPanel"
 	 */
 	public void setLogPanel(LogPanel logPanel) {
 		this.logPanel = logPanel;
@@ -348,9 +456,8 @@ public class RegistratiView extends JPanel {
 	}
 
 	/**
-	 * @uml.property name="registratiController"
-	 * @uml.associationEnd inverse="registratiView:client.RegistratiController"
-	 * @uml.association name="controlllato"
+	 * @uml.property  name="registratiController"
+	 * @uml.associationEnd  
 	 */
 	private RegistratiController registratiController;
 
@@ -377,9 +484,8 @@ public class RegistratiView extends JPanel {
 	}
 
 	/**
-	 * @uml.property name="logPanel1"
-	 * @uml.associationEnd inverse="registratiView:client.LogPanel"
-	 * @uml.association name="si mostra in"
+	 * @uml.property  name="logPanel1"
+	 * @uml.associationEnd  
 	 */
 	private LogPanel logPanel1;
 

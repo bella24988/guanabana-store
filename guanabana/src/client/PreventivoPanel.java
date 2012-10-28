@@ -12,13 +12,23 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
+/**
+ * @author  Veronica
+ */
 public class PreventivoPanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="totalePreventivo"
+	 */
 	private JTextField totalePreventivo;
+	/**
+	 * @uml.property  name="preventivoController"
+	 * @uml.associationEnd  
+	 */
 	private PreventivoController preventivoController;
 
 	/**
@@ -108,6 +118,10 @@ public class PreventivoPanel extends JPanel {
 
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="totalePreventivo"
+	 */
 	public String getTotalePreventivo() {
 		return totalePreventivo.getText();
 	}
@@ -117,15 +131,16 @@ public class PreventivoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the preventivoController
+	 * @return  the preventivoController
+	 * @uml.property  name="preventivoController"
 	 */
 	public PreventivoController getPreventivoController() {
 		return preventivoController;
 	}
 
 	/**
-	 * @param preventivoController
-	 *            the preventivoController to set
+	 * @param preventivoController  the preventivoController to set
+	 * @uml.property  name="preventivoController"
 	 */
 	public void setPreventivoController(
 			PreventivoController preventivoController) {

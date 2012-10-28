@@ -4,9 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * @author  Veronica
+ */
 public class PagamentoController implements ActionListener{
 	
+	/**
+	 * @uml.property  name="pagamentoPanel"
+	 * @uml.associationEnd  
+	 */
 	private PagamentoPanel pagamentoPanel;
+	/**
+	 * @uml.property  name="tipoPagamento"
+	 */
 	private String tipoPagamento;
 
 	public PagamentoController(PagamentoPanel pagamentoPanel) {
@@ -66,28 +76,32 @@ public class PagamentoController implements ActionListener{
 	
 
 	/**
-	 * @return the pagamentoPanel
+	 * @return  the pagamentoPanel
+	 * @uml.property  name="pagamentoPanel"
 	 */
 	public PagamentoPanel getPagamentoPanel() {
 		return pagamentoPanel;
 	}
 
 	/**
-	 * @param pagamentoPanel the pagamentoPanel to set
+	 * @param pagamentoPanel  the pagamentoPanel to set
+	 * @uml.property  name="pagamentoPanel"
 	 */
 	public void setPagamentoPanel(PagamentoPanel pagamentoPanel) {
 		this.pagamentoPanel = pagamentoPanel;
 	}
 
 	/**
-	 * @return the tipoPagamento
+	 * @return  the tipoPagamento
+	 * @uml.property  name="tipoPagamento"
 	 */
 	public String getTipoPagamento() {
 		return tipoPagamento;
 	}
 
 	/**
-	 * @param tipoPagamento the tipoPagamento to set
+	 * @param tipoPagamento  the tipoPagamento to set
+	 * @uml.property  name="tipoPagamento"
 	 */
 	public void setTipoPagamento(String tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;

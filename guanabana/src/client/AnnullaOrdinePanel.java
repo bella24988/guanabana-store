@@ -13,6 +13,9 @@ import modello.Ordine;
 
 import java.awt.Color;
 
+/**
+ * @author  Veronica
+ */
 public class AnnullaOrdinePanel extends JPanel {
 	/**
 	 * 
@@ -22,7 +25,15 @@ public class AnnullaOrdinePanel extends JPanel {
 	private JTextField txtData;
 	private JTextField txtComputer;
 	private JTextField txtStato;
+	/**
+	 * @uml.property  name="ordine"
+	 * @uml.associationEnd  
+	 */
 	private Ordine ordine;
+	/**
+	 * @uml.property  name="contenutoPanel"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel contenutoPanel;
 
 	/**
@@ -143,30 +154,32 @@ public class AnnullaOrdinePanel extends JPanel {
 	}
 
 	/**
-	 * @return the ordine
+	 * @return  the ordine
+	 * @uml.property  name="ordine"
 	 */
 	public Ordine getOrdine() {
 		return ordine;
 	}
 
 	/**
-	 * @param ordine
-	 *            the ordine to set
+	 * @param ordine  the ordine to set
+	 * @uml.property  name="ordine"
 	 */
 	public void setOrdine(Ordine ordine) {
 		this.ordine = ordine;
 	}
 
 	/**
-	 * @return the contenutoPanel
+	 * @return  the contenutoPanel
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel
-	 *            the contenutoPanel to set
+	 * @param contenutoPanel  the contenutoPanel to set
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;

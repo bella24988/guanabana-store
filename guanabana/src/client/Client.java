@@ -16,15 +16,27 @@ import modello.Pagamento;
 
 import conexionInterface.InterfacciaCliente;
 
+/**
+ * @author  Veronica
+ */
 public class Client implements InterfacciaCliente {
 	
+	/**
+	 * @uml.property  name="host"
+	 */
 	private String host;
 	private InputStream lettura;
 	private OutputStream scritura;
 	private Socket socket;
 	private ObjectInputStream buffer;
 	private ObjectOutputStream writer;
+	/**
+	 * @uml.property  name="tipo"
+	 */
 	private String tipo;
+	/**
+	 * @uml.property  name="num"
+	 */
 	private int num;
 	
 	/**
@@ -140,14 +152,16 @@ public class Client implements InterfacciaCliente {
 
 
 	/**
-	 * @return the host
+	 * @return  the host
+	 * @uml.property  name="host"
 	 */
 	public String getHost() {
 		return host;
 	}
 
 	/**
-	 * @param host the host to set
+	 * @param host  the host to set
+	 * @uml.property  name="host"
 	 */
 	public void setHost(String host) {
 		this.host = host;
@@ -221,28 +235,32 @@ public class Client implements InterfacciaCliente {
 	}
 
 	/**
-	 * @return the tipo
+	 * @return  the tipo
+	 * @uml.property  name="tipo"
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * @param tipo  the tipo to set
+	 * @uml.property  name="tipo"
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
 	/**
-	 * @return the num
+	 * @return  the num
+	 * @uml.property  name="num"
 	 */
 	public int getNum() {
 		return num;
 	}
 
 	/**
-	 * @param num the num to set
+	 * @param num  the num to set
+	 * @uml.property  name="num"
 	 */
 	public void setNum(int num) {
 		this.num = num;

@@ -4,8 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+/**
+ * @author  Veronica
+ */
 public class ConfermaOrdineController implements ActionListener{
 
+	/**
+	 * @uml.property  name="confermaOrdinePanel"
+	 * @uml.associationEnd  
+	 */
 	private ConfermaOrdinePanel confermaOrdinePanel;
 	
 	
@@ -22,14 +29,16 @@ public class ConfermaOrdineController implements ActionListener{
 	}
 
 	/**
-	 * @return the confermaOrdinePanel
+	 * @return  the confermaOrdinePanel
+	 * @uml.property  name="confermaOrdinePanel"
 	 */
 	public ConfermaOrdinePanel getConfermaOrdinePanel() {
 		return confermaOrdinePanel;
 	}
 
 	/**
-	 * @param confermaOrdinePanel the confermaOrdinePanel to set
+	 * @param confermaOrdinePanel  the confermaOrdinePanel to set
+	 * @uml.property  name="confermaOrdinePanel"
 	 */
 	public void setConfermaOrdinePanel(ConfermaOrdinePanel confermaOrdinePanel) {
 		this.confermaOrdinePanel = confermaOrdinePanel;

@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import modello.Ordine;
 import java.awt.Insets;
 
+/**
+ * @author  Veronica
+ */
 public class MagazinoPanel extends JPanel {
 
 	/**
@@ -18,10 +21,18 @@ public class MagazinoPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="ordini"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Ordine[] ordini;
-	private GestioneOrdine gestioneOrdine;
+	/**
+	 * @uml.property  name="gestioneOrdine"
+	 * @uml.associationEnd  
+	 */
+	private MainAziendaSoftware gestioneOrdine;
 
-	public MagazinoPanel(Ordine[] ordini, GestioneOrdine gestioneOrdine) {
+	public MagazinoPanel(Ordine[] ordini, MainAziendaSoftware gestioneOrdine) {
 		this.setGestioneOrdine(gestioneOrdine);
 		this.setOrdini(ordini);
 		MagazinoController controller = new MagazinoController(
@@ -192,32 +203,34 @@ public class MagazinoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the ordini
+	 * @return  the ordini
+	 * @uml.property  name="ordini"
 	 */
 	public Ordine[] getOrdini() {
 		return ordini;
 	}
 
 	/**
-	 * @param ordini
-	 *            the ordini to set
+	 * @param ordini  the ordini to set
+	 * @uml.property  name="ordini"
 	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
 	}
 
 	/**
-	 * @return the gestioneOrdine
+	 * @return  the gestioneOrdine
+	 * @uml.property  name="gestioneOrdine"
 	 */
-	public GestioneOrdine getGestioneOrdine() {
+	public MainAziendaSoftware getGestioneOrdine() {
 		return gestioneOrdine;
 	}
 
 	/**
-	 * @param gestioneOrdine
-	 *            the gestioneOrdine to set
+	 * @param gestioneOrdine  the gestioneOrdine to set
+	 * @uml.property  name="gestioneOrdine"
 	 */
-	public void setGestioneOrdine(GestioneOrdine gestioneOrdine) {
+	public void setGestioneOrdine(MainAziendaSoftware gestioneOrdine) {
 		this.gestioneOrdine = gestioneOrdine;
 	}
 

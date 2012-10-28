@@ -6,13 +6,32 @@ import java.awt.event.ActionListener;
 import modello.Computer;
 import modello.Configurazione;
 
+/**
+ * @author  Veronica
+ */
 public class PreventivoController implements ActionListener{
 	
+	/**
+	 * @uml.property  name="configPanel"
+	 * @uml.associationEnd  
+	 */
 	private ConfigPanel configPanel;
 	
 
+	/**
+	 * @uml.property  name="preventivoPanel"
+	 * @uml.associationEnd  
+	 */
 	private PreventivoPanel preventivoPanel;
+	/**
+	 * @uml.property  name="computer"
+	 * @uml.associationEnd  
+	 */
 	private Computer computer;
+	/**
+	 * @uml.property  name="configurazione"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Configurazione[] configurazione;
 	private float prezzoRamOld;
 	private float prezzoCpuOld;
@@ -28,6 +47,10 @@ public class PreventivoController implements ActionListener{
 	private float prezzoGpuOld;
 	private float prezzoKeyOld;
 	private float prezzoMonOld;
+	/**
+	 * @uml.property  name="contenutoPanel"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel contenutoPanel;
 
 	
@@ -145,7 +168,8 @@ public class PreventivoController implements ActionListener{
 	}
 
 	/**
-	 * @return the preventivoPanel
+	 * @return  the preventivoPanel
+	 * @uml.property  name="preventivoPanel"
 	 */
 	public PreventivoPanel getPreventivoPanel() {
 		return preventivoPanel;
@@ -153,7 +177,8 @@ public class PreventivoController implements ActionListener{
 
 
 	/**
-	 * @param preventivoPanel the preventivoPanel to set
+	 * @param preventivoPanel  the preventivoPanel to set
+	 * @uml.property  name="preventivoPanel"
 	 */
 	public void setPreventivoPanel(PreventivoPanel preventivoPanel) {
 		this.preventivoPanel = preventivoPanel;
@@ -163,14 +188,16 @@ public class PreventivoController implements ActionListener{
 	
 
 	/**
-	 * @return the contenutoPanel
+	 * @return  the contenutoPanel
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel the contenutoPanel to set
+	 * @param contenutoPanel  the contenutoPanel to set
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
@@ -178,23 +205,33 @@ public class PreventivoController implements ActionListener{
 
 
 	
+	/**
+	 * @return
+	 * @uml.property  name="configPanel"
+	 */
 	public ConfigPanel getConfigPanel() {
 		return configPanel;
 	}
 
+	/**
+	 * @param configPanel
+	 * @uml.property  name="configPanel"
+	 */
 	public void setConfigPanel(ConfigPanel configPanel) {
 		this.configPanel = configPanel;
 	}
 
 	/**
-	 * @return the computer
+	 * @return  the computer
+	 * @uml.property  name="computer"
 	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
 	/**
-	 * @param computer the computer to set
+	 * @param computer  the computer to set
+	 * @uml.property  name="computer"
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;

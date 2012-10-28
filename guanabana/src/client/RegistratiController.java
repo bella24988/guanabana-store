@@ -11,11 +11,30 @@ import client.ContenutoPanel;
 import client.LogPanel;
 import client.RegistratiView;
 
+/**
+ * @author  Veronica
+ */
 public class RegistratiController implements ActionListener{
 	
+	/**
+	 * @uml.property  name="logpanel"
+	 * @uml.associationEnd  
+	 */
 	LogPanel logpanel;
+	/**
+	 * @uml.property  name="contenuto"
+	 * @uml.associationEnd  
+	 */
 	ContenutoPanel contenuto;
+	/**
+	 * @uml.property  name="registrati"
+	 * @uml.associationEnd  
+	 */
 	RegistratiView registrati;
+	/**
+	 * @uml.property  name="cliente"
+	 * @uml.associationEnd  
+	 */
 	Cliente cliente;
 	
 	
@@ -127,32 +146,56 @@ public class RegistratiController implements ActionListener{
 		}else return true;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="registrati"
+	 */
 	public RegistratiView getRegistrati() {
 		return registrati;
 	}
 
+	/**
+	 * @param registrati
+	 * @uml.property  name="registrati"
+	 */
 	public void setRegistrati(RegistratiView registrati) {
 		this.registrati = registrati;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="contenuto"
+	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 
 
+	/**
+	 * @param contenuto
+	 * @uml.property  name="contenuto"
+	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
 	}
 
 
 
+	/**
+	 * @return
+	 * @uml.property  name="logpanel"
+	 */
 	public LogPanel getLogpanel() {
 		return logpanel;
 	}
 
 
 
+	/**
+	 * @param logpanel
+	 * @uml.property  name="logpanel"
+	 */
 	public void setLogpanel(LogPanel logpanel) {
 		this.logpanel = logpanel;
 	}
@@ -161,8 +204,7 @@ public class RegistratiController implements ActionListener{
 
 	/**
 	 * @uml.property  name="registratiView"
-	 * @uml.associationEnd  inverse="registratiController:client.RegistratiView"
-	 * @uml.association  name="controlllato"
+	 * @uml.associationEnd  
 	 */
 	private RegistratiView registratiView;
 
@@ -188,8 +230,7 @@ public class RegistratiController implements ActionListener{
 
 	/**
 	 * @uml.property  name="contenutoPanel"
-	 * @uml.associationEnd  inverse="registratiController:client.ContenutoPanel"
-	 * @uml.association  name="modifica"
+	 * @uml.associationEnd  
 	 */
 	private ContenutoPanel contenutoPanel;
 
@@ -215,8 +256,7 @@ public class RegistratiController implements ActionListener{
 
 	/**
 	 * @uml.property  name="client"
-	 * @uml.associationEnd  inverse="registratiController:client.Client"
-	 * @uml.association  name="utilizza"
+	 * @uml.associationEnd  
 	 */
 	private Client client;
 

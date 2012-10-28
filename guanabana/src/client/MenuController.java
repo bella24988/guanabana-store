@@ -13,10 +13,21 @@ import modello.Server;
 import client.ContenutoPanel;
 import client.MenuPanel;
 
+/**
+ * @author  Veronica
+ */
 public class MenuController  implements ActionListener{
 	
+	/**
+	 * @uml.property  name="menuAcquista"
+	 * @uml.associationEnd  
+	 */
 	private MenuPanel menuAcquista; 
 	private String tipoComputer = "";
+	/**
+	 * @uml.property  name="contenuto"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel contenuto;
 
 	
@@ -96,7 +107,8 @@ public class MenuController  implements ActionListener{
 	}
 	
 	/**
-	 * @return the menuAcquista
+	 * @return  the menuAcquista
+	 * @uml.property  name="menuAcquista"
 	 */
 	public MenuPanel getMenuAcquista() {
 		return menuAcquista;
@@ -105,7 +117,8 @@ public class MenuController  implements ActionListener{
 
 
 	/**
-	 * @param menuAcquista the menuAcquista to set
+	 * @param menuAcquista  the menuAcquista to set
+	 * @uml.property  name="menuAcquista"
 	 */
 	public void setMenuAcquista(MenuPanel menuAcquista) {
 		this.menuAcquista = menuAcquista;
@@ -114,7 +127,8 @@ public class MenuController  implements ActionListener{
 
 
 	/**
-	 * @return the contenuto
+	 * @return  the contenuto
+	 * @uml.property  name="contenuto"
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
@@ -123,7 +137,8 @@ public class MenuController  implements ActionListener{
 
 
 	/**
-	 * @param contenuto the contenuto to set
+	 * @param contenuto  the contenuto to set
+	 * @uml.property  name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
@@ -132,8 +147,7 @@ public class MenuController  implements ActionListener{
 
 	/**
 	 * @uml.property  name="menuPanel"
-	 * @uml.associationEnd  inverse="menuController1:client.MenuPanel"
-	 * @uml.association  name="controllato"
+	 * @uml.associationEnd  
 	 */
 	private MenuPanel menuPanel;
 
@@ -160,10 +174,9 @@ public class MenuController  implements ActionListener{
 
 
 
-	/** 
-	 * @uml.property name="contenutoPanel"
-	 * @uml.associationEnd inverse="menuController:client.ContenutoPanel"
-	 * @uml.association name="modifica"
+	/**
+	 * @uml.property  name="contenutoPanel"
+	 * @uml.associationEnd  
 	 */
 	private ContenutoPanel contenutoPanel;
 

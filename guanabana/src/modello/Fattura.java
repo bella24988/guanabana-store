@@ -51,6 +51,9 @@ public class Fattura {
 		this.data = data;
 	}
 
+	/**
+	 * @uml.property  name="totale"
+	 */
 	private String totale;
 
 	/**
@@ -75,6 +78,31 @@ public class Fattura {
 		/**
 		 */
 		public void generareFattura(){
+		}
+
+		/** 
+		 * @uml.property name="pagamento"
+		 * @uml.associationEnd multiplicity="(1 1)" inverse="fattura:modello.Pagamento"
+		 * @uml.association name="genera"
+		 */
+		private Pagamento pagamento = null;
+
+		/** 
+		 * Getter of the property <tt>pagamento</tt>
+		 * @return  Returns the pagamento.
+		 * @uml.property  name="pagamento"
+		 */
+		public Pagamento getPagamento() {
+			return pagamento;
+		}
+
+		/** 
+		 * Setter of the property <tt>pagamento</tt>
+		 * @param pagamento  The pagamento to set.
+		 * @uml.property  name="pagamento"
+		 */
+		public void setPagamento(Pagamento pagamento) {
+			this.pagamento = pagamento;
 		}
 
 	

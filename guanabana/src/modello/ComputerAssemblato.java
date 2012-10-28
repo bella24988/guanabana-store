@@ -4,10 +4,9 @@ package modello;
 
 public class ComputerAssemblato {
 
-	/** 
-	 * @uml.property name="spedizione"
-	 * @uml.associationEnd aggregation="shared" inverse="computerAssemblato:guanabana.Spedizione"
-	 * @uml.association name="implica"
+	/**
+	 * @uml.property  name="spedizione"
+	 * @uml.associationEnd  
 	 */
 	private Spedizione spedizione;
 

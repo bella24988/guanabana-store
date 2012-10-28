@@ -20,12 +20,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 /**
- * @author Lele Classe LogPanel: contiene un pannello panelLogin che contiene i
- *         campi di testo per inserire username e password, con i tasti login e
- *         registrati, nel caso in cui non sia stato effettuato il login. In
- *         caso di login effettuato contiene il pannello di saluto. La classe
- *         contiene inoltre un TextArea dove vengono visualizzati i messaggi
- *         ricevuti dal server.
+ * @author  Lele Classe LogPanel: contiene un pannello panelLogin che contiene i  campi di testo per inserire username e password, con i tasti login e  registrati, nel caso in cui non sia stato effettuato il login. In  caso di login effettuato contiene il pannello di saluto. La classe  contiene inoltre un TextArea dove vengono visualizzati i messaggi  ricevuti dal server.
  */
 public class LogPanel extends JPanel {
 
@@ -37,16 +32,41 @@ public class LogPanel extends JPanel {
 	private JLabel lblPassword; // Etichetta password
 	public JButton btnRegistrati; // Bottone registrati
 	public JButton btnLog; // Bottone login
+	/**
+	 * @uml.property  name="txtUser"
+	 */
 	public JTextField txtUser; // Campo di testo email
+	/**
+	 * @uml.property  name="txtPassword"
+	 */
 	public JPasswordField txtPassword; // Campo di testo password
+	/**
+	 * @uml.property  name="logController"
+	 * @uml.associationEnd  
+	 */
 	private LogController logController; // Controllore per il bottone login
+	/**
+	 * @uml.property  name="registratiController"
+	 * @uml.associationEnd  
+	 */
 	private RegistratiController registratiController; // Controllore per il
 														// bottone registrati
+	/**
+	 * @uml.property  name="salutoPanel"
+	 * @uml.associationEnd  
+	 */
 	private SalutoPanel salutoPanel; // Pannello di saluto
 	private JPanel panelLogin; // Pannello che contiene gli elementi per fare il
 								// login
+	/**
+	 * @uml.property  name="txaMessaggio"
+	 */
 	private JTextArea txaMessaggio; // Box per i messaggi ricevuti dal server
 									// (errori ecc..)
+	/**
+	 * @uml.property  name="contenuto"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel contenuto; // Pannello contenuto
 
 	/**
@@ -212,6 +232,10 @@ public class LogPanel extends JPanel {
 	}
 
 	// inizio getters and setters
+	/**
+	 * @return
+	 * @uml.property  name="txtUser"
+	 */
 	public String getTxtUser() {
 		return txtUser.getText();
 	}
@@ -220,6 +244,10 @@ public class LogPanel extends JPanel {
 		this.txtUser.setText(txtUser);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtPassword"
+	 */
 	public char[] getTxtPassword() {
 		return txtPassword.getPassword();
 	}
@@ -229,7 +257,8 @@ public class LogPanel extends JPanel {
 	}
 
 	/**
-	 * @return the txaMessaggio
+	 * @return  the txaMessaggio
+	 * @uml.property  name="txaMessaggio"
 	 */
 	public String getTxaMessaggio() {
 		return txaMessaggio.getText();
@@ -243,22 +272,25 @@ public class LogPanel extends JPanel {
 		this.txaMessaggio.setText(txaMessaggio);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="contenuto"
+	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 	/**
-	 * @param contenuto
-	 *            the contenuto to set
+	 * @param contenuto  the contenuto to set
+	 * @uml.property  name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
 	}
 
 	/**
-	 * @uml.property name="logController1"
-	 * @uml.associationEnd inverse="logPanel1:client.LogController"
-	 * @uml.association name="controllato"
+	 * @uml.property  name="logController1"
+	 * @uml.associationEnd  
 	 */
 	private LogController logController1;
 

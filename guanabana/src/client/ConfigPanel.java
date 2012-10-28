@@ -14,14 +14,29 @@ import javax.swing.JRadioButton;
 import modello.Componente;
 import modello.Configurazione;
 
+/**
+ * @author  Veronica
+ */
 public class ConfigPanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="componenti"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Componente[] componenti;
+	/**
+	 * @uml.property  name="preventivoController"
+	 * @uml.associationEnd  
+	 */
 	private PreventivoController preventivoController;
+	/**
+	 * @uml.property  name="configurazione"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Configurazione[] configurazione;
 	
 	// numero massimo di componenti configurabili rispettivamente per laptop,
@@ -175,27 +190,51 @@ public class ConfigPanel extends JPanel {
 		return rdbtn;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="componenti"
+	 */
 	public Componente[] getComponenti() {
 		return componenti;
 	}
 
+	/**
+	 * @param componenti
+	 * @uml.property  name="componenti"
+	 */
 	public void setComponenti(Componente[] componenti) {
 		this.componenti = componenti;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="preventivoController"
+	 */
 	public PreventivoController getPreventivoController() {
 		return preventivoController;
 	}
 
+	/**
+	 * @param preventivoController
+	 * @uml.property  name="preventivoController"
+	 */
 	public void setPreventivoController(
 			PreventivoController preventivoController) {
 		this.preventivoController = preventivoController;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="configurazione"
+	 */
 	public Configurazione[] getConfigurazione() {
 		return configurazione;
 	}
 
+	/**
+	 * @param configurazione
+	 * @uml.property  name="configurazione"
+	 */
 	public void setConfigurazione(Configurazione[] configurazione) {
 		this.configurazione = configurazione;
 	}

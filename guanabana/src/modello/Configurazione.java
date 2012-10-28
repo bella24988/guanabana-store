@@ -10,10 +10,10 @@ public class Configurazione implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/** 
-	 * @uml.property name="preventivo"
-	 * @uml.associationEnd multiplicity="(1 -1)" aggregation="shared" inverse="configurazione:guanabana.Preventivo"
-	 * @uml.association name="genera"
+	/**
+	 * @uml.property  name="preventivo"
+	 * @uml.associationEnd  multiplicity="(1 -1)" aggregation="shared" inverse="configurazione:guanabana.Preventivo"
+	 * @uml.association  name="genera"
 	 */
 	private Collection preventivo;
 

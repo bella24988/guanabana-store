@@ -3,18 +3,37 @@ package modello;
 import java.io.Serializable;
 
 
+/**
+ * @author  Veronica
+ */
 public class Ordine implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Pagamento pagamento;
+	/**
+	 * @uml.property  name="numeroOrdine"
+	 */
 	private int numeroOrdine;
+	/**
+	 * @uml.property  name="computer"
+	 * @uml.associationEnd  
+	 */
 	private Computer computer;
-	private float prezzo;
+	private float totale;
+	/**
+	 * @uml.property  name="cliente"
+	 * @uml.associationEnd  
+	 */
 	private Cliente cliente;
+	/**
+	 * @uml.property  name="data"
+	 */
 	private String data;
+	/**
+	 * @uml.property  name="stato"
+	 */
 	private String stato;
 	
 	
@@ -23,47 +42,37 @@ public class Ordine implements Serializable{
 		super();
 		this.numeroOrdine = numeroOrdine;
 		this.computer = computer;
-		this.prezzo = prezzo;
+		this.totale = prezzo;
 		this.cliente = cliente;
 	}
 
 	/**
-	 * @return the pagamento
-	 */
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-	/**
-	 * @param pagamento the pagamento to set
-	 */
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
-	}
-
-	/**
-	 * @return the numeroOrdine
+	 * @return  the numeroOrdine
+	 * @uml.property  name="numeroOrdine"
 	 */
 	public int getNumeroOrdine() {
 		return numeroOrdine;
 	}
 
 	/**
-	 * @param numeroOrdine the numeroOrdine to set
+	 * @param numeroOrdine  the numeroOrdine to set
+	 * @uml.property  name="numeroOrdine"
 	 */
 	public void setNumeroOrdine(int numeroOrdine) {
 		this.numeroOrdine = numeroOrdine;
 	}
 
 	/**
-	 * @return the computer
+	 * @return  the computer
+	 * @uml.property  name="computer"
 	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
 	/**
-	 * @param computer the computer to set
+	 * @param computer  the computer to set
+	 * @uml.property  name="computer"
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;
@@ -73,56 +82,89 @@ public class Ordine implements Serializable{
 	 * @return the prezzo
 	 */
 	public float getPrezzo() {
-		return prezzo;
+		return totale;
 	}
 
 	/**
 	 * @param prezzo the prezzo to set
 	 */
 	public void setPrezzo(float prezzo) {
-		this.prezzo = prezzo;
+		this.totale = prezzo;
 	}
 
 	/**
-	 * @return the cliente
+	 * @return  the cliente
+	 * @uml.property  name="cliente"
 	 */
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 	/**
-	 * @param cliente the cliente to set
+	 * @param cliente  the cliente to set
+	 * @uml.property  name="cliente"
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
 	/**
-	 * @return the data
+	 * @return  the data
+	 * @uml.property  name="data"
 	 */
 	public String getData() {
 		return data;
 	}
 
 	/**
-	 * @param data the data to set
+	 * @param data  the data to set
+	 * @uml.property  name="data"
 	 */
 	public void setData(String data) {
 		this.data = data;
 	}
 
 	/**
-	 * @return the stato
+	 * @return  the stato
+	 * @uml.property  name="stato"
 	 */
 	public String getStato() {
 		return stato;
 	}
 
 	/**
-	 * @param stato the stato to set
+	 * @param stato  the stato to set
+	 * @uml.property  name="stato"
 	 */
 	public void setStato(String stato) {
 		this.stato = stato;
+	}
+
+	/** 
+	 * @uml.property name="pagamento"
+	 * @uml.associationEnd aggregation="composite" inverse="ordine:modello.Pagamento"
+	 * @uml.association name="conclusa con"
+	 */
+	private Pagamento pagamento;
+
+
+
+	/** 
+	 * Getter of the property <tt>pagamento</tt>
+	 * @return  Returns the pagamento.
+	 * @uml.property  name="pagamento"
+	 */
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	/** 
+	 * Setter of the property <tt>pagamento</tt>
+	 * @param pagamento  The pagamento to set.
+	 * @uml.property  name="pagamento"
+	 */
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 	
 

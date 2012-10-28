@@ -10,6 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import modello.Computer;
 
+/**
+ * @author  Veronica
+ */
 public class ModelloView extends JPanel {
 
 	/**
@@ -17,16 +20,49 @@ public class ModelloView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel modelsPanel;
+	/**
+	 * @uml.property  name="configPanel"
+	 * @uml.associationEnd  
+	 */
 	private ConfigPanel configPanel;
+	/**
+	 * @uml.property  name="contenutoPanel"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel contenutoPanel;
+	/**
+	 * @uml.property  name="numButtons"
+	 */
 	private int numButtons;
+	/**
+	 * @uml.property  name="nome"
+	 */
 	private String[] nome;
+	/**
+	 * @uml.property  name="prezzo"
+	 */
 	private float[] prezzo;
 	private JButton[] btnModels;
 	
+	/**
+	 * @uml.property  name="modelloController"
+	 * @uml.associationEnd  
+	 */
 	private ModelloController modelloController;
+	/**
+	 * @uml.property  name="preventivoPanel"
+	 * @uml.associationEnd  
+	 */
 	private PreventivoPanel preventivoPanel;
+	/**
+	 * @uml.property  name="computer"
+	 * @uml.associationEnd  
+	 */
 	private Computer computer;
+	/**
+	 * @uml.property  name="preventivoController"
+	 * @uml.associationEnd  
+	 */
 	private PreventivoController preventivoController;
 
 	/**
@@ -66,54 +102,56 @@ public class ModelloView extends JPanel {
 	}
 
 	/**
-	 * @return the numButtons
+	 * @return  the numButtons
+	 * @uml.property  name="numButtons"
 	 */
 	public int getNumButtons() {
 		return numButtons;
 	}
 
 	/**
-	 * @param numButtons
-	 *            the numButtons to set
+	 * @param numButtons  the numButtons to set
+	 * @uml.property  name="numButtons"
 	 */
 	public void setNumButtons(int numButtons) {
 		this.numButtons = numButtons;
 	}
 
 	/**
-	 * @return the nome
+	 * @return  the nome
+	 * @uml.property  name="nome"
 	 */
 	public String[] getNome() {
 		return nome;
 	}
 
 	/**
-	 * @param nome
-	 *            the nome to set
+	 * @param nome  the nome to set
+	 * @uml.property  name="nome"
 	 */
 	public void setNome(String[] nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @return the prezzo
+	 * @return  the prezzo
+	 * @uml.property  name="prezzo"
 	 */
 	public float[] getPrezzo() {
 		return prezzo;
 	}
 
 	/**
-	 * @param prezzo
-	 *            the prezzo to set
+	 * @param prezzo  the prezzo to set
+	 * @uml.property  name="prezzo"
 	 */
 	public void setPrezzo(float[] prezzo) {
 		this.prezzo = prezzo;
 	}
 
 	/**
-	 * @uml.property name="modelloController"
-	 * @uml.associationEnd inverse="modelloView:client.ModelloController"
-	 * @uml.association name="controllato"
+	 * @uml.property  name="modelloController"
+	 * @uml.associationEnd  
 	 */
 	private ModelloController controller;
 
@@ -172,24 +210,33 @@ public class ModelloView extends JPanel {
 	}
 
 	/**
-	 * @return the contenutoPanel
+	 * @return  the contenutoPanel
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel
-	 *            the contenutoPanel to set
+	 * @param contenutoPanel  the contenutoPanel to set
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="computer"
+	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
+	/**
+	 * @param computer
+	 * @uml.property  name="computer"
+	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}

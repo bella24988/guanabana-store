@@ -15,10 +15,14 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import java.awt.FlowLayout;
 
+/**
+ * @author  Veronica
+ */
 public class PagamentoPanel extends JPanel {
 
 	/**
-	 * 
+	 * @uml.property  name="contenutoPanel"
+	 * @uml.associationEnd  
 	 */
 	private ContenutoPanel contenutoPanel;
 
@@ -26,19 +30,59 @@ public class PagamentoPanel extends JPanel {
 	private JTextField txtNumordine;
 	private JTextArea txtErrore;
 	private JTextField txtTotale;
+	/**
+	 * @uml.property  name="pagamentoController"
+	 * @uml.associationEnd  
+	 */
 	private PagamentoController pagamentoController;
+	/**
+	 * @uml.property  name="txtCarta"
+	 */
 	private JTextField txtCarta;
+	/**
+	 * @uml.property  name="txtIntestatario"
+	 */
 	private JTextField txtIntestatario;
+	/**
+	 * @uml.property  name="txtCodSicurezza"
+	 */
 	private JTextField txtCodSicurezza;
 	private static String[] mesi = { "", "Gennaio", "Febbraio", "Marzo",
 			"Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre",
 			"Ottobre", "Novembre", "Dicembre" };
+	/**
+	 * @uml.property  name="anni"
+	 */
 	private static String[] anni;
 	private JPanel tipoPagamento;
+	/**
+	 * @uml.property  name="txtCodiceBonifico"
+	 */
 	private JTextField txtCodiceBonifico;
+	/**
+	 * @uml.property  name="txtBanca"
+	 */
 	private JTextField txtBanca;
-	private JPanel panelCartaCredito, panelBonifico, panelContrasegno;
-	private JComboBox cmbMesi, cmbAnni;
+	/**
+	 * @uml.property  name="panelCartaCredito"
+	 */
+	private JPanel panelCartaCredito;
+
+	/**
+	 * @uml.property  name="panelBonifico"
+	 */
+	private JPanel panelBonifico;
+
+	/**
+	 * @uml.property  name="panelContrasegno"
+	 */
+	private JPanel panelContrasegno;
+	private JComboBox cmbMesi;
+
+	private JComboBox cmbAnni;
+	/**
+	 * @uml.property  name="tipoPagamentoScelto"
+	 */
 	private int tipoPagamentoScelto;
 
 	/**
@@ -200,15 +244,16 @@ public class PagamentoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the pagamentoController
+	 * @return  the pagamentoController
+	 * @uml.property  name="pagamentoController"
 	 */
 	public PagamentoController getPagamentoController() {
 		return pagamentoController;
 	}
 
 	/**
-	 * @param pagamentoController
-	 *            the pagamentoController to set
+	 * @param pagamentoController  the pagamentoController to set
+	 * @uml.property  name="pagamentoController"
 	 */
 	public void setPagamentoController(PagamentoController pagamentoController) {
 		this.pagamentoController = pagamentoController;
@@ -352,6 +397,10 @@ public class PagamentoPanel extends JPanel {
 
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="anni"
+	 */
 	private String[] getAnni() {
 		anni = new String[11];
 		int annoAct = 2012;
@@ -374,40 +423,65 @@ public class PagamentoPanel extends JPanel {
 		panel.setVisible(false);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="panelCartaCredito"
+	 */
 	public JPanel getPanelCartaCredito() {
 		return panelCartaCredito;
 	}
 
+	/**
+	 * @param panelCartaCredito
+	 * @uml.property  name="panelCartaCredito"
+	 */
 	public void setPanelCartaCredito(JPanel panelCartaCredito) {
 		this.panelCartaCredito = panelCartaCredito;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="panelBonifico"
+	 */
 	public JPanel getPanelBonifico() {
 		return panelBonifico;
 	}
 
+	/**
+	 * @param panelBonifico
+	 * @uml.property  name="panelBonifico"
+	 */
 	public void setPanelBonifico(JPanel panelBonifico) {
 		this.panelBonifico = panelBonifico;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="panelContrasegno"
+	 */
 	public JPanel getPanelContrasegno() {
 		return panelContrasegno;
 	}
 
+	/**
+	 * @param panelContrasegno
+	 * @uml.property  name="panelContrasegno"
+	 */
 	public void setPanelContrasegno(JPanel panelContrasegno) {
 		this.panelContrasegno = panelContrasegno;
 	}
 
 	/**
-	 * @return the contenutoPanel
+	 * @return  the contenutoPanel
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel
-	 *            the contenutoPanel to set
+	 * @param contenutoPanel  the contenutoPanel to set
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
@@ -421,6 +495,10 @@ public class PagamentoPanel extends JPanel {
 		return cmbAnni.getSelectedIndex();
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtCarta"
+	 */
 	public String getTxtCarta() {
 		return txtCarta.getText();
 	}
@@ -429,6 +507,10 @@ public class PagamentoPanel extends JPanel {
 		this.txtCarta.setText(txtCarta);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtIntestatario"
+	 */
 	public String getTxtIntestatario() {
 		return txtIntestatario.getText();
 	}
@@ -437,6 +519,10 @@ public class PagamentoPanel extends JPanel {
 		this.txtIntestatario.setText(txtIntestatario);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtCodSicurezza"
+	 */
 	public String getTxtCodSicurezza() {
 		return txtCodSicurezza.getText();
 	}
@@ -445,6 +531,10 @@ public class PagamentoPanel extends JPanel {
 		this.txtCodSicurezza.setText(txtCodSicurezza);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtCodiceBonifico"
+	 */
 	public String getTxtCodiceBonifico() {
 		return txtCodiceBonifico.getText();
 	}
@@ -453,6 +543,10 @@ public class PagamentoPanel extends JPanel {
 		this.txtCodiceBonifico.setText(txtCodiceBonifico);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtBanca"
+	 */
 	public String getTxtBanca() {
 		return txtBanca.getText();
 	}
@@ -462,15 +556,16 @@ public class PagamentoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the tipoPagamentoScelto
+	 * @return  the tipoPagamentoScelto
+	 * @uml.property  name="tipoPagamentoScelto"
 	 */
 	public int getTipoPagamentoScelto() {
 		return tipoPagamentoScelto;
 	}
 
 	/**
-	 * @param tipoPagamentoScelto
-	 *            the tipoPagamentoScelto to set
+	 * @param tipoPagamentoScelto  the tipoPagamentoScelto to set
+	 * @uml.property  name="tipoPagamentoScelto"
 	 */
 	public void setTipoPagamentoScelto(int tipoPagamentoScelto) {
 		this.tipoPagamentoScelto = tipoPagamentoScelto;

@@ -13,9 +13,7 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
 /**
- * @author Lele Classe Index: Applet che contiene tutti i pannelli
- *         dell'applicazione lato client. Implementa l'interfaccia Collegare che
- *         contiene tutti i metodi di connessione.
+ * @author  Lele Classe Index: Applet che contiene tutti i pannelli  dell'applicazione lato client. Implementa l'interfaccia Collegare che  contiene tutti i metodi di connessione.
  */
 public class Index extends JApplet {
 
@@ -25,11 +23,23 @@ public class Index extends JApplet {
 	private static final long serialVersionUID = 1L; // serializzazione
 	public JPanel contentPane; // Pannello principale che contiene tutti gli
 								// altri pannelli in ogni momento
+	/**
+	 * @uml.property  name="menuPanel"
+	 * @uml.associationEnd  
+	 */
 	public MenuPanel menuPanel; // Pannello contenente i tipi di computer
 								// acquistabili (Des, Lap, Ser) sempre presente
 								// in contentPane
+	/**
+	 * @uml.property  name="logPanel"
+	 * @uml.associationEnd  
+	 */
 	public LogPanel logPanel; // Pannello di login (mostra login, logout e
 								// registrati)
+	/**
+	 * @uml.property  name="contenuto"
+	 * @uml.associationEnd  
+	 */
 	private ContenutoPanel contenuto; // Pannello contenitore, sempre presente,
 										// in cui sono visualizzati
 										// dinamicamente tutti i pannelli
@@ -146,10 +156,9 @@ public class Index extends JApplet {
 
 	// inizio getters and setters
 	/**
-	 * Getter of the property <tt>menuPanel</tt>
-	 * 
-	 * @return Returns the menuPanel.
-	 * @uml.property name="menuPanel"
+	 * @uml.property  name="menuPanel"
+	 * @uml.associationEnd  inverse="index:client.MenuPanel"
+	 * @uml.association  name="menu"
 	 */
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
@@ -173,10 +182,9 @@ public class Index extends JApplet {
 	 */
 
 	/**
-	 * Getter of the property <tt>panelLog</tt>
-	 * 
-	 * @return Returns the panelLog.
-	 * @uml.property name="panelLog"
+	 * @uml.property  name="panelLog"
+	 * @uml.associationEnd  inverse="index:client.LogPanel"
+	 * @uml.association  name="mostra"
 	 */
 	public LogPanel getPanelLog() {
 		return logPanel;
@@ -200,10 +208,9 @@ public class Index extends JApplet {
 	 */
 
 	/**
-	 * Getter of the property <tt>contenuto</tt>
-	 * 
-	 * @return Returns the contenuto.
-	 * @uml.property name="contenuto"
+	 * @uml.property  name="contenuto"
+	 * @uml.associationEnd  inverse="index:client.ContenutoPanel"
+	 * @uml.association  name="mostra"
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;

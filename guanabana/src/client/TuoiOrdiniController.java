@@ -4,7 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+/**
+ * @author  Veronica
+ */
 public class TuoiOrdiniController implements ActionListener{
+	/**
+	 * @uml.property  name="tOrdiniPanel"
+	 * @uml.associationEnd  
+	 */
 	private TuoiOrdiniPanel tOrdiniPanel;
 
 	
@@ -32,14 +39,16 @@ public class TuoiOrdiniController implements ActionListener{
 	}
 
 	/**
-	 * @return the tOrdiniPanel
+	 * @return  the tOrdiniPanel
+	 * @uml.property  name="tOrdiniPanel"
 	 */
 	public TuoiOrdiniPanel gettOrdiniPanel() {
 		return tOrdiniPanel;
 	}
 
 	/**
-	 * @param tOrdiniPanel the tOrdiniPanel to set
+	 * @param tOrdiniPanel  the tOrdiniPanel to set
+	 * @uml.property  name="tOrdiniPanel"
 	 */
 	public void settOrdiniPanel(TuoiOrdiniPanel tOrdiniPanel) {
 		this.tOrdiniPanel = tOrdiniPanel;

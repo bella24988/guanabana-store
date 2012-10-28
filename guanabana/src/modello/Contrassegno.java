@@ -3,9 +3,9 @@ package modello;
 
 
 
-public class Contrasegno extends Pagamento {
+public class Contrassegno extends Pagamento {
 
-	public Contrasegno(Ordine ordine, String tipoPagamento, int numPagamento) {
+	public Contrassegno(Ordine ordine, String tipoPagamento, int numPagamento) {
 		super(ordine, "Contrasegno", numPagamento);
 		// TODO Auto-generated constructor stub
 	}

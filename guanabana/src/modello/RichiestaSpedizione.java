@@ -4,8 +4,7 @@ public class RichiestaSpedizione {
 
 	/**
 	 * @uml.property  name="magazzino"
-	 * @uml.associationEnd  inverse="richiestaSpedizione:guanabana.Magazzino"
-	 * @uml.association  name="controlla"
+	 * @uml.associationEnd  
 	 */
 	private Magazzino magazzino;
 

@@ -1,7 +1,6 @@
 package modello;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 
 public class Componente implements Serializable{
@@ -15,25 +14,6 @@ public class Componente implements Serializable{
 	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="componente:guanabana.Configurazione"
 	 * @uml.association  name="possiede"
 	 */
-	private Collection configurazione;
-
-	/**
-	 * Getter of the property <tt>configurazione</tt>
-	 * @return  Returns the configurazione.
-	 * @uml.property  name="configurazione"
-	 */
-	public Collection getConfigurazione() {
-		return configurazione;
-	}
-
-	/**
-	 * Setter of the property <tt>configurazione</tt>
-	 * @param configurazione  The configurazione to set.
-	 * @uml.property  name="configurazione"
-	 */
-	public void setConfigurazione(Collection configurazione) {
-		this.configurazione = configurazione;
-	}
 
 	/**
 	 * @uml.property  name="codice"

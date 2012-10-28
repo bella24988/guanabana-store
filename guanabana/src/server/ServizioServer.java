@@ -21,17 +21,31 @@ import conexionInterface.InterfacciaCliente;
 import java.util.Collection;
 
 
+/**
+ * @author  Veronica
+ */
 public class ServizioServer implements InterfacciaCliente, Runnable, InterfacciaAzienda{
 	
 	private Socket client;
+	/**
+	 * @uml.property  name="db"
+	 * @uml.associationEnd  
+	 */
 	private DataBase db;
 	/**
 	 * @uml.property  name="cliente1"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="servizioServer:modello.Cliente"
-	 * @uml.association  name="utilizza servizio"
+	 * @uml.associationEnd  
 	 */
 	private Cliente cliente = new modello.Cliente();;
+	/**
+	 * @uml.property  name="computers"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Computer[] computers;
+	/**
+	 * @uml.property  name="componenti"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Componente[] componenti;
 
 	public ServizioServer(Socket client) {
@@ -264,17 +278,14 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				if (tipo.compareTo("LAPTOP")==0){
 					comp[i]= new Laptop(nome[i],prezzo[i]);
 					cercaComponentiComputer("lap",comp[i]);
-					comp[i].setTipo("LAPTOP");
 					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "lap"));
 				}else if (tipo.compareTo("DESKTOP")==0){
 					comp[i]= new Desktop(nome[i],prezzo[i]);
-					comp[i].setTipo("DESKTOP");
 					cercaComponentiComputer("des",comp[i]);
 					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "des"));
 				}else if (tipo.compareTo("SERVER")==0){
 					comp[i]= new Server(nome[i],prezzo[i]);
 					cercaComponentiComputer("ser",comp[i]);
-					comp[i].setTipo("SERVER");
 					comp[i].setConfigurazioneStandard(cercaConfigurazioneDefault(comp[i].getNome(), "ser"));
 				}
 				
@@ -376,14 +387,16 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 
 
 	/**
-	 * @return the computers
+	 * @return  the computers
+	 * @uml.property  name="computers"
 	 */
 	public Computer[] getComputers() {
 		return computers;
 	}
 
 	/**
-	 * @param computers the computers to set
+	 * @param computers  the computers to set
+	 * @uml.property  name="computers"
 	 */
 	public void setComputers(Computer[] computers) {
 		this.computers = computers;
@@ -406,8 +419,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 
 	/**
 	 * @uml.property  name="dataBase"
-	 * @uml.associationEnd  inverse="servizioServer:server.DataBase"
-	 * @uml.association  name="utilizza"
+	 * @uml.associationEnd  
 	 */
 	private DataBase dataBase;
 

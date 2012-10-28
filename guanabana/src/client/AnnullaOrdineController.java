@@ -4,8 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * @author  Veronica
+ */
 public class AnnullaOrdineController implements ActionListener{
 	
+	/**
+	 * @uml.property  name="annullaOrdinePanel"
+	 * @uml.associationEnd  
+	 */
 	private AnnullaOrdinePanel annullaOrdinePanel;
 
 	

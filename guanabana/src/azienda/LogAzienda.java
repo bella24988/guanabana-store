@@ -9,20 +9,37 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
+/**
+ * @author  Veronica
+ */
 public class LogAzienda extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="txtUser"
+	 */
 	private JTextField txtUser;
+	/**
+	 * @uml.property  name="txtPassword"
+	 */
 	private JPasswordField txtPassword;
-	private GestioneOrdine gestioneOrdine;
+	/**
+	 * @uml.property  name="gestioneOrdine"
+	 * @uml.associationEnd  
+	 */
+	private MainAziendaSoftware gestioneOrdine;
+	/**
+	 * @uml.property  name="logControllerAzienda"
+	 * @uml.associationEnd  
+	 */
 	private LogControllerAzienda logControllerAzienda;
 
 	/**
 	 * Create the panel.
 	 */
-	public LogAzienda(GestioneOrdine gestioneOrdine2) {
+	public LogAzienda(MainAziendaSoftware gestioneOrdine2) {
 		this.setGestioneOrdine(gestioneOrdine2);
 		logControllerAzienda = new LogControllerAzienda(this);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -80,36 +97,42 @@ public class LogAzienda extends JPanel {
 	}
 
 	/**
-	 * @return the gestioneOrdine
+	 * @return  the gestioneOrdine
+	 * @uml.property  name="gestioneOrdine"
 	 */
-	public GestioneOrdine getGestioneOrdine() {
+	public MainAziendaSoftware getGestioneOrdine() {
 		return gestioneOrdine;
 	}
 
 	/**
-	 * @param gestioneOrdine
-	 *            the gestioneOrdine to set
+	 * @param gestioneOrdine  the gestioneOrdine to set
+	 * @uml.property  name="gestioneOrdine"
 	 */
-	public void setGestioneOrdine(GestioneOrdine gestioneOrdine) {
+	public void setGestioneOrdine(MainAziendaSoftware gestioneOrdine) {
 		this.gestioneOrdine = gestioneOrdine;
 	}
 
 	/**
-	 * @return the logControllerAzienda
+	 * @return  the logControllerAzienda
+	 * @uml.property  name="logControllerAzienda"
 	 */
 	public LogControllerAzienda getLogControllerAzienda() {
 		return logControllerAzienda;
 	}
 
 	/**
-	 * @param logControllerAzienda
-	 *            the logControllerAzienda to set
+	 * @param logControllerAzienda  the logControllerAzienda to set
+	 * @uml.property  name="logControllerAzienda"
 	 */
 	public void setLogControllerAzienda(
 			LogControllerAzienda logControllerAzienda) {
 		this.logControllerAzienda = logControllerAzienda;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtUser"
+	 */
 	public String getTxtUser() {
 		return txtUser.getText();
 	}
@@ -118,6 +141,10 @@ public class LogAzienda extends JPanel {
 		this.txtUser.setText(txtUser);
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="txtPassword"
+	 */
 	public char[] getTxtPassword() {
 		return txtPassword.getPassword();
 	}

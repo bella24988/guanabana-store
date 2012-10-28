@@ -2,14 +2,28 @@ package modello;
 
 import java.io.Serializable;
 
+/**
+ * @author  Veronica
+ */
 public abstract class Computer implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8391044426886288876L;
+	/**
+	 * @uml.property  name="componenti"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	Componente[] componenti;
+	/**
+	 * @uml.property  name="configurazioneStandard"
+	 */
 	protected String[] configurazioneStandard;
+	/**
+	 * @uml.property  name="configurazioneScelta"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Configurazione[] configurazioneScelta;
 	
 	public Computer(String nome, float prezzo) {
@@ -30,8 +44,7 @@ public abstract class Computer implements Serializable{
 
 	/**
 	 * @uml.property  name="componente"
-	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="computer:guanabana.Componente"
-	 * @uml.association  name="composto"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
 	 */
 	private Componente[] componente;
 
@@ -129,28 +142,32 @@ public abstract class Computer implements Serializable{
 		}
 
 		/**
-		 * @return the configurazioneStandard
+		 * @return  the configurazioneStandard
+		 * @uml.property  name="configurazioneStandard"
 		 */
 		public String[] getConfigurazioneStandard() {
 			return configurazioneStandard;
 		}
 
 		/**
-		 * @param configurazioneStandard the configurazioneStandard to set
+		 * @param configurazioneStandard  the configurazioneStandard to set
+		 * @uml.property  name="configurazioneStandard"
 		 */
 		public void setConfigurazioneStandard(String[] configurazioneStandard) {
 			this.configurazioneStandard = configurazioneStandard;
 		}
 
 		/**
-		 * @return the configurazioneScelta
+		 * @return  the configurazioneScelta
+		 * @uml.property  name="configurazioneScelta"
 		 */
 		public Configurazione[] getConfigurazioneScelta() {
 			return configurazioneScelta;
 		}
 
 		/**
-		 * @param configurazioneScelta the configurazioneScelta to set
+		 * @param configurazioneScelta  the configurazioneScelta to set
+		 * @uml.property  name="configurazioneScelta"
 		 */
 		public void setConfigurazioneScelta(Configurazione[] configurazioneScelta) {
 			this.configurazioneScelta = configurazioneScelta;

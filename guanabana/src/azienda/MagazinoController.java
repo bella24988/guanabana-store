@@ -6,7 +6,14 @@ import java.io.IOException;
 
 import modello.Ordine;
 
+/**
+ * @author  Veronica
+ */
 public class MagazinoController implements ActionListener{
+	/**
+	 * @uml.property  name="panelPrincipalGestione"
+	 * @uml.associationEnd  
+	 */
 	private MagazinoPanel panelPrincipalGestione;
 	
 	
@@ -47,7 +54,8 @@ public class MagazinoController implements ActionListener{
 
 
 	/**
-	 * @return the panelPrincipalGestione
+	 * @return  the panelPrincipalGestione
+	 * @uml.property  name="panelPrincipalGestione"
 	 */
 	public MagazinoPanel getPanelPrincipalGestione() {
 		return panelPrincipalGestione;
@@ -56,7 +64,8 @@ public class MagazinoController implements ActionListener{
 
 
 	/**
-	 * @param panelPrincipalGestione the panelPrincipalGestione to set
+	 * @param panelPrincipalGestione  the panelPrincipalGestione to set
+	 * @uml.property  name="panelPrincipalGestione"
 	 */
 	public void setPanelPrincipalGestione(MagazinoPanel panelPrincipalGestione) {
 		this.panelPrincipalGestione = panelPrincipalGestione;
