@@ -14,14 +14,15 @@ public class MagazinoController implements ActionListener{
 	 * @uml.property  name="panelPrincipalGestione"
 	 * @uml.associationEnd  
 	 */
-	private MagazinoPanel panelPrincipalGestione;
-	
-	
+	private MagazinoPanel magazzinoPanel;
+	private Ordine[] ordini;
+	private SistemaGestioneFinestra sistemaGestioneFinestra;
+	private boolean ok;
 
-	public MagazinoController(
-			MagazinoPanel panelPrincipalGestione) {
-		super();
-		this.setPanelPrincipalGestione(panelPrincipalGestione);
+
+	public MagazinoController(SistemaGestioneFinestra sisFinestra) {
+		this.setSistemaGestioneFinestra(sisFinestra);
+		ok=false;
 	}
 
 
@@ -31,24 +32,56 @@ public class MagazinoController implements ActionListener{
 		
 		
 		if (e.getActionCommand().substring(0, 4).compareTo("Sped")==0){
-			int indiceArray = Integer.parseInt(e.getActionCommand().substring(4));
-			Ordine ordine = panelPrincipalGestione.getOrdini()[indiceArray];
-			ClientAzienda servizioClientAzienda = new ClientAzienda();
+			sistemaGestioneFinestra.getContenutoPanel().remove(magazzinoPanel);
 			try {
+				int indiceArray = Integer.parseInt(e.getActionCommand().substring(4));
+				Ordine ordine = magazzinoPanel.getOrdini()[indiceArray];
+				ClientAzienda servizioClientAzienda = new ClientAzienda();
 				servizioClientAzienda.aggiornaStatoOrdine("SPEDITO", ordine.getNumeroOrdine());
-				panelPrincipalGestione.getGestioneOrdine().refreshOrdini();
+				refreshOrdini();	
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+				sistemaGestioneFinestra.setTxtErrore("Non è stato possibile communicare con il server");
 				e1.printStackTrace();
 			}
 			
 		   
-		}else if (e.getActionCommand().compareTo("Logout")==0){
-			panelPrincipalGestione.getGestioneOrdine().logOut();
-		}else if (e.getActionCommand().compareTo("Aggiorna")==0){
-			panelPrincipalGestione.getGestioneOrdine().refreshOrdini();
+		}else if (e.getActionCommand().compareTo("Magazzino")==0) {
+			refreshOrdini();
 		}
 		
+	}
+	
+	public void refreshOrdini() {
+		setOrdini(enlistaOrdini());
+		magazzinoPanel = new MagazinoPanel(ordini, this);
+		if(getOrdini()!=null){
+		sistemaGestioneFinestra.getContenutoPanel().add(magazzinoPanel);
+		if (ok) {
+			sistemaGestioneFinestra.setBounds(100, 100, 800, 500);
+			ok = false;
+		}
+		if (!ok) {
+			sistemaGestioneFinestra.setBounds(100, 100, 800, 501);
+			ok = true;
+		}
+		magazzinoPanel.setVisible(true);
+		}else{
+			magazzinoPanel.setVisible(false);
+			sistemaGestioneFinestra.setTxtErrore("Non ci sono ordini da spedire");
+			sistemaGestioneFinestra.getContenutoPanel().removeAll();
+		}
+	}
+
+	public Ordine[] enlistaOrdini() {
+		ClientAzienda servizioClientAzienda = new ClientAzienda();
+		Ordine[] ordini = null;
+		try {
+			ordini = servizioClientAzienda.cercaOrdini();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ordini;
 	}
 
 
@@ -58,7 +91,7 @@ public class MagazinoController implements ActionListener{
 	 * @uml.property  name="panelPrincipalGestione"
 	 */
 	public MagazinoPanel getPanelPrincipalGestione() {
-		return panelPrincipalGestione;
+		return magazzinoPanel;
 	}
 
 
@@ -68,7 +101,41 @@ public class MagazinoController implements ActionListener{
 	 * @uml.property  name="panelPrincipalGestione"
 	 */
 	public void setPanelPrincipalGestione(MagazinoPanel panelPrincipalGestione) {
-		this.panelPrincipalGestione = panelPrincipalGestione;
+		this.magazzinoPanel = panelPrincipalGestione;
 	}
 
+	/**
+	 * @return the ordini
+	 * @uml.property name="ordini"
+	 */
+	public Ordine[] getOrdini() {
+		return ordini;
+	}
+
+	/**
+	 * @param ordini
+	 *            the ordini to set
+	 * @uml.property name="ordini"
+	 */
+	public void setOrdini(Ordine[] ordini) {
+		this.ordini = ordini;
+	}
+
+
+
+	/**
+	 * @return the sistemaGestioneFinestra
+	 */
+	public SistemaGestioneFinestra getSistemaGestioneFinestra() {
+		return sistemaGestioneFinestra;
+	}
+
+
+
+	/**
+	 * @param sistemaGestioneFinestra the sistemaGestioneFinestra to set
+	 */
+	public void setSistemaGestioneFinestra(SistemaGestioneFinestra sistemaGestioneFinestra) {
+		this.sistemaGestioneFinestra = sistemaGestioneFinestra;
+	}
 }

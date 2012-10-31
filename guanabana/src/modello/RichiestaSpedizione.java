@@ -77,5 +77,30 @@ public class RichiestaSpedizione {
 			this.ora = ora;
 		}
 
+		/** 
+		 * @uml.property name="ordine"
+		 * @uml.associationEnd multiplicity="(1 1)" inverse="richiestaSpedizione:modello.Ordine"
+		 * @uml.association name="crea"
+		 */
+		private Ordine ordine = null;
+
+		/** 
+		 * Getter of the property <tt>ordine</tt>
+		 * @return  Returns the ordine.
+		 * @uml.property  name="ordine"
+		 */
+		public Ordine getOrdine() {
+			return ordine;
+		}
+
+		/** 
+		 * Setter of the property <tt>ordine</tt>
+		 * @param ordine  The ordine to set.
+		 * @uml.property  name="ordine"
+		 */
+		public void setOrdine(Ordine ordine) {
+			this.ordine = ordine;
+		}
+
 
 }

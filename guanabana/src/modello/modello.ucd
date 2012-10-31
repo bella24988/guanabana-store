@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1432,1233" id="modello" metadata="uml2-1.0" initialized="true" scrolledY="40" tag="1000" key="32303037303533312D31303030206775616E6162616E612F5665726F6E696361">
-  <children xsi:type="editmodel:ClassEditModel" name="Bonifico" location="236,886" size="108,103" id="modello/Bonifico" runTimeClassModel="codice,banca,Bonifico(Lmodello.Ordine;Ljava.lang.String;I)">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1332,1188" id="modello" metadata="uml2-1.0" initialized="true" scrolledX="-120" scrolledY="489" tag="1000" key="32303037303533312D31303030206775616E6162616E612F5665726F6E696361">
+  <children xsi:type="editmodel:ClassEditModel" name="Bonifico" location="236,886" size="108,103" id="modello/Bonifico" runTimeClassModel="codice,Bonifico(Lmodello.Ordine;Ljava.lang.String;I),banca">
     <children xsi:type="editmodel:CompartmentEditModel" size="85,36">
       <children xsi:type="editmodel:AttributeEditModel" name="banca" id="modello/Bonifico#banca"/>
       <children xsi:type="editmodel:AttributeEditModel" name="codice" id="modello/Bonifico#codice"/>
@@ -9,7 +9,7 @@
       <children xsi:type="editmodel:MethodEditModel" name="Bonifico" id="modello/Bonifico#Bonifico(Lmodello.Ordine;Ljava.lang.String;I)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/Bonifico" source="//@children.0" target="//@children.12" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/Bonifico" source="//@children.0" target="//@children.8" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="53,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="53,103"/>
     </sourceConnections>
@@ -26,19 +26,10 @@
       <children xsi:type="editmodel:MethodEditModel" name="CartaCredito" id="modello/CartaCredito#CartaCredito(Lmodello.Ordine;Ljava.lang.String;I)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/CartaCredito" source="//@children.1" target="//@children.12" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/CartaCredito" source="//@children.1" target="//@children.8" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="146,9" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="10,103"/>
     </sourceConnections>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" name="ComponenteMagazino" location="972,720" size="185,75" id="modello/ComponenteMagazino" runTimeClassModel="stato,sn">
-    <children xsi:type="editmodel:CompartmentEditModel" size="77,36">
-      <children xsi:type="editmodel:AttributeEditModel" name="sn" id="modello/ComponenteMagazino#sn"/>
-      <children xsi:type="editmodel:AttributeEditModel" name="stato" id="modello/ComponenteMagazino#stato"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
   <children xsi:type="editmodel:ClassEditModel" name="Contrassegno" location="405,886" size="128,67" id="modello/Contrassegno" runTimeClassModel="Contrassegno(Lmodello.Ordine;Ljava.lang.String;I)">
@@ -47,22 +38,22 @@
       <children xsi:type="editmodel:MethodEditModel" name="Contrassegno" id="modello/Contrassegno#Contrassegno(Lmodello.Ordine;Ljava.lang.String;I)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/Contrassegno" source="//@children.3" target="//@children.12" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/Contrassegno" source="//@children.2" target="//@children.8" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="32,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="124,103"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="Desktop" location="510,553" size="92,85" id="modello/Desktop" runTimeClassModel="Desktop(Ljava.lang.String;F),Desktop(Ljava.lang.String;)">
+  <children xsi:type="editmodel:ClassEditModel" name="Desktop" location="610,555" size="92,85" id="modello/Desktop" runTimeClassModel="Desktop(Ljava.lang.String;F),Desktop(Ljava.lang.String;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="69,36">
       <children xsi:type="editmodel:MethodEditModel" name="Desktop" id="modello/Desktop#Desktop(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="Desktop" id="modello/Desktop#Desktop(Ljava.lang.String;F)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Computer&lt;-modello/Desktop" source="//@children.4" target="//@children.15" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="26,157"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Computer&lt;-modello/Desktop" source="//@children.3" target="//@children.11" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="39,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="101,157"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
@@ -79,7 +70,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.0" name="Fattura" location="-115,696" size="131,121" id="modello/Fattura" runTimeClassModel="generareFattura(),codice,totale,data">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.0" name="Fattura" location="-115,696" size="131,121" id="modello/Fattura" runTimeClassModel="generareFattura(),codice,totale,data">
     <children xsi:type="editmodel:CompartmentEditModel" size="85,54">
       <children xsi:type="editmodel:AttributeEditModel" name="codice" id="modello/Fattura#codice"/>
       <children xsi:type="editmodel:AttributeEditModel" name="data" id="modello/Fattura#data"/>
@@ -91,20 +82,20 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="Laptop" location="608,553" size="86,85" id="modello/Laptop" runTimeClassModel="Laptop(Ljava.lang.String;),Laptop(Ljava.lang.String;F)">
+  <children xsi:type="editmodel:ClassEditModel" name="Laptop" location="705,555" size="86,85" id="modello/Laptop" runTimeClassModel="Laptop(Ljava.lang.String;),Laptop(Ljava.lang.String;F)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="63,36">
       <children xsi:type="editmodel:MethodEditModel" name="Laptop" id="modello/Laptop#Laptop(Ljava.lang.String;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="Laptop" id="modello/Laptop#Laptop(Ljava.lang.String;F)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Computer&lt;-modello/Laptop" source="//@children.7" target="//@children.15" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="40,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="100,157"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Computer&lt;-modello/Laptop" source="//@children.6" target="//@children.11" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="16,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="121,157"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.0 //@children.9/@sourceConnections.1" name="RichiestaSpedizione" location="1022,1110" size="172,103" id="modello/RichiestaSpedizione" runTimeClassModel="ora,data,generaRichiesta()">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.1" name="RichiestaSpedizione" location="570,816" size="172,103" id="modello/RichiestaSpedizione" runTimeClassModel="ora,data,generaRichiesta()">
     <children xsi:type="editmodel:CompartmentEditModel" size="74,36">
       <children xsi:type="editmodel:AttributeEditModel" name="data" id="modello/RichiestaSpedizione#data"/>
       <children xsi:type="editmodel:AttributeEditModel" name="ora" id="modello/RichiestaSpedizione#ora"/>
@@ -115,65 +106,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="Magazzino" location="862,1110" size="111,29" id="modello/Magazzino" runTimeClassModel="">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/RichiestaSpedizione@richiestaSpedizione+modello/Magazzino@" source="//@children.9" target="//@children.8" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="111,14" id="modello/RichiestaSpedizione@richiestaSpedizione+modello/Magazzino@|modello/Magazzino#" attachSource="true" roleLabel="//@children.9/@sourceConnections.0/@children.1/@children.0">
-        <children xsi:type="editmodel:LabelEditModel" location="980,1103" size="0,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="richiestaSpedizione" location="0,14" id="modello/RichiestaSpedizione@richiestaSpedizione+modello/Magazzino@|modello/RichiestaSpedizione#richiestaSpedizione" multiplicityLabel="//@children.9/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.9/@sourceConnections.0/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - richiestaSpedizione" location="911,1103" size="104,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="997,1131" size="18,14" anchorKind="LastPart"/>
-      </children>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/Magazzino@magazzino+modello/RichiestaSpedizione@" source="//@children.9" target="//@children.8" targetEnd="//@children.9/@sourceConnections.1/@children.2" label="//@children.9/@sourceConnections.1/@children.0" sourceEnd="//@children.9/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="magazzino" location="106,29" id="modello/Magazzino@magazzino+modello/RichiestaSpedizione@|modello/Magazzino#magazzino" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - magazzino" location="899,1146" size="62,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="975,1146" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,51" id="modello/Magazzino@magazzino+modello/RichiestaSpedizione@|modello/RichiestaSpedizione#" roleLabel="//@children.9/@sourceConnections.1/@children.2/@children.0">
-        <children xsi:type="editmodel:LabelEditModel" location="1015,1140" size="0,14" anchorKind="LastPart"/>
-      </children>
-    </sourceConnections>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.0 //@children.11/@sourceConnections.1" name="Spedizione" location="1080,990" size="114,67" id="modello/Spedizione" runTimeClassModel="spedire()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="66,18">
-      <children xsi:type="editmodel:MethodEditModel" name="spedire" id="modello/Spedizione#spedire()"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" name="ComputerAssemblato" location="810,930" size="177,67" id="modello/ComputerAssemblato" runTimeClassModel="assemblaComputer()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="122,18">
-      <children xsi:type="editmodel:MethodEditModel" name="assemblaComputer" id="modello/ComputerAssemblato#assemblaComputer()"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/Spedizione@spedizione+modello/ComputerAssemblato@" source="//@children.11" target="//@children.10" targetEnd="//@children.11/@sourceConnections.0/@children.2" label="//@children.11/@sourceConnections.0/@children.0" sourceEnd="//@children.11/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="177,63" id="modello/Spedizione@spedizione+modello/ComputerAssemblato@|modello/ComputerAssemblato#" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="spedizione" location="0,3" id="modello/Spedizione@spedizione+modello/ComputerAssemblato@|modello/Spedizione#spedizione" multiplicityLabel="//@children.11/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.11/@sourceConnections.0/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - spedizione" location="1011,972" size="62,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1055,1000" size="18,14" anchorKind="LastPart"/>
-      </children>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/ComputerAssemblato@computerAssemblato+modello/Spedizione@" source="//@children.11" target="//@children.10" targetEnd="//@children.11/@sourceConnections.1/@children.2" label="//@children.11/@sourceConnections.1/@children.0" sourceEnd="//@children.11/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="computerAssemblato" location="177,32" id="modello/ComputerAssemblato@computerAssemblato+modello/Spedizione@|modello/ComputerAssemblato#computerAssemblato" attachSource="true" multiplicityLabel="//@children.11/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.11/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - computerAssemblato" location="994,941" size="112,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="994,969" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="15,0" id="modello/ComputerAssemblato@computerAssemblato+modello/Spedizione@|modello/Spedizione#"/>
-    </sourceConnections>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.0/@sourceConnections.0 //@children.3/@sourceConnections.0 //@children.13/@sourceConnections.0" name="Pagamento" location="236,705" size="146,103" id="modello/Pagamento" runTimeClassModel="Pagamento(Lmodello.Ordine;Ljava.lang.String;I),numPagamento,tipoPagamento">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.0/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.9/@sourceConnections.0" name="Pagamento" location="236,705" size="146,103" id="modello/Pagamento" runTimeClassModel="Pagamento(Lmodello.Ordine;Ljava.lang.String;I),tipoPagamento,numPagamento">
     <children xsi:type="editmodel:CompartmentEditModel" size="123,36">
       <children xsi:type="editmodel:AttributeEditModel" name="numPagamento" id="modello/Pagamento#numPagamento"/>
       <children xsi:type="editmodel:AttributeEditModel" name="tipoPagamento" id="modello/Pagamento#tipoPagamento"/>
@@ -182,12 +115,12 @@
       <children xsi:type="editmodel:MethodEditModel" name="Pagamento" id="modello/Pagamento#Pagamento(Lmodello.Ordine;Ljava.lang.String;I)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="genera" autoLocated="true" id="modello/Fattura@fattura+modello/Pagamento@pagamento" source="//@children.12" target="//@children.6" targetEnd="//@children.12/@sourceConnections.0/@children.1" label="//@children.12/@sourceConnections.0/@children.2" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="pagamento" location="0,51" id="modello/Fattura@fattura+modello/Pagamento@pagamento|modello/Pagamento#pagamento" attachSource="true" multiplicityLabel="//@children.12/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.12/@sourceConnections.0/@children.0/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - pagamento" location="166,735" size="63,14" anchorKind="FirstPart"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="genera" autoLocated="true" id="modello/Fattura@fattura+modello/Pagamento@pagamento" source="//@children.8" target="//@children.5" targetEnd="//@children.8/@sourceConnections.0/@children.1" label="//@children.8/@sourceConnections.0/@children.2" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="pagamento" location="0,51" id="modello/Fattura@fattura+modello/Pagamento@pagamento|modello/Pagamento#pagamento" attachSource="true" multiplicityLabel="//@children.8/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.8/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + pagamento" location="164,735" size="65,14" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="1" location="223,763" size="6,14" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="fattura" location="131,60" id="modello/Fattura@fattura+modello/Pagamento@pagamento|modello/Fattura#fattura" multiplicityLabel="//@children.12/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.12/@sourceConnections.0/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="fattura" location="131,60" id="modello/Fattura@fattura+modello/Pagamento@pagamento|modello/Fattura#fattura" multiplicityLabel="//@children.8/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.8/@sourceConnections.0/@children.1/@children.0" aggregationKind="Composition" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - fattura" location="23,735" size="42,14" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="1" location="23,763" size="6,14" anchorKind="LastPart"/>
       </children>
@@ -195,7 +128,7 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.17/@sourceConnections.0 //@children.15/@sourceConnections.0" name="Ordine" location="296,438" size="127,157" id="modello/Ordine" runTimeClassModel="getPrezzo(),stato,setPrezzo(F),numeroOrdine,data,Ordine(ILmodello.Computer;FLmodello.Cliente;)">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.13/@sourceConnections.0 //@children.11/@sourceConnections.0" name="Ordine" location="296,438" size="127,157" id="modello/Ordine" runTimeClassModel="getPrezzo(),stato,setPrezzo(F),numeroOrdine,data,Ordine(ILmodello.Computer;FLmodello.Cliente;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="104,54">
       <children xsi:type="editmodel:AttributeEditModel" name="data" id="modello/Ordine#data"/>
       <children xsi:type="editmodel:AttributeEditModel" name="numeroOrdine" id="modello/Ordine#numeroOrdine"/>
@@ -207,25 +140,37 @@
       <children xsi:type="editmodel:MethodEditModel" name="setPrezzo" id="modello/Ordine#setPrezzo(F)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="conclusa con" autoLocated="true" id="modello/Pagamento@pagamento+modello/Ordine@ordine" source="//@children.13" target="//@children.12" targetEnd="//@children.13/@sourceConnections.0/@children.1" label="//@children.13/@sourceConnections.0/@children.2" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="ordine" location="42,157" id="modello/Pagamento@pagamento+modello/Ordine@ordine|modello/Ordine#ordine" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.13/@sourceConnections.0/@children.0/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - ordine" location="345,602" size="40,14" anchorKind="FirstPart"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="conclusa con" autoLocated="true" id="modello/Pagamento@pagamento+modello/Ordine@ordine" source="//@children.9" target="//@children.8" targetEnd="//@children.9/@sourceConnections.0/@children.1" label="//@children.9/@sourceConnections.0/@children.2" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ordine" location="42,157" id="modello/Pagamento@pagamento+modello/Ordine@ordine|modello/Ordine#ordine" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.9/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + ordine" location="345,602" size="42,14" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="1" location="325,602" size="6,14" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="pagamento" location="102,0" id="modello/Pagamento@pagamento+modello/Ordine@ordine|modello/Pagamento#pagamento" multiplicityLabel="//@children.13/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.13/@sourceConnections.0/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="pagamento" location="102,0" id="modello/Pagamento@pagamento+modello/Ordine@ordine|modello/Pagamento#pagamento" multiplicityLabel="//@children.9/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.0/@children.1/@children.0" aggregationKind="Composition" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - pagamento" location="345,684" size="63,14" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="313,684" size="18,14" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" name="conclusa con" size="65,14" anchorKind="MiddlePart"/>
     </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="crea" autoLocated="true" id="modello/RichiestaSpedizione@richiestaSpedizione+modello/Ordine@ordine" source="//@children.9" target="//@children.7" targetEnd="//@children.9/@sourceConnections.1/@children.1" label="//@children.9/@sourceConnections.1/@children.2" sourceEnd="//@children.9/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ordine" location="127,147" id="modello/RichiestaSpedizione@richiestaSpedizione+modello/Ordine@ordine|modello/Ordine#ordine" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.9/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="- ordine" location="430,564" size="37,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="430,592" size="6,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="richiestaSpedizione" location="10,0" id="modello/RichiestaSpedizione@richiestaSpedizione+modello/Ordine@ordine|modello/RichiestaSpedizione#richiestaSpedizione" multiplicityLabel="//@children.9/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.1/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - richiestaSpedizione" location="587,795" size="104,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="555,795" size="18,14" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" name="crea" size="22,14" anchorKind="MiddlePart"/>
+    </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.15/@sourceConnections.1" name="Configurazione" location="723,45" size="238,211" id="modello/Configurazione" runTimeClassModel="getComponentiStandard(),setComponentiScelti([Lmodello.Componente;),setComponentiStandard([Lmodello.Componente;),Configurazione([Lmodello.Componente;[Ljava.lang.String;),setConfigurazioneScelta(II),componentiScelti,componentiStandard,getComponentiScelti()">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.1" name="Configurazione" location="723,45" size="238,265" id="modello/Configurazione" runTimeClassModel="getComponentiStandard(),setComponentiScelti([Lmodello.Componente;),setMaxComponentiScelti(I),maxComponentiScelti,setComponentiStandard([Lmodello.Componente;),setConfigurazioneScelta(II),Configurazione([Lmodello.Componente;[Ljava.lang.String;I),getComponentiScelti(),componentiScelti,componentiStandard,getMaxComponentiScelti()">
     <children xsi:type="editmodel:CompartmentEditModel" size="215,54">
       <children xsi:type="editmodel:AttributeEditModel" name="componentiScelti" id="modello/Configurazione#componentiScelti"/>
       <children xsi:type="editmodel:AttributeEditModel" name="componentiStandard" id="modello/Configurazione#componentiStandard"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="maxComponentiScelti" id="modello/Configurazione#maxComponentiScelti"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="148,126">
+    <children xsi:type="editmodel:CompartmentEditModel" size="148,162">
       <children xsi:type="editmodel:MethodEditModel" name="Configurazione" id="modello/Configurazione#Configurazione([Lmodello.Componente;[Ljava.lang.String;I)"/>
       <children xsi:type="editmodel:MethodEditModel" name="setConfigurazioneScelta"/>
       <children xsi:type="editmodel:MethodEditModel" name="setComponentiScelti" id="modello/Configurazione#setComponentiScelti([Lmodello.Componente;)"/>
@@ -233,11 +178,13 @@
       <children xsi:type="editmodel:MethodEditModel" name="setComponentiStandard" id="modello/Configurazione#setComponentiStandard([Lmodello.Componente;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="getComponentiStandard" id="modello/Configurazione#getComponentiStandard()"/>
       <children xsi:type="editmodel:MethodEditModel" name="setConfigurazioneScelta" id="modello/Configurazione#setConfigurazioneScelta(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMaxComponentiScelti" id="modello/Configurazione#setMaxComponentiScelti(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMaxComponentiScelti" id="modello/Configurazione#getMaxComponentiScelti()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="composta" id="modello/Componente@componenti+modello/Configurazione@configurazione" source="//@children.14" target="//@children.16" targetEnd="//@children.14/@sourceConnections.0/@children.1" label="//@children.14/@sourceConnections.0/@children.2" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="configurazione" location="139,18" id="modello/Componente@componenti+modello/Configurazione@configurazione|modello/Configurazione#configurazione" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="componenti" location="68,0" id="modello/Componente@componenti+modello/Configurazione@configurazione|modello/Componente#componenti" multiplicityLabel="//@children.14/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.1/@children.0" navigable="true" orderingKind="1">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="composta" id="modello/Componente@componenti+modello/Configurazione@configurazione" source="//@children.10" target="//@children.12" targetEnd="//@children.10/@sourceConnections.0/@children.1" label="//@children.10/@sourceConnections.0/@children.2" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="configurazione" location="139,22" id="modello/Componente@componenti+modello/Configurazione@configurazione|modello/Configurazione#configurazione" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="componenti" location="68,0" id="modello/Componente@componenti+modello/Configurazione@configurazione|modello/Componente#componenti" multiplicityLabel="//@children.10/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.1/@children.0" navigable="true" orderingKind="1">
         <children xsi:type="editmodel:LabelEditModel" name=" - componenti" location="1140,279" size="65,14" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="1122,279" size="4,14" anchorKind="LastPart"/>
       </children>
@@ -245,7 +192,7 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0 //@children.18/@sourceConnections.0 //@children.7/@sourceConnections.0" name="Computer" location="548,317" size="142,157" id="modello/Computer" runTimeClassModel="mostrareComputer(),prezzo,Computer(Ljava.lang.String;),tipo,nome,Computer(Ljava.lang.String;F)">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0 //@children.14/@sourceConnections.0 //@children.6/@sourceConnections.0" name="Computer" location="548,317" size="142,157" id="modello/Computer" runTimeClassModel="mostrareComputer(),prezzo,Computer(Ljava.lang.String;),tipo,nome,Computer(Ljava.lang.String;F)">
     <children xsi:type="editmodel:CompartmentEditModel" size="80,54">
       <children xsi:type="editmodel:AttributeEditModel" name="nome" id="modello/Computer#nome"/>
       <children xsi:type="editmodel:AttributeEditModel" name="prezzo" id="modello/Computer#prezzo"/>
@@ -257,25 +204,25 @@
       <children xsi:type="editmodel:MethodEditModel" name="mostrareComputer" id="modello/Computer#mostrareComputer()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/Computer@computer+modello/Ordine@" source="//@children.15" target="//@children.13" targetEnd="//@children.15/@sourceConnections.0/@children.2" label="//@children.15/@sourceConnections.0/@children.0" sourceEnd="//@children.15/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/Computer@computer+modello/Ordine@" source="//@children.11" target="//@children.9" targetEnd="//@children.11/@sourceConnections.0/@children.2" label="//@children.11/@sourceConnections.0/@children.0" sourceEnd="//@children.11/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="computer" location="0,138" id="modello/Computer@computer+modello/Ordine@|modello/Computer#computer" attachSource="true" multiplicityLabel="//@children.15/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.15/@sourceConnections.0/@children.1/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="computer" location="0,138" id="modello/Computer@computer+modello/Ordine@|modello/Computer#computer" attachSource="true" multiplicityLabel="//@children.11/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.11/@sourceConnections.0/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - computer" location="486,434" size="55,14" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="523,462" size="18,14" anchorKind="FirstPart"/>
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" location="127,17" id="modello/Computer@computer+modello/Ordine@|modello/Ordine#"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="configurazioneStandard" id="modello/Configurazione@configurazioneStandard+modello/Computer@computer" source="//@children.15" target="//@children.14" targetEnd="//@children.15/@sourceConnections.1/@children.1" label="//@children.15/@sourceConnections.1/@children.2" sourceEnd="//@children.15/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" name="configurazioneStandard" id="modello/Configurazione@configurazioneStandard+modello/Computer@computer" source="//@children.11" target="//@children.10" targetEnd="//@children.11/@sourceConnections.1/@children.1" label="//@children.11/@sourceConnections.1/@children.2" sourceEnd="//@children.11/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" name="computer" location="100,0" id="modello/Configurazione@configurazioneStandard+modello/Computer@computer|modello/Computer#computer" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="configurazioneStandard" location="37,93" id="modello/Configurazione@configurazioneStandard+modello/Computer@computer|modello/Configurazione#configurazioneStandard" multiplicityLabel="//@children.15/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.15/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - configurazioneStandard" location="590,117" size="126,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="710,145" size="6,14" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="configurazioneStandard" location="37,116" id="modello/Configurazione@configurazioneStandard+modello/Computer@computer|modello/Configurazione#configurazioneStandard" multiplicityLabel="//@children.11/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.11/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - configurazioneStandard" location="590,140" size="126,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="710,168" size="6,14" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" name="configurazioneStandard" size="116,14" anchorKind="MiddlePart"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0" name="Componente" location="1065,300" size="129,193" id="modello/Componente" runTimeClassModel="codice,prezzo,standard,tipo,modello,scelto,nome,Componente(Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;)">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0" name="Componente" location="1065,300" size="129,193" id="modello/Componente" runTimeClassModel="codice,prezzo,standard,modello,tipo,scelto,nome,Componente(Ljava.lang.String;Ljava.lang.String;FLjava.lang.String;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="106,126">
       <children xsi:type="editmodel:AttributeEditModel" name="codice" id="modello/Componente#codice"/>
       <children xsi:type="editmodel:AttributeEditModel" name="modello" id="modello/Componente#modello"/>
@@ -291,7 +238,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="Cliente" location="50,320" size="132,229" id="modello/Cliente" runTimeClassModel="Cliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),email,indirizzo,Cliente(),telefono,nome,registrareCliente(),password,cognome,cf">
+  <children xsi:type="editmodel:ClassEditModel" name="Cliente" location="50,320" size="132,229" id="modello/Cliente" runTimeClassModel="Cliente(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),email,Cliente(),indirizzo,telefono,nome,registrareCliente(),cf,cognome,password">
     <children xsi:type="editmodel:CompartmentEditModel" size="103,126">
       <children xsi:type="editmodel:AttributeEditModel" name="cf" id="modello/Cliente#cf"/>
       <children xsi:type="editmodel:AttributeEditModel" name="cognome" id="modello/Cliente#cognome"/>
@@ -307,28 +254,28 @@
       <children xsi:type="editmodel:MethodEditModel" name="registrareCliente" id="modello/Cliente#registrareCliente()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/Cliente@cliente+modello/Ordine@" source="//@children.17" target="//@children.13" targetEnd="//@children.17/@sourceConnections.0/@children.2" label="//@children.17/@sourceConnections.0/@children.0" sourceEnd="//@children.17/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="modello/Cliente@cliente+modello/Ordine@" source="//@children.13" target="//@children.9" targetEnd="//@children.13/@sourceConnections.0/@children.2" label="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="cliente" location="132,173" id="modello/Cliente@cliente+modello/Ordine@|modello/Cliente#cliente" attachSource="true" multiplicityLabel="//@children.17/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.17/@sourceConnections.0/@children.1/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="cliente" location="132,173" id="modello/Cliente@cliente+modello/Ordine@|modello/Cliente#cliente" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.13/@sourceConnections.0/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - cliente" location="189,472" size="41,14" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="189,500" size="18,14" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,55" id="modello/Cliente@cliente+modello/Ordine@|modello/Ordine#" roleLabel="//@children.17/@sourceConnections.0/@children.2/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,55" id="modello/Cliente@cliente+modello/Ordine@|modello/Ordine#" roleLabel="//@children.13/@sourceConnections.0/@children.2/@children.0">
         <children xsi:type="editmodel:LabelEditModel" location="289,472" size="0,14" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="Server" location="720,553" size="86,85" id="modello/Server" runTimeClassModel="Server(Ljava.lang.String;),Server(Ljava.lang.String;F)">
+  <children xsi:type="editmodel:ClassEditModel" name="Server" location="750,420" size="86,85" id="modello/Server" runTimeClassModel="Server(Ljava.lang.String;),Server(Ljava.lang.String;F)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="63,36">
       <children xsi:type="editmodel:MethodEditModel" name="Server" id="modello/Server#Server(Ljava.lang.String;F)"/>
       <children xsi:type="editmodel:MethodEditModel" name="Server" id="modello/Server#Server(Ljava.lang.String;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Computer&lt;-modello/Server" source="//@children.18" target="//@children.15" targetEnd="//@children.18/@sourceConnections.0/@children.1" sourceEnd="//@children.18/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="13,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="128,157"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Computer&lt;-modello/Server" source="//@children.14" target="//@children.11" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,26" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="142,129"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
