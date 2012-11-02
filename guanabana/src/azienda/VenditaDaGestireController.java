@@ -9,69 +9,76 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
-
 import modello.Ordine;
 
-public class VenditaDaGestireController implements ActionListener, ItemListener{
+public class VenditaDaGestireController implements ActionListener, ItemListener {
 
 	private SistemaGestioneFinestra sistemaGestioneFinestra;
 	private VenditaDaGestirePanel veGestirePanel;
-	
+
 	public VenditaDaGestireController(
 			SistemaGestioneFinestra sistemaGestioneFinestra) {
-		this.sistemaGestioneFinestra=sistemaGestioneFinestra;
+		this.sistemaGestioneFinestra = sistemaGestioneFinestra;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getActionCommand().compareTo("Ordini da gestire")==0){
+
+		if (e.getActionCommand().compareTo("Ordini da gestire") == 0) {
 			refreshFinestra("VENDUTO");
-		}else if(e.getActionCommand().compareTo("invia al magazzino")==0){
+		} else if (e.getActionCommand().compareTo("invia al magazzino") == 0) {
 			veGestirePanel.setVisible(false);
 			JButton invio = (JButton) e.getSource();
 			ClientAzienda servizioClientAzienda = new ClientAzienda();
 			try {
-				servizioClientAzienda.aggiornaStatoOrdine("RICHIESTO AL MAGAZZINO", veGestirePanel.getOrdini()[invio.getMnemonic()].getNumeroOrdine());
+				servizioClientAzienda.aggiornaStatoOrdine(
+						"RICHIESTO AL MAGAZZINO",
+						veGestirePanel.getOrdini()[invio.getMnemonic()]
+								.getNumeroOrdine());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			refreshFinestra("VENDUTO");
 		}
-		
+
 	}
-	
-	private void refreshFinestra(String tipo){
+
+	private void refreshFinestra(String tipo) {
+		sistemaGestioneFinestra.pulisceSchermo();
 		Ordine[] ordini = sistemaGestioneFinestra.enlistaOrdini(tipo);
-		if(ordini==null){
-			sistemaGestioneFinestra.setTxtErrore("Non ci sono ordini da gestire");
-		}else if (tipo=="VENDUTO"){
+		if (ordini == null) {
+			sistemaGestioneFinestra
+					.setTxtErrore("Non ci sono ordini da gestire");
+		} else if (tipo == "VENDUTO") {
 			veGestirePanel = new VenditaDaGestirePanel(ordini, this);
 			sistemaGestioneFinestra.getContenutoPanel().add(veGestirePanel);
 			veGestirePanel.setVisible(true);
 		}
 		sistemaGestioneFinestra.Refresh();
 	}
-	
+
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		try {
 			ClientAzienda clientAzienda = new ClientAzienda();
 			JCheckBox btnConferma = (JCheckBox) e.getSource();
-			if(e.getStateChange() == ItemEvent.SELECTED){
+			if (e.getStateChange() == ItemEvent.SELECTED) {
 				veGestirePanel.mostraButtoneInvio(btnConferma.getMnemonic());
-				clientAzienda.confermarePagamento(true, veGestirePanel.getOrdini()[btnConferma.getMnemonic()].getNumeroOrdine());
-			}else{
+				clientAzienda.confermarePagamento(true, veGestirePanel
+						.getOrdini()[btnConferma.getMnemonic()]
+						.getNumeroOrdine());
+			} else {
 				veGestirePanel.nascondiButtoneInvio(btnConferma.getMnemonic());
-				clientAzienda.confermarePagamento(false, veGestirePanel.getOrdini()[btnConferma.getMnemonic()].getNumeroOrdine());
+				clientAzienda.confermarePagamento(false, veGestirePanel
+						.getOrdini()[btnConferma.getMnemonic()]
+						.getNumeroOrdine());
 			}
 		} catch (Exception e2) {
 		}
-		
-		
+
 	}
-	
+
 	/**
 	 * @return the sistemaGestioneFinestra
 	 */
@@ -80,9 +87,11 @@ public class VenditaDaGestireController implements ActionListener, ItemListener{
 	}
 
 	/**
-	 * @param sistemaGestioneFinestra the sistemaGestioneFinestra to set
+	 * @param sistemaGestioneFinestra
+	 *            the sistemaGestioneFinestra to set
 	 */
-	public void setSistemaGestioneFinestra(SistemaGestioneFinestra sistemaGestioneFinestra) {
+	public void setSistemaGestioneFinestra(
+			SistemaGestioneFinestra sistemaGestioneFinestra) {
 		this.sistemaGestioneFinestra = sistemaGestioneFinestra;
 	}
 
@@ -94,7 +103,8 @@ public class VenditaDaGestireController implements ActionListener, ItemListener{
 	}
 
 	/**
-	 * @param veGestirePanel the veGestirePanel to set
+	 * @param veGestirePanel
+	 *            the veGestirePanel to set
 	 */
 	public void setVeGestirePanel(VenditaDaGestirePanel veGestirePanel) {
 		this.veGestirePanel = veGestirePanel;

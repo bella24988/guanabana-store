@@ -3,9 +3,6 @@ package azienda;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -21,6 +18,7 @@ import java.awt.Font;
 import java.io.IOException;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 
 public class SistemaGestioneFinestra extends JFrame {
 
@@ -28,13 +26,11 @@ public class SistemaGestioneFinestra extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contenutoPanel;
 	private Dipendente dipendente;
 	private JMenuBar menuBar;
+	private JPanel contenutoPanel;
 	private LogControllerAzienda logControllerAzienda;
 	private JTextArea txtErrore;
-	private Border border;
-	private Cursor cursor;
 	private boolean ok;
 
 	/**
@@ -73,7 +69,7 @@ public class SistemaGestioneFinestra extends JFrame {
 
 		JTextArea lblUserName = new JTextArea();
 		// lblUserName.setEnabled(false);
-		lblUserName.setText("Ruolo: " + dipendente.getDipartimento()
+		lblUserName.setText(" Ruolo: " + dipendente.getDipartimento()
 				+ "\r\n Utente: " + dipendente.getNome() + " "
 				+ dipendente.getCognome());
 		lblUserName.setBackground(SystemColor.menu);
@@ -84,7 +80,6 @@ public class SistemaGestioneFinestra extends JFrame {
 		mntmLogout.setToolTipText("Logout");
 		mntmLogout.setIcon(new ImageIcon(SistemaGestioneFinestra.class
 				.getResource("/icons/logout-icon.png")));
-		border = new LineBorder(SystemColor.menu, 1);
 		mntmLogout.setBorder(null);
 		mntmLogout.setBackground(SystemColor.menu);
 		mntmLogout.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -92,11 +87,6 @@ public class SistemaGestioneFinestra extends JFrame {
 		menuBar.add(mntmLogout);
 		mntmLogout.addActionListener(logControllerAzienda);
 		mntmLogout.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-		contenutoPanel = new JPanel();
-		contenutoPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contenutoPanel.setLayout(new BorderLayout(0, 0));
-		getContentPane().add(contenutoPanel, BorderLayout.NORTH);
 
 		JPanel panelMessaggio = new JPanel();
 		getContentPane().add(panelMessaggio, BorderLayout.SOUTH);
@@ -112,6 +102,12 @@ public class SistemaGestioneFinestra extends JFrame {
 		txtErrore.setTabSize(100);
 		panelMessaggio.add(txtErrore);
 
+		JScrollPane scrollPane = new JScrollPane();
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+		contenutoPanel = new JPanel();
+		scrollPane.setViewportView(contenutoPanel);
+
 	}
 
 	private void mostraMenuVendita() {
@@ -119,26 +115,49 @@ public class SistemaGestioneFinestra extends JFrame {
 				this);
 		JMenu mnVendite = new JMenu("Vendite");
 		menuBar.add(mnVendite);
+		mnVendite.setIcon(new ImageIcon(SistemaGestioneFinestra.class
+				.getResource("/icons/icona-della-fattura.jpg")));
+		mnVendite.setBackground(Color.white);
+
 		JMenuItem mntmPagate = new JMenuItem("Ordini da gestire");
 		mnVendite.add(mntmPagate);
 		mntmPagate.addActionListener(venGestireController);
 
-		JMenuItem mntmPerPagare = new JMenuItem("Ordini evase");
-		mnVendite.add(mntmPerPagare);
-	}
+		VenditeEvaseController veEvaseController = new VenditeEvaseController(
+				this);
+		JMenuItem mntmOrdiniEvase = new JMenuItem("Ordini evase");
+		mnVendite.add(mntmOrdiniEvase);
 
-	private void mostraMenuSpedizione() {
-		JButton mntmMagazzino = new JButton("Magazzino");
-		menuBar.add(mntmMagazzino);
-		mntmMagazzino.setBackground(SystemColor.menu);
-		MagazinoController controller = new MagazinoController(this);
-		mntmMagazzino.addActionListener(controller);
+		mntmOrdiniEvase.setBackground(Color.white);
+		mntmPagate.setBackground(Color.white);
+		mntmOrdiniEvase.addActionListener(veEvaseController);
+		mnVendite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mntmOrdiniEvase.setCursor(Cursor
+				.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mntmPagate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	private void mostraMenuMagazzino() {
-		JButton mntmSpedizione = new JButton("Spedizione");
+		JMenuItem mntmMagazzino = new JMenuItem("Magazzino");
+		menuBar.add(mntmMagazzino);
+		mntmMagazzino.setBackground(Color.white);
+		mntmMagazzino.setIcon(new ImageIcon(SistemaGestioneFinestra.class
+				.getResource("/icons/order_icon.jpg")));
+		MagazinoController controller = new MagazinoController(this);
+		mntmMagazzino.addActionListener(controller);
+		mntmMagazzino.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	}
+
+	private void mostraMenuSpedizione() {
+		JMenuItem mntmSpedizione = new JMenuItem("Spedizione");
 		menuBar.add(mntmSpedizione);
-		mntmSpedizione.setBackground(SystemColor.menu);
+		mntmSpedizione.setIcon(new ImageIcon(SistemaGestioneFinestra.class
+				.getResource("/icons/dispatch_order_icon.jpg")));
+		mntmSpedizione.setBackground(Color.white);
+		mntmSpedizione
+				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mntmSpedizione
+				.setToolTipText("Clicca per vedere le richieste di spedizioni");
 	}
 
 	/**
@@ -221,5 +240,13 @@ public class SistemaGestioneFinestra extends JFrame {
 			ok = true;
 		}
 
+	}
+
+	public void pulisceSchermo() {
+		this.getContenutoPanel().removeAll();
+		JPanel panelPulito = new JPanel();
+		getContenutoPanel().add(panelPulito);
+		panelPulito.setSize(800, 800);
+		getContenutoPanel().removeAll();
 	}
 }

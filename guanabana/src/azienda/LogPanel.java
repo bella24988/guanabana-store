@@ -11,6 +11,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class LogPanel extends JFrame {
 
@@ -22,6 +25,7 @@ public class LogPanel extends JFrame {
 	private JTextField txtUser;
 	private JPasswordField txtPassword;
 	private LogControllerAzienda logControllerAzienda;
+	private JTextArea txtErrore;
 
 	/**
 	 * Create the frame.
@@ -30,7 +34,7 @@ public class LogPanel extends JFrame {
 		setLogControllerAzienda(new LogControllerAzienda(this));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 337, 169);
+		setBounds(100, 100, 355, 240);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,8 +79,12 @@ public class LogPanel extends JFrame {
 		gbc_pwdTxtpassword.gridx = 2;
 		gbc_pwdTxtpassword.gridy = 2;
 		contentPane.add(txtPassword, gbc_pwdTxtpassword);
+		txtPassword.addKeyListener(logControllerAzienda);
 
 		JButton btnEntra = new JButton("Entra");
+		btnEntra.setBackground(Color.WHITE);
+		btnEntra.setIcon(new ImageIcon(LogPanel.class
+				.getResource("/icons/login_icon1.gif")));
 		GridBagConstraints gbc_btnEntra = new GridBagConstraints();
 		gbc_btnEntra.insets = new Insets(0, 0, 5, 0);
 		gbc_btnEntra.fill = GridBagConstraints.HORIZONTAL;
@@ -86,7 +94,10 @@ public class LogPanel extends JFrame {
 		contentPane.add(btnEntra, gbc_btnEntra);
 		btnEntra.addActionListener(logControllerAzienda);
 
-		JTextArea txtErrore = new JTextArea();
+		txtErrore = new JTextArea();
+		txtErrore.setForeground(Color.RED);
+		txtErrore.setBackground(UIManager.getColor("Panel.background"));
+		txtErrore.setEditable(false);
 		GridBagConstraints gbc_txtErrore = new GridBagConstraints();
 		gbc_txtErrore.gridwidth = 2;
 		gbc_txtErrore.insets = new Insets(0, 0, 0, 5);
@@ -132,6 +143,14 @@ public class LogPanel extends JFrame {
 
 	public void setTxtPassword(String txtPassword) {
 		this.txtPassword.setText(txtPassword);
+	}
+
+	public String getTxtErrore() {
+		return txtErrore.getText();
+	}
+
+	public void setTxtErrore(String txtErrore) {
+		this.txtErrore.setText(txtErrore);
 	}
 
 }

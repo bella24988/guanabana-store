@@ -23,7 +23,7 @@ public class VenditaDaGestirePanel extends JPanel {
 	private Ordine[] ordini;
 	private VenditaDaGestireController venGestireController;
 	private JCheckBox[] conferma;
-	private JButton[] btnAnnullaOrdine;
+	private JButton[] btnInviaMagazzino;
 
 	/**
 	 * Create the panel.
@@ -110,7 +110,7 @@ public class VenditaDaGestirePanel extends JPanel {
 		int numRow = 5;
 		int maxOrdini = ordini.length;
 		conferma = new JCheckBox[maxOrdini];
-		btnAnnullaOrdine = new JButton[maxOrdini];
+		btnInviaMagazzino = new JButton[maxOrdini];
 		for (int indiceArray = 0; indiceArray < maxOrdini; indiceArray++) {
 
 			JLabel lblDatax = new JLabel(ordini[indiceArray].getData());
@@ -161,17 +161,17 @@ public class VenditaDaGestirePanel extends JPanel {
 			gbc_conferma.gridy = numRow;
 			add(conferma[indiceArray], gbc_conferma);
 
-			btnAnnullaOrdine[indiceArray] = new JButton("invia al magazzino");
-			btnAnnullaOrdine[indiceArray].setFont(new Font("Tahoma",
+			btnInviaMagazzino[indiceArray] = new JButton("invia al magazzino");
+			btnInviaMagazzino[indiceArray].setFont(new Font("Tahoma",
 					Font.PLAIN, 8));
-			btnAnnullaOrdine[indiceArray].setMnemonic(indiceArray);
+			btnInviaMagazzino[indiceArray].setMnemonic(indiceArray);
 			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
 			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
 			gbc_btnAnnulla.gridx = 6;
 			gbc_btnAnnulla.gridy = numRow;
-			add(btnAnnullaOrdine[indiceArray], gbc_btnAnnulla);
+			add(btnInviaMagazzino[indiceArray], gbc_btnAnnulla);
 
-			btnAnnullaOrdine[indiceArray]
+			btnInviaMagazzino[indiceArray]
 					.addActionListener(getVenGestireController());
 			if (conferma[indiceArray].isSelected()) {
 				mostraButtoneInvio(indiceArray);
@@ -198,12 +198,12 @@ public class VenditaDaGestirePanel extends JPanel {
 
 	public void mostraButtoneInvio(int indiceArray) {
 		ordini[indiceArray].getPagamento().setConfermato(true);
-		btnAnnullaOrdine[indiceArray].setEnabled(true);
+		btnInviaMagazzino[indiceArray].setEnabled(true);
 	}
 
 	public void nascondiButtoneInvio(int indiceArray) {
 		ordini[indiceArray].getPagamento().setConfermato(false);
-		btnAnnullaOrdine[indiceArray].setEnabled(false);
+		btnInviaMagazzino[indiceArray].setEnabled(false);
 	}
 
 	/**

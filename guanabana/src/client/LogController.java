@@ -1,17 +1,12 @@
 package client;
 
-
-
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-
 import modello.Cliente;
 import modello.Ordine;
-
 import client.SalutoPanel;
 import client.LogPanel;
 

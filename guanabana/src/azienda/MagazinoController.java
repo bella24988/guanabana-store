@@ -50,6 +50,7 @@ public class MagazinoController implements ActionListener{
 	}
 	
 	public void refreshOrdini() {
+		sistemaGestioneFinestra.pulisceSchermo();
 		setOrdini(sistemaGestioneFinestra.enlistaOrdini("RICHIESTO AL MAGAZZINO"));
 		magazzinoPanel = new MagazinoPanel(ordini, this);
 		if(getOrdini()!=null){

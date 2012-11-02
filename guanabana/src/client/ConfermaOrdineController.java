@@ -22,7 +22,7 @@ public class ConfermaOrdineController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equalsIgnoreCase("Continua con il pagamento")){
+		if (e.getActionCommand().equalsIgnoreCase("Aggiunge al carrello")){
 			//confermaOrdinePanel.getContenutoPanel().getComputer().setConfigurazioneScelta(confermaOrdinePanel.getConfigurazione());
 			confermaOrdinePanel.getContenutoPanel().aggiungePagamentoPanel(confermaOrdinePanel, confermaOrdinePanel.getPrezzoTotale());
 		}

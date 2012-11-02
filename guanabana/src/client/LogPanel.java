@@ -9,9 +9,7 @@ import javax.swing.JTextField;
 import client.LogController;
 import client.RegistratiController;
 import javax.swing.SwingConstants;
-
 import modello.Cliente;
-
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -21,8 +19,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 
 /**
  * @author Lele Classe LogPanel: contiene un pannello panelLogin che contiene i
@@ -163,6 +159,7 @@ public class LogPanel extends JPanel {
 		gbc_btnLog.gridy = 0;
 		panelLogin.add(btnLog, gbc_btnLog);
 		btnLog.addActionListener(logController);
+
 		btnRegistrati = new JButton("Registrati");
 		btnRegistrati.setBackground(Color.WHITE);
 		btnRegistrati.setToolTipText("Registrati");
@@ -322,6 +319,14 @@ public class LogPanel extends JPanel {
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
+	}
+
+	public JButton getBtnRegistrati() {
+		return btnRegistrati;
+	}
+
+	public void setBtnRegistrati(JButton btnRegistrati) {
+		this.btnRegistrati = btnRegistrati;
 	}
 
 }
