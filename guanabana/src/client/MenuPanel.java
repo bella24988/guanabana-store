@@ -8,9 +8,11 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 
 /**
- * @author  Lele Classe MenuPanel: contiene 3 bottoni per selezionare l'acquisto  di Ser, Lap, Des
+ * @author Lele Classe MenuPanel: contiene 3 bottoni per selezionare l'acquisto
+ *         di Ser, Lap, Des
  */
 public class MenuPanel extends JPanel {
 
@@ -22,13 +24,13 @@ public class MenuPanel extends JPanel {
 	public JButton btnServer; // Bottone Acquista Server
 	public JButton btnDesktop;// Bottone Acquista Desktop
 	/**
-	 * @uml.property  name="contenuto"
-	 * @uml.associationEnd  
+	 * @uml.property name="contenuto"
+	 * @uml.associationEnd
 	 */
 	private ContenutoPanel contenuto; // Pannello contenuto
 	/**
-	 * @uml.property  name="menuController"
-	 * @uml.associationEnd  
+	 * @uml.property name="menuController"
+	 * @uml.associationEnd
 	 */
 	private MenuController menuController; // Controllore di questo pannello
 
@@ -95,16 +97,17 @@ public class MenuPanel extends JPanel {
 
 	// inizio getter and setter
 	/**
-	 * @return  the contenuto
-	 * @uml.property  name="contenuto"
+	 * @return the contenuto
+	 * @uml.property name="contenuto"
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 	/**
-	 * @param contenuto  the contenuto to set
-	 * @uml.property  name="contenuto"
+	 * @param contenuto
+	 *            the contenuto to set
+	 * @uml.property name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;

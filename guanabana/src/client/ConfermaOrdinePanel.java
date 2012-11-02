@@ -13,6 +13,7 @@ import modello.Componente;
 import modello.Configurazione;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 /**
  * @author Veronica
@@ -129,8 +130,12 @@ public class ConfermaOrdinePanel extends JPanel {
 		gbc_lblPrezzototale.gridy = 2;
 		add(lblPrezzototale, gbc_lblPrezzototale);
 
-		JButton btnContinuaConIl = new JButton("Continua con il pagamento");
+		JButton btnContinuaConIl = new JButton("Aggiunge al carrello");
+		btnContinuaConIl
+				.setSelectedIcon(new ImageIcon(ConfermaOrdinePanel.class.getResource("/icons/icon_carrello.jpg")));
 		GridBagConstraints gbc_btnContinuaConIl = new GridBagConstraints();
+		gbc_btnContinuaConIl.fill = GridBagConstraints.BOTH;
+		gbc_btnContinuaConIl.gridheight = 2;
 		gbc_btnContinuaConIl.insets = new Insets(0, 0, 5, 0);
 		gbc_btnContinuaConIl.gridx = 1;
 		gbc_btnContinuaConIl.gridy = 3;

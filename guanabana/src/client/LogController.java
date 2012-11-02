@@ -2,8 +2,11 @@ package client;
 
 
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import modello.Cliente;
@@ -15,7 +18,7 @@ import client.LogPanel;
 /**
  * @author  Lele  Classe che implementa l'action listener per il pulsante login e logout
  */
-public class LogController implements ActionListener{
+public class LogController implements ActionListener, KeyListener{
 	
 	/**
 	 * @uml.property  name="logPanel"
@@ -55,23 +58,7 @@ public class LogController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getActionCommand().equalsIgnoreCase("Login")){
-			logPanel.bloccareInserimento();
-			try {
-				Client servizioClient = new Client();
-				setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), String.valueOf(logPanel.getTxtPassword())));
-				if (cliente != null){
-					logPanel.mostraMessaggioErrore("");
-					logPanel.loginFatto(cliente);				
-				}else{
-					logPanel.sbloccareInserimento();
-					logPanel.mostraMessaggioErrore("La email e la password non coincidono, per favore verifichi i dati.");
-				}
-			} catch (Exception e1) {
-				logPanel.sbloccareInserimento();
-				logPanel.mostraMessaggioErrore("Non si puo stabilire un collegamento con il server");
-				e1.printStackTrace();
-			}
-			
+			login();
 			
 		} 
 		
@@ -109,6 +96,26 @@ public class LogController implements ActionListener{
 			}
 		}
 			
+	}
+
+	private void login() {
+		logPanel.bloccareInserimento();
+		try {
+			Client servizioClient = new Client();
+			setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), String.valueOf(logPanel.getTxtPassword())));
+			if (cliente != null){
+				logPanel.mostraMessaggioErrore("");
+				logPanel.loginFatto(cliente);				
+			}else{
+				logPanel.sbloccareInserimento();
+				logPanel.mostraMessaggioErrore("La email e la password non coincidono, per favore verifichi i dati.");
+			}
+		} catch (Exception e1) {
+			logPanel.sbloccareInserimento();
+			logPanel.mostraMessaggioErrore("Non si puo stabilire un collegamento con il server");
+			e1.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -204,6 +211,26 @@ public class LogController implements ActionListener{
 		this.cliente = cliente;
 	}
 
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+        
+        if (key == KeyEvent.VK_ENTER) {
+        	login();           
+        }
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+	}
 
 
 }

@@ -13,7 +13,9 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
 /**
- * @author  Lele Classe Index: Applet che contiene tutti i pannelli  dell'applicazione lato client. Implementa l'interfaccia Collegare che  contiene tutti i metodi di connessione.
+ * @author Lele Classe Index: Applet che contiene tutti i pannelli
+ *         dell'applicazione lato client. Implementa l'interfaccia Collegare che
+ *         contiene tutti i metodi di connessione.
  */
 public class Index extends JApplet {
 
@@ -24,21 +26,21 @@ public class Index extends JApplet {
 	public JPanel contentPane; // Pannello principale che contiene tutti gli
 								// altri pannelli in ogni momento
 	/**
-	 * @uml.property  name="menuPanel"
-	 * @uml.associationEnd  
+	 * @uml.property name="menuPanel"
+	 * @uml.associationEnd
 	 */
 	public MenuPanel menuPanel; // Pannello contenente i tipi di computer
 								// acquistabili (Des, Lap, Ser) sempre presente
 								// in contentPane
 	/**
-	 * @uml.property  name="logPanel"
-	 * @uml.associationEnd  
+	 * @uml.property name="logPanel"
+	 * @uml.associationEnd
 	 */
 	public LogPanel logPanel; // Pannello di login (mostra login, logout e
 								// registrati)
 	/**
-	 * @uml.property  name="contenuto"
-	 * @uml.associationEnd  
+	 * @uml.property name="contenuto"
+	 * @uml.associationEnd
 	 */
 	private ContenutoPanel contenuto; // Pannello contenitore, sempre presente,
 										// in cui sono visualizzati
@@ -73,33 +75,26 @@ public class Index extends JApplet {
 		// suddivide in griglia contentPane e posiziona i tre pannelli logPanel,
 		// menuAcquista e contenuto in contentPane
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane
-				.setHorizontalGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addComponent(menuPanel, GroupLayout.PREFERRED_SIZE,
+								GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(
 								gl_contentPane
-										.createSequentialGroup()
-										.addComponent(menuPanel,
-												GroupLayout.PREFERRED_SIZE,
+										.createParallelGroup(Alignment.LEADING,
+												false)
+										.addComponent(contenuto,
 												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																logPanel,
-																GroupLayout.PREFERRED_SIZE,
-																770,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																contenuto,
-																GroupLayout.PREFERRED_SIZE,
-																799,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap()));
+												GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addComponent(logPanel,
+												GroupLayout.DEFAULT_SIZE, 770,
+												Short.MAX_VALUE))
+						.addContainerGap()));
 		gl_contentPane
 				.setVerticalGroup(gl_contentPane
 						.createParallelGroup(Alignment.LEADING)
@@ -107,7 +102,7 @@ public class Index extends JApplet {
 								gl_contentPane
 										.createSequentialGroup()
 										.addComponent(logPanel,
-												GroupLayout.PREFERRED_SIZE, 70,
+												GroupLayout.PREFERRED_SIZE, 94,
 												GroupLayout.PREFERRED_SIZE)
 										.addPreferredGap(
 												ComponentPlacement.RELATED)
@@ -116,14 +111,14 @@ public class Index extends JApplet {
 														.createParallelGroup(
 																Alignment.LEADING)
 														.addComponent(
-																contenuto,
+																menuPanel,
 																GroupLayout.PREFERRED_SIZE,
 																452,
 																GroupLayout.PREFERRED_SIZE)
 														.addComponent(
-																menuPanel,
+																contenuto,
 																GroupLayout.PREFERRED_SIZE,
-																452,
+																382,
 																GroupLayout.PREFERRED_SIZE))
 										.addContainerGap()));
 		// suddivisione
@@ -156,9 +151,9 @@ public class Index extends JApplet {
 
 	// inizio getters and setters
 	/**
-	 * @uml.property  name="menuPanel"
-	 * @uml.associationEnd  inverse="index:client.MenuPanel"
-	 * @uml.association  name="menu"
+	 * @uml.property name="menuPanel"
+	 * @uml.associationEnd inverse="index:client.MenuPanel"
+	 * @uml.association name="menu"
 	 */
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
@@ -182,9 +177,9 @@ public class Index extends JApplet {
 	 */
 
 	/**
-	 * @uml.property  name="panelLog"
-	 * @uml.associationEnd  inverse="index:client.LogPanel"
-	 * @uml.association  name="mostra"
+	 * @uml.property name="panelLog"
+	 * @uml.associationEnd inverse="index:client.LogPanel"
+	 * @uml.association name="mostra"
 	 */
 	public LogPanel getPanelLog() {
 		return logPanel;
@@ -208,9 +203,9 @@ public class Index extends JApplet {
 	 */
 
 	/**
-	 * @uml.property  name="contenuto"
-	 * @uml.associationEnd  inverse="index:client.ContenutoPanel"
-	 * @uml.association  name="mostra"
+	 * @uml.property name="contenuto"
+	 * @uml.associationEnd inverse="index:client.ContenutoPanel"
+	 * @uml.association name="mostra"
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;

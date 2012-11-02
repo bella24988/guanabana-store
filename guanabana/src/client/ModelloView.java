@@ -206,7 +206,7 @@ public class ModelloView extends JPanel {
 		preventivoPanel.setTotalePreventivo(String.valueOf(comp.getPrezzo()));
 		JScrollPane scroller = new JScrollPane(configPanel);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scroller.setPreferredSize(new Dimension(550, 400));
+		scroller.setPreferredSize(new Dimension(500, 350));
 		add(scroller, BorderLayout.WEST);
 		add(preventivoPanel, BorderLayout.EAST);
 	}

@@ -66,7 +66,7 @@ public class PreventivoController implements ActionListener{
 		
 		
 		
-		if (e.getActionCommand().equalsIgnoreCase("Conferma Ordine")){
+		if (e.getActionCommand().equalsIgnoreCase("Conferma configurazione")){
 			configPanel.getConfigurazione();
 			contenutoPanel.nascondeModelli();
 			contenutoPanel.mostraConfermaOrdine(computer, configPanel.getConfigurazione(), new Float(preventivoPanel.getTotalePreventivo()), contenutoPanel.getModelloView());

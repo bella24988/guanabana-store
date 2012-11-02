@@ -13,7 +13,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
 /**
- * @author  Veronica
+ * @author Veronica
  */
 public class PreventivoPanel extends JPanel {
 
@@ -22,12 +22,12 @@ public class PreventivoPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * @uml.property  name="totalePreventivo"
+	 * @uml.property name="totalePreventivo"
 	 */
 	private JTextField totalePreventivo;
 	/**
-	 * @uml.property  name="preventivoController"
-	 * @uml.associationEnd  
+	 * @uml.property name="preventivoController"
+	 * @uml.associationEnd
 	 */
 	private PreventivoController preventivoController;
 
@@ -35,7 +35,7 @@ public class PreventivoPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public PreventivoPanel(PreventivoController preventivoController) {
-		setBorder(new LineBorder(new Color(0, 153, 0), 2, true));
+		setBorder(null);
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 63, 102, 28, 0 };
@@ -103,11 +103,12 @@ public class PreventivoPanel extends JPanel {
 		gbc_lblEur.gridy = 1;
 		add(lblEur, gbc_lblEur);
 
-		JButton btnContinuaConilPagamento = new JButton("Conferma Ordine");
-		btnContinuaConilPagamento.setForeground(new Color(0, 153, 0));
+		JButton btnContinuaConilPagamento = new JButton(
+				"Conferma configurazione");
+		btnContinuaConilPagamento.setForeground(Color.BLACK);
 		btnContinuaConilPagamento.setFont(new Font("Toledo", Font.BOLD, 12));
 		GridBagConstraints gbc_btnContinuaConilPagamento = new GridBagConstraints();
-		gbc_btnContinuaConilPagamento.fill = GridBagConstraints.VERTICAL;
+		gbc_btnContinuaConilPagamento.fill = GridBagConstraints.BOTH;
 		gbc_btnContinuaConilPagamento.gridwidth = 3;
 		gbc_btnContinuaConilPagamento.gridx = 0;
 		gbc_btnContinuaConilPagamento.gridy = 2;
@@ -120,7 +121,7 @@ public class PreventivoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property  name="totalePreventivo"
+	 * @uml.property name="totalePreventivo"
 	 */
 	public String getTotalePreventivo() {
 		return totalePreventivo.getText();
@@ -131,16 +132,17 @@ public class PreventivoPanel extends JPanel {
 	}
 
 	/**
-	 * @return  the preventivoController
-	 * @uml.property  name="preventivoController"
+	 * @return the preventivoController
+	 * @uml.property name="preventivoController"
 	 */
 	public PreventivoController getPreventivoController() {
 		return preventivoController;
 	}
 
 	/**
-	 * @param preventivoController  the preventivoController to set
-	 * @uml.property  name="preventivoController"
+	 * @param preventivoController
+	 *            the preventivoController to set
+	 * @uml.property name="preventivoController"
 	 */
 	public void setPreventivoController(
 			PreventivoController preventivoController) {
