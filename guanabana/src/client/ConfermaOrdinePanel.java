@@ -131,8 +131,12 @@ public class ConfermaOrdinePanel extends JPanel {
 		add(lblPrezzototale, gbc_lblPrezzototale);
 
 		JButton btnContinuaConIl = new JButton("Aggiunge al carrello");
-		btnContinuaConIl
-				.setSelectedIcon(new ImageIcon(ConfermaOrdinePanel.class.getResource("/icons/icon_carrello.jpg")));
+		btnContinuaConIl.setBackground(Color.WHITE);
+		btnContinuaConIl.setIcon(new ImageIcon(ConfermaOrdinePanel.class
+				.getResource("/icons/icon_carrello.jpg")));
+		btnContinuaConIl.setSelectedIcon(new ImageIcon(
+				ConfermaOrdinePanel.class
+						.getResource("/icons/icon_carrello.jpg")));
 		GridBagConstraints gbc_btnContinuaConIl = new GridBagConstraints();
 		gbc_btnContinuaConIl.fill = GridBagConstraints.BOTH;
 		gbc_btnContinuaConIl.gridheight = 2;

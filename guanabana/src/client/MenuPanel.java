@@ -56,6 +56,8 @@ public class MenuPanel extends JPanel {
 		// dichiarazione, definizione aspetto e posizionamento in griglia del
 		// bottone Acquista Laptop
 		btnLaptop = new JButton("Acquista Laptop");
+		btnLaptop.setIcon(new ImageIcon(MenuPanel.class
+				.getResource("/icons/Laptop2.png")));
 		btnLaptop.setForeground(new Color(0, 0, 0));
 		btnLaptop.setBackground(UIManager.getColor("Button.background"));
 		GridBagConstraints gbc_btnAcquistaLaptop = new GridBagConstraints();
@@ -68,6 +70,8 @@ public class MenuPanel extends JPanel {
 		// dichiarazione, definizione aspetto e posizionamento in griglia del
 		// bottone Acquista Desktop
 		btnDesktop = new JButton("Acquista Desktop");
+		btnDesktop.setIcon(new ImageIcon(MenuPanel.class
+				.getResource("/icons/MyComputer3.png")));
 		btnDesktop.setForeground(new Color(0, 0, 0));
 		btnDesktop.setBackground(UIManager.getColor("Button.background"));
 		GridBagConstraints gbc_btnAcquistaDesktop = new GridBagConstraints();
@@ -80,6 +84,8 @@ public class MenuPanel extends JPanel {
 		// dichiarazione, definizione aspetto e posizionamento in griglia del
 		// bottone Acquista Server
 		btnServer = new JButton("Acquista Server");
+		btnServer.setIcon(new ImageIcon(MenuPanel.class
+				.getResource("/icons/Central_Unit.png")));
 		btnServer.setForeground(new Color(0, 0, 0));
 		btnServer.setBackground(UIManager.getColor("Button.background"));
 		GridBagConstraints gbc_btnAcquistaServer = new GridBagConstraints();

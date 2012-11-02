@@ -60,7 +60,8 @@ public class Index extends JApplet {
 															// dimensioni del
 															// contentPane
 
-		contenuto = new ContenutoPanel(); // nuovo contenuto
+		contenuto = new ContenutoPanel(); // nuovo
+											// contenuto
 
 		logPanel = new LogPanel(contenuto); // nuovo logPanel: passaggio di
 											// contenuto per visualizzare il
@@ -85,49 +86,41 @@ public class Index extends JApplet {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(
 								gl_contentPane
-										.createParallelGroup(Alignment.LEADING,
-												false)
-										.addComponent(contenuto,
+										.createParallelGroup(
+												Alignment.TRAILING, false)
+										.addComponent(logPanel,
+												Alignment.LEADING,
 												GroupLayout.DEFAULT_SIZE,
 												GroupLayout.DEFAULT_SIZE,
 												Short.MAX_VALUE)
-										.addComponent(logPanel,
-												GroupLayout.DEFAULT_SIZE, 770,
-												Short.MAX_VALUE))
-						.addContainerGap()));
-		gl_contentPane
-				.setVerticalGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
+										.addComponent(contenuto,
+												Alignment.LEADING,
+												GroupLayout.DEFAULT_SIZE, 668,
+												Short.MAX_VALUE)).addGap(26)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(
+				Alignment.TRAILING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addComponent(logPanel, GroupLayout.PREFERRED_SIZE, 94,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(
 								gl_contentPane
-										.createSequentialGroup()
-										.addComponent(logPanel,
-												GroupLayout.PREFERRED_SIZE, 94,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																menuPanel,
-																GroupLayout.PREFERRED_SIZE,
-																452,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																contenuto,
-																GroupLayout.PREFERRED_SIZE,
-																382,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap()));
+										.createParallelGroup(Alignment.LEADING)
+										.addComponent(contenuto,
+												GroupLayout.DEFAULT_SIZE, 536,
+												Short.MAX_VALUE)
+										.addComponent(menuPanel,
+												GroupLayout.PREFERRED_SIZE,
+												536, Short.MAX_VALUE))
+						.addContainerGap()));
 		// suddivisione
 		// in griglia
 		logPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(
 				new Component[] { logPanel.txtUser, logPanel.txtPassword,
 						logPanel.btnLog, logPanel.btnRegistrati }));
 		contentPane.setLayout(gl_contentPane);
-		this.setSize(900, 500); // dimensione di tutta l'applet
+		this.setSize(989, 657); // dimensione di tutta l'applet
 
 	} // fine costruttore
 

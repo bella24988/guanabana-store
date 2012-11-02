@@ -2,10 +2,14 @@ package azienda;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JCheckBox;
 
 import modello.Ordine;
 
-public class VenditeEvaseController implements ActionListener{
+public class VenditeEvaseController implements ActionListener, ItemListener{
 	
 	SistemaGestioneFinestra sistemaGestioneFinestra;
 	VenditeEvasePanel veEvasePanel;
@@ -47,6 +51,30 @@ public class VenditeEvaseController implements ActionListener{
 		sistemaGestioneFinestra.getContenutoPanel().add(veEvasePanel);
 		veEvasePanel.setVisible(true);
 		sistemaGestioneFinestra.Refresh();
+	}
+
+
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		try {
+			ClientAzienda clientAzienda = new ClientAzienda();
+			JCheckBox btnConferma = (JCheckBox) e.getSource();
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				veEvasePanel.getOrdini()[btnConferma.getMnemonic()].getPagamento().setConfermato(true);
+				clientAzienda.confermarePagamento(true, veEvasePanel
+						.getOrdini()[btnConferma.getMnemonic()]
+						.getNumeroOrdine());
+				veEvasePanel.disabilitaConferma(btnConferma.getMnemonic());
+			} else {
+				veEvasePanel.getOrdini()[btnConferma.getMnemonic()].getPagamento().setConfermato(false);
+				clientAzienda.confermarePagamento(false, veEvasePanel
+						.getOrdini()[btnConferma.getMnemonic()]
+						.getNumeroOrdine());
+			}
+		} catch (Exception e2) {
+		}
+		
 	}
 
 }

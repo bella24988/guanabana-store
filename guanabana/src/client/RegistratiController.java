@@ -68,7 +68,7 @@ public class RegistratiController implements ActionListener{
 										registrati.getTxtCitta()+". Provincia: "+registrati.getTxtProvincia()+
 										". "+registrati.getTxtStato();
 					
-					client = new Client();
+					client = new Client(registrati.getLogPanel().getContenuto().getHost());
 					try {
 						try {
 							cliente=client.registreNuovoCliente(registrati.getTxtCf(),registrati.getTxtNome(),registrati.getTxtCognome(),

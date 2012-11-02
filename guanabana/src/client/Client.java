@@ -25,6 +25,7 @@ public class Client implements InterfacciaCliente {
 	 * @uml.property  name="host"
 	 */
 	private String host;
+	private int port;
 	private InputStream lettura;
 	private OutputStream scritura;
 	private Socket socket;
@@ -44,8 +45,10 @@ public class Client implements InterfacciaCliente {
 	 * @category Constructor
 	 * 
 	 */
-	public Client() {
+	public Client(String host) {
+		
 		super();
+		setHost(host);
 		try {
 			aprireCollegamento();
 		} catch (UnknownHostException e) {
@@ -59,7 +62,7 @@ public class Client implements InterfacciaCliente {
 
 	@Override
 	public void aprireCollegamento() throws UnknownHostException, IOException {
-		socket = new Socket("localhost", 4000);
+		socket = new Socket(host, 4000);
 		
 		lettura = socket.getInputStream();
 		scritura = socket.getOutputStream();
@@ -441,6 +444,20 @@ public class Client implements InterfacciaCliente {
 			// TODO: handle exception
 		}
 		chiudereCollegamento();
+	}
+
+	/**
+	 * @return the port
+	 */
+	public int getPort() {
+		return port;
+	}
+
+	/**
+	 * @param port the port to set
+	 */
+	public void setPort(int port) {
+		this.port = port;
 	}
 
 	
