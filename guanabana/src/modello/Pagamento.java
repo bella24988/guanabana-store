@@ -19,11 +19,14 @@ public class Pagamento implements Serializable{
 	 * @uml.property  name="numPagamento"
 	 */
 	private int numPagamento;
-	public Pagamento(Ordine ordine, String tipoPagamento, int numPagamento) {
+	private boolean confermato;
+	
+	public Pagamento(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super();
 		this.setOrdine(ordine);
 		this.setTipoPagamento(tipoPagamento);
 		this.setNumPagamento(numPagamento);
+		this.setConfermato(confermato);
 	}
 	/**
 	 * @return  the tipoPagamento
@@ -96,6 +99,18 @@ public class Pagamento implements Serializable{
 	 */
 	public void setFattura(Fattura fattura) {
 		this.fattura = fattura;
+	}
+	/**
+	 * @return the confermato
+	 */
+	public boolean isConfermato() {
+		return confermato;
+	}
+	/**
+	 * @param confermato the confermato to set
+	 */
+	public void setConfermato(boolean confermato) {
+		this.confermato = confermato;
 	}
 	
 

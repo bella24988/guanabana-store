@@ -264,7 +264,7 @@ public class DataBase {
 			}
 			stNuovaOrdine.setInt(1, numOrdineMax);
 			stNuovaOrdine.setFloat(2, prezzoTotale);
-			stNuovaOrdine.setString(3, "NON PAGATO");
+			stNuovaOrdine.setString(3, "ORDINATO");
 			stNuovaOrdine.setString(4, cliente.getCf());
 			stNuovaOrdine.setString(5, cliente.getIndirizzo());
 			stNuovaOrdine.setString(6, comp.getNome());
@@ -415,7 +415,7 @@ public class DataBase {
 			
 			
 			stInsertPagamento.executeUpdate();
-			aggiornaStatoOrdine("ORDINATO-PAGATO", numeroOrdine);
+			aggiornaStatoOrdine("VENDUTO", numeroOrdine);
 			
 		} catch (SQLException e) {
 			System.out.print("Errore al db "+e);
@@ -486,7 +486,7 @@ public class DataBase {
 		try {
 			//Conta righe
 			stConsultaOrdini = con.createStatement();
-			ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'ANNULLATO' " +
+			ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato<>'ANNULLATO' and stato<>'ORDINATO'" +
 					"and ordini.codice = ordine_codice and cliente_CF = '"+cf+"';");
 			int j=0;
 			while(result.next()){
@@ -496,7 +496,7 @@ public class DataBase {
 			//chiama lista di ordini
 			ordini = new String[j][7];
 			result = stConsultaOrdini.executeQuery("select distinct(ordini.codice), ordini.data, ordini.totale, stato, tipo, nome_computer," +
-					" pagamenti.codice from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'ANNULLATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"' order by ordini.data");
+					" pagamenti.codice from pagamenti, ordini where stato<>'ANNULLATO' and stato<>'ORDINATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"' order by ordini.data");
 			j=0;
 			while(result.next()){
 				ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
@@ -524,7 +524,7 @@ public class DataBase {
 				try {
 					//Conta righe
 					stConsultaOrdini = con.createStatement();//select count(*) from ordini where stato='NON PAGATO' and cliente_CF = 'KJDFS' order by data
-					ResultSet result = stConsultaOrdini.executeQuery("select count(*) from ordini where stato='NON PAGATO' and cliente_CF = '"+cf+"';");
+					ResultSet result = stConsultaOrdini.executeQuery("select count(*) from ordini where stato='ORDINATO' and cliente_CF = '"+cf+"';");
 					int j=0;
 					while(result.next()){
 						j= result.getInt(1);
@@ -533,7 +533,7 @@ public class DataBase {
 					//chiama lista di ordini
 					ordini = new String[j][5];
 					result = stConsultaOrdini.executeQuery("select distinct(codice), data, totale, stato, nome_computer" +
-							" from ordini where stato='NON PAGATO' and cliente_CF = '"+cf+"' order by data");
+							" from ordini where stato='ORDINATO' and cliente_CF = '"+cf+"' order by data");
 					j=0;
 					while(result.next()){
 						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
@@ -601,24 +601,23 @@ public class DataBase {
 		
 	}
 
-	public String[][] cercaOrdinePerSpedizione() {
+	public String[][] cercaOrdini(String stato) {
 		//ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer, pagamenti.codice
 				String[][] ordini = null;
 					
 				try {
 					//Conta righe
 					stConsultaOrdini = con.createStatement();
-					ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'SPEDITO' and stato<>'ANNULLATO' " +
-							"and ordini.codice = ordine_codice;");
+					ResultSet result = stConsultaOrdini.executeQuery("select count(*) from pagamenti, ordini where stato='"+stato+"'and ordini.codice = ordine_codice;");
 					int j=0;
 					while(result.next()){
 						j= result.getInt(1);
 					}
 					
 					//chiama lista di ordini
-					ordini = new String[j][8];
+					ordini = new String[j][9];
 					result = stConsultaOrdini.executeQuery("select distinct(ordini.codice), ordini.data, ordini.totale, stato, tipo, nome_computer," +
-							" pagamenti.codice, cliente_CF from pagamenti, ordini where stato<>'NON PAGATO' and stato<>'SPEDITO' and stato<>'ANNULLATO' and ordini.codice = ordine_codice order by ordini.data");
+							"pagamenti.codice, cliente_CF, confermato from pagamenti, ordini where stato='"+stato+"' and ordini.codice = ordine_codice order by ordini.data");
 					j=0;
 					while(result.next()){
 						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
@@ -629,6 +628,7 @@ public class DataBase {
 						ordini[j][5]=result.getString(6);// nomecomputer è un string
 						ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice è un float
 						ordini[j][7]=result.getString(8);
+						ordini[j][8]=String.valueOf(result.getByte(9));
 						j++;
 					}
 				} catch (SQLException e) {
@@ -658,5 +658,10 @@ public class DataBase {
 		}
 		return cliente;
 		
+	}
+
+	public void confermaPagamento(boolean valore, int codiceOrdine) throws SQLException {
+		Statement stConferma = con.createStatement();
+		stConferma.executeUpdate("update pagamenti set confermato="+valore+" where ordine_codice='"+codiceOrdine+"';");
 	}
 }

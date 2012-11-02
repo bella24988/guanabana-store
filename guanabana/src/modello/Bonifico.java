@@ -7,8 +7,8 @@ package modello;
 public class Bonifico extends Pagamento {
 	
 
-	public Bonifico(Ordine ordine, String tipoPagamento, int numPagamento) {
-		super(ordine, "Bonifico", numPagamento);
+	public Bonifico(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
+		super(ordine, "Bonifico", numPagamento, confermato);
 		// TODO Auto-generated constructor stub
 	}
 	/**

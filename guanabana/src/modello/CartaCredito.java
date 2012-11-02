@@ -8,8 +8,8 @@ package modello;
  */
 public class CartaCredito extends Pagamento {
 	
-	public CartaCredito(Ordine ordine, String tipoPagamento, int numPagamento) {
-		super(ordine, "Carta di credito", numPagamento);
+	public CartaCredito(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
+		super(ordine, "Carta di credito", numPagamento, confermato);
 		// TODO Auto-generated constructor stub
 	}
 	/**

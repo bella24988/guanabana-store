@@ -226,10 +226,25 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				
 				scrive.writeObject(logDipendente(id, password));
 				scrive.flush();
-			}else if (richiestaClient.compareTo("ordini da spedire")==0){
-				scrive.writeObject(cercaOrdini());
+			}else if (richiestaClient.compareTo("cerca ordini")==0){
+				
+				scrive.writeObject("pronto");
 				scrive.flush();
-			}	
+				
+				String stato=(String) ricevo.readObject();
+				
+				scrive.writeObject(cercaOrdini(stato));
+				scrive.flush();
+			}else if(richiestaClient.compareTo("confermarePagamento")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				boolean valore = (boolean) ricevo.readObject();
+				scrive.writeObject("pronto");
+				scrive.flush();
+				int codice = (int) ricevo.readObject();
+				confermarePagamento(valore, codice);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -506,7 +521,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		
 		numPagamento = db.registrarePagamento(ordine.getNumeroOrdine(), ordine.getPrezzo(), tipoPagamento);
 		
-		Pagamento pagamento = new Pagamento(ordine, tipoPagamento, numPagamento);		
+		Pagamento pagamento = new Pagamento(ordine, tipoPagamento, numPagamento, false);		
 		return pagamento;
 	}
 
@@ -542,7 +557,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			
 			//Creo ordine e pagamento
 			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato, cliente);
-			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento);
+			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, false);
 			ordini[j].setPagamento(pagamento[j]);
 			ordini[j].setStato(statoOrdine);
 			ordini[j].setData(dataOrdine);
@@ -628,10 +643,10 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 
 	@Override
-	public Ordine[] cercaOrdini() {
+	public Ordine[] cercaOrdini(String stato) {
 		Ordine[] ordini;// Dichiarazione delle ordine
 
-		String[][] risultato = db.cercaOrdinePerSpedizione();
+		String[][] risultato = db.cercaOrdini(stato);
 		ordini = new Ordine[risultato.length];
 		Computer[] computer = new Computer[risultato.length];
 		Pagamento[] pagamento = new Pagamento[risultato.length];
@@ -649,7 +664,14 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			String nomeComputer = risultato[j][5];
 			int numPagamento = Integer.parseInt(risultato[j][6]);
 			String cfCliente = risultato[j][7];
-
+			boolean confermato;
+			if(risultato[j][8].compareTo("1")==0){
+				confermato = true;
+			}else {
+				confermato = false;
+			}
+			
+			
 			Cliente cliente = cercaListaCliente(cfCliente);
 			// Creo i computer ordinati
 			String tipoComputer = nomeComputer.substring(0, 3);
@@ -664,7 +686,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			// Creo ordine e pagamento
 			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato,
 					cliente);
-			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento);
+			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, confermato);
 			ordini[j].setPagamento(pagamento[j]);
 			ordini[j].setStato(statoOrdine);
 			ordini[j].setData(dataOrdine);
@@ -682,6 +704,17 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void confermarePagamento(boolean valore, int codiceOrdine) throws IOException,
+			ClassNotFoundException {
+		try {
+			db.confermaPagamento(valore, codiceOrdine);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

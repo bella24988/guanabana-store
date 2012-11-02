@@ -6,7 +6,7 @@
       <children xsi:type="editmodel:AttributeEditModel" name="codice" id="modello/Bonifico#codice"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="69,18">
-      <children xsi:type="editmodel:MethodEditModel" name="Bonifico" id="modello/Bonifico#Bonifico(Lmodello.Ordine;Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Bonifico" id="modello/Bonifico#Bonifico(Lmodello.Ordine;Ljava.lang.String;IZ)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/Bonifico" source="//@children.0" target="//@children.8" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
@@ -23,7 +23,7 @@
       <children xsi:type="editmodel:AttributeEditModel" name="intestatario" id="modello/CartaCredito#intestatario"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="90,18">
-      <children xsi:type="editmodel:MethodEditModel" name="CartaCredito" id="modello/CartaCredito#CartaCredito(Lmodello.Ordine;Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="CartaCredito" id="modello/CartaCredito#CartaCredito(Lmodello.Ordine;Ljava.lang.String;IZ)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/CartaCredito" source="//@children.1" target="//@children.8" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
@@ -35,7 +35,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="Contrassegno" location="405,886" size="128,67" id="modello/Contrassegno" runTimeClassModel="Contrassegno(Lmodello.Ordine;Ljava.lang.String;I)">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="98,18">
-      <children xsi:type="editmodel:MethodEditModel" name="Contrassegno" id="modello/Contrassegno#Contrassegno(Lmodello.Ordine;Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Contrassegno" id="modello/Contrassegno#Contrassegno(Lmodello.Ordine;Ljava.lang.String;IZ)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="modello/Pagamento&lt;-modello/Contrassegno" source="//@children.2" target="//@children.8" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
@@ -112,7 +112,7 @@
       <children xsi:type="editmodel:AttributeEditModel" name="tipoPagamento" id="modello/Pagamento#tipoPagamento"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="83,18">
-      <children xsi:type="editmodel:MethodEditModel" name="Pagamento" id="modello/Pagamento#Pagamento(Lmodello.Ordine;Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Pagamento" id="modello/Pagamento#Pagamento(Lmodello.Ordine;Ljava.lang.String;IZ)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" name="genera" autoLocated="true" id="modello/Fattura@fattura+modello/Pagamento@pagamento" source="//@children.8" target="//@children.5" targetEnd="//@children.8/@sourceConnections.0/@children.1" label="//@children.8/@sourceConnections.0/@children.2" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">

@@ -15,10 +15,12 @@ public interface InterfacciaAzienda {
 	
 	public abstract Cliente cercaListaCliente(String cf);
 	
-	public abstract Ordine[] cercaOrdini() throws IOException;
+	public abstract Ordine[] cercaOrdini(String stato) throws IOException;
 	
 	public void aggiornaStatoOrdine(String nuovoStato, int numOrdine) throws IOException;
 
 	void aprireCollegamento() throws UnknownHostException, IOException;
+	
+	public void confermarePagamento(boolean valore, int i) throws IOException, ClassNotFoundException;
 
 }

@@ -17,12 +17,10 @@ public class MagazinoController implements ActionListener{
 	private MagazinoPanel magazzinoPanel;
 	private Ordine[] ordini;
 	private SistemaGestioneFinestra sistemaGestioneFinestra;
-	private boolean ok;
 
 
 	public MagazinoController(SistemaGestioneFinestra sisFinestra) {
 		this.setSistemaGestioneFinestra(sisFinestra);
-		ok=false;
 	}
 
 
@@ -52,36 +50,17 @@ public class MagazinoController implements ActionListener{
 	}
 	
 	public void refreshOrdini() {
-		setOrdini(enlistaOrdini());
+		setOrdini(sistemaGestioneFinestra.enlistaOrdini("RICHIESTO AL MAGAZZINO"));
 		magazzinoPanel = new MagazinoPanel(ordini, this);
 		if(getOrdini()!=null){
 		sistemaGestioneFinestra.getContenutoPanel().add(magazzinoPanel);
-		if (ok) {
-			sistemaGestioneFinestra.setBounds(100, 100, 800, 500);
-			ok = false;
-		}
-		if (!ok) {
-			sistemaGestioneFinestra.setBounds(100, 100, 800, 501);
-			ok = true;
-		}
 		magazzinoPanel.setVisible(true);
 		}else{
 			magazzinoPanel.setVisible(false);
 			sistemaGestioneFinestra.setTxtErrore("Non ci sono ordini da spedire");
 			sistemaGestioneFinestra.getContenutoPanel().removeAll();
 		}
-	}
-
-	public Ordine[] enlistaOrdini() {
-		ClientAzienda servizioClientAzienda = new ClientAzienda();
-		Ordine[] ordini = null;
-		try {
-			ordini = servizioClientAzienda.cercaOrdini();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ordini;
+		sistemaGestioneFinestra.Refresh();
 	}
 
 

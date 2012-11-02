@@ -15,15 +15,11 @@ import conexionInterface.InterfacciaAzienda;
 
 public class ClientAzienda implements InterfacciaAzienda{
 	
-	private String host;
 	private InputStream lettura;
 	private OutputStream scritura;
 	private Socket socket;
 	private ObjectInputStream buffer;
 	private ObjectOutputStream writer;
-	private String tipo;
-	private int num;
-	
 	/**
 	 * @param host
 	 * @category Constructor
@@ -34,10 +30,8 @@ public class ClientAzienda implements InterfacciaAzienda{
 		try {
 			aprireCollegamento();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,7 +52,6 @@ public class ClientAzienda implements InterfacciaAzienda{
 			buffer.close();
 			socket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -86,7 +79,6 @@ public class ClientAzienda implements InterfacciaAzienda{
 				impiegato = (Dipendente) buffer.readObject();
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -96,23 +88,29 @@ public class ClientAzienda implements InterfacciaAzienda{
 
 	@Override
 	public Cliente cercaListaCliente(String cf) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Ordine[] cercaOrdini() throws IOException {
+	public Ordine[] cercaOrdini(String stato) throws IOException {
 		Ordine[] ordini = null;
 		writer = new ObjectOutputStream(scritura);
 		
-		writer.writeObject("ordini da spedire");
+		writer.writeObject("cerca ordini");
 		writer.flush();
 		
 		buffer = new ObjectInputStream(lettura);
 		try {
-			ordini = (Ordine[]) buffer.readObject();
+			String risposta =  (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(stato);
+				writer.flush();
+				
+				ordini = (Ordine[]) buffer.readObject();
+			}
 		}catch (Exception e) {
-			// TODO: handle exception
+			return null;
 		}
 		return ordini;
 	}
@@ -143,8 +141,31 @@ public class ClientAzienda implements InterfacciaAzienda{
 				}
 				}
 		}catch (Exception e) {
-			// TODO: handle exception
+			
 		}
+		chiudereCollegamento();
+	}
+
+	public void confermarePagamento(boolean valore, int i) throws IOException, ClassNotFoundException {
+		
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("confermarePagamento");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		String risposta = (String) buffer.readObject();
+		
+		if(risposta.compareTo("pronto")==0){
+			writer.writeObject(valore);
+			writer.flush();
+			
+			risposta = (String) buffer.readObject();
+			
+			writer.writeObject(i);
+			writer.flush();
+		}
+		
 		chiudereCollegamento();
 	}
 
