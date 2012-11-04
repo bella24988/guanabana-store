@@ -12,8 +12,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 
 /**
  * @author Veronica
@@ -57,10 +55,10 @@ public class SalutoPanel extends JPanel {
 		// Controller
 		logController = new LogController(this, panel);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 0, 52, 140, 176, 98, 79, 0 };
+		gridBagLayout.columnWidths = new int[] { 176, 98, 79, 0 };
 		gridBagLayout.rowHeights = new int[] { 23, 30, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
@@ -82,48 +80,37 @@ public class SalutoPanel extends JPanel {
 		GridBagConstraints gbc_btnLogOut = new GridBagConstraints();
 		gbc_btnLogOut.gridheight = 2;
 		gbc_btnLogOut.fill = GridBagConstraints.BOTH;
-		gbc_btnLogOut.gridx = 6;
+		gbc_btnLogOut.gridx = 2;
 		gbc_btnLogOut.gridy = 0;
 		add(btnLogOut, gbc_btnLogOut);
 		btnGestioneOrdine = new JButton("I tuoi ordini");
 		btnGestioneOrdine.setIcon(new ImageIcon(SalutoPanel.class
 				.getResource("/icons/order-history.png")));
 		GridBagConstraints gbc_btnGestioneOrdine = new GridBagConstraints();
-		gbc_btnGestioneOrdine.gridheight = 2;
 		gbc_btnGestioneOrdine.fill = GridBagConstraints.BOTH;
 		gbc_btnGestioneOrdine.insets = new Insets(0, 0, 0, 5);
-		gbc_btnGestioneOrdine.gridx = 4;
-		gbc_btnGestioneOrdine.gridy = 0;
+		gbc_btnGestioneOrdine.gridx = 0;
+		gbc_btnGestioneOrdine.gridy = 1;
 		add(btnGestioneOrdine, gbc_btnGestioneOrdine);
 		btnGestioneOrdine.addActionListener(logController);
-		btnGestioneOrdine.setCursor(Cursor
-				.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btnCarrello = new JButton("Carrello");
 		btnCarrello.setIcon(new ImageIcon(SalutoPanel.class
 				.getResource("/icons/img_icon.gif.png")));
 		btnCarrello.setBackground(UIManager.getColor("Button.background"));
 		GridBagConstraints gbc_btnCarrello = new GridBagConstraints();
-		gbc_btnCarrello.gridheight = 2;
 		gbc_btnCarrello.fill = GridBagConstraints.BOTH;
 		gbc_btnCarrello.insets = new Insets(0, 0, 0, 5);
-		gbc_btnCarrello.gridx = 5;
-		gbc_btnCarrello.gridy = 0;
+		gbc_btnCarrello.gridx = 1;
+		gbc_btnCarrello.gridy = 1;
 		add(btnCarrello, gbc_btnCarrello);
 		btnCarrello.addActionListener(logController);
 		btnLogOut.addActionListener(logController);
 
 		btnCarrello.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGestioneOrdine.setCursor(Cursor
+				.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-		separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.gridheight = 2;
-		gbc_separator.insets = new Insets(0, 0, 0, 5);
-		gbc_separator.gridx = 3;
-		gbc_separator.gridy = 0;
-		add(separator, gbc_separator);
 	}
 
 	/**
@@ -210,7 +197,6 @@ public class SalutoPanel extends JPanel {
 	 */
 	private LogPanel logPanel;
 	private JButton btnCarrello;
-	private JSeparator separator;
 
 	/**
 	 * Getter of the property <tt>logPanel</tt>

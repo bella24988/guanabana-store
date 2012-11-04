@@ -63,7 +63,7 @@ public class LogController implements ActionListener, KeyListener{
 		
 		if (e.getActionCommand().equalsIgnoreCase("I tuoi ordini")){
 				
-				Client servizioClient = new Client(logPanel.getContenuto().getHost());
+				Client servizioClient = new Client();
 				try {
 					Ordine[] ordini = servizioClient.consultaOrdini(logPanel.getContenuto().getClienteLogato());
 					if (ordini != null){
@@ -77,7 +77,7 @@ public class LogController implements ActionListener, KeyListener{
 				}
 		}else if (e.getActionCommand().equalsIgnoreCase("Carrello")){
 			
-			Client servizioClient = new Client(logPanel.getContenuto().getHost());
+			Client servizioClient = new Client();
 			try {
 				Ordine[] ordini = servizioClient.consultaCarrello(logPanel.getContenuto().getClienteLogato());
 				if (ordini != null){
@@ -96,7 +96,7 @@ public class LogController implements ActionListener, KeyListener{
 	private void login() {
 		logPanel.bloccareInserimento();
 		try {
-			Client servizioClient = new Client(logPanel.getContenuto().getHost());
+			Client servizioClient = new Client();
 			setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), String.valueOf(logPanel.getTxtPassword())));
 			if (cliente != null){
 				logPanel.mostraMessaggioErrore("");

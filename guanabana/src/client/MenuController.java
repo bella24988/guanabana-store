@@ -79,7 +79,7 @@ public class MenuController  implements ActionListener{
 		Computer[] modelli = null;	
 		int numComputers =0;
 		try {
-			servizioClientModelli = new Client(contenuto.getHost());
+			servizioClientModelli = new Client();
 			modelli = servizioClientModelli.cercaModelli(tipoComputer,numComputers);
 			numComputers = modelli.length;
 		} catch (IOException e) {

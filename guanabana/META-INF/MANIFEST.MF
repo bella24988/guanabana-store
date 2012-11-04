@@ -20,26 +20,15 @@ Export-Package: com.mysql.jdbc;version="5.1.20";uses:="com.mysql.jdbc.
  l.jdbc.integration.c3p0;version="5.1.20",com.mysql.jdbc.integration.j
  boss;version="5.1.20",com.mysql.jdbc.configs;version="5.1.20",org.gjt
  .mm.mysql;version="5.1.20"
-Import-Package: com.mchange.v2.c3p0;version="[0.9.1.2,1.0.0)";resolution:=optional,
- javax.mail;version="1.4.0",
- javax.naming,
- javax.naming.spi,
- javax.net,
- javax.net.ssl;version="[1.0.1,2.0.0)";resolution:=optional,
- javax.sql,
- javax.transaction.xa;version="[1.0.1,2.0.0)";resolution:=optional,
- javax.xml.parsers,
- javax.xml.stream,
- javax.xml.transform,
- javax.xml.transform.dom,
- javax.xml.transform.sax,
- javax.xml.transform.stax,
- javax.xml.transform.stream,
- org.jboss.resource.adapter.jdbc;resolution:=optional,
- org.jboss.resource.adapter.jdbc.vendor;resolution:=optional,
- org.w3c.dom,
- org.xml.sax,
- org.xml.sax.helpers;resolution:=optional
+Import-Package: javax.net,javax.net.ssl;version="[1.0.1, 2.0.0)";resol
+ ution:=optional,javax.xml.parsers, javax.xml.stream,javax.xml.transfo
+ rm,javax.xml.transform.dom,javax.xml.transform.sax,javax.xml.transfor
+ m.stax,javax.xml.transform.stream,org.w3c.dom,org.xml.sax,org.xml.sax
+ .helpers;resolution:=optional,javax.naming,javax.naming.spi,javax.sql
+ ,javax.transaction.xa;version="[1.0.1, 2.0.0)";resolution:=optional,c
+ om.mchange.v2.c3p0;version="[0.9.1.2, 1.0.0)";resolution:=optional,or
+ g.jboss.resource.adapter.jdbc;resolution:=optional,org.jboss.resource
+ .adapter.jdbc.vendor;resolution:=optional
 
 Name: common
 Specification-Title: JDBC

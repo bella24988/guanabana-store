@@ -47,7 +47,7 @@ public class PagamentoController implements ActionListener{
 		}else if (e.getActionCommand().equalsIgnoreCase("accetta")){
 			if(pagamentoPanel.getContenutoPanel().getClienteLogato()!=null){
 				
-				Client client = new Client(pagamentoPanel.getContenutoPanel().getHost());
+				Client client = new Client();
 				
 				if (pagamentoPanel.getTipoPagamentoScelto()==0) {
 					pagamentoPanel.mostraMessaggioErrore();

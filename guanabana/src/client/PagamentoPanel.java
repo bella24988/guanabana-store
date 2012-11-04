@@ -14,16 +14,15 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import java.awt.FlowLayout;
-import javax.swing.ImageIcon;
 
 /**
- * @author Veronica
+ * @author  Veronica
  */
 public class PagamentoPanel extends JPanel {
 
 	/**
-	 * @uml.property name="contenutoPanel"
-	 * @uml.associationEnd
+	 * @uml.property  name="contenutoPanel"
+	 * @uml.associationEnd  
 	 */
 	private ContenutoPanel contenutoPanel;
 
@@ -32,57 +31,57 @@ public class PagamentoPanel extends JPanel {
 	private JTextArea txtErrore;
 	private JTextField txtTotale;
 	/**
-	 * @uml.property name="pagamentoController"
-	 * @uml.associationEnd
+	 * @uml.property  name="pagamentoController"
+	 * @uml.associationEnd  
 	 */
 	private PagamentoController pagamentoController;
 	/**
-	 * @uml.property name="txtCarta"
+	 * @uml.property  name="txtCarta"
 	 */
 	private JTextField txtCarta;
 	/**
-	 * @uml.property name="txtIntestatario"
+	 * @uml.property  name="txtIntestatario"
 	 */
 	private JTextField txtIntestatario;
 	/**
-	 * @uml.property name="txtCodSicurezza"
+	 * @uml.property  name="txtCodSicurezza"
 	 */
 	private JTextField txtCodSicurezza;
 	private static String[] mesi = { "", "Gennaio", "Febbraio", "Marzo",
 			"Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre",
 			"Ottobre", "Novembre", "Dicembre" };
 	/**
-	 * @uml.property name="anni"
+	 * @uml.property  name="anni"
 	 */
 	private static String[] anni;
 	private JPanel tipoPagamento;
 	/**
-	 * @uml.property name="txtCodiceBonifico"
+	 * @uml.property  name="txtCodiceBonifico"
 	 */
 	private JTextField txtCodiceBonifico;
 	/**
-	 * @uml.property name="txtBanca"
+	 * @uml.property  name="txtBanca"
 	 */
 	private JTextField txtBanca;
 	/**
-	 * @uml.property name="panelCartaCredito"
+	 * @uml.property  name="panelCartaCredito"
 	 */
 	private JPanel panelCartaCredito;
 
 	/**
-	 * @uml.property name="panelBonifico"
+	 * @uml.property  name="panelBonifico"
 	 */
 	private JPanel panelBonifico;
 
 	/**
-	 * @uml.property name="panelContrasegno"
+	 * @uml.property  name="panelContrasegno"
 	 */
 	private JPanel panelContrasegno;
 	private JComboBox cmbMesi;
 
 	private JComboBox cmbAnni;
 	/**
-	 * @uml.property name="tipoPagamentoScelto"
+	 * @uml.property  name="tipoPagamentoScelto"
 	 */
 	private int tipoPagamentoScelto;
 
@@ -216,8 +215,6 @@ public class PagamentoPanel extends JPanel {
 		tipoPagamento.setVisible(true);
 
 		JButton btnPagaEAccetta = new JButton("Paga e Accetta");
-		btnPagaEAccetta.setIcon(new ImageIcon(PagamentoPanel.class
-				.getResource("/icons/payment_icon.png")));
 		btnPagaEAccetta.setActionCommand("accetta");
 		btnPagaEAccetta.addActionListener(pagamentoController);
 
@@ -232,7 +229,6 @@ public class PagamentoPanel extends JPanel {
 		gbc_txtrDeveSelezionareUn.gridy = 5;
 		add(txtErrore, gbc_txtrDeveSelezionareUn);
 		GridBagConstraints gbc_btnPagaEAccetta = new GridBagConstraints();
-		gbc_btnPagaEAccetta.gridwidth = 2;
 		gbc_btnPagaEAccetta.insets = new Insets(0, 0, 0, 5);
 		gbc_btnPagaEAccetta.gridx = 1;
 		gbc_btnPagaEAccetta.gridy = 5;
@@ -248,17 +244,16 @@ public class PagamentoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the pagamentoController
-	 * @uml.property name="pagamentoController"
+	 * @return  the pagamentoController
+	 * @uml.property  name="pagamentoController"
 	 */
 	public PagamentoController getPagamentoController() {
 		return pagamentoController;
 	}
 
 	/**
-	 * @param pagamentoController
-	 *            the pagamentoController to set
-	 * @uml.property name="pagamentoController"
+	 * @param pagamentoController  the pagamentoController to set
+	 * @uml.property  name="pagamentoController"
 	 */
 	public void setPagamentoController(PagamentoController pagamentoController) {
 		this.pagamentoController = pagamentoController;
@@ -404,7 +399,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="anni"
+	 * @uml.property  name="anni"
 	 */
 	private String[] getAnni() {
 		anni = new String[11];
@@ -430,7 +425,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="panelCartaCredito"
+	 * @uml.property  name="panelCartaCredito"
 	 */
 	public JPanel getPanelCartaCredito() {
 		return panelCartaCredito;
@@ -438,7 +433,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @param panelCartaCredito
-	 * @uml.property name="panelCartaCredito"
+	 * @uml.property  name="panelCartaCredito"
 	 */
 	public void setPanelCartaCredito(JPanel panelCartaCredito) {
 		this.panelCartaCredito = panelCartaCredito;
@@ -446,7 +441,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="panelBonifico"
+	 * @uml.property  name="panelBonifico"
 	 */
 	public JPanel getPanelBonifico() {
 		return panelBonifico;
@@ -454,7 +449,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @param panelBonifico
-	 * @uml.property name="panelBonifico"
+	 * @uml.property  name="panelBonifico"
 	 */
 	public void setPanelBonifico(JPanel panelBonifico) {
 		this.panelBonifico = panelBonifico;
@@ -462,7 +457,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="panelContrasegno"
+	 * @uml.property  name="panelContrasegno"
 	 */
 	public JPanel getPanelContrasegno() {
 		return panelContrasegno;
@@ -470,24 +465,23 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @param panelContrasegno
-	 * @uml.property name="panelContrasegno"
+	 * @uml.property  name="panelContrasegno"
 	 */
 	public void setPanelContrasegno(JPanel panelContrasegno) {
 		this.panelContrasegno = panelContrasegno;
 	}
 
 	/**
-	 * @return the contenutoPanel
-	 * @uml.property name="contenutoPanel"
+	 * @return  the contenutoPanel
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel
-	 *            the contenutoPanel to set
-	 * @uml.property name="contenutoPanel"
+	 * @param contenutoPanel  the contenutoPanel to set
+	 * @uml.property  name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
@@ -503,7 +497,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="txtCarta"
+	 * @uml.property  name="txtCarta"
 	 */
 	public String getTxtCarta() {
 		return txtCarta.getText();
@@ -515,7 +509,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="txtIntestatario"
+	 * @uml.property  name="txtIntestatario"
 	 */
 	public String getTxtIntestatario() {
 		return txtIntestatario.getText();
@@ -527,7 +521,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="txtCodSicurezza"
+	 * @uml.property  name="txtCodSicurezza"
 	 */
 	public String getTxtCodSicurezza() {
 		return txtCodSicurezza.getText();
@@ -539,7 +533,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="txtCodiceBonifico"
+	 * @uml.property  name="txtCodiceBonifico"
 	 */
 	public String getTxtCodiceBonifico() {
 		return txtCodiceBonifico.getText();
@@ -551,7 +545,7 @@ public class PagamentoPanel extends JPanel {
 
 	/**
 	 * @return
-	 * @uml.property name="txtBanca"
+	 * @uml.property  name="txtBanca"
 	 */
 	public String getTxtBanca() {
 		return txtBanca.getText();
@@ -562,17 +556,16 @@ public class PagamentoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the tipoPagamentoScelto
-	 * @uml.property name="tipoPagamentoScelto"
+	 * @return  the tipoPagamentoScelto
+	 * @uml.property  name="tipoPagamentoScelto"
 	 */
 	public int getTipoPagamentoScelto() {
 		return tipoPagamentoScelto;
 	}
 
 	/**
-	 * @param tipoPagamentoScelto
-	 *            the tipoPagamentoScelto to set
-	 * @uml.property name="tipoPagamentoScelto"
+	 * @param tipoPagamentoScelto  the tipoPagamentoScelto to set
+	 * @uml.property  name="tipoPagamentoScelto"
 	 */
 	public void setTipoPagamentoScelto(int tipoPagamentoScelto) {
 		this.tipoPagamentoScelto = tipoPagamentoScelto;
