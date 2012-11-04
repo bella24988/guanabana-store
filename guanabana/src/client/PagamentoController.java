@@ -38,7 +38,7 @@ public class PagamentoController implements ActionListener{
 			pagamentoPanel.getPanelCartaCredito().setVisible(false);
 			pagamentoPanel.setTipoPagamentoScelto(2);
 			
-		}else if (e.getActionCommand().equalsIgnoreCase("contrasegno")){
+		}else if (e.getActionCommand().equalsIgnoreCase("contrassegno")){
 			pagamentoPanel.getPanelContrasegno().setVisible(true);
 			pagamentoPanel.getPanelCartaCredito().setVisible(false);
 			pagamentoPanel.getPanelBonifico().setVisible(false);
@@ -57,7 +57,7 @@ public class PagamentoController implements ActionListener{
 						}else if (pagamentoPanel.getTipoPagamentoScelto()==2) {
 						setTipoPagamento("Bonifico"); 
 						}else if (pagamentoPanel.getTipoPagamentoScelto()==3) {
-						setTipoPagamento("Contrasegno"); 
+						setTipoPagamento("Contrassegno"); 
 						}
 						try {
 							client.registrarePagamento(pagamentoPanel.getContenutoPanel().getOrdine(), getTipoPagamento());

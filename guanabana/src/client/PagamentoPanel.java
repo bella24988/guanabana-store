@@ -183,8 +183,8 @@ public class PagamentoPanel extends JPanel {
 		gbc_rdbtnBonifico.gridy = 3;
 		add(rdbtnBonifico, gbc_rdbtnBonifico);
 
-		JRadioButton rdbtnContrasegno = new JRadioButton("Contrasegno");
-		rdbtnContrasegno.setActionCommand("contrasegno");
+		JRadioButton rdbtnContrasegno = new JRadioButton("Contrassegno");
+		rdbtnContrasegno.setActionCommand("contrassegno");
 		rdbtnContrasegno.addActionListener(pagamentoController);
 		rdbtnContrasegno.setBackground(Color.WHITE);
 		GridBagConstraints gbc_rdbtnContrasegno = new GridBagConstraints();

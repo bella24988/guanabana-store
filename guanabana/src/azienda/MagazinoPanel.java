@@ -39,7 +39,7 @@ public class MagazinoPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[ordini.length + 2];
 		setLayout(gridBagLayout);
 
-		JLabel lblITuoiOrdini = new JLabel("Ordini da Spedire");
+		JLabel lblITuoiOrdini = new JLabel("Ordini da assamblare");
 		lblITuoiOrdini.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblITuoiOrdini = new GridBagConstraints();
 		gbc_lblITuoiOrdini.insets = new Insets(0, 0, 5, 0);
@@ -139,7 +139,7 @@ public class MagazinoPanel extends JPanel {
 			gbc_lblTipoPagamentox.gridy = numRow;
 			add(lblTipoPagamentox, gbc_lblTipoPagamentox);
 
-			JButton btnAnnullaOrdine = new JButton("Spedire");
+			JButton btnAnnullaOrdine = new JButton("Pronto per la spedizione");
 			btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
 			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
 			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
