@@ -32,6 +32,7 @@ public class VenditaDaGestirePanel extends JPanel {
 			VenditaDaGestireController veDaGestireController) {
 		this.venGestireController = veDaGestireController;
 		this.ordini = ordini;
+		String tipoOK = "CONTRASSEGNO";
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0 };
@@ -152,15 +153,20 @@ public class VenditaDaGestirePanel extends JPanel {
 			add(lblTipoPagamentox, gbc_lblTipoPagamentox);
 
 			conferma[indiceArray] = new JCheckBox();
-			conferma[indiceArray].setSelected(ordini[indiceArray]
-					.getPagamento().isConfermato());
-			conferma[indiceArray].setMnemonic(indiceArray);
-			GridBagConstraints gbc_conferma = new GridBagConstraints();
-			gbc_conferma.insets = new Insets(0, 0, 5, 5);
-			gbc_conferma.gridx = 5;
-			gbc_conferma.gridy = numRow;
-			add(conferma[indiceArray], gbc_conferma);
+			if (ordini[indiceArray].getPagamento().getTipoPagamento()
+					.compareTo(tipoOK) != 0) {
 
+				conferma[indiceArray].setSelected(ordini[indiceArray]
+						.getPagamento().isConfermato());
+				conferma[indiceArray].setMnemonic(indiceArray);
+				GridBagConstraints gbc_conferma = new GridBagConstraints();
+				gbc_conferma.insets = new Insets(0, 0, 5, 5);
+				gbc_conferma.gridx = 5;
+				gbc_conferma.gridy = numRow;
+				add(conferma[indiceArray], gbc_conferma);
+
+				conferma[indiceArray].addItemListener(venGestireController);
+			}
 			btnInviaMagazzino[indiceArray] = new JButton("invia al magazzino");
 			btnInviaMagazzino[indiceArray].setFont(new Font("Tahoma",
 					Font.PLAIN, 8));
@@ -173,13 +179,14 @@ public class VenditaDaGestirePanel extends JPanel {
 
 			btnInviaMagazzino[indiceArray]
 					.addActionListener(getVenGestireController());
-			if (conferma[indiceArray].isSelected()) {
+
+			if (conferma[indiceArray].isSelected()
+					|| ordini[indiceArray].getPagamento().getTipoPagamento()
+							.compareTo(tipoOK) == 0) {
 				mostraButtoneInvio(indiceArray);
 			} else {
 				nascondiButtoneInvio(indiceArray);
 			}
-
-			conferma[indiceArray].addItemListener(venGestireController);
 
 			JSeparator separator = new JSeparator();
 			separator.setBackground(Color.GRAY);

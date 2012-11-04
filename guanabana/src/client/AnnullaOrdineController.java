@@ -25,7 +25,7 @@ public class AnnullaOrdineController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getActionCommand().equalsIgnoreCase("Si")){
-			Client servizioClient = new Client();
+			Client servizioClient = new Client(annullaOrdinePanel.getContenutoPanel().getHost());
 			try {
 				servizioClient.aggiornaOrdine(annullaOrdinePanel.getOrdine().getNumeroOrdine(),"ANNULLATO");
 				annullaOrdinePanel.getContenutoPanel().mostraRingraziamento();

@@ -19,6 +19,7 @@ public class VenditeEvasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Ordine[] ordini;
 	private VenditeEvaseController veEvaseController;
+	private JCheckBox[] conferma;
 
 	/**
 	 * Create the panel.
@@ -106,7 +107,7 @@ public class VenditeEvasePanel extends JPanel {
 
 		int numRow = 5;
 		int maxOrdini = ordini.length;
-		JCheckBox[] conferma = new JCheckBox[maxOrdini];
+		conferma = new JCheckBox[maxOrdini];
 
 		for (int indiceArray = 0; indiceArray < maxOrdini; indiceArray++) {
 
@@ -152,7 +153,14 @@ public class VenditeEvasePanel extends JPanel {
 			conferma[indiceArray].setSelected(ordini[indiceArray]
 					.getPagamento().isConfermato());
 			conferma[indiceArray].setMnemonic(indiceArray);
-			conferma[indiceArray].setEnabled(false);
+			if (ordini[indiceArray].getPagamento().getTipoPagamento()
+					.compareTo("CONTRASSEGNO") == 0
+					&& conferma[indiceArray].isSelected() == false) {
+				conferma[indiceArray].setEnabled(true);
+				conferma[indiceArray].addItemListener(veEvaseController);
+			} else {
+				conferma[indiceArray].setEnabled(false);
+			}
 			GridBagConstraints gbc_conferma = new GridBagConstraints();
 			gbc_conferma.insets = new Insets(0, 0, 5, 5);
 			gbc_conferma.gridx = 5;
@@ -171,6 +179,10 @@ public class VenditeEvasePanel extends JPanel {
 
 			numRow = numRow + 2;
 		}
+	}
+
+	public void disabilitaConferma(int index) {
+		conferma[index].setEnabled(false);
 	}
 
 	/**

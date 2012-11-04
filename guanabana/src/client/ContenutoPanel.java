@@ -62,14 +62,15 @@ public class ContenutoPanel extends JPanel {
 	 * @uml.associationEnd
 	 */
 	private Pagamento pagamento;
+	private String host;
+	private Index index;
 
 	public ContenutoPanel() {
 		super();
 		setBackground(Color.white);
 		setForeground(new Color(0, 0, 0));
 		this.setAttessaCompra(false);
-		// registratiView.setVisible(false);
-
+		// this.setHost(index.getCodeBase().getHost());
 	}
 
 	/**
@@ -213,7 +214,7 @@ public class ContenutoPanel extends JPanel {
 
 	public void continuaOperazione() {
 		try {
-			Client client = new Client();
+			Client client = new Client(host);
 			setOrdine(client.creaOrdine(getComputer(),
 					confermaOrdinePanel.getPrezzoTotale(), clienteLogato));
 
@@ -344,6 +345,23 @@ public class ContenutoPanel extends JPanel {
 		annullaOrdinePanel.setContenutoPanel(this);
 		add(annullaOrdinePanel);
 		annullaOrdinePanel.setVisible(true);
+	}
+
+	/**
+	 * @return the host
+	 */
+	public String getHost() {
+		// host = index.getCodeBase().getHost();
+		host = "localhost";
+		return host;
+	}
+
+	/**
+	 * @param host
+	 *            the host to set
+	 */
+	public void setHost(String host) {
+		this.host = host;
 	}
 
 }
