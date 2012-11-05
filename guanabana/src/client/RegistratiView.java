@@ -1,5 +1,6 @@
 package client;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
@@ -17,9 +18,7 @@ import javax.swing.JTextPane;
 
 import modello.Cliente;
 
-/**
- * @author  Veronica
- */
+
 public class RegistratiView extends JPanel {
 	/**
 	 * 
@@ -29,43 +28,43 @@ public class RegistratiView extends JPanel {
 	/**
 	 * @uml.property  name="txtNome"
 	 */
-	private JTextField txtNome;
+	private JFormattedTextField txtNome;
 	/**
 	 * @uml.property  name="txtCognome"
 	 */
-	private JTextField txtCognome;
+	private JFormattedTextField txtCognome;
 	/**
 	 * @uml.property  name="txtCf"
 	 */
-	private JTextField txtCf;
+	private JFormattedTextField txtCf;
 	/**
 	 * @uml.property  name="txtEmail"
 	 */
-	private JTextField txtEmail;
+	private JFormattedTextField txtEmail;
 	/**
 	 * @uml.property  name="txtCitta"
 	 */
-	private JTextField txtCitta;
+	private JFormattedTextField txtCitta;
 	/**
 	 * @uml.property  name="txtVia"
 	 */
-	private JTextField txtVia;
+	private JFormattedTextField txtVia;
 	/**
 	 * @uml.property  name="txtProvincia"
 	 */
-	private JTextField txtProvincia;
+	private JFormattedTextField txtProvincia;
 	/**
 	 * @uml.property  name="txtCap"
 	 */
-	private JTextField txtCap;
+	private JFormattedTextField txtCap;
 	/**
 	 * @uml.property  name="txtStato"
 	 */
-	private JTextField txtStato;
+	private JFormattedTextField txtStato;
 	/**
 	 * @uml.property  name="txtTelefono"
 	 */
-	private JTextField txtTelefono;
+	private JFormattedTextField txtTelefono;
 	/**
 	 * @uml.property  name="txtPassword"
 	 */
@@ -75,8 +74,9 @@ public class RegistratiView extends JPanel {
 	 */
 	private JPasswordField txtPasswordConferma;
 	
-	private JTextField[] txtArray ={txtNome, txtCognome, txtCf, txtEmail, txtCitta, txtVia, 
+	private JFormattedTextField[] txtArray ={txtNome, txtCognome, txtCf, txtEmail, txtCitta, txtVia, 
 			txtProvincia, txtCap, txtStato, txtTelefono };
+	private String[] func = {""};
 	
 	private static String[] labels = { "Nome:", "Cognome:", "C.F.:", "Email:", "Cittˆ:", "Via:", 
 			"Provincia:", "CAP:", "Stato:", "Telefono:", "Password:", "Conferma Password:" };
@@ -147,7 +147,7 @@ public class RegistratiView extends JPanel {
 		
 		for(int j = 0; j<10; j++){
 			
-			txtArray[j] = new JTextField();
+			txtArray[j] = new JFormattedTextField();
 			txtArray[j].setForeground(new Color(0, 102, 51));
 			GridBagConstraints txtGrid = new GridBagConstraints();
 			txtGrid.insets = new Insets(0, 0, 5, 5);
