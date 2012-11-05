@@ -4,6 +4,9 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.Pattern;
 
 import modello.Cliente;
 
@@ -11,10 +14,7 @@ import client.ContenutoPanel;
 import client.LogPanel;
 import client.RegistratiView;
 
-/**
- * @author  Veronica
- */
-public class RegistratiController implements ActionListener{
+public class RegistratiController implements ActionListener {
 	
 	/**
 	 * @uml.property  name="logpanel"
@@ -62,6 +62,25 @@ public class RegistratiController implements ActionListener{
 			registrati.togliMessaggio();
 			if(ciSonoCampiVuoti(registrati)==false){
 				
+				Matcher emailMatcher=null;
+			    Matcher birthMatcher=null;
+			    Matcher passwordMatcher=null;
+			    Pattern emailPattern=Pattern.compile("[a-zA-Z0-9]*@[a-z]{4,}\\.com");
+			    Pattern birthDatePattern=Pattern.compile("([012][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}");
+		        Pattern passwordPattern=Pattern.compile("[0-9a-zA-z!@#$%^&*]{6,}");
+		      
+		        emailMatcher=emailPattern.matcher(registrati.getTxtEmail());
+		        //birthMatcher=birthDatePattern.matcher("");
+		        passwordMatcher=passwordPattern.matcher(new String(registrati.getTxtPassword()));
+		      
+		        if(!emailMatcher.matches()){
+		        	registrati.mostraMessaggio("Inserire una email valida");
+		        }
+		        
+		        if(!passwordMatcher.matches()){
+		        	registrati.mostraMessaggio("La password deve contenere almeno un carattere maiuscolo, un carattere minuscolo e un numero, e deve essere lunga almeno sei caratteri");
+		        }
+			
 				if ( passwordUguali(String.valueOf(registrati.getTxtPassword()),String.valueOf(registrati.getTxtPasswordConferma())) == true ){
 										
 					String indirizzo = "Via: "+registrati.getTxtVia()+" C.A.P. "+registrati.getTxtCap()+". "+

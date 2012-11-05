@@ -15,9 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-/**
- * @author Veronica
- */
+
 public class SalutoPanel extends JPanel {
 
 	/**
