@@ -147,8 +147,7 @@ public class LogPanel extends JPanel {
 		btnLog.setBackground(Color.WHITE);
 		btnLog.setToolTipText("Login");
 		btnLog.setActionCommand("Login");
-		btnLog.setIcon(new ImageIcon(LogPanel.class
-				.getResource("/icons/login_icon1.gif")));
+		//btnLog.setIcon(new ImageIcon(LogPanel.class.getResource("/icons/login_icon1.gif")));
 		btnLog.setBorder(UIManager.getBorder("Button.border"));
 		btnLog.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		GridBagConstraints gbc_btnLog = new GridBagConstraints();
@@ -163,10 +162,8 @@ public class LogPanel extends JPanel {
 		btnRegistrati = new JButton("Registrati");
 		btnRegistrati.setBackground(Color.WHITE);
 		btnRegistrati.setToolTipText("Registrati");
-		btnRegistrati.setSelectedIcon(new ImageIcon(LogPanel.class
-				.getResource("/icons/icon-registerSelected.gif")));
-		btnRegistrati.setIcon(new ImageIcon(LogPanel.class
-				.getResource("/icons/icon-register.gif")));
+		//btnRegistrati.setSelectedIcon(new ImageIcon(LogPanel.class.getResource("/icons/icon-registerSelected.gif")));
+		//btnRegistrati.setIcon(new ImageIcon(LogPanel.class.getResource("/icons/icon-register.gif")));
 		btnRegistrati.setBorder(UIManager.getBorder("Button.border"));
 		GridBagConstraints gbc_btnRegistrati = new GridBagConstraints();
 		gbc_btnRegistrati.gridheight = 2;

@@ -83,8 +83,7 @@ public class LogPanel extends JFrame {
 
 		JButton btnEntra = new JButton("Entra");
 		btnEntra.setBackground(Color.WHITE);
-		btnEntra.setIcon(new ImageIcon(LogPanel.class
-				.getResource("/icons/login_icon1.gif")));
+		//btnEntra.setIcon(new ImageIcon(LogPanel.class.getResource("/icons/login_icon1.gif")));
 		GridBagConstraints gbc_btnEntra = new GridBagConstraints();
 		gbc_btnEntra.insets = new Insets(0, 0, 5, 0);
 		gbc_btnEntra.fill = GridBagConstraints.HORIZONTAL;
