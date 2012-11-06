@@ -11,9 +11,7 @@ import modello.Pagamento;
 import java.awt.Color;
 import java.io.IOException;
 
-/**
- * @author Veronica
- */
+
 public class ContenutoPanel extends JPanel {
 
 	/**
