@@ -139,41 +139,60 @@ public class RegistratiController implements ActionListener {
         
         
 				
-		if (r.getTxtNome().compareTo("")!=0){
-			if (r.getTxtCognome().compareTo("")!=0){
-				if (r.getTxtCf().compareTo("")!=0){
-					if (r.getTxtEmail().compareTo("")!=0){
-						if (!emailMatcher.matches()){
-				        	registrati.mostraMessaggio("Inserire una email valida");
-				        	return 2;
-				        }
-						if (r.getTxtTelefono().compareTo("")!=0){
-							if (String.valueOf(r.getTxtPassword()).compareTo("")!=0){
-								if (String.valueOf(r.getTxtPasswordConferma()).compareTo("")!=0){
-									if (!passwordMatcher.matches()){
-							        	registrati.mostraMessaggio("La password deve contenere almeno un carattere maiuscolo,\nun carattere minuscolo e un numero,\ne deve essere lunga almeno sei caratteri");
-							        	return 2;
-							        }
-									if (r.getTxtVia().compareTo("")!=0){
-										if (r.getTxtCap().compareTo("")!=0){
-											if (!capMatcher.matches()){
-									        	registrati.mostraMessaggio("CAP non valido");
-									        	return 2;
-									        }
-											if(r.getTxtCitta().compareTo("")!=0){
-												if(r.getTxtStato().compareTo("")!=0){
-													return 0;
-												}else return 1;
-											}else return 1;
-										}else return 1;
-									}else return 1;
-								}else return 1;
-							}else return 1;
-						}else return 1;
-					}else return 1;
-				}else return 1;
-			}else return 1;
-		}else return 1;
+		if (r.getTxtNome().compareTo("") != 0) {
+			if (r.getTxtCognome().compareTo("") != 0) {
+				if (r.getTxtCf().compareTo("") != 0) {
+					if (r.getTxtEmail().compareTo("") != 0) {
+						if (!emailMatcher.matches()) {
+							registrati
+									.mostraMessaggio("Inserire una email valida");
+							return 2;
+						}
+						if (r.getTxtCitta().compareTo("") != 0) {
+							if (r.getTxtVia().compareTo("") != 0) {
+								if (r.getTxtProvincia().compareTo("") != 0) {
+
+									if (r.getTxtCap().compareTo("") != 0) {
+										if (!capMatcher.matches()) {
+											registrati
+													.mostraMessaggio("Inserire un CAP valido");
+											return 2;
+										}
+
+										if (r.getTxtStato().compareTo("") != 0) {
+											if (r.getTxtTelefono()
+													.compareTo("") != 0) {
+												if (String.valueOf(r.getTxtPassword()).compareTo("") != 0) {
+													if (String.valueOf(r.getTxtPasswordConferma()).compareTo("") != 0) {
+														if (!passwordMatcher.matches()) {
+															registrati.mostraMessaggio("La password deve contenere almeno un carattere maiuscolo,\nun carattere minuscolo e un numero,\ne deve essere lunga almeno sei caratteri");
+															return 2;
+														}
+														return 0;
+													} else
+														return 1;
+												} else
+													return 1;
+											} else
+												return 1;
+										} else
+											return 1;
+									} else
+										return 1;
+								} else
+									return 1;
+							} else
+								return 1;
+						} else
+							return 1;
+					} else
+						return 1;
+				} else
+					return 1;
+			} else
+				return 1;
+		} else
+			return 1;
 	}
 
 	/**
