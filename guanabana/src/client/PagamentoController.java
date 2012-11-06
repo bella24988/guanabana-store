@@ -52,19 +52,18 @@ public class PagamentoController implements ActionListener{
 				if (pagamentoPanel.getTipoPagamentoScelto()==0) {
 					pagamentoPanel.mostraMessaggioErrore("Selezionare il tipo di pagamento");
 					}else {
-						if (pagamentoPanel.getTipoPagamentoScelto()==1) {
-						setTipoPagamento("Carta di Credito");
-						}else if (pagamentoPanel.getTipoPagamentoScelto()==2) {
-						setTipoPagamento("Bonifico"); 
-						}else if (pagamentoPanel.getTipoPagamentoScelto()==3) {
-						setTipoPagamento("Contrassegno"); 
-						}
-						try {
-							client.registrarePagamento(pagamentoPanel.getContenutoPanel().getOrdine(), getTipoPagamento());
-							pagamentoPanel.getContenutoPanel().mostraRingraziamento();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+						
+						if (validate(pagamentoPanel)) {
+							try {
+								client.registrarePagamento(pagamentoPanel
+										.getContenutoPanel().getOrdine(),
+										getTipoPagamento());
+								pagamentoPanel.getContenutoPanel()
+										.mostraRingraziamento();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
 					}
 				}
@@ -101,15 +100,51 @@ public class PagamentoController implements ActionListener{
 				return false;
 			}
 			
+			if (!codSicurezzaMatcher.matches()) {
+				p.mostraMessaggioErrore("Il codice di sicurezza è di tre cifre \ne si trova sul retro della carta");
+				return false;
+			}
+			
+			if(cardNumberMatcher.matches()) if(intestatarioMatcher.matches()) if(codSicurezzaMatcher.matches()) {
+				return true;
+			}
 			
 			
 		}else if (p.getTipoPagamentoScelto()==2) {
-			setTipoPagamento("Bonifico"); 
+			
+			setTipoPagamento("Bonifico");
+			
+			Matcher codiceBonificoMatcher = null;
+			Matcher bancaMatcher = null;
+			
+			Pattern codiceBonificoPattern = Pattern.compile("[0-9]{16}");
+			Pattern bancaPattern = Pattern.compile("[a-zA-Z ]+");
+			
+			codiceBonificoMatcher = codiceBonificoPattern.matcher(p.getTxtCodiceBonifico());
+			bancaMatcher = bancaPattern.matcher(p.getTxtBanca());
+			
+			if (!codiceBonificoMatcher.matches()) {
+				p.mostraMessaggioErrore("L'IBAN deve essere di 16 cifre \ne non deve contenere spazi");
+				return false;
+			}
+			
+			if (!bancaMatcher.matches()) {
+				p.mostraMessaggioErrore("Inserire il nome della banca");
+				return false;
+			}
+			
+			if(codiceBonificoMatcher.matches()) if(bancaMatcher.matches()) {
+				return true;
+			}
+			
+			
 		}else if (p.getTipoPagamentoScelto()==3) {
 			setTipoPagamento("Contrassegno"); 
 			return true;
 		}
-		return true;
+		
+		p.mostraMessaggioErrore("Errore di pagamento");
+		return false;
 		
 	}
 
