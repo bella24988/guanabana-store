@@ -60,7 +60,7 @@ public class RegistratiController implements ActionListener {
 		}else if (e.getActionCommand().equalsIgnoreCase("Conferma Registrazione")){
 			
 			registrati.togliMessaggio();
-			if(ciSonoCampiVuoti(registrati)==false){
+			if(validate(registrati)==0){
 				
 				
 			
@@ -101,8 +101,8 @@ public class RegistratiController implements ActionListener {
 				}else{
 					registrati.mostraMessaggio("Le password non coincidono");
 				}
-			}else{
-				//registrati.mostraMessaggio("Si devono compilare tutti campi");
+			}else if(validate(registrati)==1){
+				registrati.mostraMessaggio("Si devono compilare tutti campi");
 			}
 			
 		}
@@ -121,7 +121,7 @@ public class RegistratiController implements ActionListener {
 		
 	}
 	
-	private boolean ciSonoCampiVuoti(RegistratiView r){
+	private int validate(RegistratiView r){
 		
 		Matcher emailMatcher=null;
 	    Matcher birthMatcher=null;
@@ -144,31 +144,31 @@ public class RegistratiController implements ActionListener {
 					if(r.getTxtEmail().compareTo("")!=0){
 						if(!emailMatcher.matches()){
 				        	registrati.mostraMessaggio("Inserire una email valida");
-				        	return true;
+				        	return 2;
 				        }
 						if(r.getTxtTelefono().compareTo("")!=0){
 							if(String.valueOf(r.getTxtPassword()).compareTo("")!=0){
 								if(String.valueOf(r.getTxtPasswordConferma()).compareTo("")!=0){
 									if(!passwordMatcher.matches()){
 							        	registrati.mostraMessaggio("La password deve contenere almeno un carattere maiuscolo,\nun carattere minuscolo e un numero,\ne deve essere lunga almeno sei caratteri");
-							        	return true;
+							        	return 2;
 							        }
 									if(r.getTxtVia().compareTo("")!=0){
 										if(r.getTxtCap().compareTo("")!=0){
 											if(r.getTxtCitta().compareTo("")!=0){
 												if(r.getTxtStato().compareTo("")!=0){
-													return false;
-												}else return true;
-											}else return true;
-										}else return true;
-									}else return true;
-								}else return true;
-							}else return true;
-						}else return true;
-					}else return true;
-				}else return true;
-			}else return true;
-		}else return true;
+													return 0;
+												}else return 1;
+											}else return 1;
+										}else return 1;
+									}else return 1;
+								}else return 1;
+							}else return 1;
+						}else return 1;
+					}else return 1;
+				}else return 1;
+			}else return 1;
+		}else return 1;
 	}
 
 	/**
