@@ -15,6 +15,8 @@ import javax.swing.JButton;
 
 import client.RegistratiController;
 import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 import modello.Cliente;
 
@@ -178,6 +180,9 @@ public class RegistratiView extends JPanel {
 
 
 		txaMessaggioErrore = new JTextPane();
+		SimpleAttributeSet attribs = new SimpleAttributeSet();  
+		StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_CENTER);  
+		txaMessaggioErrore.setParagraphAttributes(attribs,true);
 		txaMessaggioErrore.setForeground(Color.RED);
 		txaMessaggioErrore.setBackground(new Color(204, 255, 153));
 		txaMessaggioErrore.setEditable(false);

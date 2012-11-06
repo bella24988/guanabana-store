@@ -150,7 +150,7 @@ public class RegistratiController implements ActionListener {
 							if(String.valueOf(r.getTxtPassword()).compareTo("")!=0){
 								if(String.valueOf(r.getTxtPasswordConferma()).compareTo("")!=0){
 									if(!passwordMatcher.matches()){
-							        	registrati.mostraMessaggio("<html>La password deve contenere almeno un carattere maiuscolo, un carattere minuscolo e un numero,<br>e deve essere lunga almeno sei caratteri</html>");
+							        	registrati.mostraMessaggio("La password deve contenere almeno un carattere maiuscolo,\nun carattere minuscolo e un numero,\ne deve essere lunga almeno sei caratteri");
 							        	return true;
 							        }
 									if(r.getTxtVia().compareTo("")!=0){
