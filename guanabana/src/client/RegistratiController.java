@@ -124,37 +124,42 @@ public class RegistratiController implements ActionListener {
 	private int validate(RegistratiView r){
 		
 		Matcher emailMatcher=null;
-	    Matcher birthMatcher=null;
+	    Matcher capMatcher=null;
 	    Matcher passwordMatcher=null;
+	    
 	    Pattern emailPattern=Pattern.compile("[a-zA-Z0-9]*@[a-z]{3,}\\.[a-zA-z]{2,}");
-	    Pattern birthDatePattern=Pattern.compile("([012][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}");
+	    Pattern capPattern=Pattern.compile("[0-9]{5}");
         Pattern passwordPattern=Pattern.compile("[0-9a-zA-z!@#$%^&*]{6,}");
       
         emailMatcher=emailPattern.matcher(r.getTxtEmail());
-        //birthMatcher=birthDatePattern.matcher("");
+        capMatcher=capPattern.matcher(r.getTxtCap());
         passwordMatcher=passwordPattern.matcher(String.valueOf(r.getTxtPasswordConferma()));
       
         
         
         
 				
-		if (r.getTxtCf().compareTo("")!=0){
-			if (r.getTxtNome().compareTo("")!=0){
-				if(r.getTxtCognome().compareTo("")!=0){
-					if(r.getTxtEmail().compareTo("")!=0){
-						if(!emailMatcher.matches()){
+		if (r.getTxtNome().compareTo("")!=0){
+			if (r.getTxtCognome().compareTo("")!=0){
+				if (r.getTxtCf().compareTo("")!=0){
+					if (r.getTxtEmail().compareTo("")!=0){
+						if (!emailMatcher.matches()){
 				        	registrati.mostraMessaggio("Inserire una email valida");
 				        	return 2;
 				        }
-						if(r.getTxtTelefono().compareTo("")!=0){
-							if(String.valueOf(r.getTxtPassword()).compareTo("")!=0){
-								if(String.valueOf(r.getTxtPasswordConferma()).compareTo("")!=0){
-									if(!passwordMatcher.matches()){
+						if (r.getTxtTelefono().compareTo("")!=0){
+							if (String.valueOf(r.getTxtPassword()).compareTo("")!=0){
+								if (String.valueOf(r.getTxtPasswordConferma()).compareTo("")!=0){
+									if (!passwordMatcher.matches()){
 							        	registrati.mostraMessaggio("La password deve contenere almeno un carattere maiuscolo,\nun carattere minuscolo e un numero,\ne deve essere lunga almeno sei caratteri");
 							        	return 2;
 							        }
-									if(r.getTxtVia().compareTo("")!=0){
-										if(r.getTxtCap().compareTo("")!=0){
+									if (r.getTxtVia().compareTo("")!=0){
+										if (r.getTxtCap().compareTo("")!=0){
+											if (!capMatcher.matches()){
+									        	registrati.mostraMessaggio("CAP non valido");
+									        	return 2;
+									        }
 											if(r.getTxtCitta().compareTo("")!=0){
 												if(r.getTxtStato().compareTo("")!=0){
 													return 0;
