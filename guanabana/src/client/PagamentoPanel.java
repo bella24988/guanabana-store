@@ -16,7 +16,6 @@ import javax.swing.JTextArea;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 
-
 public class PagamentoPanel extends JPanel {
 
 	/**
@@ -214,14 +213,15 @@ public class PagamentoPanel extends JPanel {
 		tipoPagamento.setVisible(true);
 
 		JButton btnPagaEAccetta = new JButton("Paga e Accetta");
-		//btnPagaEAccetta.setIcon(new ImageIcon(PagamentoPanel.class.getResource("/icons/payment_icon.png")));
+		// btnPagaEAccetta.setIcon(new
+		// ImageIcon(PagamentoPanel.class.getResource("/icons/payment_icon.png")));
 		btnPagaEAccetta.setActionCommand("accetta");
 		btnPagaEAccetta.addActionListener(pagamentoController);
 
 		txtErrore = new JTextArea();
 		txtErrore.setEditable(false);
 		txtErrore.setForeground(Color.RED);
-		
+
 		GridBagConstraints gbc_txtrDeveSelezionareUn = new GridBagConstraints();
 		gbc_txtrDeveSelezionareUn.insets = new Insets(0, 0, 0, 5);
 		gbc_txtrDeveSelezionareUn.fill = GridBagConstraints.BOTH;

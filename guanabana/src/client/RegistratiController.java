@@ -150,8 +150,10 @@ public class RegistratiController implements ActionListener {
 
 		Pattern nomePattern = Pattern.compile("[a-zA-Z ]{2,}");
 		Pattern cognomePattern = Pattern.compile("[a-zA-Z ]{2,}");
-		Pattern cfPattern = Pattern.compile("[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]");
-		Pattern emailPattern = Pattern.compile("[a-zA-Z0-9._%-]*@[a-zA-Z0-9.-]{3,}\\.[a-zA-Z]{2,4}");
+		Pattern cfPattern = Pattern
+				.compile("[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]");
+		Pattern emailPattern = Pattern
+				.compile("[a-zA-Z0-9._%-]*@[a-zA-Z0-9.-]{3,}\\.[a-zA-Z]{2,4}");
 		Pattern cittaPattern = Pattern.compile("[a-zA-Z ]{2,}");
 		Pattern viaPattern = Pattern.compile("[a-zA-Z0-9 ]{2,}");
 		Pattern provinciaPattern = Pattern.compile("[A-Za-z]{2}");
@@ -170,7 +172,8 @@ public class RegistratiController implements ActionListener {
 		capMatcher = capPattern.matcher(r.getTxtCap());
 		statoMatcher = statoPattern.matcher(r.getTxtStato());
 		telefonoMatcher = telefonoPattern.matcher(r.getTxtTelefono());
-		passwordMatcher = passwordPattern.matcher(String.valueOf(r.getTxtPasswordConferma()));
+		passwordMatcher = passwordPattern.matcher(String.valueOf(r
+				.getTxtPasswordConferma()));
 
 		if (r.getTxtNome().compareTo("") != 0) {
 			if (!nomeMatcher.matches()) {
