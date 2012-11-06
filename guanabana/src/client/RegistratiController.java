@@ -126,7 +126,7 @@ public class RegistratiController implements ActionListener {
 		Matcher emailMatcher=null;
 	    Matcher birthMatcher=null;
 	    Matcher passwordMatcher=null;
-	    Pattern emailPattern=Pattern.compile("[a-zA-Z0-9]*@[a-z]{4,}\\.com");
+	    Pattern emailPattern=Pattern.compile("[a-zA-Z0-9]*@[a-z]{3,}\\.[a-zA-z]{2,}");
 	    Pattern birthDatePattern=Pattern.compile("([012][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}");
         Pattern passwordPattern=Pattern.compile("[0-9a-zA-z!@#$%^&*]{6,}");
       
