@@ -3,10 +3,10 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- * @author  Veronica
- */
+
 public class PagamentoController implements ActionListener{
 	
 	/**
@@ -46,11 +46,11 @@ public class PagamentoController implements ActionListener{
 			
 		}else if (e.getActionCommand().equalsIgnoreCase("accetta")){
 			if(pagamentoPanel.getContenutoPanel().getClienteLogato()!=null){
-				
+			
 				Client client = new Client(pagamentoPanel.getContenutoPanel().getHost());
 				
 				if (pagamentoPanel.getTipoPagamentoScelto()==0) {
-					pagamentoPanel.mostraMessaggioErrore();
+					pagamentoPanel.mostraMessaggioErrore("Selezionare il tipo di pagamento");
 					}else {
 						if (pagamentoPanel.getTipoPagamentoScelto()==1) {
 						setTipoPagamento("Carta di Credito");
@@ -73,7 +73,45 @@ public class PagamentoController implements ActionListener{
 			}
 			
 		}		
-	
+	private boolean validate(PagamentoPanel p){
+		
+		if (p.getTipoPagamentoScelto()==1) {
+			
+			setTipoPagamento("Carta di Credito");
+			
+			Matcher cardNumberMatcher = null;
+			Matcher intestatarioMatcher = null;
+			Matcher codSicurezzaMatcher = null;
+			
+			Pattern cardNumberPattern = Pattern.compile("[0-9]{16}");
+			Pattern intestatarioPattern = Pattern.compile("[a-zA-Z ]{2,}");
+			Pattern codSicurezzaPattern = Pattern.compile("[0-9]{3}");
+			
+			cardNumberMatcher = cardNumberPattern.matcher(p.getTxtCarta());
+			intestatarioMatcher = intestatarioPattern.matcher(p.getTxtIntestatario());
+			codSicurezzaMatcher = codSicurezzaPattern.matcher(p.getTxtCodSicurezza());
+			
+			if (!cardNumberMatcher.matches()) {
+				p.mostraMessaggioErrore("Il numero della carta deve essere di 16 cifre \ne non deve contenere spazi");
+				return false;
+			}
+			
+			if (!intestatarioMatcher.matches()) {
+				p.mostraMessaggioErrore("Inserire il nome dell'intestatario \ncome riportato sulla carta");
+				return false;
+			}
+			
+			
+			
+		}else if (p.getTipoPagamentoScelto()==2) {
+			setTipoPagamento("Bonifico"); 
+		}else if (p.getTipoPagamentoScelto()==3) {
+			setTipoPagamento("Contrassegno"); 
+			return true;
+		}
+		return true;
+		
+	}
 
 	/**
 	 * @return  the pagamentoPanel

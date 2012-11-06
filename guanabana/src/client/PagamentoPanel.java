@@ -221,7 +221,7 @@ public class PagamentoPanel extends JPanel {
 		txtErrore = new JTextArea();
 		txtErrore.setEditable(false);
 		txtErrore.setForeground(Color.RED);
-		txtErrore.setText("Deve selezionare un \r\ntipo di pagamento");
+		
 		GridBagConstraints gbc_txtrDeveSelezionareUn = new GridBagConstraints();
 		gbc_txtrDeveSelezionareUn.insets = new Insets(0, 0, 0, 5);
 		gbc_txtrDeveSelezionareUn.fill = GridBagConstraints.BOTH;
@@ -263,7 +263,7 @@ public class PagamentoPanel extends JPanel {
 
 	public void mostraCampiCarta(JPanel panel) {
 
-		JLabel lblNumeroDeLa = new JLabel("Numero de la Carta:");
+		JLabel lblNumeroDeLa = new JLabel("Numero Carta:");
 		GridBagConstraints gbc_lblNumeroDeLa = new GridBagConstraints();
 		gbc_lblNumeroDeLa.anchor = GridBagConstraints.EAST;
 		gbc_lblNumeroDeLa.insets = new Insets(0, 0, 5, 5);
@@ -575,7 +575,8 @@ public class PagamentoPanel extends JPanel {
 		this.tipoPagamentoScelto = tipoPagamentoScelto;
 	}
 
-	public void mostraMessaggioErrore() {
+	public void mostraMessaggioErrore(String s) {
+		txtErrore.setText(s);
 		txtErrore.setVisible(true);
 
 	}
