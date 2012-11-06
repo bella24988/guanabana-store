@@ -76,7 +76,7 @@ public class RegistratiView extends JPanel {
 	
 	private JFormattedTextField[] txtArray ={txtNome, txtCognome, txtCf, txtEmail, txtCitta, txtVia, 
 			txtProvincia, txtCap, txtStato, txtTelefono };
-	private String[] func = {""};
+	
 	
 	private static String[] labels = { "Nome:", "Cognome:", "C.F.:", "Email:", "Cittˆ:", "Via:", 
 			"Provincia:", "CAP:", "Stato:", "Telefono:", "Password:", "Conferma Password:" };
@@ -242,7 +242,7 @@ public class RegistratiView extends JPanel {
 		this.panelContenitore = panelContenitore;
 	}
 
-	public void dehabilitaRegistrati() {
+	public void disabilitaRegistrati() {
 		panelContenitore.getRegistratiView().setVisible(false);
 	}
 

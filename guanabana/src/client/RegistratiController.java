@@ -55,31 +55,14 @@ public class RegistratiController implements ActionListener {
 		}
 		
 		if (e.getActionCommand().equalsIgnoreCase("Annulla")){
-			registrati.dehabilitaRegistrati();
+			registrati.disabilitaRegistrati();
 			registrati.inizializza();
 		}else if (e.getActionCommand().equalsIgnoreCase("Conferma Registrazione")){
 			
 			registrati.togliMessaggio();
 			if(ciSonoCampiVuoti(registrati)==false){
 				
-				Matcher emailMatcher=null;
-			    Matcher birthMatcher=null;
-			    Matcher passwordMatcher=null;
-			    Pattern emailPattern=Pattern.compile("[a-zA-Z0-9]*@[a-z]{4,}\\.com");
-			    Pattern birthDatePattern=Pattern.compile("([012][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}");
-		        Pattern passwordPattern=Pattern.compile("[0-9a-zA-z!@#$%^&*]{6,}");
-		      
-		        emailMatcher=emailPattern.matcher(registrati.getTxtEmail());
-		        //birthMatcher=birthDatePattern.matcher("");
-		        passwordMatcher=passwordPattern.matcher(new String(registrati.getTxtPassword()));
-		      
-		        if(!emailMatcher.matches()){
-		        	registrati.mostraMessaggio("Inserire una email valida");
-		        }
-		        
-		        if(!passwordMatcher.matches()){
-		        	registrati.mostraMessaggio("La password deve contenere almeno un carattere maiuscolo, un carattere minuscolo e un numero, e deve essere lunga almeno sei caratteri");
-		        }
+				
 			
 				if ( passwordUguali(String.valueOf(registrati.getTxtPassword()),String.valueOf(registrati.getTxtPasswordConferma())) == true ){
 										
@@ -119,7 +102,7 @@ public class RegistratiController implements ActionListener {
 					registrati.mostraMessaggio("Le password non coincidono");
 				}
 			}else{
-				registrati.mostraMessaggio("Si devono compilare tutti campi");
+				//registrati.mostraMessaggio("Si devono compilare tutti campi");
 			}
 			
 		}
@@ -139,14 +122,37 @@ public class RegistratiController implements ActionListener {
 	}
 	
 	private boolean ciSonoCampiVuoti(RegistratiView r){
+		
+		Matcher emailMatcher=null;
+	    Matcher birthMatcher=null;
+	    Matcher passwordMatcher=null;
+	    Pattern emailPattern=Pattern.compile("[a-zA-Z0-9]*@[a-z]{4,}\\.com");
+	    Pattern birthDatePattern=Pattern.compile("([012][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}");
+        Pattern passwordPattern=Pattern.compile("[0-9a-zA-z!@#$%^&*]{6,}");
+      
+        emailMatcher=emailPattern.matcher(r.getTxtEmail());
+        //birthMatcher=birthDatePattern.matcher("");
+        passwordMatcher=passwordPattern.matcher(String.valueOf(r.getTxtPasswordConferma()));
+      
+        
+        
+        
 				
 		if (r.getTxtCf().compareTo("")!=0){
 			if (r.getTxtNome().compareTo("")!=0){
 				if(r.getTxtCognome().compareTo("")!=0){
 					if(r.getTxtEmail().compareTo("")!=0){
+						if(!emailMatcher.matches()){
+				        	registrati.mostraMessaggio("Inserire una email valida");
+				        	return true;
+				        }
 						if(r.getTxtTelefono().compareTo("")!=0){
 							if(String.valueOf(r.getTxtPassword()).compareTo("")!=0){
 								if(String.valueOf(r.getTxtPasswordConferma()).compareTo("")!=0){
+									if(!passwordMatcher.matches()){
+							        	registrati.mostraMessaggio("<html>La password deve contenere almeno un carattere maiuscolo, un carattere minuscolo e un numero,<br>e deve essere lunga almeno sei caratteri</html>");
+							        	return true;
+							        }
 									if(r.getTxtVia().compareTo("")!=0){
 										if(r.getTxtCap().compareTo("")!=0){
 											if(r.getTxtCitta().compareTo("")!=0){
