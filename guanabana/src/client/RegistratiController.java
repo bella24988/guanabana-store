@@ -154,7 +154,7 @@ public class RegistratiController implements ActionListener {
 		Pattern emailPattern = Pattern.compile("[a-zA-Z0-9._%-]*@[a-zA-Z0-9.-]{3,}\\.[a-zA-Z]{2,4}");
 		Pattern cittaPattern = Pattern.compile("[a-zA-Z ]{2,}");
 		Pattern viaPattern = Pattern.compile("[a-zA-Z0-9 ]{2,}");
-		Pattern provinciaPattern = Pattern.compile("[A-Z]{2}");
+		Pattern provinciaPattern = Pattern.compile("[A-Za-z]{2}");
 		Pattern capPattern = Pattern.compile("[0-9]{5}");
 		Pattern statoPattern = Pattern.compile("[a-zA-Z ]{2,}");
 		Pattern telefonoPattern = Pattern.compile("[0-9]{8,}");

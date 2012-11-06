@@ -1,6 +1,6 @@
 package client;
 
-import javax.swing.JFormattedTextField;
+
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
@@ -30,43 +30,43 @@ public class RegistratiView extends JPanel {
 	/**
 	 * @uml.property  name="txtNome"
 	 */
-	private JFormattedTextField txtNome;
+	private JTextField txtNome;
 	/**
 	 * @uml.property  name="txtCognome"
 	 */
-	private JFormattedTextField txtCognome;
+	private JTextField txtCognome;
 	/**
 	 * @uml.property  name="txtCf"
 	 */
-	private JFormattedTextField txtCf;
+	private JTextField txtCf;
 	/**
 	 * @uml.property  name="txtEmail"
 	 */
-	private JFormattedTextField txtEmail;
+	private JTextField txtEmail;
 	/**
 	 * @uml.property  name="txtCitta"
 	 */
-	private JFormattedTextField txtCitta;
+	private JTextField txtCitta;
 	/**
 	 * @uml.property  name="txtVia"
 	 */
-	private JFormattedTextField txtVia;
+	private JTextField txtVia;
 	/**
 	 * @uml.property  name="txtProvincia"
 	 */
-	private JFormattedTextField txtProvincia;
+	private JTextField txtProvincia;
 	/**
 	 * @uml.property  name="txtCap"
 	 */
-	private JFormattedTextField txtCap;
+	private JTextField txtCap;
 	/**
 	 * @uml.property  name="txtStato"
 	 */
-	private JFormattedTextField txtStato;
+	private JTextField txtStato;
 	/**
 	 * @uml.property  name="txtTelefono"
 	 */
-	private JFormattedTextField txtTelefono;
+	private JTextField txtTelefono;
 	/**
 	 * @uml.property  name="txtPassword"
 	 */
@@ -76,7 +76,7 @@ public class RegistratiView extends JPanel {
 	 */
 	private JPasswordField txtPasswordConferma;
 	
-	private JFormattedTextField[] txtArray ={txtNome, txtCognome, txtCf, txtEmail, txtCitta, txtVia, 
+	private JTextField[] txtArray ={txtNome, txtCognome, txtCf, txtEmail, txtCitta, txtVia, 
 			txtProvincia, txtCap, txtStato, txtTelefono };
 	
 	
@@ -149,7 +149,7 @@ public class RegistratiView extends JPanel {
 		
 		for(int j = 0; j<10; j++){
 			
-			txtArray[j] = new JFormattedTextField();
+			txtArray[j] = new JTextField();
 			txtArray[j].setForeground(new Color(0, 102, 51));
 			GridBagConstraints txtGrid = new GridBagConstraints();
 			txtGrid.insets = new Insets(0, 0, 5, 5);
