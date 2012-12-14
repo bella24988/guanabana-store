@@ -26,6 +26,7 @@ Import-Package: com.mchange.v2.c3p0;version="[0.9.1.2,1.0.0)";resolution:=option
  javax.naming.spi,
  javax.net,
  javax.net.ssl;version="[1.0.1,2.0.0)";resolution:=optional,
+ javax.servlet;version="2.6.0",
  javax.sql,
  javax.transaction.xa;version="[1.0.1,2.0.0)";resolution:=optional,
  javax.xml.parsers,

@@ -3,8 +3,14 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
+import modello.Pagamento;
 
 public class PagamentoController implements ActionListener {
 
@@ -44,6 +50,7 @@ public class PagamentoController implements ActionListener {
 			pagamentoPanel.setTipoPagamentoScelto(3);
 
 		} else if (e.getActionCommand().equalsIgnoreCase("accetta")) {
+			pagamentoPanel.setEnabled(false);
 			if (pagamentoPanel.getContenutoPanel().getClienteLogato() != null) {
 
 				Client client = new Client(pagamentoPanel.getContenutoPanel()
@@ -52,24 +59,42 @@ public class PagamentoController implements ActionListener {
 				if (pagamentoPanel.getTipoPagamentoScelto() == 0) {
 					pagamentoPanel
 							.mostraMessaggioErrore("Selezionare il tipo di pagamento");
+					pagamentoPanel.setEnabled(true);
 				} else {
-
 					if (validate(pagamentoPanel)) {
 						try {
-							client.registrarePagamento(pagamentoPanel
+							Pagamento pagamento = client.registrarePagamento(pagamentoPanel
 									.getContenutoPanel().getOrdine(),
 									getTipoPagamento());
 							pagamentoPanel.getContenutoPanel()
 									.mostraRingraziamento();
+							try {
+								client.inviaEmailConferma(pagamentoPanel.getContenutoPanel().getOrdine().getCliente().getEmail(),//email cliente
+										pagamentoPanel.getContenutoPanel().getOrdine().getMessaggioEmail(pagamento),//messaggio della email
+										"Ricevuta - Ordine N¡: "+pagamentoPanel.getContenutoPanel().getOrdine().getNumeroOrdine());//subject della email
+							} catch (AddressException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (UnknownHostException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (MessagingException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+						
+						
+						
 					}
 				}
 			}
 		} else {
-
+			pagamentoPanel.setEnabled(true);
 		}
 
 	}

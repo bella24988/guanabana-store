@@ -510,7 +510,15 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		}
 		
 		Ordine ordine = new Ordine(numOrdine, comp, prezzoTotale, cliente);
-		
+		try {
+			String[] info = new String[2];
+			info = db.getDataOrdine(numOrdine);
+			ordine.setData(info[0]);
+			ordine.setStato(info[1]);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return ordine;
 	}
 

@@ -194,5 +194,198 @@ public class Ordine implements Serializable{
 		this.richiestaSpedizione = richiestaSpedizione;
 	}
 	
+	public String getMessaggioEmail(Pagamento pagamento){
+		String messaggio ="<p class=MsoNormal align=center style='text-align:center'>" +
+				"<span style='font-size:50.0pt;color:#76923C;mso-themecolor:accent3;mso-themeshade:191'>Ricevuta</span></p>" +
+				"<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span" +
+				"style='color:#76923C;mso-themecolor:accent3;mso-themeshade:191'><o:p>&nbsp;</o:p></span></b></p>" +
+				"<p class=MsoNormal><span style='font-size:18.0pt'><o:p>&nbsp;</o:p></span></p>" +
+				"<div align=center>" +
+				"<table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0" +
+				"style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;" +
+				"mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>" +
+				"<tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>" +
+				"<td width=198 valign=top style='width:197.95pt;border:solid windowtext 1.0pt;" +
+				"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal>Ordine numero:</p></td>" +
+				"<td width=269 valign=top style='width:269.35pt;border:solid windowtext 1.0pt;" +
+				"border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:" +
+				"solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal><span class=GramE>"+numeroOrdine+"</span></p>" +
+				"</td>" +
+				"<td width=135 valign=top style='width:135.25pt;border:solid windowtext 1.0pt;" +
+				"border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:" +
+				"solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal>Data:</p>" +
+				"</td>" +
+				"<td width=207 valign=top style='width:206.7pt;border:solid windowtext 1.0pt;" +
+				"border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:" +
+				"solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal>"+data+"</p>" +
+				"</td>" +
+				"</tr>" +
+				"<tr style='mso-yfti-irow:1'>" +
+				"<td width=198 valign=top style='width:197.95pt;border:solid windowtext 1.0pt;" +
+				"border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;" +
+				"padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal>Codice Fiscale:</p></td>" +
+				"<td width=269 valign=top style='width:269.35pt;border-top:none;border-left:" +
+				"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+				"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+				"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal><span class=GramE>"+cliente.getCf()+"</span></p>" +
+				"</td>" +
+				"<td width=198 valign=top style='width:197.95pt;border:solid windowtext 1.0pt;" +
+				"border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;" +
+				"padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal>Telefono:</p></td>" +
+				"<td width=269 valign=top style='width:269.35pt;border-top:none;border-left:" +
+				"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+				"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+				"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal><span class=GramE>"+cliente.getTelefono()+"</span></p>" +
+				"</td></tr>" +
+				"<tr style='mso-yfti-irow:1'>" +
+				"<td width=198 valign=top style='width:197.95pt;border:solid windowtext 1.0pt;" +
+				"border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;" +
+				"padding:0cm 5.4pt 0cm 5.4pt'><p class=MsoNormal>Cliente:</p></td>" +
+				"<td width=269 valign=top style='width:269.35pt;border-top:none;border-left:" +
+				"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+				"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+				"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal><span class=GramE>"+cliente.getNome()+"</span></p>" +
+				"</td>" +
+				"<td width=135 valign=top style='width:135.25pt;border-top:none;border-left:" +
+				"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+				"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+				"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal>Cognome</p>" +
+				"</td>" +
+				"<td width=207 valign=top style='width:206.7pt;border-top:none;border-left:" +
+				"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+				"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+				"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+				"<p class=MsoNormal>"+cliente.getCognome()+"</p></td></tr><tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes'>" +
+						"<td width=198 valign=top style='width:197.95pt;border:solid windowtext 1.0pt;" +
+						"border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;" +
+						"padding:0cm 5.4pt 0cm 5.4pt'>" +
+						"<p class=MsoNormal>Indirizzo di spedizione:</p> </td>" +
+						"<td width=269 valign=top style='width:269.35pt;border-top:none;border-left:" +
+						"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+						"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+						"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+						"<p class=MsoNormal>"+cliente.getIndirizzo()+"</p>" +
+								"<p class=MsoNormal><o:p>&nbsp;</o:p></p>" +
+								"<p class=MsoNormal><o:p>&nbsp;</o:p></p>" +
+								"<p class=MsoNormal><o:p>&nbsp;</o:p></p>" +
+								"</td>" +
+								"<td width=135 valign=top style='width:135.25pt;border-top:none;border-left:none;" +
+								"border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+								"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+								"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+								"<p class=MsoNormal>Stato dell’ordine:</p></td>" +
+								"<td width=207 valign=top style='width:206.7pt;border-top:none;border-left:" +
+								"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+								"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+								"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+								"<p class=MsoNormal>"+stato+"</p>" +
+								"</td></tr>" +
+								"</table>" +
+								"</div>" +
+								"<p class=MsoNormal><u><span style='font-size:18.0pt'><o:p><span" +
+								"style='text-decoration:none'>&nbsp;</span></o:p></span></u></p>" +
+								"<div align=center>" +
+								"<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0" +
+								"style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;" +
+								"mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>" +
+								"<tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>" +
+								"<td width=808 colspan=3 valign=top style='width:807.5pt;border:solid windowtext 1.0pt;" +
+								"mso-border-alt:solid windowtext .5pt;background:#D9D9D9;mso-background-themecolor:" +
+								"background1;mso-background-themeshade:217;padding:0cm 5.4pt 0cm 5.4pt'>" +
+								"<p class=MsoNormal><span style='font-size:18.0pt'>Computer ordinato:<span" +
+								"class=SpellE>"+computer.getNome()+"</span><o:p></o:p></span></p>" +
+								"</td></tr>" +
+								"<tr style='mso-yfti-irow:1'>" +
+								"<td width=808 colspan=3 valign=top style='width:807.5pt;border:solid windowtext 1.0pt;" +
+								"border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;" +
+								"background:#D9D9D9;mso-background-themecolor:background1;mso-background-themeshade:" +
+								"217;padding:0cm 5.4pt 0cm 5.4pt'>" +
+								"<p class=MsoNormal align=center style='text-align:center'><span" +
+								"style='font-size:18.0pt'>Dettagli della configurazione<b style='mso-bidi-font-weight:normal'><o:p></o:p></b></span></p>" +
+								"</td>" +
+								"</tr>" +
+								"<tr style='mso-yfti-irow:2'>" +
+								"<td width=198 valign=top style='width:197.95pt;border:solid windowtext 1.0pt;" +
+								"border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;" +
+								"padding:0cm 5.4pt 0cm 5.4pt'>" +
+								"<p class=MsoNormal align=center style='text-align:center'><span" +
+								"style='font-size:18.0pt'>Codice<o:p></o:p></span></p>" +
+								"</td>" +
+								"<td width=269 valign=top style='width:269.35pt;border-top:none;border-left:" +
+								"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+								"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+								"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+								"<p class=MsoNormal align=center style='text-align:center'><span" +
+								"style='font-size:18.0pt'>Nome<o:p></o:p></span></p>" +
+								"</td>" +
+								"<td width=340 valign=top style='width:12.0cm;border-top:none;border-left:" +
+								"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+								"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+								"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+								"<p class=MsoNormal align=center style='text-align:center'><span" +
+								"style='font-size:18.0pt'>Prezzo<o:p></o:p></span></p>" +
+								"</td></tr>" +
+								forMancante()+
+								"</table>" +
+								"</div>" +
+								"<p class=MsoNormal><span style='font-size:18.0pt'><o:p>&nbsp;</o:p></span></p>" +
+								"<p class=MsoNormal><span style='font-size:18.0pt'>Totale da pagare:"+totale+"<o:p></o:p></span></p>" +
+								"<p class=MsoNormal><span style='font-size:18.0pt'>Metodo di pagamento scelto: <span"+
+								"class=SpellE>"+pagamento.getTipoPagamento()+"</span><o:p></o:p></span></p>"+
+								
+								"<p class=MsoNormal><span style='font-size:18.0pt'>Codice pagamento: "+pagamento.getNumPagamento()+"</span></p>"+
+								
+								"<p class=MsoNormal align=center style='text-align:center'><span"+
+								"style='font-size:18.0pt'><o:p>&nbsp;</o:p></span></p>"+
+								
+								"<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span"+
+								"style='color:#76923C;mso-themecolor:accent3;mso-themeshade:191'>Grazie per"+
+								"l’acquisto! Appena avremo ricevuto il suo pagamento, le invieremmo un’email di"+
+								"conferma. In qualunque momento potrà consultare lo stato dei suoi ordini oppure"+
+								"cancellare l’ordine traverso il nostro sito web <a"+
+								"href='http://www.guanabana-store.com'>www.guanabana-store.com</a> nella voce 'I"+
+								"tuoi ordini'.<o:p></o:p></span></p>"+
+								
+								"<p class=MsoNormal align=center style='text-align:center'><span"+
+								"style='font-size:18.0pt'><o:p>&nbsp;</o:p></span></p>";
+		
+		
+		return messaggio;
+		
+	}
+	
+	private String forMancante(){
+		String forMancante = "";
+		for(int i = 0; i< computer.getConfigurazione().getComponentiScelti().length;i++){
+			forMancante=forMancante+"<tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>" +//for inizio
+			"<td width=198 valign=top style='width:197.95pt;border:solid windowtext 1.0pt;" +
+			"border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;" +
+			"padding:0cm 5.4pt 0cm 5.4pt'>" +
+			"<p class=MsoNormal>"+computer.getConfigurazione().getComponentiScelti()[i].getCodice()+"<o:p>&nbsp;</o:p></p>" +
+			"</td>" +
+			"<td width=269 valign=top style='width:269.35pt;border-top:none;border-left:" +
+			"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+			"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+			"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+			"<p class=MsoNormal>"+computer.getConfigurazione().getComponentiScelti()[i].getNome()+"<o:p>&nbsp;</o:p></p>" +
+			"</td>" +
+			"<td width=340 valign=top style='width:12.0cm;border-top:none;border-left:" +
+			"none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;" +
+			"mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;" +
+			"mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>" +
+			"<p class=MsoNormal>"+computer.getConfigurazione().getComponentiScelti()[i].getPrezzo()+"<o:p>&nbsp;</o:p></p>" +
+			"</td>" +
+			"</tr>";
+			}//Fine for
+		return forMancante;
+	}
+	
 
 }

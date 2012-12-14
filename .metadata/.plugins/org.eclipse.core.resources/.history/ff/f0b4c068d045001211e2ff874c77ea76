@@ -1,0 +1,6 @@
+package client;
+
+public class MailServlet extends javax.servlet.http.HttpServlet
+implements javax.servlet.Servlet{
+
+}

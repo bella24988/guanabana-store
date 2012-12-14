@@ -283,6 +283,18 @@ public class DataBase {
 		return numOrdineMax;
 	}
 	
+	public String[] getDataOrdine(int codice) throws SQLException{
+		String data[] = new String[2];
+		Statement st = con.createStatement();
+		ResultSet result = st.executeQuery("select data, stato from ordini where codice="+codice+";");
+		while(result.next()){
+			data[0] = result.getString(1);
+			data[1] = result.getString(2);
+		}
+		
+		return data;
+	}
+	
 	/**
 	 * @return  the st
 	 * @uml.property  name="st"
