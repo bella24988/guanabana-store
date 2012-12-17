@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-
 import modello.Ordine;
 
 public class VenditaDaGestireController implements ActionListener, ItemListener {
@@ -68,6 +67,12 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 				clientAzienda.confermarePagamento(true, veGestirePanel
 						.getOrdini()[btnConferma.getMnemonic()]
 						.getNumeroOrdine());
+				clientAzienda.inviaEmailConferma(veGestirePanel
+						.getOrdini()[btnConferma.getMnemonic()].getCliente().getEmail(),//email cliente
+						veGestirePanel.getOrdini()[btnConferma.getMnemonic()].getMessaggioEmail(veGestirePanel
+								.getOrdini()[btnConferma.getMnemonic()].getPagamento(), "Abbiamo ricevuto il suo pagamento!"),//messaggio della email
+						"Ricevuta - Ordine Numero: "+veGestirePanel
+						.getOrdini()[btnConferma.getMnemonic()].getNumeroOrdine());//subject della email
 			} else {
 				veGestirePanel.nascondiButtoneInvio(btnConferma.getMnemonic());
 				clientAzienda.confermarePagamento(false, veGestirePanel

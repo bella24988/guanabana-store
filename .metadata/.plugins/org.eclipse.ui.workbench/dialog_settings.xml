@@ -13,14 +13,13 @@
 		</list>
 	</section>
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="0" key="DIALOG_Y_ORIGIN"/>
-		<item value="217" key="DIALOG_X_ORIGIN"/>
+		<item value="-18" key="DIALOG_Y_ORIGIN"/>
+		<item value="160" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="NewWizardAction">
-		<item value="org.obeonetwork.dsl.uml2.wizard.newUmlModel" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<item value="org.eclipse.wst.html.ui.internal.wizard.NewHTMLWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
-			<item value="org.eclipse.emf.ecore.Wizard.category.ID"/>
-			<item value="org.obeonetwork.dsl.uml2.design.category"/>
+			<item value="org.eclipse.wst.web.ui"/>
 		</list>
 	</section>
 </section>

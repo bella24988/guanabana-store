@@ -61,7 +61,7 @@ public class DataBase {
 	 * @uml.property  name="stConsultaDipendente"
 	 */
 	private PreparedStatement stConsultaDipendente;
-	private Statement stModello;
+	private Statement stModello, stInsertDetagliPagamento;
 	/**
 	 * @uml.property  name="stConsultaOrdini"
 	 */
@@ -408,7 +408,7 @@ public class DataBase {
 	}
 
 	public int registrarePagamento(int numeroOrdine, float prezzo,
-			String tipoPagamento) {
+			String tipoPagamento, String arg1, String arg2) {
 		ResultSet result = null;
 		int numMaxPago = 1;
 		
@@ -434,7 +434,22 @@ public class DataBase {
 			e.printStackTrace();
 		}
 		
+		try {
+			registraDetagliPagamento(numMaxPago, tipoPagamento, arg1, arg2);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return numMaxPago;
+	}
+	
+	private void registraDetagliPagamento(int numPagamento, String tipoPagamento, String arg1, String arg2) throws SQLException{
+		stInsertDetagliPagamento = con.createStatement();
+		if(tipoPagamento.compareTo("Bonifico")==0){
+			stInsertDetagliPagamento.executeUpdate("Insert into bonifico values('"+arg1+"', '"+numPagamento+"' , '"+arg2+"'); ");
+		}else if (tipoPagamento.compareTo("Carta di Credito")==0){
+			stInsertDetagliPagamento.executeUpdate("Insert into carta_credito values('"+numPagamento+"', '"+arg2+"', '"+arg1+"'); ");
+		}
 	}
 
 	public void aggiornaStatoOrdine(String stato, int numeroOrdine) throws SQLException {
@@ -676,4 +691,15 @@ public class DataBase {
 		Statement stConferma = con.createStatement();
 		stConferma.executeUpdate("update pagamenti set confermato="+valore+" where ordine_codice='"+codiceOrdine+"';");
 	}
+	
+	public String cercaClienteDalOrdine(int numOrdine) throws SQLException{
+		String cf = null;
+		stCliente = con.createStatement();
+		ResultSet result =stCliente.executeQuery("select cliente_CF from ordini where codice='"+numOrdine+"';");
+		while(result.next()){
+			cf=result.getString(1);
+			}
+		return cf;
+	}
+
 }

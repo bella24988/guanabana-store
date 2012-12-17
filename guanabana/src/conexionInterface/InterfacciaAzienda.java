@@ -13,7 +13,7 @@ public interface InterfacciaAzienda {
 	
 	public abstract Dipendente logDipendente(int id, String password) throws IOException, SQLException;
 	
-	public abstract Cliente cercaListaCliente(String cf);
+	public abstract Cliente cercaCliente(int ordine) throws IOException;
 	
 	public abstract Ordine[] cercaOrdini(String stato) throws IOException;
 	

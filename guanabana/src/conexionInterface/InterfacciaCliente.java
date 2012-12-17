@@ -35,9 +35,14 @@ public interface InterfacciaCliente {
 		
 		public abstract int conta(String cosa) throws IOException;
 		
-		public abstract Pagamento registrarePagamento(Ordine ordine, String tipoPagamento) throws IOException;
+		public abstract Pagamento registrarePagamento(Ordine ordine, String tipoPagamento,
+				String arg1, String arg2) throws IOException;
 		
 		public abstract Ordine[] consultaCarrello(Cliente cliente)throws IOException;
 		
 		public abstract void aggiornaOrdine(int numOrdine, String nuovoStato)throws IOException;
+
+		Cliente cercaCliente(String cf);
+
+		
 }

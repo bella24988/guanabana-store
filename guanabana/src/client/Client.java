@@ -1,21 +1,15 @@
 package client;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.InetAddress;
+
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -330,7 +324,7 @@ public class Client implements InterfacciaCliente {
 	}
 
 	@Override
-	public Pagamento registrarePagamento(Ordine ordine, String tipoPagamento)
+	public Pagamento registrarePagamento(Ordine ordine, String tipoPagamento, String arg1, String arg2)
 			throws IOException {
 		Pagamento pagamento = null;
 		
@@ -341,7 +335,10 @@ public class Client implements InterfacciaCliente {
 		
 		buffer = new ObjectInputStream(lettura);
 		
-		
+		String[] argPagamento = new String[3];
+		argPagamento[0] = tipoPagamento;
+		argPagamento[1] = arg1;
+		argPagamento[2] = arg2;
 		
 		try {
 			String risposta;
@@ -354,7 +351,7 @@ public class Client implements InterfacciaCliente {
 				risposta = (String) buffer.readObject();
 				
 				if(risposta.compareTo("ok")==0){
-					writer.writeObject(tipoPagamento);
+					writer.writeObject(argPagamento);
 					writer.flush();
 					
 					pagamento = (Pagamento) buffer.readObject();
@@ -511,6 +508,12 @@ public class Client implements InterfacciaCliente {
 	    transport.sendMessage(message, message.getAllRecipients());
 	    transport.close();
 	
+	}
+
+	@Override
+	public Cliente cercaCliente(String cf) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

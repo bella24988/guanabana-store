@@ -7,10 +7,14 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+
+import modello.Bonifico;
+import modello.CartaCredito;
 import modello.Cliente;
 import modello.Componente;
 import modello.Computer;
 import modello.Configurazione;
+import modello.Contrassegno;
 import modello.Desktop;
 import modello.Dipendente;
 import modello.Laptop;
@@ -168,8 +172,9 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				scrive.writeObject("ok");//ricevuto ordine
 				scrive.flush();
 				
-				String tipoPagamento = (String) ricevo.readObject();
-				Pagamento pagamento = registrarePagamento(ordine, tipoPagamento);
+				String[] argPagamento = (String[]) ricevo.readObject();
+				
+				Pagamento pagamento = registrarePagamento(ordine, argPagamento[0], argPagamento[1], argPagamento[2]);
 				scrive.writeObject(pagamento);//Envia Pagamento creato
 				scrive.flush();				
 			}else if (richiestaClient.compareTo("consultaOrdini")==0){
@@ -244,6 +249,11 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				scrive.flush();
 				int codice = (int) ricevo.readObject();
 				confermarePagamento(valore, codice);
+			}else if(richiestaClient.compareTo("azienda cerca cliente")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				int codiceOrdine = (int) ricevo.readObject();
+				scrive.writeObject(cercaCliente(codiceOrdine));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -523,13 +533,24 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 
 	@Override
-	public Pagamento registrarePagamento(Ordine ordine, String tipoPagamento)
+	public Pagamento registrarePagamento(Ordine ordine, String tipoPagamento, String arg1, String arg2)
 			throws IOException {
 		int numPagamento =0;
 		
-		numPagamento = db.registrarePagamento(ordine.getNumeroOrdine(), ordine.getPrezzo(), tipoPagamento);
+		numPagamento = db.registrarePagamento(ordine.getNumeroOrdine(), ordine.getPrezzo(), tipoPagamento, arg1, arg2);
+		Pagamento pagamento;
+		if (tipoPagamento.compareTo("Bonifico")==0){
+			pagamento = new Bonifico(ordine, tipoPagamento, numPagamento, false);
+			((Bonifico) pagamento).setCodice(arg1);
+			((Bonifico) pagamento).setBanca(arg2);
+		}else if (tipoPagamento.compareTo("Carta di credito")==0){
+			pagamento = new CartaCredito(ordine, tipoPagamento, numPagamento, false);
+			((CartaCredito) pagamento).setIntestatario(arg1);
+			((CartaCredito) pagamento).setCodice(arg2);
+		}else{
+			pagamento = new Contrassegno(ordine, tipoPagamento, numPagamento, false);
+		}
 		
-		Pagamento pagamento = new Pagamento(ordine, tipoPagamento, numPagamento, false);		
 		return pagamento;
 	}
 
@@ -637,7 +658,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 
 	@Override
-	public Cliente cercaListaCliente(String cf) {
+	public Cliente cercaCliente(String cf) {
 		// Del cliente
 					String[] clienteDb = db.cercaCliente(cf);
 					String nome = clienteDb[1];
@@ -680,7 +701,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			}
 			
 			
-			Cliente cliente = cercaListaCliente(cfCliente);
+			Cliente cliente = cercaCliente(cfCliente);
 			// Creo i computer ordinati
 			String tipoComputer = nomeComputer.substring(0, 3);
 			if (tipoComputer.compareTo("SER") == 0) {
@@ -723,6 +744,18 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Cliente cercaCliente(int ordine) throws IOException {
+		Cliente cliente=null;
+		try {
+			String cf=db.cercaClienteDalOrdine(ordine);
+			cliente=cercaCliente(cf);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cliente;
 	}
 
 	

@@ -78,7 +78,7 @@ public class PreventivoController implements ActionListener{
 				}
 			}
 			int i = Integer.parseInt(e.getActionCommand().substring(3));//posizione del componente configurabile
-			System.out.println("Possizione di scelta: "+indiceCompScelti+ "i:"+i);
+			
 			if(comando.compareTo("RAM")==0){//Controlla i buttons per la ram
 				prezzoRamOld = calcolarePrezzoTotale(i, prezzoRamOld);
 				

@@ -63,15 +63,29 @@ public class PagamentoController implements ActionListener {
 				} else {
 					if (validate(pagamentoPanel)) {
 						try {
-							Pagamento pagamento = client.registrarePagamento(pagamentoPanel
-									.getContenutoPanel().getOrdine(),
-									getTipoPagamento());
+							Pagamento pagamento;
+							
+							if(getTipoPagamento().compareTo("Carta di Credito")==0){
+								pagamento = client.registrarePagamento(pagamentoPanel
+										.getContenutoPanel().getOrdine(),
+										getTipoPagamento(), pagamentoPanel.getTxtIntestatario(), pagamentoPanel.getTxtCarta());
+							}else if(getTipoPagamento().compareTo("Bonifico")==0){
+								pagamento = client.registrarePagamento(pagamentoPanel
+										.getContenutoPanel().getOrdine(),
+										getTipoPagamento(), pagamentoPanel.getTxtCodiceBonifico(), pagamentoPanel.getTxtBanca());
+							}else{
+								pagamento = client.registrarePagamento(pagamentoPanel
+										.getContenutoPanel().getOrdine(),
+										getTipoPagamento(), "","");
+							}
 							pagamentoPanel.getContenutoPanel()
 									.mostraRingraziamento();
+							pagamentoPanel.getContenutoPanel().getOrdine().setPagamento(pagamento);
 							try {
 								client.inviaEmailConferma(pagamentoPanel.getContenutoPanel().getOrdine().getCliente().getEmail(),//email cliente
-										pagamentoPanel.getContenutoPanel().getOrdine().getMessaggioEmail(pagamento),//messaggio della email
-										"Ricevuta - Ordine N¡: "+pagamentoPanel.getContenutoPanel().getOrdine().getNumeroOrdine());//subject della email
+										pagamentoPanel.getContenutoPanel().getOrdine().getMessaggioEmail(pagamento, "Abbiamo ricevuto il tuo ordine! " +
+												"Appena avremo ricevuto il suo pagamento, le invieremmo un&rsquo;email di conferma."),//messaggio della email
+										"Ricevuta - Ordine Numero: "+pagamentoPanel.getContenutoPanel().getOrdine().getNumeroOrdine());//subject della email
 							} catch (AddressException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();

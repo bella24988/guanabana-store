@@ -213,8 +213,7 @@ public class PagamentoPanel extends JPanel {
 		tipoPagamento.setVisible(true);
 
 		JButton btnPagaEAccetta = new JButton("Paga e Accetta");
-		// btnPagaEAccetta.setIcon(new
-		// ImageIcon(PagamentoPanel.class.getResource("/icons/payment_icon.png")));
+		btnPagaEAccetta.setIcon(new ImageIcon(PagamentoPanel.class.getResource("/icons/payment_icon.png")));
 		btnPagaEAccetta.setActionCommand("accetta");
 		btnPagaEAccetta.addActionListener(pagamentoController);
 

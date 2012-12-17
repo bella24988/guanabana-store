@@ -73,7 +73,7 @@ public class SalutoPanel extends JPanel {
 		gbc_lblSaluto.gridy = 0;
 		add(lblSaluto, gbc_lblSaluto);
 		btnLogOut = new JButton("");
-		//btnLogOut.setIcon(new ImageIcon(SalutoPanel.class.getResource("/icons/logout-icon.png")));
+		btnLogOut.setIcon(new ImageIcon(SalutoPanel.class.getResource("/icons/logout-icon.png")));
 		btnLogOut.setToolTipText("Logout");
 		btnLogOut.setActionCommand("Logout");
 		GridBagConstraints gbc_btnLogOut = new GridBagConstraints();
@@ -83,7 +83,7 @@ public class SalutoPanel extends JPanel {
 		gbc_btnLogOut.gridy = 0;
 		add(btnLogOut, gbc_btnLogOut);
 		btnGestioneOrdine = new JButton("I tuoi ordini");
-		//btnGestioneOrdine.setIcon(new ImageIcon(SalutoPanel.class.getResource("/icons/order-history.png")));
+		btnGestioneOrdine.setIcon(new ImageIcon(SalutoPanel.class.getResource("/icons/order-history.png")));
 		GridBagConstraints gbc_btnGestioneOrdine = new GridBagConstraints();
 		gbc_btnGestioneOrdine.gridheight = 2;
 		gbc_btnGestioneOrdine.fill = GridBagConstraints.BOTH;
@@ -96,7 +96,7 @@ public class SalutoPanel extends JPanel {
 				.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btnCarrello = new JButton("Carrello");
-		//btnCarrello.setIcon(new ImageIcon(SalutoPanel.class.getResource("/icons/img_icon.gif.png")));
+		btnCarrello.setIcon(new ImageIcon(SalutoPanel.class.getResource("/icons/img_icon.gif.png")));
 		btnCarrello.setBackground(UIManager.getColor("Button.background"));
 		GridBagConstraints gbc_btnCarrello = new GridBagConstraints();
 		gbc_btnCarrello.gridheight = 2;
