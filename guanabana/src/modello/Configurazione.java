@@ -29,6 +29,16 @@ public class Configurazione implements Serializable{
 		setConfigurazioneStandard(codiceConfigStandard);
 		this.componentiScelti = new Componente[getMaxComponentiScelti()];
 	}
+	
+	
+
+	public Configurazione(Componente[] componentiScelti, int maxComponentiScelti) {
+		super();
+		this.componentiScelti = componentiScelti;
+		this.maxComponentiScelti = maxComponentiScelti;
+	}
+
+
 
 	/**
 	 * @param componenti

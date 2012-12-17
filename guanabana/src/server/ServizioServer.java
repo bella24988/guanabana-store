@@ -253,7 +253,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				scrive.writeObject("pronto");
 				scrive.flush();
 				int codiceOrdine = (int) ricevo.readObject();
-				scrive.writeObject(cercaCliente(codiceOrdine));
+				scrive.writeObject(cercaClienteDalOrdine(codiceOrdine));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -318,7 +318,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				
 				componentiConfigurabili[i] = new Configurazione(componenti, codiceConfigStandard, codiceConfigStandard.length);
 				
-				comp[i].setConfigurazioneStandard(componentiConfigurabili[i]);
+				comp[i].setConfigurazione(componentiConfigurabili[i]);
 			}
 			
 			
@@ -356,7 +356,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 
 	@Override
-	public void cercaComponenti(String modello) {
+	public void cercaComponenti(String modelli) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -543,13 +543,14 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			pagamento = new Bonifico(ordine, tipoPagamento, numPagamento, false);
 			((Bonifico) pagamento).setCodice(arg1);
 			((Bonifico) pagamento).setBanca(arg2);
-		}else if (tipoPagamento.compareTo("Carta di credito")==0){
+		}else if (tipoPagamento.compareTo("Carta di Credito")==0){
 			pagamento = new CartaCredito(ordine, tipoPagamento, numPagamento, false);
 			((CartaCredito) pagamento).setIntestatario(arg1);
 			((CartaCredito) pagamento).setCodice(arg2);
 		}else{
 			pagamento = new Contrassegno(ordine, tipoPagamento, numPagamento, false);
 		}
+		
 		
 		return pagamento;
 	}
@@ -665,8 +666,9 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 					String cognome = clienteDb[2];
 					String indirizzo = clienteDb[3];
 					String telefono = clienteDb[4];
+					String email = clienteDb[5];
 
-					Cliente cliente = new Cliente(cf, nome, cognome, "", "",
+					Cliente cliente = new Cliente(cf, nome, cognome, email, "",
 							indirizzo, telefono);
 		return cliente;
 	}
@@ -679,7 +681,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		ordini = new Ordine[risultato.length];
 		Computer[] computer = new Computer[risultato.length];
 		Pagamento[] pagamento = new Pagamento[risultato.length];
-		// Componente[] componente = new Componente[risultato.length];
+		Configurazione[] configurazione = new Configurazione[risultato.length];
 		int j;
 		for (j = 0; j < risultato.length; j++) {// [rows][columns]
 			// Inizializzare variabile con dati pescati dal db nel pasizione:
@@ -703,16 +705,39 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			
 			Cliente cliente = cercaCliente(cfCliente);
 			// Creo i computer ordinati
+			int max = 0;
 			String tipoComputer = nomeComputer.substring(0, 3);
 			if (tipoComputer.compareTo("SER") == 0) {
 				computer[j] = new Server(nomeComputer);
+				max=10;
 			} else if (tipoComputer.compareTo("LAP") == 0) {
 				computer[j] = new Laptop(nomeComputer);
+				max=6;
 			} else if (tipoComputer.compareTo("DES") == 0) {
 				computer[j] = new Desktop(nomeComputer);
+				max=10;
+			}
+			
+			String[][] componentiDb = new String[max][3];
+			Componente[] componenti = new Componente[max];
+			try {
+				
+				componentiDb = db.cercaConfigurazioneScelta(codiceOrdine,tipoComputer);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
+			for(int i=0;i<max;i++){
+				componenti[i]= new Componente(componentiDb[i][0], componentiDb[i][1], new Float(componentiDb[i][2]), componentiDb[i][1].substring(0,3));	
+			}
+			
+			configurazione[j] = new Configurazione(componenti, max);
+			
 			// Creo ordine e pagamento
+			computer[j].setConfigurazione(configurazione[j]);
+			
 			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato,
 					cliente);
 			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, confermato);
@@ -723,6 +748,8 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 
 		return ordini;
 	}
+	
+	
 
 	@Override
 	public void aggiornaStatoOrdine(String nuovoStato, int numOrdine) {
@@ -747,7 +774,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 
 	@Override
-	public Cliente cercaCliente(int ordine) throws IOException {
+	public Cliente cercaClienteDalOrdine(int ordine) throws IOException {
 		Cliente cliente=null;
 		try {
 			String cf=db.cercaClienteDalOrdine(ordine);

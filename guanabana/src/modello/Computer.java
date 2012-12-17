@@ -124,12 +124,12 @@ public abstract class Computer implements Serializable{
 
 		/** 
 		 * Setter of the property <tt>configurazioneStandard</tt>
-		 * @param configurazioneStandard  The configurazione to set.
+		 * @param configurazione  The configurazione to set.
 		 * @uml.property  name="configurazioneStandard"
 		 */
-		public void setConfigurazioneStandard(
-				Configurazione configurazioneStandard) {
-					configurazione = configurazioneStandard;
+		public void setConfigurazione(
+				Configurazione configurazione) {
+					this.configurazione = configurazione;
 				}
 		
 		

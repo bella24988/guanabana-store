@@ -4,14 +4,30 @@
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
+	<section name="SourceActionDialog.constructors">
+		<item value="false" key="Comments"/>
+		<item value="1" key="VisibilityModifier"/>
+		<item value="false" key="SynchronizedModifier"/>
+		<item value="false" key="FinalModifier"/>
+	</section>
+	<section name="SelfEncapsulateFieldWizard">
+		<item value="false" key="GenerateJavadoc"/>
+	</section>
+	<section name="GenerateConstructorUsingFieldsSelectionDialog">
+		<item value="false" key="OmitCallToSuper"/>
+	</section>
 	<section name="BuildPathsPropertyPage">
 		<item value="2" key="pageIndex"/>
+	</section>
+	<section name="RefactoringWizard.preview">
+		<item value="400" key="height"/>
+		<item value="600" key="width"/>
 	</section>
 	<section name="DialogBounds_SuperInterfaceSelectionDialog">
 		<item value="356" key="DIALOG_WIDTH"/>
 		<item value="18" key="DIALOG_Y_ORIGIN"/>
-		<item value="456" key="DIALOG_HEIGHT"/>
 		<item value="90" key="DIALOG_X_ORIGIN"/>
+		<item value="456" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="quick_assist_proposal_size">
@@ -47,8 +63,8 @@
 		<section name="DialogBoundsSettings">
 			<item value="600" key="DIALOG_WIDTH"/>
 			<item value="0" key="DIALOG_Y_ORIGIN"/>
-			<item value="500" key="DIALOG_HEIGHT"/>
 			<item value="-32" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
 			<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 		</section>
 	</section>
@@ -63,9 +79,20 @@
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
+	</section>
+	<section name="RenameInformationPopup">
+	</section>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
-		<item value="false" key="create_main"/>
 		<item value="true" key="create_unimplemented"/>
+		<item value="false" key="create_main"/>
+	</section>
+	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
+		<item value="517" key="DIALOG_WIDTH"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
+		<item value="618" key="DIALOG_HEIGHT"/>
+		<item value="382" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 </section>

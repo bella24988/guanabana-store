@@ -95,7 +95,7 @@ public class ClientAzienda implements InterfacciaAzienda{
 		return impiegato;
 	}
 
-	public Cliente cercaCliente(int ordine) throws IOException {
+	public Cliente cercaClienteDalOrdine(int ordine) throws IOException {
 		
 		Cliente cliente = null;
 		
@@ -141,6 +141,7 @@ public class ClientAzienda implements InterfacciaAzienda{
 		}catch (Exception e) {
 			return null;
 		}
+		
 		return ordini;
 	}
 

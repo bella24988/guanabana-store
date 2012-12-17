@@ -230,6 +230,37 @@ public class DataBase {
 	}
 	
 	
+	public String[][] cercaConfigurazioneScelta(int numOrdine, String tipoComputer) throws SQLException{
+		Statement stCercaNomePrezzo = con.createStatement();
+		ResultSet result = null, result1 = null;
+		int max = 0;
+		Statement stStandardPC = con.createStatement();
+		if (tipoComputer.compareTo("SER")==0){//{"RAM", "CPU", "MLC", "HD0", "HDD", "HDD", "HDD", "DVD", "PCI", "WAR"}
+			result = stStandardPC.executeQuery("select ram, cpu, mlc, hd1, hd2, hd3, hd4,dvd, pci,war from ordini where codice ="+numOrdine);
+			max=10;
+		}else if(tipoComputer.compareTo("LAP")==0){//{"RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
+			result = stStandardPC.executeQuery("select ram, cpu, hd1, gpu, dvd, war from ordini where codice ="+numOrdine);
+			max=6;
+		}else if(tipoComputer.compareTo("DES")==0){//{"RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY", "MON"},
+			result = stStandardPC.executeQuery("select ram, cpu, mou, hd1, hd2, gpu, dvd, war, kei, mon from ordini where codice ="+numOrdine);
+			max=10;
+		}
+		
+		String[][] config = new String[max][3];
+		while(result.next()){
+			for(int i=0;i<max;i++){
+				config[i][0]=result.getString(i+1);
+				result1 = stCercaNomePrezzo.executeQuery("SELECT nome, prezzo from componenti where id='"+config[i][0]+"';");
+				while(result1.next()){
+					config[i][1]=result1.getString(1);
+					config[i][2]=result1.getString(2);
+				}
+				}
+		}
+		
+		return config;
+	}
+	
 	public int creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente) throws SQLException{
 		
 		ResultSet result = null;
@@ -670,11 +701,11 @@ public class DataBase {
 	public String[] cercaCliente(String cf){
 		String[] cliente = null;
 		try {
-			cliente= new String[5];
+			cliente= new String[6];
 			stCliente = con.createStatement();
-			ResultSet result =stCliente.executeQuery("select CF,nome,cognome,indirizzo,telefono from clienti where CF='"+cf+"';");
+			ResultSet result =stCliente.executeQuery("select CF,nome,cognome,indirizzo,telefono,email from clienti where CF='"+cf+"';");
 			while(result.next()){
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 					cliente[i]=result.getString(i+1);
 				}
 				

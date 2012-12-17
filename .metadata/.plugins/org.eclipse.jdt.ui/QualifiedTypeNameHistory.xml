@@ -14,4 +14,12 @@
 <fullyQualifiedTypeName name="javax.mail.Message"/>
 <fullyQualifiedTypeName name="javax.mail.Transport"/>
 <fullyQualifiedTypeName name="modello.Pagamento"/>
+<fullyQualifiedTypeName name="modello.Cliente"/>
+<fullyQualifiedTypeName name="modello.Bonifico"/>
+<fullyQualifiedTypeName name="modello.CartaCredito"/>
+<fullyQualifiedTypeName name="modello.Contrassegno"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="modello.Componente"/>
+<fullyQualifiedTypeName name="modello.Configurazione"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

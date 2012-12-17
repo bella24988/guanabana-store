@@ -1,0 +1,768 @@
+package server;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.sql.SQLException;
+
+import modello.Bonifico;
+import modello.CartaCredito;
+import modello.Cliente;
+import modello.Componente;
+import modello.Computer;
+import modello.Configurazione;
+import modello.Contrassegno;
+import modello.Desktop;
+import modello.Dipendente;
+import modello.Laptop;
+import modello.Ordine;
+import modello.Pagamento;
+import modello.Server;
+import conexionInterface.InterfacciaAzienda;
+import conexionInterface.InterfacciaCliente;
+import java.util.Collection;
+
+
+/**
+ * @author  Veronica
+ */
+public class ServizioServer implements InterfacciaCliente, Runnable, InterfacciaAzienda{
+	
+	private Socket client;
+	/**
+	 * @uml.property  name="db"
+	 * @uml.associationEnd  
+	 */
+	private DataBase db;
+	/**
+	 * @uml.property  name="cliente1"
+	 * @uml.associationEnd  
+	 */
+	private Cliente cliente = new modello.Cliente();;
+	/**
+	 * @uml.property  name="computers"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
+	private Computer[] computers;
+	/**
+	 * @uml.property  name="componenti"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
+	private Componente[] componenti;
+
+	public ServizioServer(Socket client) {
+		super();
+		this.client = client;
+		try {
+			db= new DataBase();
+		} catch (ClassNotFoundException e) {
+			System.out.println("Data base non trovato");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Impossibile collegarsi con il Data base");
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void run() {
+		try (Socket s=client) {
+			InputStream is = s.getInputStream();
+			
+			ObjectInputStream ricevo = new ObjectInputStream(is);
+			String richiestaClient = (String) ricevo.readObject();//Legge 1
+			System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
+			String datiLetti;
+			
+			ObjectOutputStream scrive = new ObjectOutputStream(s.getOutputStream());
+			
+			if(richiestaClient.compareTo("login")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				datiLetti = (String) ricevo.readObject();
+				String user = datiLetti;
+				
+				scrive.writeObject("ok");
+				scrive.flush();
+				
+				datiLetti = (String) ricevo.readObject();
+				String password = datiLetti;
+				
+				System.out.print("user: "+user);
+				System.out.println(" password: "+password);
+				
+				scrive.writeObject(fareLogin(user, password));
+				scrive.flush();
+				
+			}else if (richiestaClient.compareTo("registrati")==0){
+				
+				
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				datiLetti = (String) ricevo.readObject();
+				String[] variabile = new String[7];
+				variabile[0]=(String) datiLetti.subSequence(0, datiLetti.indexOf("!"));
+				System.out.println("CF:"+variabile[0]);
+				int i=1;
+				String temp = (String) datiLetti.substring(datiLetti.indexOf("!")+1);
+				while(i<6){
+					variabile[i]=(String) temp.substring(0, temp.indexOf("!"));
+					System.out.println("Cognome:"+variabile[i]);
+					temp = temp.substring(temp.indexOf("!")+1);
+					i++;
+				}
+				variabile[6]=temp;
+				System.out.println("Password:"+variabile[6]);
+				scrive.writeObject(registreNuovoCliente(variabile[0],variabile[1],variabile[2],variabile[3],variabile[4],variabile[5],variabile[6]));
+				scrive.flush();
+				
+			}else if(richiestaClient.compareTo("cercaModelli")==0){
+				
+				scrive.writeObject("pronto");//Scrive 1
+				scrive.flush();
+				
+				String tipo = (String) ricevo.readObject();//lego 2
+				int numComputer = conta(tipo);
+				scrive.writeObject(cercaModelli(tipo, numComputer));//scrivo 3
+				scrive.flush();
+				
+			}else if (richiestaClient.compareTo("conta")==0){
+				String tipo;
+				
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				tipo = (String) ricevo.readObject();
+				
+				scrive.writeObject(conta(tipo));
+				scrive.flush();
+				
+			}else if (richiestaClient.compareTo("creaOrdine")==0){
+				
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Computer comp = (Computer) ricevo.readObject();
+				
+				scrive.writeObject("ok");//ricevuto computer
+				scrive.flush();
+				
+				float prezzoTotale = (float) ricevo.readObject();
+				
+				scrive.writeObject("ok");//ricevuto prezzo totale
+				scrive.flush();
+				
+				Cliente cliente = (Cliente) ricevo.readObject();//ricevuto cliente
+				
+				Ordine ordine = creaOrdine(comp, prezzoTotale, cliente);
+				scrive.writeObject(ordine);//Envia Ordine a client
+				scrive.flush();
+			}else if (richiestaClient.compareTo("registraPagamento")==0){
+				
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Ordine ordine = (Ordine) ricevo.readObject();
+				
+				scrive.writeObject("ok");//ricevuto ordine
+				scrive.flush();
+				
+				String[] argPagamento = (String[]) ricevo.readObject();
+				
+				Pagamento pagamento = registrarePagamento(ordine, argPagamento[0], argPagamento[1], argPagamento[2]);
+				scrive.writeObject(pagamento);//Envia Pagamento creato
+				scrive.flush();				
+			}else if (richiestaClient.compareTo("consultaOrdini")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Cliente cliente = (Cliente) ricevo.readObject();
+				
+				
+				Ordine[] ordini = consultaOrdini(cliente);
+				
+				scrive.writeObject(ordini);//ricevuto client
+				scrive.flush();
+				
+				
+			}else if (richiestaClient.compareTo("carrello")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				Cliente cliente = (Cliente) ricevo.readObject();
+				
+				
+				Ordine[] ordini = consultaCarrello(cliente);
+				
+				scrive.writeObject(ordini);//ricevuto client
+				scrive.flush();
+			
+			}else if (richiestaClient.compareTo("aggiornaStato")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				int numOrdine = (int) ricevo.readObject();
+				
+				scrive.writeObject("ok");
+				scrive.flush();
+				
+				String nuovoStato= (String) ricevo.readObject();
+				
+				aggiornaOrdine(numOrdine, nuovoStato);
+				
+				scrive.writeObject("aggiornato");
+				scrive.flush();
+			}else if (richiestaClient.compareTo("logDipendente")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				
+				int id = (int) ricevo.readObject();
+				
+				scrive.writeObject("ok");
+				scrive.flush();
+				
+				String password = (String) ricevo.readObject();
+				
+				scrive.writeObject(logDipendente(id, password));
+				scrive.flush();
+			}else if (richiestaClient.compareTo("cerca ordini")==0){
+				
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				String stato=(String) ricevo.readObject();
+				
+				scrive.writeObject(cercaOrdini(stato));
+				scrive.flush();
+			}else if(richiestaClient.compareTo("confermarePagamento")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				
+				boolean valore = (boolean) ricevo.readObject();
+				scrive.writeObject("pronto");
+				scrive.flush();
+				int codice = (int) ricevo.readObject();
+				confermarePagamento(valore, codice);
+			}else if(richiestaClient.compareTo("azienda cerca cliente")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				int codiceOrdine = (int) ricevo.readObject();
+				scrive.writeObject(cercaCliente(codiceOrdine));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@Override
+	public void aprireCollegamento() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Cliente fareLogin(String user, String password) {
+		String[] consultaDB = new String[7];
+		try {
+			consultaDB = db.consultaLog(user, password);
+			if (consultaDB[0]!=null){
+				Cliente cliente = new Cliente(consultaDB[0],consultaDB[1],consultaDB[2],consultaDB[3],
+					consultaDB[4],consultaDB[5],consultaDB[6]);
+				return cliente;				
+			}else{
+				return null;}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public Computer[] cercaModelli(String tipo, int numComputer) {
+		//Dichiarazione variabile locali
+		String[][] modelli = new String[numComputer][2];
+		
+		Computer[] comp = new Computer[numComputer];
+		System.out.println(numComputer);
+		try {
+			modelli = db.cercaModelli(tipo, numComputer);
+			String[] nome = new String[numComputer];
+			float[] prezzo = new float[numComputer];
+			
+			
+			String type = tipo.substring(0, 3); 
+			
+			String[] codiceConfigStandard;// = new String[14];
+			for(int i = 0; i < numComputer; i++){
+				Configurazione[] componentiConfigurabili = new Configurazione[numComputer];
+				Componente[] componenti=cercaComponentiComputer(type);
+				//Modelli: nome e prezzo
+				nome[i]=modelli[i][0];
+				prezzo[i]=Float.parseFloat(modelli[i][1]);
+				
+				if(type.compareTo("LAP")==0){
+					comp[i]= new Laptop(nome[i],prezzo[i]);
+				}else if(type.compareTo("SER")==0){
+					comp[i] = new Server(nome[i],prezzo[i]);
+				}else if (type.compareTo("DES")==0) {
+					comp[i] = new Desktop(nome[i],prezzo[i]);
+				}
+				
+				codiceConfigStandard = cercaConfigurazioneDefault(nome[i], type);
+				
+				componentiConfigurabili[i] = new Configurazione(componenti, codiceConfigStandard, codiceConfigStandard.length);
+				
+				comp[i].setConfigurazioneStandard(componentiConfigurabili[i]);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Non è possibile collegarsi con il db oppure db vuoto. ERRORE: "+e);
+			e.printStackTrace();
+			return null;
+		}//Chiamata funzione al db
+				
+		return comp;
+	}
+	
+	private Componente[] cercaComponentiComputer(String tipo) throws SQLException{
+		int rows = 0;
+		int maxCol = 3;
+		rows = db.countComponentiModello(tipo);
+		String[][] components = new String[rows][maxCol];
+		components = db.getComponentiModello(tipo);
+		componenti = new Componente[rows];
+		for(int i = 0; i < rows; i++){
+			componenti[i] = new Componente(components[i][0], components[i][1],Float.parseFloat(components[i][2]),components[i][0].substring(0, 3));
+		}
+		
+		return componenti;
+	}
+	
+	/**
+	 * @param nome
+	 * @param tipo
+	 * @return restituisce una parametro di tipo un array di String di lunghezza variabile
+	 * @throws SQLException
+	 */
+	private String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
+		return db.cercaConfigurazioneDefault(nome, tipo);
+	}
+
+	@Override
+	public void cercaComponenti(String modelli) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Ordine fareOrdine() {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cambiaStatoOrdine(String codOrdine) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void main(String[] args) {
+		try {
+			ServerSocket serverSocket = new ServerSocket(4000);
+			System.out.println("Sono il server, aspetto un client...");
+			while(true){
+				try {
+					Socket client = serverSocket.accept(); //accetto conezione con il client
+					System.out.println("Ho trovato un client: ");
+					new Thread(new ServizioServer(client)).start();
+				} catch (Exception e) {
+					System.out.println("Errore in richiesta: "+ e);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Impossibile avviare il server: "+ e);
+		}
+	}
+
+	@Override
+	public Cliente registreNuovoCliente(String cf, String nome, String cognome,
+			String email, String indirizzo, String telefono, String password){
+		
+		try {
+			db.insertCliente(cf, nome, cognome, email, indirizzo, telefono, password);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Non è possibile collegarsi con il DB. ERRORE: "+e);
+			return null;
+		}
+		setCliente(new Cliente(cf, nome, cognome, email, indirizzo, telefono, password));
+		return cliente;
+	}
+
+
+	/**
+	 * @return  the computers
+	 * @uml.property  name="computers"
+	 */
+	public Computer[] getComputers() {
+		return computers;
+	}
+
+	/**
+	 * @param computers  the computers to set
+	 * @uml.property  name="computers"
+	 */
+	public void setComputers(Computer[] computers) {
+		this.computers = computers;
+	}
+
+	@Override
+	public int conta(String cosa) {
+		
+			try {
+				int numComputers = db.conta(cosa);
+				return numComputers;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.print("C'e errore" + e);
+				return 0;
+			}
+		
+	}
+
+	/**
+	 * @uml.property  name="dataBase"
+	 * @uml.associationEnd  
+	 */
+	private DataBase dataBase;
+
+	/**
+	 * Getter of the property <tt>dataBase</tt>
+	 * @return  Returns the dataBase.
+	 * @uml.property  name="dataBase"
+	 */
+	public DataBase getDataBase() {
+		return dataBase;
+	}
+
+	/**
+	 * Setter of the property <tt>dataBase</tt>
+	 * @param dataBase  The dataBase to set.
+	 * @uml.property  name="dataBase"
+	 */
+	public void setDataBase(DataBase dataBase) {
+		this.dataBase = dataBase;
+	}
+
+	/**
+	 * @uml.property  name="computer"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="servizioServer:modello.Computer"
+	 * @uml.association  name="cerca"
+	 */
+	private Collection<?> computer;
+
+	/**
+	 * Getter of the property <tt>computer</tt>
+	 * @return  Returns the computer.
+	 * @uml.property  name="computer"
+	 */
+	public Collection<?> getComputer() {
+		return computer;
+	}
+
+	/**
+	 * Setter of the property <tt>computer</tt>
+	 * @param computer  The computer to set.
+	 * @uml.property  name="computer"
+	 */
+	public void setComputer(Collection<?> computer) {
+		this.computer = computer;
+	}
+
+	/**
+	 * Getter of the property <tt>cliente1</tt>
+	 * @return  Returns the cliente.
+	 * @uml.property  name="cliente"
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	/**
+	 * Setter of the property <tt>cliente1</tt>
+	 * @param cliente1  The cliente1 to set.
+	 * @uml.property  name="cliente"
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	@Override
+	public Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente)
+			throws IOException {
+		 
+		int numOrdine = 0;
+		
+		try {
+			numOrdine= db.creaNuovaOrdine(comp, prezzoTotale, cliente);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Ordine ordine = new Ordine(numOrdine, comp, prezzoTotale, cliente);
+		try {
+			String[] info = new String[2];
+			info = db.getDataOrdine(numOrdine);
+			ordine.setData(info[0]);
+			ordine.setStato(info[1]);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ordine;
+	}
+
+	@Override
+	public Pagamento registrarePagamento(Ordine ordine, String tipoPagamento, String arg1, String arg2)
+			throws IOException {
+		int numPagamento =0;
+		
+		numPagamento = db.registrarePagamento(ordine.getNumeroOrdine(), ordine.getPrezzo(), tipoPagamento, arg1, arg2);
+		Pagamento pagamento;
+		if (tipoPagamento.compareTo("Bonifico")==0){
+			pagamento = new Bonifico(ordine, tipoPagamento, numPagamento, false);
+			((Bonifico) pagamento).setCodice(arg1);
+			((Bonifico) pagamento).setBanca(arg2);
+		}else if (tipoPagamento.compareTo("Carta di Credito")==0){
+			pagamento = new CartaCredito(ordine, tipoPagamento, numPagamento, false);
+			((CartaCredito) pagamento).setIntestatario(arg1);
+			((CartaCredito) pagamento).setCodice(arg2);
+		}else{
+			pagamento = new Contrassegno(ordine, tipoPagamento, numPagamento, false);
+		}
+		
+		return pagamento;
+	}
+
+	@Override
+	public Ordine[] consultaOrdini(Cliente cliente) throws IOException {
+		Ordine[] ordini;//Dichiarazione delle ordine
+		
+		String [][] risultato = db.consultaOrdini(cliente.getCf());//Consulta al Data Base qualle sono le ordini
+		ordini = new Ordine[risultato.length];
+		Computer[] computer = new Computer[risultato.length];
+		Pagamento[] pagamento = new Pagamento[risultato.length];
+		//Componente[] componente = new Componente[risultato.length];
+		int j;
+		for (j = 0; j<risultato.length; j++){//[rows][columns]
+			//Inizializzare variabile con dati pescati dal db nel pasizione: ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer, numPagamento
+			int codiceOrdine = Integer.parseInt(risultato[j][0]);
+			String dataOrdine = risultato[j][1];
+			float totalePagato = new Float(risultato[j][2]);
+			String statoOrdine = risultato[j][3];
+			String tipoPagamento = risultato[j][4];
+			String nomeComputer = risultato[j][5];
+			int numPagamento = Integer.parseInt(risultato[j][6]);
+			
+			//Creo i computer ordinati 
+			String tipoComputer = nomeComputer.substring(0, 3);
+			if (tipoComputer.compareTo("SER")==0){
+				computer[j] = new Server(nomeComputer);
+			}else if (tipoComputer.compareTo("LAP")==0){
+				computer[j] = new Laptop(nomeComputer);
+			}else if (tipoComputer.compareTo("DES")==0){
+				computer[j] = new Desktop(nomeComputer);
+			}
+			
+			//Creo ordine e pagamento
+			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato, cliente);
+			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, false);
+			ordini[j].setPagamento(pagamento[j]);
+			ordini[j].setStato(statoOrdine);
+			ordini[j].setData(dataOrdine);
+		}
+		
+		return ordini;
+	}
+
+	@Override
+	public Ordine[] consultaCarrello(Cliente cliente) throws IOException {
+		Ordine[] ordini;//Dichiarazione delle ordine
+		
+		String [][] risultato = db.cercaOrdiniNonPagate(cliente.getCf());//Consulta al Data Base qualle sono le ordini
+		ordini = new Ordine[risultato.length];
+		Computer[] computer = new Computer[risultato.length];
+		
+		int j;
+		for (j = 0; j<risultato.length; j++){//[rows][columns]
+			//Inizializzare variabile con dati pescati dal db nel pasizione: codice, data, totale, stato, nome_computer
+			int codiceOrdine = Integer.parseInt(risultato[j][0]);
+			String dataOrdine = risultato[j][1];
+			float totalePagato = new Float(risultato[j][2]);
+			String statoOrdine = risultato[j][3];
+			String nomeComputer = risultato[j][4];
+			
+			
+			//Creo i computer ordinati 
+			String tipoComputer = nomeComputer.substring(0, 3);
+			if (tipoComputer.compareTo("SER")==0){
+				computer[j] = new Server(nomeComputer);
+			}else if (tipoComputer.compareTo("LAP")==0){
+				computer[j] = new Laptop(nomeComputer);
+			}else if (tipoComputer.compareTo("DES")==0){
+				computer[j] = new Desktop(nomeComputer);
+			}
+			
+			//Creo ordine e pagamento
+			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato, cliente);
+			ordini[j].setStato(statoOrdine);
+			ordini[j].setData(dataOrdine);
+		}
+		
+		return ordini;
+	}
+
+	@Override
+	public void aggiornaOrdine(int numOrdine, String nuovoStato)
+			throws IOException {
+		try {
+			db.aggiornaStatoOrdine(nuovoStato, numOrdine);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public Dipendente logDipendente(int id, String password) throws SQLException {
+		Dipendente impiegato;
+		String[] ricercadb = db.cercaDipendente(id, password);
+		//nome, cognome, dipartimento
+		String nome=ricercadb[0];
+		String cognome=ricercadb[1];
+		String dipartimento=ricercadb[2];
+		
+		impiegato = new Dipendente(nome, cognome, id, dipartimento);
+		return impiegato;
+	}
+
+	@Override
+	public Cliente cercaCliente(String cf) {
+		// Del cliente
+					String[] clienteDb = db.cercaCliente(cf);
+					String nome = clienteDb[1];
+					String cognome = clienteDb[2];
+					String indirizzo = clienteDb[3];
+					String telefono = clienteDb[4];
+
+					Cliente cliente = new Cliente(cf, nome, cognome, "", "",
+							indirizzo, telefono);
+		return cliente;
+	}
+
+	@Override
+	public Ordine[] cercaOrdini(String stato) {
+		Ordine[] ordini;// Dichiarazione delle ordine
+
+		String[][] risultato = db.cercaOrdini(stato);
+		ordini = new Ordine[risultato.length];
+		Computer[] computer = new Computer[risultato.length];
+		Pagamento[] pagamento = new Pagamento[risultato.length];
+		// Componente[] componente = new Componente[risultato.length];
+		int j;
+		for (j = 0; j < risultato.length; j++) {// [rows][columns]
+			// Inizializzare variabile con dati pescati dal db nel pasizione:
+			// ordini.codice, ordini.data, ordini.totale, stato, tipo,
+			// nome_computer, numPagamento
+			int codiceOrdine = Integer.parseInt(risultato[j][0]);
+			String dataOrdine = risultato[j][1];
+			float totalePagato = new Float(risultato[j][2]);
+			String statoOrdine = risultato[j][3];
+			String tipoPagamento = risultato[j][4];
+			String nomeComputer = risultato[j][5];
+			int numPagamento = Integer.parseInt(risultato[j][6]);
+			String cfCliente = risultato[j][7];
+			boolean confermato;
+			if(risultato[j][8].compareTo("1")==0){
+				confermato = true;
+			}else {
+				confermato = false;
+			}
+			
+			
+			Cliente cliente = cercaCliente(cfCliente);
+			// Creo i computer ordinati
+			String tipoComputer = nomeComputer.substring(0, 3);
+			if (tipoComputer.compareTo("SER") == 0) {
+				computer[j] = new Server(nomeComputer);
+			} else if (tipoComputer.compareTo("LAP") == 0) {
+				computer[j] = new Laptop(nomeComputer);
+			} else if (tipoComputer.compareTo("DES") == 0) {
+				computer[j] = new Desktop(nomeComputer);
+			}
+
+			// Creo ordine e pagamento
+			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato,
+					cliente);
+			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, confermato);
+			ordini[j].setPagamento(pagamento[j]);
+			ordini[j].setStato(statoOrdine);
+			ordini[j].setData(dataOrdine);
+		}
+
+		return ordini;
+	}
+	
+	
+
+	@Override
+	public void aggiornaStatoOrdine(String nuovoStato, int numOrdine) {
+		try {
+			db.aggiornaStatoOrdine(nuovoStato, numOrdine);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void confermarePagamento(boolean valore, int codiceOrdine) throws IOException,
+			ClassNotFoundException {
+		try {
+			db.confermaPagamento(valore, codiceOrdine);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Cliente cercaCliente(int ordine) throws IOException {
+		Cliente cliente=null;
+		try {
+			String cf=db.cercaClienteDalOrdine(ordine);
+			cliente=cercaCliente(cf);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cliente;
+	}
+
+	
+
+	
+
+
+}
