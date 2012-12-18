@@ -6,7 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
+import modello.Bonifico;
 import modello.Ordine;
+import modello.CartaCredito;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -73,37 +75,39 @@ public class VenditaDaGestirePanel extends JPanel {
 		gbc_lblComputer.gridy = 1;
 		add(lblComputer, gbc_lblComputer);
 
-		JLabel lblStato = new JLabel("Stato");
-		lblStato.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_lblStato = new GridBagConstraints();
-		gbc_lblStato.insets = new Insets(0, 0, 5, 5);
-		gbc_lblStato.gridx = 3;
-		gbc_lblStato.gridy = 1;
-		add(lblStato, gbc_lblStato);
-
 		JLabel lblTipoPagamento = new JLabel("Tipo pagamento");
 		lblTipoPagamento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblTipoPagamento = new GridBagConstraints();
 		gbc_lblTipoPagamento.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTipoPagamento.gridx = 4;
+		gbc_lblTipoPagamento.gridx = 3;
 		gbc_lblTipoPagamento.gridy = 1;
 		add(lblTipoPagamento, gbc_lblTipoPagamento);
 
+		JLabel lblDetagli = new JLabel("Detagli Pagamento");
+		lblDetagli.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTipoPagamento.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblDetagli = new GridBagConstraints();
+		gbc_lblDetagli.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDetagli.gridwidth = 2;
+		gbc_lblDetagli.gridx = 4;
+		gbc_lblDetagli.gridy = 1;
+		add(lblDetagli, gbc_lblDetagli);
+		
 		JLabel lblconferma = new JLabel("Conferma Pagamento");
 		lblconferma.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTipoPagamento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblCon = new GridBagConstraints();
 		gbc_lblCon.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCon.gridx = 5;
+		gbc_lblCon.gridx = 6;
 		gbc_lblCon.gridy = 1;
 		add(lblconferma, gbc_lblCon);
-
+		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBackground(Color.GRAY);
 		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
 		gbc_separator_1.insets = new Insets(0, 0, 5, 0);
 		gbc_separator_1.fill = GridBagConstraints.BOTH;
-		gbc_separator_1.gridwidth = 7;
+		gbc_separator_1.gridwidth = 8;
 		gbc_separator_1.gridx = 0;
 		gbc_separator_1.gridy = 2;
 		add(separator_1, gbc_separator_1);
@@ -137,20 +141,45 @@ public class VenditaDaGestirePanel extends JPanel {
 			gbc_lblComputerx.gridy = numRow;
 			add(lblComputerx, gbc_lblComputerx);
 
-			JLabel lblStatox = new JLabel(ordini[indiceArray].getStato());
-			GridBagConstraints gbc_lblStatox = new GridBagConstraints();
-			gbc_lblStatox.insets = new Insets(0, 0, 5, 5);
-			gbc_lblStatox.gridx = 3;
-			gbc_lblStatox.gridy = numRow;
-			add(lblStatox, gbc_lblStatox);
-
 			JLabel lblTipoPagamentox = new JLabel(ordini[indiceArray]
 					.getPagamento().getTipoPagamento());
 			GridBagConstraints gbc_lblTipoPagamentox = new GridBagConstraints();
 			gbc_lblTipoPagamentox.insets = new Insets(0, 0, 5, 5);
-			gbc_lblTipoPagamentox.gridx = 4;
+			gbc_lblTipoPagamentox.gridx = 3;
 			gbc_lblTipoPagamentox.gridy = numRow;
 			add(lblTipoPagamentox, gbc_lblTipoPagamentox);
+			
+			if(ordini[indiceArray].getPagamento().getTipoPagamento().compareTo("Bonifico")==0){
+				JLabel lblPagamentoD1 = new JLabel(((Bonifico) ordini[indiceArray].getPagamento()).getCodice());
+				GridBagConstraints gbc_lblPagamentoD1 = new GridBagConstraints();
+				gbc_lblPagamentoD1.insets = new Insets(0, 0, 5, 5);
+				gbc_lblPagamentoD1.gridx = 4;
+				gbc_lblPagamentoD1.gridy = numRow;
+				add(lblPagamentoD1, gbc_lblPagamentoD1);
+				
+				JLabel lblPagamentoD2 = new JLabel(((Bonifico) ordini[indiceArray]
+						.getPagamento()).getBanca());
+				GridBagConstraints gbc_lblPagamentoD2 = new GridBagConstraints();
+				gbc_lblPagamentoD2.insets = new Insets(0, 0, 5, 5);
+				gbc_lblPagamentoD2.gridx = 5;
+				gbc_lblPagamentoD2.gridy = numRow;
+				add(lblPagamentoD2, gbc_lblPagamentoD2);
+			}else if(ordini[indiceArray].getPagamento().getTipoPagamento().compareTo("Carta di Credito")==0){
+				JLabel lblPagamentoD1 = new JLabel(((CartaCredito) ordini[indiceArray].getPagamento()).getCodice());
+				GridBagConstraints gbc_lblPagamentoD1 = new GridBagConstraints();
+				gbc_lblPagamentoD1.insets = new Insets(0, 0, 5, 5);
+				gbc_lblPagamentoD1.gridx = 4;
+				gbc_lblPagamentoD1.gridy = numRow;
+				add(lblPagamentoD1, gbc_lblPagamentoD1);
+				
+				JLabel lblPagamentoD2 = new JLabel(((CartaCredito) ordini[indiceArray]
+						.getPagamento()).getIntestatario());
+				GridBagConstraints gbc_lblPagamentoD2 = new GridBagConstraints();
+				gbc_lblPagamentoD2.insets = new Insets(0, 0, 5, 5);
+				gbc_lblPagamentoD2.gridx = 5;
+				gbc_lblPagamentoD2.gridy = numRow;
+				add(lblPagamentoD2, gbc_lblPagamentoD2);
+			}
 
 			conferma[indiceArray] = new JCheckBox();
 			if (ordini[indiceArray].getPagamento().getTipoPagamento()
@@ -161,19 +190,19 @@ public class VenditaDaGestirePanel extends JPanel {
 				conferma[indiceArray].setMnemonic(indiceArray);
 				GridBagConstraints gbc_conferma = new GridBagConstraints();
 				gbc_conferma.insets = new Insets(0, 0, 5, 5);
-				gbc_conferma.gridx = 5;
+				gbc_conferma.gridx = 6;
 				gbc_conferma.gridy = numRow;
 				add(conferma[indiceArray], gbc_conferma);
 
 				conferma[indiceArray].addItemListener(venGestireController);
 			}
-			btnInviaMagazzino[indiceArray] = new JButton("invia al magazzino");
+			btnInviaMagazzino[indiceArray] = new JButton();
 			btnInviaMagazzino[indiceArray].setFont(new Font("Tahoma",
 					Font.PLAIN, 8));
 			btnInviaMagazzino[indiceArray].setMnemonic(indiceArray);
 			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
 			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
-			gbc_btnAnnulla.gridx = 6;
+			gbc_btnAnnulla.gridx = 7;
 			gbc_btnAnnulla.gridy = numRow;
 			add(btnInviaMagazzino[indiceArray], gbc_btnAnnulla);
 
@@ -191,7 +220,7 @@ public class VenditaDaGestirePanel extends JPanel {
 			JSeparator separator = new JSeparator();
 			separator.setBackground(Color.GRAY);
 			GridBagConstraints gbc_separator = new GridBagConstraints();
-			gbc_separator.gridwidth = 7;
+			gbc_separator.gridwidth = 8;
 			gbc_separator.fill = GridBagConstraints.BOTH;
 			gbc_separator.insets = new Insets(0, 0, 0, 5);
 			gbc_separator.gridx = 0;
@@ -206,11 +235,15 @@ public class VenditaDaGestirePanel extends JPanel {
 	public void mostraButtoneInvio(int indiceArray) {
 		ordini[indiceArray].getPagamento().setConfermato(true);
 		btnInviaMagazzino[indiceArray].setEnabled(true);
+		btnInviaMagazzino[indiceArray].setText("invia al magazzino");
+		btnInviaMagazzino[indiceArray].setActionCommand("invia al magazzino");
 	}
 
 	public void nascondiButtoneInvio(int indiceArray) {
 		ordini[indiceArray].getPagamento().setConfermato(false);
-		btnInviaMagazzino[indiceArray].setEnabled(false);
+		btnInviaMagazzino[indiceArray].setEnabled(true);
+		btnInviaMagazzino[indiceArray].setText("richiede pagamento");
+		btnInviaMagazzino[indiceArray].setActionCommand("richiede pagamento");
 	}
 
 	/**

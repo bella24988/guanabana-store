@@ -1,0 +1,237 @@
+package azienda;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import modello.Cliente;
+import modello.Dipendente;
+import modello.Ordine;
+import conexionInterface.InterfacciaAzienda;
+
+public class ClientAzienda implements InterfacciaAzienda{
+	
+	private InputStream lettura;
+	private OutputStream scritura;
+	private Socket socket;
+	private ObjectInputStream buffer;
+	private ObjectOutputStream writer;
+	/**
+	 * @param host
+	 * @category Constructor
+	 * 
+	 */
+	public ClientAzienda() {
+		super();
+		try {
+			aprireCollegamento();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void aprireCollegamento() throws UnknownHostException, IOException {
+		socket = new Socket("localhost", 4000);
+		
+		lettura = socket.getInputStream();
+		scritura = socket.getOutputStream();
+		
+		System.out.println("Sono il client Aziendale e apro porte!");
+	}
+
+	public void chiudereCollegamento() throws IOException{
+		writer.close();
+		try {
+			buffer.close();
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	public Dipendente logDipendente(int id, String password) throws IOException {
+		Dipendente impiegato = null;
+		writer = new ObjectOutputStream(scritura);
+		writer.writeObject("logDipendente");
+		writer.flush();
+		buffer = new ObjectInputStream(lettura);
+		String risposta;
+		try {
+			risposta = (String) buffer.readObject();
+			if (risposta.compareTo("pronto")==0){
+				writer.writeObject(id);//Scrivo user
+				writer.flush();
+				
+				risposta = (String) buffer.readObject();//Il server ha letto
+				
+				writer.writeObject(password);//Scrivo password
+				writer.flush();
+				
+				impiegato = (Dipendente) buffer.readObject();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return impiegato;
+	}
+
+	public Cliente cercaClienteDalOrdine(int ordine) throws IOException {
+		
+		Cliente cliente = null;
+		
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("azienda cerca cliente");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		try {
+			String risposta =  (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(ordine);
+				writer.flush();
+				
+				cliente = (Cliente) buffer.readObject();
+			}
+		}catch (Exception e) {
+			return null;
+		}
+		return cliente;
+	}
+
+	@Override
+	public Ordine[] cercaOrdini(String stato) throws IOException {
+		Ordine[] ordini = null;
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("cerca ordini");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		try {
+			String risposta =  (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(stato);
+				writer.flush();
+				
+				ordini = (Ordine[]) buffer.readObject();
+			}
+		}catch (Exception e) {
+			return null;
+		}
+		
+		return ordini;
+	}
+
+	@Override
+	public void aggiornaStatoOrdine(String nuovoStato, int numOrdine) throws IOException {
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("aggiornaStato");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		try {
+			String risposta;
+			risposta = (String) buffer.readObject();
+			
+			if(risposta.compareTo("pronto")==0){
+				writer.writeObject(numOrdine);
+				writer.flush();
+				
+				risposta = (String) buffer.readObject();
+				
+				if(risposta.compareTo("ok")==0){
+					writer.writeObject(nuovoStato);
+					writer.flush();
+					
+					risposta = (String) buffer.readObject();
+				}
+				}
+		}catch (Exception e) {
+			
+		}
+		chiudereCollegamento();
+	}
+
+	public void confermarePagamento(boolean valore, int i) throws IOException, ClassNotFoundException {
+		
+		writer = new ObjectOutputStream(scritura);
+		
+		writer.writeObject("confermarePagamento");
+		writer.flush();
+		
+		buffer = new ObjectInputStream(lettura);
+		String risposta = (String) buffer.readObject();
+		
+		if(risposta.compareTo("pronto")==0){
+			writer.writeObject(valore);
+			writer.flush();
+			
+			risposta = (String) buffer.readObject();
+			
+			writer.writeObject(i);
+			writer.flush();
+		}
+		
+		chiudereCollegamento();
+	}
+
+	public void inviaEmailConferma(String to, String messaggio, String subject) throws UnknownHostException, AddressException, MessagingException{
+		String host = "smtp.gmail.com";
+	    String from = "guanabana.store";
+	    String pass = "programmatori";
+	    Properties props = System.getProperties();
+	    props.put("mail.smtp.starttls.enable", "true"); // added this line
+	    props.put("mail.smtp.host", host);
+	    props.put("mail.smtp.user", from);
+	    props.put("mail.smtp.password", pass);
+	    props.put("mail.smtp.port", "587");
+	    props.put("mail.smtp.auth", "true");
+
+	    Session session = Session.getDefaultInstance(props, null);
+	    MimeMessage message = new MimeMessage(session);
+	    message.setFrom(new InternetAddress(from));
+
+	    InternetAddress toAddress = new InternetAddress(to);
+
+	    System.out.println(to);
+	   
+	    System.out.println(Message.RecipientType.TO);
+
+	    
+	    message.addRecipient(Message.RecipientType.TO, toAddress);
+	    
+	    message.setSubject(subject);
+	    message.setContent(messaggio, "text/html");
+	    Transport transport = session.getTransport("smtp");
+	    transport.connect(host, from, pass);
+	    transport.sendMessage(message, message.getAllRecipients());
+	    transport.close();
+	    }
+
+}
+	
+	

@@ -46,7 +46,7 @@ public class SistemaGestioneFinestra extends JFrame {
 		this.setLogControllerAzienda(logControllerAzienda);
 		this.setTitle("Gestione ordini - Guanabana");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 735, 488);
+		setBounds(100, 100, 900, 500);
 		ok = false;
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -150,6 +150,7 @@ public class SistemaGestioneFinestra extends JFrame {
 
 	private void mostraMenuSpedizione() {
 		JMenuItem mntmSpedizione = new JMenuItem("Spedizione");
+		SpedizioneController spedizioneController = new SpedizioneController(this);
 		menuBar.add(mntmSpedizione);
 		mntmSpedizione.setIcon(new ImageIcon(SistemaGestioneFinestra.class
 				.getResource("/icons/dispatch_order_icon.jpg")));
@@ -158,6 +159,7 @@ public class SistemaGestioneFinestra extends JFrame {
 				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		mntmSpedizione
 				.setToolTipText("Clicca per vedere le richieste di spedizioni");
+		mntmSpedizione.addActionListener(spedizioneController);
 	}
 
 	/**
@@ -219,6 +221,7 @@ public class SistemaGestioneFinestra extends JFrame {
 	}
 
 	public Ordine[] enlistaOrdini(String stato) {
+		
 		ClientAzienda servizioClientAzienda = new ClientAzienda();
 		Ordine[] ordini = null;
 		try {
@@ -227,16 +230,17 @@ public class SistemaGestioneFinestra extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("ordini trovate: Sistema gestione finestra "+ordini);
 		return ordini;
 	}
 
 	public void Refresh() {
 		if (ok) {
-			this.setBounds(100, 100, 800, 500);
+			this.setBounds(100, 100, 950, 550);
 			ok = false;
 		}
 		if (!ok) {
-			this.setBounds(100, 100, 800, 501);
+			this.setBounds(100, 100, 950, 551);
 			ok = true;
 		}
 

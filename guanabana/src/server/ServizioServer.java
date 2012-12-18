@@ -683,10 +683,11 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		Pagamento[] pagamento = new Pagamento[risultato.length];
 		Configurazione[] configurazione = new Configurazione[risultato.length];
 		int j;
+		
 		for (j = 0; j < risultato.length; j++) {// [rows][columns]
 			// Inizializzare variabile con dati pescati dal db nel pasizione:
-			// ordini.codice, ordini.data, ordini.totale, stato, tipo,
-			// nome_computer, numPagamento
+			/*distinct(ordini.codice), ordini.data, ordini.totale, stato, 
+			 * tipo, nome_computer,pagamenti.codice, cliente_CF, confermato*/
 			int codiceOrdine = Integer.parseInt(risultato[j][0]);
 			String dataOrdine = risultato[j][1];
 			float totalePagato = new Float(risultato[j][2]);
@@ -701,7 +702,6 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			}else {
 				confermato = false;
 			}
-			
 			
 			Cliente cliente = cercaCliente(cfCliente);
 			// Creo i computer ordinati
@@ -725,8 +725,8 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				componentiDb = db.cercaConfigurazioneScelta(codiceOrdine,tipoComputer);
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("fallito componenti "+j);
 			}
 
 			for(int i=0;i<max;i++){
@@ -740,13 +740,45 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			
 			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato,
 					cliente);
-			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, confermato);
+			try {
+				pagamento[j] = istanziarePagamento(ordini[j], tipoPagamento, numPagamento, confermato);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("fallito pagamento "+j);
+			}
 			ordini[j].setPagamento(pagamento[j]);
 			ordini[j].setStato(statoOrdine);
 			ordini[j].setData(dataOrdine);
 		}
-
+		
 		return ordini;
+	}
+	
+	private Pagamento istanziarePagamento(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) throws SQLException{
+		Pagamento pagamento = null;
+		String[] args = new String[2];
+		try {
+			args = db.cercaDetagliPagamento(numPagamento, tipoPagamento);
+		} catch (Exception e) {
+			System.out.println("fallito il db del pagamento");
+		}
+		
+			if(tipoPagamento.compareTo("BONIFICO")==0){
+				pagamento = new Bonifico(ordine, tipoPagamento, numPagamento, confermato);
+				((Bonifico) pagamento).setCodice(args[0]);
+				((Bonifico) pagamento).setBanca(args[1]);
+				
+			}else if(tipoPagamento.compareTo("CARTA DI CREDITO")==0){
+				pagamento = new CartaCredito(ordine, tipoPagamento, numPagamento, confermato);
+				((CartaCredito) pagamento).setCodice(args[0]);
+				((CartaCredito) pagamento).setIntestatario(args[1]);
+			}else if(tipoPagamento.compareTo("CONTRASSEGNO")==0){
+				pagamento = new Contrassegno(ordine, tipoPagamento, numPagamento, confermato);
+			}else{
+				pagamento = new Pagamento(ordine, tipoPagamento, numPagamento, confermato);
+			}
+			
+		return pagamento;
 	}
 	
 	

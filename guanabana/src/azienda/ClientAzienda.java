@@ -216,16 +216,11 @@ public class ClientAzienda implements InterfacciaAzienda{
 	    message.setFrom(new InternetAddress(from));
 
 	    InternetAddress toAddress = new InternetAddress(to);
-
-	    System.out.println(to);
-	   
-	    System.out.println(Message.RecipientType.TO);
-
 	    
 	    message.addRecipient(Message.RecipientType.TO, toAddress);
-	    
 	    message.setSubject(subject);
 	    message.setContent(messaggio, "text/html");
+	    
 	    Transport transport = session.getTransport("smtp");
 	    transport.connect(host, from, pass);
 	    transport.sendMessage(message, message.getAllRecipients());

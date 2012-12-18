@@ -35,7 +35,7 @@ public class MagazinoController implements ActionListener{
 				int indiceArray = Integer.parseInt(e.getActionCommand().substring(4));
 				Ordine ordine = magazzinoPanel.getOrdini()[indiceArray];
 				ClientAzienda servizioClientAzienda = new ClientAzienda();
-				servizioClientAzienda.aggiornaStatoOrdine("Pronto per la spedizione", ordine.getNumeroOrdine());
+				servizioClientAzienda.aggiornaStatoOrdine("PRONTO PER LA SPEDIZIONE", ordine.getNumeroOrdine());
 				refreshOrdini();	
 			} catch (IOException e1) {
 				sistemaGestioneFinestra.setTxtErrore("Non è stato possibile communicare con il server");
@@ -45,6 +45,9 @@ public class MagazinoController implements ActionListener{
 		   
 		}else if (e.getActionCommand().compareTo("Magazzino")==0) {
 			refreshOrdini();
+		}else if (e.getActionCommand().compareTo("Asse")==0){
+			magazzinoPanel.setEnabled(false);
+			
 		}
 		
 	}

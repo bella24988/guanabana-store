@@ -161,7 +161,7 @@ public class PagamentoController implements ActionListener {
 			Matcher codiceBonificoMatcher = null;
 			Matcher bancaMatcher = null;
 
-			Pattern codiceBonificoPattern = Pattern.compile("[0-9]{8}");
+			Pattern codiceBonificoPattern = Pattern.compile("[a-zA-Z ]{4,}");
 			Pattern bancaPattern = Pattern.compile("[a-zA-Z ]+");
 
 			codiceBonificoMatcher = codiceBonificoPattern.matcher(p
@@ -169,7 +169,7 @@ public class PagamentoController implements ActionListener {
 			bancaMatcher = bancaPattern.matcher(p.getTxtBanca());
 
 			if (!codiceBonificoMatcher.matches()) {
-				p.mostraMessaggioErrore("Il codice della transazione deve essere di almeno 8 cifre \ne non deve contenere spazi");
+				p.mostraMessaggioErrore("Il codice della transazione deve essere di almeno 4 cifre \ne non deve contenere spazi");
 				return false;
 			}
 

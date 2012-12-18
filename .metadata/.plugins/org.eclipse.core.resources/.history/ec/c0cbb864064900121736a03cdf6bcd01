@@ -1,0 +1,45 @@
+package azienda;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import modello.Ordine;
+
+public class SpedizioneController implements ActionListener{
+	
+	private Ordine[] ordini;
+	private SistemaGestioneFinestra sistemaGestioneFinestra;
+	
+	
+
+	public SpedizioneController(SistemaGestioneFinestra sistemaGestioneFinestra) {
+		super();
+		this.sistemaGestioneFinestra = sistemaGestioneFinestra;
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().compareTo("Spedizione")==0) {
+			refreshOrdini();
+		}
+		
+	}
+	
+	public void refreshOrdini() {
+		sistemaGestioneFinestra.pulisceSchermo();
+		setOrdini(sistemaGestioneFinestra.enlistaOrdini("RICHIESTO AL MAGAZZINO"));
+		magazzinoPanel = new MagazinoPanel(ordini, this);
+		if(getOrdini()!=null){
+		sistemaGestioneFinestra.getContenutoPanel().add(magazzinoPanel);
+		magazzinoPanel.setVisible(true);
+		}else{
+			magazzinoPanel.setVisible(false);
+			sistemaGestioneFinestra.setTxtErrore("Non ci sono ordini da spedire");
+			sistemaGestioneFinestra.getContenutoPanel().removeAll();
+		}
+		sistemaGestioneFinestra.Refresh();
+	}
+
+}

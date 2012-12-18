@@ -72,22 +72,7 @@ public class MagazinoPanel extends JPanel {
 		gbc_lblComputer.gridy = 1;
 		add(lblComputer, gbc_lblComputer);
 
-		JLabel lblStato = new JLabel("Stato");
-		lblStato.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_lblStato = new GridBagConstraints();
-		gbc_lblStato.insets = new Insets(0, 0, 5, 5);
-		gbc_lblStato.gridx = 3;
-		gbc_lblStato.gridy = 1;
-		add(lblStato, gbc_lblStato);
-
-		JLabel lblTipoPagamento = new JLabel("Tipo pagamento");
-		lblTipoPagamento.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_lblTipoPagamento = new GridBagConstraints();
-		gbc_lblTipoPagamento.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTipoPagamento.gridx = 4;
-		gbc_lblTipoPagamento.gridy = 1;
-		add(lblTipoPagamento, gbc_lblTipoPagamento);
-
+		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBackground(Color.GRAY);
 		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
@@ -124,20 +109,16 @@ public class MagazinoPanel extends JPanel {
 			gbc_lblComputerx.gridy = numRow;
 			add(lblComputerx, gbc_lblComputerx);
 
-			JLabel lblStatox = new JLabel(ordini[indiceArray].getStato());
-			GridBagConstraints gbc_lblStatox = new GridBagConstraints();
-			gbc_lblStatox.insets = new Insets(0, 0, 5, 5);
-			gbc_lblStatox.gridx = 3;
-			gbc_lblStatox.gridy = numRow;
-			add(lblStatox, gbc_lblStatox);
-
-			JLabel lblTipoPagamentox = new JLabel(ordini[indiceArray]
-					.getPagamento().getTipoPagamento());
-			GridBagConstraints gbc_lblTipoPagamentox = new GridBagConstraints();
-			gbc_lblTipoPagamentox.insets = new Insets(0, 0, 5, 5);
-			gbc_lblTipoPagamentox.gridx = 4;
-			gbc_lblTipoPagamentox.gridy = numRow;
-			add(lblTipoPagamentox, gbc_lblTipoPagamentox);
+			JButton btnAssembla = new JButton("Assembla computer");
+			btnAssembla.setFont(new Font("Tahoma", Font.PLAIN, 8));
+			GridBagConstraints gbc_btnAssembla = new GridBagConstraints();
+			gbc_btnAssembla.insets = new Insets(0, 0, 5, 5);
+			gbc_btnAssembla.gridx = 3;
+			gbc_btnAssembla.gridy = numRow;
+			add(btnAssembla, gbc_btnAssembla);
+			btnAssembla.setActionCommand("Asse" + indiceArray);
+			btnAssembla.addActionListener(magazinoController);
+			
 
 			JButton btnAnnullaOrdine = new JButton("Pronto per la spedizione");
 			btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));

@@ -28,32 +28,40 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 		if (e.getActionCommand().compareTo("Ordini da gestire") == 0) {
 			refreshFinestra("VENDUTO");
 		} else if (e.getActionCommand().compareTo("invia al magazzino") == 0) {
-			veGestirePanel.setVisible(false);
-			JButton invio = (JButton) e.getSource();
-			ClientAzienda servizioClientAzienda = new ClientAzienda();
-			try {
-				servizioClientAzienda.aggiornaStatoOrdine(
-						"RICHIESTO AL MAGAZZINO",
-						veGestirePanel.getOrdini()[invio.getMnemonic()]
-								.getNumeroOrdine());
-				servizioClientAzienda.inviaEmailConferma(veGestirePanel.getOrdini()[invio.getMnemonic()].getCliente().getEmail(),//email cliente
-						veGestirePanel.getOrdini()[invio.getMnemonic()].getMessaggioEmail(veGestirePanel
-								.getOrdini()[invio.getMnemonic()].getPagamento(), "Abbiamo ricevuto il suo pagamento!"),//messaggio della email
-						"Ricevuta - Ordine Numero: "+veGestirePanel
-						.getOrdini()[invio.getMnemonic()].getNumeroOrdine());//subject della email
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (AddressException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MessagingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			refreshFinestra("VENDUTO");
+			JButton buttonPressed = (JButton) e.getSource();
+			inviaMessaggioCambiaStato(buttonPressed, "VENDUTO", "RICHIESTO AL MAGAZZINO", "Abbiamo ricevuto il suo pagamento!");
+		}else if (e.getActionCommand().compareTo("richiede pagamento") == 0) {
+			JButton buttonPressed = (JButton) e.getSource();
+			inviaMessaggioCambiaStato(buttonPressed, "VENDUTO", "ORDINATO", "Il suo pagamento non &eacute; stato accettato, vi preghiamo di rifarlo. Nella voce &ldquo;Carrello&rdquo;");
 		}
 
+	}
+	
+	private void inviaMessaggioCambiaStato(JButton invio, String vecchioStato, String nuovoStato, String messagioEmail){
+		veGestirePanel.setVisible(false);
+		ClientAzienda servizioClientAzienda = new ClientAzienda();
+		try {
+			servizioClientAzienda.aggiornaStatoOrdine(
+					nuovoStato,
+					veGestirePanel.getOrdini()[invio.getMnemonic()]
+							.getNumeroOrdine());
+			servizioClientAzienda.inviaEmailConferma(veGestirePanel.getOrdini()[invio.getMnemonic()].getCliente().getEmail(),//email cliente
+					veGestirePanel.getOrdini()[invio.getMnemonic()].getMessaggioEmail(veGestirePanel
+							.getOrdini()[invio.getMnemonic()].getPagamento(), messagioEmail),//messaggio della email
+					"Ricevuta - Ordine Numero: "+veGestirePanel
+					.getOrdini()[invio.getMnemonic()].getNumeroOrdine());//subject della email
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (AddressException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (MessagingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		refreshFinestra(vecchioStato);
+		
 	}
 
 	private void refreshFinestra(String tipo) {

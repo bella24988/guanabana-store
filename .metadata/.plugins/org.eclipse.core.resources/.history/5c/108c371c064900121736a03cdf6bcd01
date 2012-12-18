@@ -1,0 +1,30 @@
+package azienda;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import modello.Ordine;
+
+public class SpedizioneController implements ActionListener{
+	
+	private Ordine[] ordini;
+	private SistemaGestioneFinestra sistemaGestioneFinestra;
+	
+	
+
+	public SpedizioneController(SistemaGestioneFinestra sistemaGestioneFinestra) {
+		super();
+		this.sistemaGestioneFinestra = sistemaGestioneFinestra;
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().compareTo("Spedizione")==0) {
+			
+		}
+		
+	}
+
+}
