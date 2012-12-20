@@ -34,7 +34,7 @@ public class VenditaDaGestirePanel extends JPanel {
 			VenditaDaGestireController veDaGestireController) {
 		this.venGestireController = veDaGestireController;
 		this.ordini = ordini;
-		String tipoOK = "CONTRASSEGNO";
+		String tipoOK = "Contrassegno";
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0 };
@@ -181,6 +181,20 @@ public class VenditaDaGestirePanel extends JPanel {
 				add(lblPagamentoD2, gbc_lblPagamentoD2);
 			}
 
+			
+			btnInviaMagazzino[indiceArray] = new JButton();
+			btnInviaMagazzino[indiceArray].setFont(new Font("Tahoma",
+					Font.PLAIN, 8));
+			btnInviaMagazzino[indiceArray].setMnemonic(indiceArray);
+			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
+			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
+			gbc_btnAnnulla.gridx = 7;
+			gbc_btnAnnulla.gridy = numRow;
+			add(btnInviaMagazzino[indiceArray], gbc_btnAnnulla);
+
+			btnInviaMagazzino[indiceArray]
+					.addActionListener(getVenGestireController());
+			
 			conferma[indiceArray] = new JCheckBox();
 			if (ordini[indiceArray].getPagamento().getTipoPagamento()
 					.compareTo(tipoOK) != 0) {
@@ -195,26 +209,17 @@ public class VenditaDaGestirePanel extends JPanel {
 				add(conferma[indiceArray], gbc_conferma);
 
 				conferma[indiceArray].addItemListener(venGestireController);
-			}
-			btnInviaMagazzino[indiceArray] = new JButton();
-			btnInviaMagazzino[indiceArray].setFont(new Font("Tahoma",
-					Font.PLAIN, 8));
-			btnInviaMagazzino[indiceArray].setMnemonic(indiceArray);
-			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
-			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
-			gbc_btnAnnulla.gridx = 7;
-			gbc_btnAnnulla.gridy = numRow;
-			add(btnInviaMagazzino[indiceArray], gbc_btnAnnulla);
-
-			btnInviaMagazzino[indiceArray]
-					.addActionListener(getVenGestireController());
-
-			if (conferma[indiceArray].isSelected()
-					|| ordini[indiceArray].getPagamento().getTipoPagamento()
-							.compareTo(tipoOK) == 0) {
-				mostraButtoneInvio(indiceArray);
-			} else {
-				nascondiButtoneInvio(indiceArray);
+				if (conferma[indiceArray].isSelected()
+						|| ordini[indiceArray].getPagamento().getTipoPagamento()
+								.compareTo(tipoOK) == 0) {
+					mostraButtoneInvio(indiceArray);
+				} else {
+					nascondiButtoneInvio(indiceArray);
+				}
+			}else{
+				btnInviaMagazzino[indiceArray].setEnabled(true);
+				btnInviaMagazzino[indiceArray].setText("invia al magazzino");
+				btnInviaMagazzino[indiceArray].setActionCommand("invia al magazzino");
 			}
 
 			JSeparator separator = new JSeparator();

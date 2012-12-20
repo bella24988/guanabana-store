@@ -13,14 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="aggiornaStatoOrdine" key="selection"/>
+		<item value="Conten" key="selection"/>
 		<list key="findhistory">
-			<item value="aggiornaStatoOrdine"/>
-			<item value="cercaOrdini"/>
-			<item value="cercaDetagli"/>
-			<item value="solid"/>
-			<item value="soli"/>
-			<item value="border"/>
+			<item value="conten"/>
+			<item value="setHost"/>
+			<item value="host"/>
+			<item value="main"/>
+			<item value="cercadip"/>
+			<item value="System.out"/>
+			<item value="System"/>
+			<item value="CONSULTALOG"/>
 		</list>
 		<list key="replacehistory">
 		</list>

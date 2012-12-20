@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/grouped_listing.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.groupedlisting</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc.dbprofile" name="mysql" id="43">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>org.eclipse.datatools.connectivity.db.connectionProperties</name>
+                </ex-property>
+                <ex-property>
+                    <name>org.eclipse.datatools.connectivity.oda.profile.db.provider.id</name>
+                    <value>org.eclipse.datatools.enablement.mysql.connectionProfile</value>
+                </ex-property>
+                <ex-property>
+                    <name>org.eclipse.datatools.connectivity.db.savePWD</name>
+                    <value>true</value>
+                </ex-property>
+                <ex-property>
+                    <name>org.eclipse.datatools.connectivity.drivers.defnType</name>
+                    <value>org.eclipse.datatools.enablement.mysql.5_1.driverTemplate</value>
+                </ex-property>
+                <ex-property>
+                    <name>org.eclipse.datatools.connectivity.driverDefinitionID</name>
+                    <value>DriverDefn.org.eclipse.datatools.enablement.mysql.5_1.driverTemplate.MySQL JDBC Driver</value>
+                </ex-property>
+                <ex-property>
+                    <name>org.eclipse.datatools.connectivity.db.version</name>
+                    <value>5.1</value>
+                </ex-property>
+                <ex-property>
+                    <name>org.eclipse.datatools.connectivity.db.vendor</name>
+                    <value>MySql</value>
+                </ex-property>
+            </list-property>
+            <property name="databaseName">guanabanadb</property>
+            <property name="username">programmatori</property>
+            <encrypted-property name="password" encryptionID="base64">MTIzNDU=</encrypted-property>
+            <property name="URL">jdbc:mysql://localhost:3306/guanabanadb</property>
+            <property name="driverClass">com.mysql.jdbc.Driver</property>
+            <property name="jarList">/Users/Veronica/Dropbox/Condivisione POLIMI/mysql-connector-java-5.1.20-bin.jar</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.dbprofile.sqbDataSet" name="cerca configurazione" id="44">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">codice</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">codice</text-property>
+                    <text-property name="heading">codice</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">data</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">data</text-property>
+                    <text-property name="heading">data</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">totale</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">totale</text-property>
+                    <text-property name="heading">totale</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">stato</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">stato</text-property>
+                    <text-property name="heading">stato</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cliente_CF</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cliente_CF</text-property>
+                    <text-property name="heading">cliente_CF</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">indirizzo_invio</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">indirizzo_invio</text-property>
+                    <text-property name="heading">indirizzo_invio</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nome_computer</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nome_computer</text-property>
+                    <text-property name="heading">nome_computer</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nome</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nome</text-property>
+                    <text-property name="heading">nome</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">codice</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">data</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">totale</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">stato</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">cliente_CF</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">indirizzo_invio</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">nome_computer</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">nome</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">mysql</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">codice</property>
+                    <property name="nativeName">codice</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">data</property>
+                    <property name="nativeName">data</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">totale</property>
+                    <property name="nativeName">totale</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">7</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">stato</property>
+                    <property name="nativeName">stato</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">cliente_CF</property>
+                    <property name="nativeName">cliente_CF</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">indirizzo_invio</property>
+                    <property name="nativeName">indirizzo_invio</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">nome_computer</property>
+                    <property name="nativeName">nome_computer</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">nome</property>
+                    <property name="nativeName">nome</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT `guanabanadb`.ORDINI.`codice`, `guanabanadb`.ORDINI.`data`,
+  `guanabanadb`.ORDINI.`totale`, `guanabanadb`.ORDINI.`stato`,
+  `guanabanadb`.ORDINI.`cliente_CF`, `guanabanadb`.ORDINI.`indirizzo_invio`,
+  `guanabanadb`.ORDINI.`nome_computer`, `guanabanadb`.COMPONENTI.`id`,
+  `guanabanadb`.COMPONENTI.`nome`
+  FROM `guanabanadb`.ORDINI JOIN `guanabanadb`.COMPONENTI ON `guanabanadb`.ORDINI.`mon` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`ram` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`cpu` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`mlc` = `guanabanadb`.ORDINI.`mlc`
+    AND `guanabanadb`.ORDINI.`mlc` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`hd1` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`hd2` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`hd3` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`hd4` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`dvd` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`pci` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`kei` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`mou` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`war` = `guanabanadb`.COMPONENTI.`id`
+    AND `guanabanadb`.ORDINI.`gpu` = `guanabanadb`.COMPONENTI.`id`
+  WHERE `guanabanadb`.ORDINI.`codice` = 1
+]]></xml-property>
+            <structure name="designerState">
+                <property name="version">1.0</property>
+                <property name="stateContentAsString">&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;SQLQueryBuilder editorInputType="SQLBuilderStorageEditorInput" name="cerca configurazione" version="1.0">
+&lt;SQLStatement>SELECT `guanabanadb`.ORDINI.`codice`, `guanabanadb`.ORDINI.`data`,&amp;#x0A;  `guanabanadb`.ORDINI.`totale`, `guanabanadb`.ORDINI.`stato`,&amp;#x0A;  `guanabanadb`.ORDINI.`cliente_CF`, `guanabanadb`.ORDINI.`indirizzo_invio`,&amp;#x0A;  `guanabanadb`.ORDINI.`nome_computer`, `guanabanadb`.COMPONENTI.`id`,&amp;#x0A;  `guanabanadb`.COMPONENTI.`nome`&amp;#x0A;  FROM `guanabanadb`.ORDINI JOIN `guanabanadb`.COMPONENTI ON `guanabanadb`.ORDINI.`mon` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`ram` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`cpu` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`mlc` = `guanabanadb`.ORDINI.`mlc`&amp;#x0A;    AND `guanabanadb`.ORDINI.`mlc` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`hd1` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`hd2` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`hd3` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`hd4` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`dvd` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`pci` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`kei` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`mou` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`war` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;    AND `guanabanadb`.ORDINI.`gpu` = `guanabanadb`.COMPONENTI.`id`&amp;#x0A;  WHERE `guanabanadb`.ORDINI.`codice` = 1&amp;#x0A;&lt;/SQLStatement>
+&lt;connInfo>MySql_5.1:Transient.org.eclipse.datatools.enablement.mysql.connectionProfile:guanabanadb:programmatori&lt;/connInfo>
+&lt;omitSchemaInfo>false:true:&lt;/omitSchemaInfo>
+&lt;editorInputUsageOptions>useWindowState=true&lt;/editorInputUsageOptions>
+&lt;windowState height="331" version="1.0" width="574">
+&lt;control height="65" isHideable="true" isVisible="true" name="SQLSourceViewer" width="549"/>
+&lt;control height="105" isHideable="true" isVisible="true" name="DesignViewer" width="562"/>
+&lt;control height="129" isHideable="true" isVisible="true" name="GraphControl" width="554"/>
+&lt;control height="129" isHideable="true" isVisible="false" name="OutlineViewer" width="156"/>
+&lt;/windowState>
+&lt;/SQLQueryBuilder></property>
+            </structure>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="38">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="41">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="42">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <grid id="3">
+                    <property name="width">100%</property>
+                    <column id="4"/>
+                    <row id="5">
+                        <cell id="6">
+                            <text id="7">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="8">
+            <property name="height">0.333in</property>
+            <property name="width">5.968in</property>
+            <column id="9"/>
+            <row id="10">
+                <property name="height">0.333in</property>
+                <property name="verticalAlign">text-bottom</property>
+                <cell id="11">
+                    <property name="verticalAlign">top</property>
+                    <label id="12">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textUnderline">underline</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">Report Header</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <table name="table1" id="13">
+            <property name="width">100%</property>
+            <property name="pageBreakInterval">50</property>
+            <column id="35">
+                <property name="width">33.3%</property>
+            </column>
+            <column id="36">
+                <property name="width">33.3%</property>
+            </column>
+            <column id="37">
+                <property name="width">33.4%</property>
+            </column>
+            <header>
+                <row id="14">
+                    <cell id="15"/>
+                    <cell id="16"/>
+                    <cell id="17"/>
+                </row>
+            </header>
+            <group id="18">
+                <property name="groupName">NewTableGroup1</property>
+                <header>
+                    <row id="19">
+                        <cell id="20"/>
+                        <cell id="21"/>
+                        <cell id="22"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="23">
+                        <cell id="24"/>
+                        <cell id="25"/>
+                        <cell id="26"/>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="27">
+                    <cell id="28"/>
+                    <cell id="29"/>
+                    <cell id="30"/>
+                </row>
+            </detail>
+            <footer>
+                <row id="31">
+                    <cell id="32"/>
+                    <cell id="33"/>
+                    <cell id="34"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

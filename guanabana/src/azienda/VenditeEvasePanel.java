@@ -154,7 +154,7 @@ public class VenditeEvasePanel extends JPanel {
 					.getPagamento().isConfermato());
 			conferma[indiceArray].setMnemonic(indiceArray);
 			if (ordini[indiceArray].getPagamento().getTipoPagamento()
-					.compareTo("CONTRASSEGNO") == 0
+					.compareTo("Contrassegno") == 0
 					&& conferma[indiceArray].isSelected() == false) {
 				conferma[indiceArray].setEnabled(true);
 				conferma[indiceArray].addItemListener(veEvaseController);

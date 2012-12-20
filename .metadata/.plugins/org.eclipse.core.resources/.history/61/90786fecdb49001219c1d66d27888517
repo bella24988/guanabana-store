@@ -1,0 +1,32 @@
+package azienda;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class RegistrareDipController implements ActionListener{
+
+	private SistemaGestioneFinestra sistemaGestioneFinestra;
+	private RegistraDipendente registraDipendente;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().compareTo("Magazzino")==0) {
+			refreshOrdini();
+		}
+		
+	}
+	
+	public void refreshOrdini() {
+		sistemaGestioneFinestra.pulisceSchermo();
+		registrareDipendente = new RegistraDipendente();
+		if(getOrdini()!=null){
+		sistemaGestioneFinestra.getContenutoPanel().add(registrareDipendente);
+		registrareDipendente.setVisible(true);
+		}else{
+			registrareDipendente.setVisible(false);
+			sistemaGestioneFinestra.setTxtErrore("Non ci sono ordini da spedire");
+			sistemaGestioneFinestra.getContenutoPanel().removeAll();
+		}
+		sistemaGestioneFinestra.Refresh();
+	}
+
+}

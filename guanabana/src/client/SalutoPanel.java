@@ -16,6 +16,11 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 
+/**
+ * Questa classe è un panello della interfaccia graffica, 
+ * @author Veronica
+ *
+ */
 public class SalutoPanel extends JPanel {
 
 	/**
@@ -55,7 +60,7 @@ public class SalutoPanel extends JPanel {
 		// Controller
 		logController = new LogController(this, panel);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 0, 52, 140, 176, 98, 79, 0 };
+		gridBagLayout.columnWidths = new int[] { 0, 0,100, 140, 176, 100, 100, 0 };
 		gridBagLayout.rowHeights = new int[] { 23, 30, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, Double.MIN_VALUE };

@@ -29,15 +29,28 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 			refreshFinestra("VENDUTO");
 		} else if (e.getActionCommand().compareTo("invia al magazzino") == 0) {
 			JButton buttonPressed = (JButton) e.getSource();
-			inviaMessaggioCambiaStato(buttonPressed, "VENDUTO", "RICHIESTO AL MAGAZZINO", "Abbiamo ricevuto il suo pagamento!");
+			inviaMessaggioCambiaStato(buttonPressed, "RICHIESTO AL MAGAZZINO", "Abbiamo ricevuto il suo pagamento!");
+			refreshFinestra("VENDUTO");
+			
 		}else if (e.getActionCommand().compareTo("richiede pagamento") == 0) {
 			JButton buttonPressed = (JButton) e.getSource();
-			inviaMessaggioCambiaStato(buttonPressed, "VENDUTO", "ORDINATO", "Il suo pagamento non &eacute; stato accettato, vi preghiamo di rifarlo. Nella voce &ldquo;Carrello&rdquo;");
+			inviaMessaggioCambiaStato(buttonPressed, "ORDINATO", "Il suo pagamento non &eacute; stato accettato, vi preghiamo di rifarlo. Nella voce &ldquo;Carrello&rdquo;");
+			Ordine ordine = veGestirePanel.getOrdini()[buttonPressed.getMnemonic()];
+			ClientAzienda servizioClientAzienda = new ClientAzienda();
+			try {
+				servizioClientAzienda.cancellaPagamento(ordine.getPagamento());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}
 	
-	private void inviaMessaggioCambiaStato(JButton invio, String vecchioStato, String nuovoStato, String messagioEmail){
+	private void inviaMessaggioCambiaStato(JButton invio,String nuovoStato, String messagioEmail){
 		veGestirePanel.setVisible(false);
 		ClientAzienda servizioClientAzienda = new ClientAzienda();
 		try {
@@ -60,7 +73,6 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		refreshFinestra(vecchioStato);
 		
 	}
 

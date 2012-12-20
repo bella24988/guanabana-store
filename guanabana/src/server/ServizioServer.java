@@ -17,6 +17,7 @@ import modello.Configurazione;
 import modello.Contrassegno;
 import modello.Desktop;
 import modello.Dipendente;
+import modello.Fattura;
 import modello.Laptop;
 import modello.Ordine;
 import modello.Pagamento;
@@ -74,11 +75,10 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			
 			ObjectInputStream ricevo = new ObjectInputStream(is);
 			String richiestaClient = (String) ricevo.readObject();//Legge 1
-			System.out.println("Sono il server, ricevo messaggio dal client: "+richiestaClient);
 			String datiLetti;
 			
 			ObjectOutputStream scrive = new ObjectOutputStream(s.getOutputStream());
-			
+			System.out.println("Ho ricevuto una richiesta da: "+client+" lui vuole: "+richiestaClient);
 			if(richiestaClient.compareTo("login")==0){
 				scrive.writeObject("pronto");
 				scrive.flush();
@@ -92,9 +92,6 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				datiLetti = (String) ricevo.readObject();
 				String password = datiLetti;
 				
-				System.out.print("user: "+user);
-				System.out.println(" password: "+password);
-				
 				scrive.writeObject(fareLogin(user, password));
 				scrive.flush();
 				
@@ -107,17 +104,14 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				datiLetti = (String) ricevo.readObject();
 				String[] variabile = new String[7];
 				variabile[0]=(String) datiLetti.subSequence(0, datiLetti.indexOf("!"));
-				System.out.println("CF:"+variabile[0]);
 				int i=1;
 				String temp = (String) datiLetti.substring(datiLetti.indexOf("!")+1);
 				while(i<6){
 					variabile[i]=(String) temp.substring(0, temp.indexOf("!"));
-					System.out.println("Cognome:"+variabile[i]);
 					temp = temp.substring(temp.indexOf("!")+1);
 					i++;
 				}
 				variabile[6]=temp;
-				System.out.println("Password:"+variabile[6]);
 				scrive.writeObject(registreNuovoCliente(variabile[0],variabile[1],variabile[2],variabile[3],variabile[4],variabile[5],variabile[6]));
 				scrive.flush();
 				
@@ -254,6 +248,15 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 				scrive.flush();
 				int codiceOrdine = (int) ricevo.readObject();
 				scrive.writeObject(cercaClienteDalOrdine(codiceOrdine));
+			}else if(richiestaClient.compareTo("cerca fattura")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				Ordine ordine = (Ordine) ricevo.readObject();
+				scrive.writeObject(cercaFattura(ordine));
+			}else if(richiestaClient.compareTo("cancella pagamento")==0){
+				scrive.writeObject("pronto");
+				scrive.flush();
+				cancellaPagamento((Pagamento) ricevo.readObject());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -289,7 +292,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		String[][] modelli = new String[numComputer][2];
 		
 		Computer[] comp = new Computer[numComputer];
-		System.out.println(numComputer);
+		
 		try {
 			modelli = db.cercaModelli(tipo, numComputer);
 			String[] nome = new String[numComputer];
@@ -376,12 +379,11 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	
 	public static void main(String[] args) {
 		try {
-			ServerSocket serverSocket = new ServerSocket(4000);
-			System.out.println("Sono il server, aspetto un client...");
+			serverSocket = new ServerSocket(4000);
+			System.out.println("Benvenuto! sono il server sto aspettando un client...");
 			while(true){
 				try {
 					Socket client = serverSocket.accept(); //accetto conezione con il client
-					System.out.println("Ho trovato un client: ");
 					new Thread(new ServizioServer(client)).start();
 				} catch (Exception e) {
 					System.out.println("Errore in richiesta: "+ e);
@@ -469,6 +471,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	 * @uml.association  name="cerca"
 	 */
 	private Collection<?> computer;
+	private static ServerSocket serverSocket;
 
 	/**
 	 * Getter of the property <tt>computer</tt>
@@ -563,6 +566,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		ordini = new Ordine[risultato.length];
 		Computer[] computer = new Computer[risultato.length];
 		Pagamento[] pagamento = new Pagamento[risultato.length];
+		Configurazione[] configurazione = new Configurazione[risultato.length];
 		//Componente[] componente = new Componente[risultato.length];
 		int j;
 		for (j = 0; j<risultato.length; j++){//[rows][columns]
@@ -574,20 +578,50 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			String tipoPagamento = risultato[j][4];
 			String nomeComputer = risultato[j][5];
 			int numPagamento = Integer.parseInt(risultato[j][6]);
+			float prezzoComputer = new Float(risultato[j][7]);
+			
+			boolean confermato = false;
+			if(risultato[j][8].compareTo("1")==0){
+				confermato = true;
+			}
 			
 			//Creo i computer ordinati 
+			int max = 0;
 			String tipoComputer = nomeComputer.substring(0, 3);
 			if (tipoComputer.compareTo("SER")==0){
-				computer[j] = new Server(nomeComputer);
+				computer[j] = new Server(nomeComputer,prezzoComputer);
+				max = 10;
 			}else if (tipoComputer.compareTo("LAP")==0){
-				computer[j] = new Laptop(nomeComputer);
+				computer[j] = new Laptop(nomeComputer,prezzoComputer);
+				max=6;
 			}else if (tipoComputer.compareTo("DES")==0){
-				computer[j] = new Desktop(nomeComputer);
+				computer[j] = new Desktop(nomeComputer,prezzoComputer);
+				max=10;
 			}
+			
+			String[][] componentiDb = new String[max][3];
+			Componente[] componenti = new Componente[max];
+			try {
+				
+				componentiDb = db.cercaConfigurazioneScelta(codiceOrdine,tipoComputer);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("fallito componenti "+j);
+			}
+
+			for(int i=0;i<max;i++){
+				componenti[i]= new Componente(componentiDb[i][0], componentiDb[i][1], new Float(componentiDb[i][2]), componentiDb[i][1].substring(0,3));	
+			}
+			
+			configurazione[j] = new Configurazione(componenti, max);
+			
+			// Creo ordine e pagamento
+			computer[j].setConfigurazione(configurazione[j]);
 			
 			//Creo ordine e pagamento
 			ordini[j] = new Ordine(codiceOrdine, computer[j], totalePagato, cliente);
-			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, false);
+			pagamento[j] = new Pagamento(ordini[j], tipoPagamento, numPagamento, confermato);
 			ordini[j].setPagamento(pagamento[j]);
 			ordini[j].setStato(statoOrdine);
 			ordini[j].setData(dataOrdine);
@@ -648,6 +682,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	@Override
 	public Dipendente logDipendente(int id, String password) throws SQLException {
 		Dipendente impiegato;
+		
 		String[] ricercadb = db.cercaDipendente(id, password);
 		//nome, cognome, dipartimento
 		String nome=ricercadb[0];
@@ -696,6 +731,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			String nomeComputer = risultato[j][5];
 			int numPagamento = Integer.parseInt(risultato[j][6]);
 			String cfCliente = risultato[j][7];
+			Float prezzoPC = new Float(risultato[j][9]);
 			boolean confermato;
 			if(risultato[j][8].compareTo("1")==0){
 				confermato = true;
@@ -708,13 +744,13 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			int max = 0;
 			String tipoComputer = nomeComputer.substring(0, 3);
 			if (tipoComputer.compareTo("SER") == 0) {
-				computer[j] = new Server(nomeComputer);
+				computer[j] = new Server(nomeComputer, prezzoPC);
 				max=10;
 			} else if (tipoComputer.compareTo("LAP") == 0) {
-				computer[j] = new Laptop(nomeComputer);
+				computer[j] = new Laptop(nomeComputer, prezzoPC);
 				max=6;
 			} else if (tipoComputer.compareTo("DES") == 0) {
-				computer[j] = new Desktop(nomeComputer);
+				computer[j] = new Desktop(nomeComputer, prezzoPC);
 				max=10;
 			}
 			
@@ -795,10 +831,10 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 
 	@Override
-	public void confermarePagamento(boolean valore, int codiceOrdine) throws IOException,
+	public void confermarePagamento(boolean valore, int codicePagamento) throws IOException,
 			ClassNotFoundException {
 		try {
-			db.confermaPagamento(valore, codiceOrdine);
+			db.confermaPagamento(valore, codicePagamento);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -815,6 +851,44 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			e.printStackTrace();
 		}
 		return cliente;
+	}
+
+	@Override
+	public Fattura cercaFattura(Ordine ordine) throws IOException,
+			ClassNotFoundException {
+		Fattura fattura;
+		String[] campiFattura = new String[2];
+		try {
+			campiFattura = db.cercaFattura(ordine.getNumeroOrdine());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if (campiFattura[0]==null){
+			try {
+				campiFattura = db.creaFattura(ordine.getNumeroOrdine());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		fattura = new Fattura(ordine, campiFattura[0], campiFattura[1]);
+		
+		return fattura;
+	}
+
+	@Override
+	public void cancellaPagamento(Pagamento pagamento) throws IOException,
+			ClassNotFoundException {
+		
+		try {
+			db.cancellaPagamento(pagamento.getTipoPagamento(), pagamento.getNumPagamento());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	

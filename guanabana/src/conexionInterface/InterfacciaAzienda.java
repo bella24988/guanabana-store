@@ -6,7 +6,9 @@ import java.sql.SQLException;
 
 import modello.Cliente;
 import modello.Dipendente;
+import modello.Fattura;
 import modello.Ordine;
+import modello.Pagamento;
 
 
 public interface InterfacciaAzienda {
@@ -22,5 +24,9 @@ public interface InterfacciaAzienda {
 	void aprireCollegamento() throws UnknownHostException, IOException;
 	
 	public void confermarePagamento(boolean valore, int i) throws IOException, ClassNotFoundException;
+	
+	public Fattura cercaFattura(Ordine ordine) throws IOException, ClassNotFoundException;
+	
+	public void cancellaPagamento(Pagamento pagamento) throws IOException, ClassNotFoundException;
 
 }

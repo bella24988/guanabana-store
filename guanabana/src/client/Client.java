@@ -28,17 +28,29 @@ import modello.Pagamento;
 import conexionInterface.InterfacciaCliente;
 
 /**
- * @author  Veronica
+ * Classe è rappresenta il servizio che apporta la comunicazione fra client 
+ * e server.
+ * Implementa la interfacciaCliente
+ * @author  Veronica Melendez
+ * @category Class
  */
 public class Client implements InterfacciaCliente {
 	
 	/**
 	 * @uml.property  name="host"
 	 */
-	private String host;
+	private String host; 
+	/**
+	 * @uml.property name="port"
+	 * 
+	 */
 	private int port;
 	private InputStream lettura;
 	private OutputStream scritura;
+	/**
+	 *@uml.property name="socket"
+	 * 
+	 */
 	private Socket socket;
 	private ObjectInputStream buffer;
 	private ObjectOutputStream writer;

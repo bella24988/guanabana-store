@@ -7,6 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.Pattern;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import modello.Cliente;
 
 import client.ContenutoPanel;
@@ -90,6 +93,9 @@ public class RegistratiController implements ActionListener {
 										+ cliente.getCognome());
 								registrati.getLogPanel().getContenuto()
 										.setClienteLogato(cliente);
+								client.inviaEmailConferma(registrati.getTxtEmail(),//email cliente
+										cliente.getMessaggio(),//messaggio della email
+										"Guanabana - Registrazione");//subject della email
 
 								if (registrati.getLogPanel().getContenuto()
 										.getAttessaCompra() == true) {
@@ -103,6 +109,12 @@ public class RegistratiController implements ActionListener {
 								registrati
 										.mostraMessaggio("Errore al registrarsi");
 						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (AddressException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (MessagingException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}

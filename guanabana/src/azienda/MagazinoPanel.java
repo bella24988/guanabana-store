@@ -109,17 +109,6 @@ public class MagazinoPanel extends JPanel {
 			gbc_lblComputerx.gridy = numRow;
 			add(lblComputerx, gbc_lblComputerx);
 
-			JButton btnAssembla = new JButton("Assembla computer");
-			btnAssembla.setFont(new Font("Tahoma", Font.PLAIN, 8));
-			GridBagConstraints gbc_btnAssembla = new GridBagConstraints();
-			gbc_btnAssembla.insets = new Insets(0, 0, 5, 5);
-			gbc_btnAssembla.gridx = 3;
-			gbc_btnAssembla.gridy = numRow;
-			add(btnAssembla, gbc_btnAssembla);
-			btnAssembla.setActionCommand("Asse" + indiceArray);
-			btnAssembla.addActionListener(magazinoController);
-			
-
 			JButton btnAnnullaOrdine = new JButton("Pronto per la spedizione");
 			btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
 			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();

@@ -1,0 +1,80 @@
+package fattura;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+public class Fattura {
+	
+	/** Path to the resulting PDF file. */
+    public static final String RESULT= System.getProperty("user.home")+"/hello.pdf";
+    
+  
+    /**
+     * Creates a PDF file: hello.pdf
+     * @param    args    no arguments needed
+     */
+    public static void main(String[] args)
+    	throws DocumentException, IOException {
+    	new Fattura().createPdf(RESULT);
+    	  System.out.println(System.getProperty("user.home")+"/hello.pdf");
+    }
+ 
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws    DocumentException 
+     * @throws    IOException 
+     */
+    public void createPdf(String filename)
+	throws DocumentException, IOException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        Paragraph titolo = new Paragraph("Fattura");
+        FontFactory.getFont(FontFactory.COURIER_BOLD, 18);
+        titolo.setAlignment(Element.ALIGN_CENTER);
+        
+        Paragraph intestazione = new Paragraph("Nome cliente:  C.F. Indirizzo: Telefono: ");
+        FontFactory.getFont(FontFactory.TIMES, 12);
+        titolo.setAlignment(Element.ALIGN_LEFT);
+        
+        PdfPTable table = new PdfPTable(2);
+		
+		
+		PdfPCell cell = 
+			new PdfPCell(new Paragraph("column span 2"));
+		cell.setColspan(2);
+		table.addCell(cell);
+		
+		table.addCell("1");
+		table.addCell("2");
+
+		table.addCell("3");
+		table.addCell("4");
+
+		table.addCell("5");
+		table.addCell("6");		
+		
+			
+		
+        document.add(titolo);
+        document.add(intestazione);
+        document.add(table);
+        // step 5
+        document.close();
+    }
+
+}

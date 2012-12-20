@@ -158,30 +158,31 @@ public class PagamentoController implements ActionListener {
 
 			setTipoPagamento("Bonifico");
 
-			Matcher codiceBonificoMatcher = null;
+			//Matcher codiceBonificoMatcher = null;
 			Matcher bancaMatcher = null;
 
-			Pattern codiceBonificoPattern = Pattern.compile("[a-zA-Z ]{4,}");
+			//Pattern codiceBonificoPattern = Pattern.compile("[a-zA-Z]{4,}");
 			Pattern bancaPattern = Pattern.compile("[a-zA-Z ]+");
 
-			codiceBonificoMatcher = codiceBonificoPattern.matcher(p
-					.getTxtCodiceBonifico());
+			//codiceBonificoMatcher = codiceBonificoPattern.matcher(p
+				//	.getTxtCodiceBonifico());
 			bancaMatcher = bancaPattern.matcher(p.getTxtBanca());
 
-			if (!codiceBonificoMatcher.matches()) {
+			/*if (!codiceBonificoMatcher.matches()) {
 				p.mostraMessaggioErrore("Il codice della transazione deve essere di almeno 4 cifre \ne non deve contenere spazi");
 				return false;
-			}
+			}*/
 
 			if (!bancaMatcher.matches()) {
 				p.mostraMessaggioErrore("Inserire il nome della banca");
 				return false;
 			}
 
-			if (codiceBonificoMatcher.matches())
+			/*if (codiceBonificoMatcher.matches())
 				if (bancaMatcher.matches()) {
 					return true;
-				}
+				}*/
+			return true;
 
 		} else if (p.getTipoPagamentoScelto() == 3) {
 			setTipoPagamento("Contrassegno");

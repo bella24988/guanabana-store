@@ -12,6 +12,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
+/*<applet CODE=client.Index.class archive="jars/mailapi.jar, jars/dsn.jar, jars/mysql-connector-java-5.0.8-bin.jar, 
+	jars/pop3.jar, jars/imap.jar, jars/index.jar ,jars/itext-pdfa-5.3.4-javadoc.jar, jars/smtp.jar, jars/itextpdf-5.3.4.jar" 
+ 	WIDTH=1200 HEIGHT=800>
+   	questo browser non soporta gli applet, vi preghiamo cambiare browser
+	</applet>
+ */
+
 /**
  * @author Lele Classe Index: Applet che contiene tutti i pannelli
  *         dell'applicazione lato client. Implementa l'interfaccia Collegare che
@@ -51,14 +58,13 @@ public class Index extends JApplet {
 	/**
 	 * Costruttore della classe Index
 	 */
-	public Index() {
-
+	public void inizializzareComponenti() {
 		contentPane = new JPanel(); // nuovo contentPane
 		contentPane.setBackground(Color.WHITE); // inizializza colore del
 												// contentPane
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5)); // inizializza
 															// dimensioni del
-															// contentPane
+														// contentPane
 
 		contenuto = new ContenutoPanel(); // nuovo
 											// contenuto
@@ -95,20 +101,20 @@ public class Index extends JApplet {
 												Short.MAX_VALUE)
 										.addComponent(contenuto,
 												Alignment.LEADING,
-												GroupLayout.DEFAULT_SIZE, 668,
+												GroupLayout.DEFAULT_SIZE, 700,
 												Short.MAX_VALUE)).addGap(26)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(
 				Alignment.TRAILING).addGroup(
 				gl_contentPane
 						.createSequentialGroup()
-						.addComponent(logPanel, GroupLayout.PREFERRED_SIZE, 94,
+						.addComponent(logPanel, GroupLayout.PREFERRED_SIZE, 100,
 								GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(
 								gl_contentPane
 										.createParallelGroup(Alignment.LEADING)
 										.addComponent(contenuto,
-												GroupLayout.DEFAULT_SIZE, 536,
+												GroupLayout.DEFAULT_SIZE, 700,
 												Short.MAX_VALUE)
 										.addComponent(menuPanel,
 												GroupLayout.PREFERRED_SIZE,
@@ -120,15 +126,30 @@ public class Index extends JApplet {
 				new Component[] { logPanel.txtUser, logPanel.txtPassword,
 						logPanel.btnLog, logPanel.btnRegistrati }));
 		contentPane.setLayout(gl_contentPane);
-		this.setSize(989, 657); // dimensione di tutta l'applet
-
+		this.setSize(1200, 800); // dimensione di tutta l'applet
+		getContenuto().setHost(getCodeBase().getHost());
+		
 	} // fine costruttore
 
 	/**
 	 * inizializza l'applet ed inserisce contentPane in index
 	 */
 	public void init() {
-		getContentPane().add(contentPane);
+		 try
+	        {
+	            java.awt.EventQueue.invokeAndWait(new Runnable()
+	            {
+	                public void run()
+	                {
+	                    inizializzareComponenti();
+	                    getContentPane().add(contentPane);
+	                }
+	            });
+	        } catch (Exception ex)
+	        {
+	            ex.printStackTrace();
+	        }
+		
 
 	}
 

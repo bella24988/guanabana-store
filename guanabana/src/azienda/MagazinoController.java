@@ -18,7 +18,6 @@ public class MagazinoController implements ActionListener{
 	private Ordine[] ordini;
 	private SistemaGestioneFinestra sistemaGestioneFinestra;
 
-
 	public MagazinoController(SistemaGestioneFinestra sisFinestra) {
 		this.setSistemaGestioneFinestra(sisFinestra);
 	}
@@ -45,9 +44,6 @@ public class MagazinoController implements ActionListener{
 		   
 		}else if (e.getActionCommand().compareTo("Magazzino")==0) {
 			refreshOrdini();
-		}else if (e.getActionCommand().compareTo("Asse")==0){
-			magazzinoPanel.setEnabled(false);
-			
 		}
 		
 	}

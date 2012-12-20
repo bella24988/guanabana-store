@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map>
-	<bundle bundleID="1987" localization="OSGI-INF/l10n/bundle" name="Sun Microsystems&apos; JDBC Driver for MySQL" project="guanabana" provider="Sun Microsystems Inc.">
+	<bundle bundleID="2268" localization="OSGI-INF/l10n/bundle" name="Sun Microsystems&apos; JDBC Driver for MySQL" project="guanabana" provider="Sun Microsystems Inc.">
 		<library name="."/>
 	</bundle>
 </map>

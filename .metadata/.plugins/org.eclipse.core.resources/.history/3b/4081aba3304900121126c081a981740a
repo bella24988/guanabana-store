@@ -1,0 +1,163 @@
+package modello;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+public class Fattura implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Fattura(Ordine ordine, String codice, String data) {
+		super();
+		this.ordine = ordine;
+		this.codice = codice;
+		this.data = data;
+	}
+
+	private Ordine ordine;
+	/**
+	 * @uml.property  name="codice"
+	 */
+	private String codice;
+
+	/**
+	 * Getter of the property <tt>codice</tt>
+	 * @return  Returns the codice.
+	 * @uml.property  name="codice"
+	 */
+	public String getCodice() {
+		return codice;
+	}
+
+	/**
+	 * Setter of the property <tt>codice</tt>
+	 * @param codice  The codice to set.
+	 * @uml.property  name="codice"
+	 */
+	public void setCodice(String codice) {
+		this.codice = codice;
+	}
+
+	/**
+	 * @uml.property  name="data"
+	 */
+	private String data;
+
+	/**
+	 * Getter of the property <tt>data</tt>
+	 * @return  Returns the data.
+	 * @uml.property  name="data"
+	 */
+	public String getData() {
+		return data;
+	}
+
+	/**
+	 * Setter of the property <tt>data</tt>
+	 * @param data  The data to set.
+	 * @uml.property  name="data"
+	 */
+	public void setData(String data) {
+		this.data = data;
+	}
+
+		
+	/**
+	 */
+	public void generareFattura(String filename) throws DocumentException, IOException {
+        // step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        Image image = Image.getInstance ("icons/logoGpiccollo.jpg");
+       
+        
+        
+        Font style=new Font();
+        style.setSize(20);
+        style.setStyle("bold");
+        Paragraph titolo = new Paragraph("Fattura", style);
+        
+        Paragraph intestazione = new Paragraph("Nome cliente:  "+ordine.getCliente().getNome()+" "+ordine.getCliente().getCognome()+"\n" +
+        		"C.F. "+ordine.getCliente().getCf()+"\nIndirizzo: "+ordine.getCliente().getIndirizzo()+"\nTelefono: "+ordine.getCliente().getTelefono());
+        intestazione.setFont(FontFactory.getFont(FontFactory.TIMES, 10));
+        titolo.setAlignment(Element.ALIGN_LEFT);
+        
+        Paragraph spazioLinea = new Paragraph("\n");
+        
+        PdfPTable table = new PdfPTable(3);
+       
+		Paragraph titoloTabella = new Paragraph("Detagli della Fattura");
+		titoloTabella.setAlignment(Element.ALIGN_CENTER);
+		
+		PdfPCell cell = new PdfPCell(titoloTabella);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setColspan(3);
+		table.addCell(cell);
+		
+		table.addCell("Codice");
+		table.addCell("Nome");
+		table.addCell("Prezzo");
+		for(int i=0;i<ordine.getComputer().getConfigurazione().getComponentiScelti().length;i++){
+			table.addCell(ordine.getComputer().getConfigurazione().getComponentiScelti()[i].getCodice());
+			table.addCell(ordine.getComputer().getConfigurazione().getComponentiScelti()[i].getNome());
+			table.addCell(String.valueOf(ordine.getComputer().getConfigurazione().getComponentiScelti()[i].getPrezzo()));
+		}
+					
+		PdfPCell cell2 = new PdfPCell(new Paragraph("Totale"));
+		cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell2.setColspan(2);
+		table.addCell(cell2);
+		
+		table.addCell(String.valueOf(ordine.getPrezzo()));
+		
+		Paragraph piePagina = new Paragraph("Grazie per l'acquisto! \nData: "+getData());
+		piePagina.setAlignment(Element.ALIGN_CENTER);
+		
+		PdfPTable tablePagamento = new PdfPTable(2);
+		table.addCell("Tipo pagamento: ");
+		table.addCell(ordine.getPagamento().getTipoPagamento());
+		
+		document.add(image);
+        document.add(titolo);
+        document.add(intestazione);
+        document.add(spazioLinea);
+        document.add(table);
+        document.add(spazioLinea);
+        document.add(piePagina);
+        
+        // step 5
+        document.close();
+        java.awt.Desktop.getDesktop().open(new File(filename));
+    }
+
+	public Ordine getOrdine() {
+		return ordine;
+	}
+
+	public void setOrdine(Ordine ordine) {
+		this.ordine = ordine;
+	}
+
+	
+}

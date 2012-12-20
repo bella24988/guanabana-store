@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<object classid="java:client.Index.class" type="application/x-java-applet" height="800" width="900">
+</object>
+
+</body>
+</html>

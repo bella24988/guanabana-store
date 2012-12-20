@@ -49,7 +49,7 @@ public class Cliente implements Serializable{
 	/**
 		 */			
 	public Cliente(String cf, String nome, String cognome, String email,
-	String password, String indirizzo, String telefono) {
+	 String indirizzo, String telefono,String password) {
 		super();
 		this.cf = cf;
 		this.nome = nome;
@@ -192,6 +192,15 @@ public class Cliente implements Serializable{
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getMessaggio(){
+		String messaggio = "<p class=MsoNormal><span style='font-size:14.0pt'>"+getNome()+" "+getCognome()+
+				", Grazie per aversi registrato al nostro sito!</span></p>"+
+				"<p class=MsoNormal><span style='font-size:10.0pt'>Utente: "+getEmail()+"</span></p>"+
+				"<p class=MsoNormal><span style='font-size:10.0pt'>Password: "+getPassword()+"</span></p>";
+		return messaggio;
+		
 	}
 
 		

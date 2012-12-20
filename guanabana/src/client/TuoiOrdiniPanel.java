@@ -169,6 +169,17 @@ public class TuoiOrdiniPanel extends JPanel {
 				add(btnAnnullaOrdine, gbc_btnAnnulla);
 				btnAnnullaOrdine.setActionCommand("Annu" + indiceArray);
 				btnAnnullaOrdine.addActionListener(tOrdinicontroller);
+			}else if (ordini[indiceArray].getStato().compareTo("SPEDITO") == 0
+					&& carrello == false && ordini[indiceArray].getPagamento().isConfermato()==true){
+				JButton btnAnnullaOrdine = new JButton("Vedi fattura");
+				btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
+				GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
+				gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
+				gbc_btnAnnulla.gridx = 5;
+				gbc_btnAnnulla.gridy = numRow;
+				add(btnAnnullaOrdine, gbc_btnAnnulla);
+				btnAnnullaOrdine.setActionCommand("Fatt" + indiceArray);
+				btnAnnullaOrdine.addActionListener(tOrdinicontroller);
 			}
 
 			if (carrello == true) {

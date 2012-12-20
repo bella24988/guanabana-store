@@ -338,7 +338,7 @@ public class Ordine implements Serializable{
 				"class=SpellE>"+pagamento.getTipoPagamento()+"</span><o:p></o:p></span></p>"+
 				detagliPagamento(pagamento)+
 				"<p class=MsoNormal><span style='font-size:18.0pt'>Codice pagamento: "+pagamento.getNumPagamento()+"</span></p>"+
-				"<p class=MsoNormal><span style='font-size:18.0pt'>Stato del pagamento: "+pagamento.isConfermato()+"</span></p>"+
+				"<p class=MsoNormal><span style='font-size:18.0pt'>Stato del pagamento: "+statoPagamento(pagamento.isConfermato())+"</span></p>"+
 				"<p class=MsoNormal align=center style='text-align:center'><span"+
 				"style='font-size:18.0pt'><o:p>&nbsp;</o:p></span></p>"+
 				
@@ -357,6 +357,12 @@ public class Ordine implements Serializable{
 		
 	}
 	
+	private String statoPagamento(boolean confermato) {
+		 if(confermato){
+			 return "Pagato";
+		 }else return "Non pagato";
+	}
+
 	private String forMancante(){
 		String forMancante="";
 		for(int i = 0; i< computer.getConfigurazione().getComponentiScelti().length;i++){

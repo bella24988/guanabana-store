@@ -1,0 +1,125 @@
+package azienda;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import javax.swing.JButton;
+import modello.Computer;
+import java.awt.Insets;
+
+/**
+ * @author Veronica
+ */
+public class AssablaComputer extends JPanel{
+
+	private MagazinoController magazinoController;
+	private Computer computer;
+	public AssablaComputer(MagazinoController magazinoController,
+			Computer computer) {
+		super();
+		this.magazinoController = magazinoController;
+		this.computer = computer;
+		
+		//Numeri massimi per controllare gli indici
+		int numComponenti = computer.getConfigurazione().getComponentiScelti().length;
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[5];
+		gridBagLayout.rowHeights = new int[numComponenti * 2];
+		gridBagLayout.columnWeights = new double[4];
+		gridBagLayout.rowWeights = new double[numComponenti + 2];
+		setLayout(gridBagLayout);
+
+		JLabel lblITuoiOrdini = new JLabel("Componenti del computer: "+ computer.getNome());
+		lblITuoiOrdini.setFont(new Font("Tahoma", Font.BOLD, 12));
+		GridBagConstraints gbc_lblITuoiOrdini = new GridBagConstraints();
+		gbc_lblITuoiOrdini.insets = new Insets(0, 0, 5, 0);
+		gbc_lblITuoiOrdini.gridwidth = 3;
+		gbc_lblITuoiOrdini.gridx = 0;
+		gbc_lblITuoiOrdini.gridy = 0;
+		add(lblITuoiOrdini, gbc_lblITuoiOrdini);
+
+		JLabel lblData = new JLabel("Codice");
+		lblData.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblData = new GridBagConstraints();
+		gbc_lblData.insets = new Insets(0, 0, 5, 5);
+		gbc_lblData.gridx = 0;
+		gbc_lblData.gridy = 1;
+		add(lblData, gbc_lblData);
+
+		JLabel lblNOrdine = new JLabel("Nome del Componente");
+		lblNOrdine.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblNOrdine = new GridBagConstraints();
+		gbc_lblNOrdine.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNOrdine.gridx = 1;
+		gbc_lblNOrdine.gridy = 1;
+		add(lblNOrdine, gbc_lblNOrdine);
+
+		JLabel lblComputer = new JLabel("Trovato?");
+		lblComputer.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblComputer = new GridBagConstraints();
+		gbc_lblComputer.insets = new Insets(0, 0, 5, 5);
+		gbc_lblComputer.gridx = 2;
+		gbc_lblComputer.gridy = 1;
+		add(lblComputer, gbc_lblComputer);
+
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBackground(Color.GRAY);
+		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
+		gbc_separator_1.insets = new Insets(0, 0, 5, 0);
+		gbc_separator_1.fill = GridBagConstraints.BOTH;
+		gbc_separator_1.gridwidth = 3;
+		gbc_separator_1.gridx = 0;
+		gbc_separator_1.gridy = 2;
+		add(separator_1, gbc_separator_1);
+
+		int numRow = 4;
+		for (int indiceArray = 0; indiceArray < numComponenti; indiceArray++) {
+			
+			JLabel lblDatax = new JLabel(computer.getConfigurazione().getComponentiScelti()[indiceArray].getCodice());
+			GridBagConstraints gbc_lblDatax = new GridBagConstraints();
+			gbc_lblDatax.insets = new Insets(0, 0, 5, 5);
+			gbc_lblDatax.gridx = 0;
+			gbc_lblDatax.gridy = numRow;
+			add(lblDatax, gbc_lblDatax);
+
+			JLabel lblNOrdinex = new JLabel(computer.getConfigurazione().getComponentiScelti()[indiceArray].getNome());
+			GridBagConstraints gbc_lblNOrdinex = new GridBagConstraints();
+			gbc_lblNOrdinex.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNOrdinex.gridx = 1;
+			gbc_lblNOrdinex.gridy = numRow;
+			add(lblNOrdinex, gbc_lblNOrdinex);
+
+			
+
+			
+
+			JSeparator separator = new JSeparator();
+			separator.setBackground(Color.GRAY);
+			GridBagConstraints gbc_separator = new GridBagConstraints();
+			gbc_separator.gridwidth = 3;
+			gbc_separator.fill = GridBagConstraints.BOTH;
+			gbc_separator.insets = new Insets(0, 0, 0, 5);
+			gbc_separator.gridx = 0;
+			gbc_separator.gridy = numRow + 1;
+			add(separator, gbc_separator);
+
+			numRow = numRow + 2;
+	}
+		JButton btnAnnullaOrdine = new JButton("Computer Finito");
+		btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
+		gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnnulla.gridx = 3;
+		gbc_btnAnnulla.gridy = numRow;
+		add(btnAnnullaOrdine, gbc_btnAnnulla);
+		btnAnnullaOrdine.setActionCommand("Assamblato");
+		btnAnnullaOrdine.addActionListener(magazinoController);
+	}
+	
+}

@@ -6,9 +6,35 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
-<intAttribute key="org.eclipse.jdt.launching.APPLET_HEIGHT" value="200"/>
-<stringAttribute key="org.eclipse.jdt.launching.APPLET_NAME" value=""/>
-<intAttribute key="org.eclipse.jdt.launching.APPLET_WIDTH" value="200"/>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<intAttribute key="org.eclipse.jdt.launching.APPLET_HEIGHT" value="800"/>
+<stringAttribute key="org.eclipse.jdt.launching.APPLET_NAME" value="Index"/>
+<mapAttribute key="org.eclipse.jdt.launching.APPLET_PARAMETERS">
+<mapEntry key="archive" value="jars/mailapi.jar,jars/dsn.jar,jars/mysql-connector-java-5.0.8-bin.jar,jars/pop3.jar,jars/index.jar,jars/imap.jar,jars/itext-pdfa-5.3.4-javadoc.jar,jars/smtp.jar,jars/itextpdf-5.3.4.jar,jars/server_guanabana.jar"/>
+</mapAttribute>
+<intAttribute key="org.eclipse.jdt.launching.APPLET_WIDTH" value="1200"/>
+<listAttribute key="org.eclipse.jdt.launching.CLASSPATH">
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/javamail-1.4.5/lib/dsn.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/javamail-1.4.5/lib/imap.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/javamail-1.4.5/lib/mailapi.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/javamail-1.4.5/lib/pop3.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/javamail-1.4.5/lib/smtp.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itext-pdfa-5.3.4-javadoc.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itext-pdfa-5.3.4-sources.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itext-pdfa-5.3.4.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itext-xtra-5.3.4-javadoc.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itext-xtra-5.3.4-sources.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itext-xtra-5.3.4.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itextpdf-5.3.4-javadoc.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itextpdf-5.3.4-sources.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry externalArchive=&quot;/Users/Veronica/Documents/allDocuments/jars/itext-5.3.4/itextpdf-5.3.4.jar&quot; path=&quot;2&quot; type=&quot;2&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry containerPath=&quot;org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/CDC-1.0%Foundation-1.0&quot; path=&quot;1&quot; type=&quot;4&quot;/&gt;&#10;"/>
+<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry id=&quot;org.eclipse.jdt.launching.classpathentry.defaultClasspath&quot;&gt;&#10;&lt;memento exportedEntriesOnly=&quot;false&quot; project=&quot;guanabana&quot;/&gt;&#10;&lt;/runtimeClasspathEntry&gt;&#10;"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="client.Index"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="guanabana"/>
 </launchConfiguration>

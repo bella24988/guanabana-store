@@ -64,7 +64,7 @@ public class VenditeEvaseController implements ActionListener, ItemListener{
 				veEvasePanel.getOrdini()[btnConferma.getMnemonic()].getPagamento().setConfermato(true);
 				clientAzienda.confermarePagamento(true, veEvasePanel
 						.getOrdini()[btnConferma.getMnemonic()]
-						.getNumeroOrdine());
+						.getPagamento().getNumPagamento());
 				veEvasePanel.disabilitaConferma(btnConferma.getMnemonic());
 			} else {
 				veEvasePanel.getOrdini()[btnConferma.getMnemonic()].getPagamento().setConfermato(false);

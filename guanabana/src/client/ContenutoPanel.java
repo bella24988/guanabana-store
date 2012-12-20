@@ -1,5 +1,6 @@
 package client;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modello.Cliente;
@@ -12,6 +13,14 @@ import java.awt.Color;
 import java.io.IOException;
 
 
+/**
+ * @author Veronica
+ *
+ */
+/**
+ * @author Veronica
+ *
+ */
 public class ContenutoPanel extends JPanel {
 
 	/**
@@ -61,14 +70,13 @@ public class ContenutoPanel extends JPanel {
 	 */
 	private Pagamento pagamento;
 	private String host;
-	private Index index;
+
 
 	public ContenutoPanel() {
 		super();
 		setBackground(Color.white);
 		setForeground(new Color(0, 0, 0));
 		this.setAttessaCompra(false);
-		// this.setHost(index.getCodeBase().getHost());
 	}
 
 	/**
@@ -95,7 +103,6 @@ public class ContenutoPanel extends JPanel {
 		add(registratiView);
 		registratiView.setVisible(true);
 		registratiView.conoscePanel(panel);
-		// modelloView.setVisible(false);
 	}
 
 	public void nascondeFormularioRegistrati() {
@@ -109,16 +116,13 @@ public class ContenutoPanel extends JPanel {
 		this.removeAll();
 		pulisceSchermo();
 		modelloView = new ModelloView();
-		modelloView.setVisible(false);
 		add(modelloView);
 		modelloView.setVisible(true);
-
-		// nascondeFormularioRegistrati();
 		modelloView = new ModelloView();
 		add(modelloView);
-
 		modelloView.mostraButtons(num, computers, tipo);
 		modelloView.setVisible(true);
+		modelloView.setBackground(Color.white);
 		modelloView.setContenutoPanel(contenutoPanel);
 	}
 
@@ -144,7 +148,7 @@ public class ContenutoPanel extends JPanel {
 		pulito = new JPanel();
 		pulito.setVisible(false);
 		pulito.setBackground(Color.white);
-		pulito.setSize(800, 800);
+		pulito.setSize(1000, 900);
 		this.add(pulito);
 		pulito.setVisible(true);
 	}
@@ -335,6 +339,9 @@ public class ContenutoPanel extends JPanel {
 		tuoiOrdiniPanel.setVisible(true);
 	}
 
+	/**
+	 * 
+	 */
 	public void mostraAnnullaOrdine() {
 		removeAll();
 		pulisceSchermo();
@@ -349,8 +356,6 @@ public class ContenutoPanel extends JPanel {
 	 * @return the host
 	 */
 	public String getHost() {
-		// host = index.getCodeBase().getHost();
-		host = "localhost";
 		return host;
 	}
 

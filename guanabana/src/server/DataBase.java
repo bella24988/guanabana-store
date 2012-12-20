@@ -82,14 +82,14 @@ public class DataBase {
 		
 		/*Prepared Statement*/
 		setStConsultaLog(con.prepareStatement("select * from clienti where email = UPPER(?) and password = ? ;"));
-		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
+		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), ?);"));
 		setStConsultaComputer(con.prepareStatement("select nome,prezzo from standard_computer where nome like concat(?,'%')"));
 		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));	
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
 		setStMaxPagamento(con.prepareStatement("select max(codice) from pagamenti;"));
 		setStInsertPagamento(con.prepareStatement("insert into pagamenti (codice, ordine_codice, totale,tipo, data) values (?,?,?,UPPER(?),NOW())"));
 		setStAggiornaStatoOrdine(con.prepareStatement("Update ordini set stato = ? where codice=?;"));
-		setStConsultaDipendente(con.prepareStatement("select nome, cognome, dipartimento from dipendenti where iduser=? and password=?;"));
+		setStConsultaDipendente(con.prepareStatement("select nome, cognome, dipartimento from dipendenti where iduser=? and psw=?;"));
 		
 	}/*End of the constructor*/
 	
@@ -171,7 +171,6 @@ public class DataBase {
 		result = stModello.executeQuery("select id, nome, prezzo from componenti where "+tipo+" = 1");
 		result.last();
 		num = result.getRow();
-		System.out.println(num); //test
 		return num;
 	}
 	public String[][] getComponentiModello(String tipo) throws SQLException{
@@ -307,7 +306,6 @@ public class DataBase {
 			
 			stNuovaOrdine.executeUpdate();
 		} catch (SQLException e) {
-			System.out.print("Errore al db "+e);
 			e.printStackTrace();
 		}
 		
@@ -570,9 +568,10 @@ public class DataBase {
 			}
 			
 			//chiama lista di ordini
-			ordini = new String[j][7];
+			ordini = new String[j][9];
 			result = stConsultaOrdini.executeQuery("select distinct(ordini.codice), ordini.data, ordini.totale, stato, tipo, nome_computer," +
-					" pagamenti.codice from pagamenti, ordini where stato<>'ANNULLATO' and stato<>'ORDINATO' and ordini.codice = ordine_codice and cliente_CF = '"+cf+"' order by ordini.data");
+					" pagamenti.codice, standard_computer.prezzo, confermato from pagamenti, ordini, standard_computer where stato<>'ANNULLATO' and stato<>'ORDINATO' and ordini.codice = ordine_codice " +
+					"and nome = nome_computer and cliente_CF = '"+cf+"' order by ordini.data");
 			j=0;
 			while(result.next()){
 				ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
@@ -581,7 +580,9 @@ public class DataBase {
 				ordini[j][3]=result.getString(4);//stato è un string
 				ordini[j][4]=result.getString(5); // tipo è un string
 				ordini[j][5]=result.getString(6);// nomecomputer è un string
-				ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice è un float
+				ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice 
+				ordini[j][7]=result.getString(8);
+				ordini[j][8]=result.getString(9);
 				j++;
 			}
 		} catch (SQLException e) {
@@ -617,7 +618,7 @@ public class DataBase {
 						ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale è un float
 						ordini[j][3]=result.getString(4);//stato è un string
 						ordini[j][4]=result.getString(5);// nomecomputer è un string
-						System.out.println(ordini[j][0]);
+						
 						j++;
 					}
 				} catch (SQLException e) {
@@ -672,7 +673,7 @@ public class DataBase {
 			}
 			
 		}
-		
+		System.out.println("Impiegato "+datiImpiegato[0]);
 		return datiImpiegato;
 		
 	}
@@ -691,9 +692,10 @@ public class DataBase {
 					}
 					
 					//chiama lista di ordini
-					ordini = new String[j][9];
+					ordini = new String[j][10];
 					result = stConsultaOrdini.executeQuery("select distinct(ordini.codice), ordini.data, ordini.totale, stato, tipo, nome_computer," +
-							"pagamenti.codice, cliente_CF, confermato from pagamenti, ordini where stato='"+stato+"' and ordini.codice = ordine_codice order by ordini.data");
+							"pagamenti.codice, cliente_CF, confermato, standard_computer.prezzo from pagamenti, ordini, standard_computer where stato='"+stato+"' and " +
+									"ordini.codice = ordine_codice and nome_computer = nome order by ordini.data");
 					j=0;
 					while(result.next()){
 						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice è un intero
@@ -705,6 +707,7 @@ public class DataBase {
 						ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice è un float
 						ordini[j][7]=result.getString(8);
 						ordini[j][8]=String.valueOf(result.getByte(9));
+						ordini[j][9]=String.valueOf(result.getString(10));
 						j++;
 					}
 				} catch (SQLException e) {
@@ -736,9 +739,9 @@ public class DataBase {
 		
 	}
 
-	public void confermaPagamento(boolean valore, int codiceOrdine) throws SQLException {
+	public void confermaPagamento(boolean valore, int codicePagamento) throws SQLException {
 		Statement stConferma = con.createStatement();
-		stConferma.executeUpdate("update pagamenti set confermato="+valore+" where ordine_codice='"+codiceOrdine+"';");
+		stConferma.executeUpdate("update pagamenti set confermato="+valore+" where codice='"+codicePagamento+"';");
 	}
 	
 	public String cercaClienteDalOrdine(int numOrdine) throws SQLException{
@@ -749,6 +752,37 @@ public class DataBase {
 			cf=result.getString(1);
 			}
 		return cf;
+	}
+	
+	public String[] cercaFattura(int codiceOrdine) throws SQLException{
+		String[] campiFattura = new String[2];
+		
+		Statement stFattura = con.createStatement();
+		ResultSet result =stFattura.executeQuery("SELECT numero, data_emissione FROM guanabanadb.fattura where cod_ordine="+codiceOrdine+";");
+		while(result.next()){
+			campiFattura[0]=result.getString(1);
+			campiFattura[1]=result.getString(2);
+		}
+		
+		return campiFattura;
+		
+	}
+	
+	public String[] creaFattura(int codiceOrdine) throws SQLException{
+		
+		Statement stFattura = con.createStatement();
+		stFattura.executeUpdate("Insert into fattura (cod_ordine) values("+codiceOrdine+");");
+		
+		return cercaFattura(codiceOrdine);
+		
+	}
+
+	public void cancellaPagamento(String tipoPagamento, int numPagamento) throws SQLException {
+		java.sql.CallableStatement cs = null;
+		cs = con.prepareCall("{call deleteBonifico(?, ?)}");
+		cs.setInt(1, numPagamento);
+		cs.setString(2, tipoPagamento);
+		cs.executeQuery();
 	}
 
 }

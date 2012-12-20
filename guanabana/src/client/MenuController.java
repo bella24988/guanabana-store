@@ -4,12 +4,7 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import modello.Computer;
-import modello.Desktop;
-import modello.Laptop;
-import modello.Server;
-
 import client.ContenutoPanel;
 import client.MenuPanel;
 
@@ -83,11 +78,8 @@ public class MenuController  implements ActionListener{
 			modelli = servizioClientModelli.cercaModelli(tipoComputer,numComputers);
 			numComputers = modelli.length;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//contenuto.nascondeModelli();
 		contenuto.mostraModelli(numComputers,modelli, tipoComputer, contenuto);
 	}
 	

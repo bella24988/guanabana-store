@@ -13,3 +13,26 @@
 1355829389436	Encapsulate field 'ordini'
 1355829455053	Encapsulate field 'spedizioneController'
 1355830204766	Encapsulate field 'spedizionePanel'
+1355836411762	Delete element
+1355838426844	Delete element
+1355838505051	Rename type 'fattura'
+1355841633081	Encapsulate field 'ordine'
+1355844005024	Delete element
+1355848125978	Rename local variable 'mySizeSpecification'
+1355862992814	Rename local variable 'codiceOrdine'
+1355863063439	Rename local variable 'codiceOrdine'
+1355866911520	Convert local variable 'serverSocket' to field
+1355917174324	Delete element
+1355917199960	Copy compilation unit
+1355918118513	Rename type 'RegistratiView'
+1355920105985	Rename field 'txtEmail'
+1355920455826	Rename method 'setTxtEmail'
+1355921528444	Rename local variable 'mntmMagazzino'
+1355948982205	Delete element
+1355949007786	Delete element
+1355951500429	Move file
+1355951968023	Delete element
+1355955778165	Rename resource 'Index.html'
+1356018165471	Delete elements
+1356018175236	Delete elements
+1356018191344	Delete elements
