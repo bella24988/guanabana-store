@@ -105,16 +105,16 @@
 		<item value="600" key="width"/>
 	</section>
 	<section name="FatJarPackageWizard">
-		<item value="/Users/Veronica/Desktop/server.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
-		<item value="ServizioServer - guanabana" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="/Users/Veronica/Desktop/Controllo_Vendite_Guanabana.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="Main - guanabana" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
 		<item value="/Users/Veronica/Documents/workspace/guanabana-store" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
 		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
 		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/Users/Veronica/Desktop/Controllo_Vendite_Guanabana.jar"/>
 			<item value="/Users/Veronica/Desktop/server.jar"/>
 			<item value="guanabana/bin/jars/server_guanabana.jar"/>
 			<item value="/Users/Veronica/Desktop/server_guanabana.jar"/>
-			<item value="/Users/Veronica/Desktop/Controllo_Vendite_Guanabana.jar"/>
 			<item value="/Users/Veronica/Desktop/index.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
