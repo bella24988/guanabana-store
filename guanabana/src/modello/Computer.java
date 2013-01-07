@@ -3,38 +3,28 @@ package modello;
 import java.io.Serializable;
 
 /**
+ * Classe Computer: Modello di un computer in vendita.
+ * Implementa Serializable.
+ * @author Gabriele
  * @author  Veronica
+ * @version 3.0 Jan 3, 2013.
  */
 public abstract class Computer implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8391044426886288876L;
 	/**
-	 * @uml.property  name="tipo"
+	 * Dichiarazione delle variabili
 	 */
-	private String tipo;
-	/** 
-	 * @uml.property name="configurazioneStandard"
-	 * @uml.associationEnd multiplicity="(1 1)" inverse="computer:modello.Configurazione"
-	 * @uml.association name="configurazioneStandard"
-	 */
-	private Configurazione configurazione;
-	/**
-	 * @uml.property  name="nome"
-	 */
-	protected String nome;
-	/**
-	 * @uml.property  name="prezzo"
-	 */
-	protected float prezzo;
-	/** 
-	 * @uml.property name="configurazioneScelta"
-	 * @uml.associationEnd multiplicity="(0 -1)"
-	 * @uml.association name="configurazione scelta dal cliente"
-	 */
+	private String tipo;					//tipo di computer
+	private Configurazione configurazione;	//configurazione dei componenti del computer
+	protected String nome;					//nome del computer
+	protected float prezzo;					//prezzo del computer
 	
+	/**
+	 * Primo costruttore della classe Computer, setta nome e prezzo.
+	 * @param nome				Nome del computer
+	 * @param prezzo			Prezzo del computer
+	 */
 	public Computer(String nome, float prezzo) {
 		super();
 		this.nome = nome;
@@ -43,97 +33,86 @@ public abstract class Computer implements Serializable{
 	
 	
 
+	/**
+	 * Secondo costruttore della classe computer, setta il nome.
+	 * @param nome				Nome del computer
+	 */
 	public Computer(String nome) {
 		super();
 		this.nome = nome;
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Metodo per rendere visibile un computer
+	 */
+	public void mostrareComputer(){
+	}
 
 
 	/**
-	 * Getter of the property <tt>nome</tt>
-	 * @return  Returns the nome.
-	 * @uml.property  name="nome"
+	 * Getter of nome
+	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * Setter of the property <tt>nome</tt>
-	 * @param nome  The nome to set.
-	 * @uml.property  name="nome"
+	 * Setter of nome
+	 * @param nome
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * Getter of the property <tt>tipo</tt>
-	 * @return  Returns the tipo.
-	 * @uml.property  name="tipo"
+	 * Getter of tipo 
+	 * @return tipo
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * Setter of the property <tt>tipo</tt>
-	 * @param tipo  The tipo to set.
-	 * @uml.property  name="tipo"
+	 * Setter of tipo
+	 * @param tipo
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
 	/**
-	 * Getter of the property <tt>prezzo</tt>
-	 * @return  Returns the prezzo.
-	 * @uml.property  name="prezzo"
+	 * Getter of prezzo
+	 * @return prezzo
 	 */
 	public float getPrezzo() {
 		return prezzo;
 	}
 
 	/**
-	 * Setter of the property <tt>prezzo</tt>
-	 * @param prezzo  The prezzo to set.
-	 * @uml.property  name="prezzo"
+	 * Setter of prezzo
+	 * @param prezzo
 	 */
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
 
-		
-		/**
-		 */
-		public void mostrareComputer(){
-		}
+	/** 
+	 * Getter of configurazioneStandard
+	 * @return configurazione
+	 */
+	public Configurazione getConfigurazione() {
+		return configurazione;
+	}
 
-
-		/** 
-		 * Getter of the property <tt>configurazioneStandard</tt>
-		 * @return  Returns the configurazione.
-		 * @uml.property  name="configurazioneStandard"
-		 */
-		public Configurazione getConfigurazione() {
-			return configurazione;
-		}
-
-
-
-		/** 
-		 * Setter of the property <tt>configurazioneStandard</tt>
-		 * @param configurazione  The configurazione to set.
-		 * @uml.property  name="configurazioneStandard"
-		 */
-		public void setConfigurazione(
-				Configurazione configurazione) {
-					this.configurazione = configurazione;
-				}
-		
-		
-
-	
+	/** 
+	 * Setter of configurazioneStandard
+	 * @param configurazione
+	 */
+	public void setConfigurazione(
+			Configurazione configurazione) {
+				this.configurazione = configurazione;
+			}
 
 }

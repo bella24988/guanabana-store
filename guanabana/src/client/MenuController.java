@@ -9,23 +9,28 @@ import client.ContenutoPanel;
 import client.MenuPanel;
 
 /**
- * @author  Veronica
+ * Classe MenuController: Controller del pannello che contiene i pulsanti di scelta fra i vari tipi di computer disponibili.
+ * Implementa ActionListener.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class MenuController  implements ActionListener{
 	
 	/**
-	 * @uml.property  name="menuAcquista"
-	 * @uml.associationEnd  
+	 * Dichiarazione delle variabili
 	 */
 	private MenuPanel menuAcquista; 
-	private String tipoComputer = "";
-	/**
-	 * @uml.property  name="contenuto"
-	 * @uml.associationEnd  
-	 */
 	private ContenutoPanel contenuto;
+	
+	private String tipoComputer = "";
 
 	
+	/**
+	 * Costruttore del controller dei tasti di scelta fra i tipi di computers
+	 * @param menuAcquista
+	 * @param contenuto
+	 */
 	public MenuController(MenuPanel menuAcquista, ContenutoPanel contenuto) {
 		this.setMenuAcquista(menuAcquista);
 		this.setContenuto(contenuto);
@@ -33,6 +38,7 @@ public class MenuController  implements ActionListener{
 
 
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		//Equals ignore case per chiamare la funzione del button.
 		if (e.getActionCommand().equalsIgnoreCase("Acquista Laptop")){
@@ -68,13 +74,18 @@ public class MenuController  implements ActionListener{
 
 
 
+	/**
+	 * Trova e mostra i modelli disponibili in base al tipo di computer selezionato
+	 * @param tipoComputer
+	 * @throws ClassNotFoundException
+	 */
 	public void gesticeModelli(String tipoComputer) throws ClassNotFoundException{
 
-		Client servizioClientModelli;
+		ServizioClient servizioClientModelli;
 		Computer[] modelli = null;	
 		int numComputers =0;
 		try {
-			servizioClientModelli = new Client(contenuto.getHost());
+			servizioClientModelli = new ServizioClient(contenuto.getHost());
 			modelli = servizioClientModelli.cercaModelli(tipoComputer,numComputers);
 			numComputers = modelli.length;
 		} catch (IOException e) {
@@ -84,100 +95,35 @@ public class MenuController  implements ActionListener{
 	}
 	
 	/**
-	 * @return  the menuAcquista
-	 * @uml.property  name="menuAcquista"
+	 * Getter of menuAcquista
+	 * @return menuAcquista
 	 */
 	public MenuPanel getMenuAcquista() {
 		return menuAcquista;
 	}
 
-
-
 	/**
-	 * @param menuAcquista  the menuAcquista to set
-	 * @uml.property  name="menuAcquista"
+	 * Setter of menuAcquista
+	 * @param menuAcquista
 	 */
 	public void setMenuAcquista(MenuPanel menuAcquista) {
 		this.menuAcquista = menuAcquista;
 	}
 
-
-
 	/**
-	 * @return  the contenuto
-	 * @uml.property  name="contenuto"
+	 * Getter of contenuto
+	 * @return contenuto
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
-
-
 	/**
-	 * @param contenuto  the contenuto to set
-	 * @uml.property  name="contenuto"
+	 * Setter of contenuto
+	 * @param contenuto
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
-	}
-
-
-	/**
-	 * @uml.property  name="menuPanel"
-	 * @uml.associationEnd  
-	 */
-	private MenuPanel menuPanel;
-
-
-	/**
-	 * Getter of the property <tt>menuPanel</tt>
-	 * @return  Returns the menuPanel.
-	 * @uml.property  name="menuPanel"
-	 */
-	public MenuPanel getMenuPanel() {
-		return menuPanel;
-	}
-
-
-
-	/**
-	 * Setter of the property <tt>menuPanel</tt>
-	 * @param menuPanel  The menuPanel to set.
-	 * @uml.property  name="menuPanel"
-	 */
-	public void setMenuPanel(MenuPanel menuPanel) {
-		this.menuPanel = menuPanel;
-	}
-
-
-
-	/**
-	 * @uml.property  name="contenutoPanel"
-	 * @uml.associationEnd  
-	 */
-	private ContenutoPanel contenutoPanel;
-
-
-	/** 
-	 * Getter of the property <tt>contenutoPanel</tt>
-	 * @return  Returns the contenutoPanel.
-	 * @uml.property  name="contenutoPanel"
-	 */
-	public ContenutoPanel getContenutoPanel() {
-		return contenutoPanel;
-	}
-
-
-
-	/** 
-	 * Setter of the property <tt>contenutoPanel</tt>
-	 * @param contenutoPanel  The contenutoPanel to set.
-	 * @uml.property  name="contenutoPanel"
-	 */
-	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
-		this.contenutoPanel = contenutoPanel;
-	}
-	
-	
+	}	
 
 }

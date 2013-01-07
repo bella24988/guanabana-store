@@ -17,48 +17,42 @@ import javax.swing.SwingConstants;
 
 
 /**
- * Questa classe è un panello della interfaccia graffica, 
+ * Classe SalutoPanel: Pannello che conferma l'avvenuto login,
+ * salutando il cliente e restando visibile nella parte superiore del sito.
  * @author Veronica
- *
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013. 
  */
 public class SalutoPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Dichiarazione Variabile
-	 * 
-	 * @uml.property name="lblSaluto"
+	 * Dichiarazione delle variabili
 	 */
 	private JLabel lblSaluto; // Etichette
 	public JButton btnLogOut;
 	public JButton btnGestioneOrdine;
-	/**
-	 * @uml.property name="logController"
-	 * @uml.associationEnd
-	 */
-	private LogController logController;
-	/**
-	 * @uml.property name="nome"
-	 */
+	private JButton btnCarrello;
+	private JSeparator separator;
+	
 	private String nome;
-	/**
-	 * @uml.property name="panel"
-	 * @uml.associationEnd
-	 */
-	private LogPanel panel;
 
-	// COSTRUTTORE
-	public SalutoPanel(String nome, LogPanel panel) {
+	private LogController logController;
+	private LogPanel logPanel;
+
+	/**
+	 * Costruttore del pannello di saluto
+	 * @param nome
+	 * @param logPanel
+	 */
+	public SalutoPanel(String nome, LogPanel logPanel) {
 		setForeground(new Color(0, 100, 0));
 		setBackground(Color.WHITE);
-		this.setPanel(panel);
+		this.setLogPanel(logPanel);
 		this.setNome(nome);
 
 		// Controller
-		logController = new LogController(this, panel);
+		logController = new LogController(this, logPanel);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0,100, 140, 176, 100, 100, 0 };
 		gridBagLayout.rowHeights = new int[] { 23, 30, 0 };
@@ -127,110 +121,51 @@ public class SalutoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the nome
-	 * @uml.property name="nome"
+	 * Getter of nome
+	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
+	 * Setter of nome
 	 * @param nome
-	 *            the nome to set
-	 * @uml.property name="nome"
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @return the lblSaluto
-	 * @uml.property name="lblSaluto"
+	 * Getter of lblSaluto
+	 * @return lblSaluto
 	 */
 	public JLabel getLblSaluto() {
 		return lblSaluto;
 	}
 
 	/**
+	 * Setter of lblSaluto
 	 * @param lblSaluto
-	 *            the lblSaluto to set
-	 * @uml.property name="lblSaluto"
 	 */
 	public void setLblSaluto(JLabel lblSaluto) {
 		this.lblSaluto = lblSaluto;
 	}
 
 	/**
-	 * @return the panel
-	 * @uml.property name="panel"
-	 */
-	public LogPanel getPanel() {
-		return panel;
-	}
-
-	/**
-	 * @param panel
-	 *            the panel to set
-	 * @uml.property name="panel"
-	 */
-	public void setPanel(LogPanel panel) {
-		this.panel = panel;
-	}
-
-	/**
-	 * @uml.property name="logController1"
-	 * @uml.associationEnd
-	 */
-	private LogController logController1;
-
-	/**
-	 * Getter of the property <tt>logController1</tt>
-	 * 
-	 * @return Returns the logController1.
-	 * @uml.property name="logController1"
-	 */
-	public LogController getLogController1() {
-		return logController1;
-	}
-
-	/**
-	 * Setter of the property <tt>logController1</tt>
-	 * 
-	 * @param logController1
-	 *            The logController1 to set.
-	 * @uml.property name="logController1"
-	 */
-	public void setLogController1(LogController logController1) {
-		this.logController1 = logController1;
-	}
-
-	/**
-	 * @uml.property name="logPanel"
-	 * @uml.associationEnd
-	 */
-	private LogPanel logPanel;
-	private JButton btnCarrello;
-	private JSeparator separator;
-
-	/**
-	 * Getter of the property <tt>logPanel</tt>
-	 * 
-	 * @return Returns the logPanel.
-	 * @uml.property name="logPanel"
+	 * Getter of logPanel
+	 * @return logPanel
 	 */
 	public LogPanel getLogPanel() {
 		return logPanel;
 	}
 
 	/**
-	 * Setter of the property <tt>logPanel</tt>
-	 * 
+	 * Setter of logPanel
 	 * @param logPanel
-	 *            The logPanel to set.
-	 * @uml.property name="logPanel"
 	 */
-	public void setLogPanel(LogPanel logPanel) {
-		this.logPanel = logPanel;
+	public void setLogPanel(LogPanel panel) {
+		this.logPanel = panel;
 	}
 
 }

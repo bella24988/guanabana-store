@@ -11,64 +11,37 @@ import modello.Computer;
 
 
 /**
- * @author  Veronica
+ * Classe DataBase: Classe contenente tutte i metodi per connettersi al DataBase del sito.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class DataBase {
 	
-	/* Global variables definition*/
+	/**
+	 * Dichiarazione delle variabili
+	 */
 	private Connection con;
-	/**
-	 * @uml.property  name="st"
-	 */
 	private Statement st;
-	/**
-	 * @uml.property  name="stConsultaLog"
-	 */
 	private PreparedStatement stConsultaLog;
-	/**
-	 * @uml.property  name="stNuevoCliente"
-	 */
-	private PreparedStatement stNuevoCliente;
-	/**
-	 * @uml.property  name="stNuovaOrdine"
-	 */
-	private PreparedStatement stNuovaOrdine;
-	/**
-	 * @uml.property  name="stConsultaComputer"
-	 */
+	private PreparedStatement stNuovoCliente;
+	private PreparedStatement stNuovoOrdine;
 	private PreparedStatement stConsultaComputer;
-	/**
-	 * @uml.property  name="stConsultaUltimaOrd"
-	 */
 	private PreparedStatement stConsultaUltimaOrd;
-	/**
-	 * @uml.property  name="stConta"
-	 */
 	private PreparedStatement stConta;
-	/**
-	 * @uml.property  name="stMaxPagamento"
-	 */
 	private PreparedStatement stMaxPagamento;
-	/**
-	 * @uml.property  name="stInsertPagamento"
-	 */
 	private PreparedStatement stInsertPagamento;
-	/**
-	 * @uml.property  name="stAggiornaStatoOrdine"
-	 */
 	private PreparedStatement stAggiornaStatoOrdine;
-	/**
-	 * @uml.property  name="stConsultaDipendente"
-	 */
 	private PreparedStatement stConsultaDipendente;
-	private Statement stModello, stInsertDetagliPagamento;
-	/**
-	 * @uml.property  name="stConsultaOrdini"
-	 */
+	private Statement stModello, stInsertDettagliPagamento;
 	private Statement stConsultaOrdini;
 	private Statement stCliente;
 	
-	/*Begin of the constructor*/
+	/**
+	 * Costruttore della classe DataBase
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public DataBase() throws SQLException, ClassNotFoundException{
 		/* DataBase Connection */
 		Class.forName("com.mysql.jdbc.Driver"); //MySQL driver
@@ -82,7 +55,7 @@ public class DataBase {
 		
 		/*Prepared Statement*/
 		setStConsultaLog(con.prepareStatement("select * from clienti where email = UPPER(?) and password = ? ;"));
-		setStNuevoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), ?);"));
+		setStNuovoCliente(con.prepareStatement("INSERT INTO clienti VALUES(UPPER(?) ,UPPER(?) ,UPPER(?),UPPER(?), UPPER(?), UPPER(?), ?);"));
 		setStConsultaComputer(con.prepareStatement("select nome,prezzo from standard_computer where nome like concat(?,'%')"));
 		setStConta(con.prepareStatement("select count(*) from standard_computer where nome like concat(?,'%')"));	
 		setStConsultaUltimaOrd(con.prepareStatement("select max(codice) from ordini;"));
@@ -93,8 +66,13 @@ public class DataBase {
 		
 	}/*End of the constructor*/
 	
-	/*Function to look for a client in the DB
-	 * return the client found*/
+	/**
+	 * Metodo per cercare un cliente nel DataBase
+	 * @param email				Email del cliente
+	 * @param password			Password del cliente
+	 * @return cliente			Il cliente trovato
+	 * @throws SQLException
+	 */
 	public String[] consultaLog(String email, String password) throws SQLException{
 		
 		//Cliente in DB
@@ -116,20 +94,39 @@ public class DataBase {
 		return clienteTrovato;
 	}//End of Function consultaLog
 	
+	/**
+	 * Metodo per inserire un nuovo cliente nel DataBase
+	 * @param cf			Codice fiscale del cliente
+	 * @param nome			Nome del cliente
+	 * @param cognome		Cognome del cliente
+	 * @param email			Email del cliente
+	 * @param indirizzo		Indirizzo del cliente
+	 * @param telefono		Telefono del cliente
+	 * @param password		Password del cliente
+	 * @throws SQLException
+	 */
 	public void insertCliente(String cf, String nome, String cognome, String email,
 			String indirizzo, String telefono, String password) throws SQLException{
 		
 		//ResultSet insert;
-		stNuevoCliente.setString(1, cf);
-		stNuevoCliente.setString(2, nome);
-		stNuevoCliente.setString(3, cognome);
-		stNuevoCliente.setString(4, email);
-		stNuevoCliente.setString(5,indirizzo);
-		stNuevoCliente.setString(6,telefono);
-		stNuevoCliente.setString(7,password);
-		stNuevoCliente.executeUpdate();
+		stNuovoCliente.setString(1, cf);
+		stNuovoCliente.setString(2, nome);
+		stNuovoCliente.setString(3, cognome);
+		stNuovoCliente.setString(4, email);
+		stNuovoCliente.setString(5,indirizzo);
+		stNuovoCliente.setString(6,telefono);
+		stNuovoCliente.setString(7,password);
+		stNuovoCliente.executeUpdate();
 	}
 	
+	/**
+	 * Metodo che restituisce i modelli disponibili in base al tipo di computer
+	 * selezionato (Laptop, desktop o server)
+	 * @param tipoComputer			Tipo di computer
+	 * @param maxCol
+	 * @return modelli				Modelli disponibili
+	 * @throws SQLException
+	 */
 	public String[][] cercaModelli(String tipoComputer, int maxCol) throws SQLException{
 		
 		int maxRig=2;
@@ -151,6 +148,12 @@ public class DataBase {
 		return modelli;
 	}
 
+	/**
+	 * Metodo che permette di contare
+	 * @param str
+	 * @return integer
+	 * @throws SQLException
+	 */
 	public int conta(String str) throws SQLException{
 		int numero=0;
 		ResultSet result;
@@ -165,6 +168,13 @@ public class DataBase {
 		return numero;
 	}
 	
+	/**
+	 * Metodo che permette di contare i componenti configurabili di 
+	 * un particolare modello di computer.
+	 * @param tipo				Tipo di computer
+	 * @return num				Numero di componenti configurabili
+	 * @throws SQLException
+	 */
 	public int countComponentiModello(String tipo) throws SQLException{
 		int num = 0;
 		ResultSet result;
@@ -173,6 +183,13 @@ public class DataBase {
 		num = result.getRow();
 		return num;
 	}
+	
+	/**
+	 * Metodo che restituisce i componenti configurabili per un determinato tipo di computer.
+	 * @param tipo				Tipo di computer
+	 * @return components		Componenti configurabili
+	 * @throws SQLException
+	 */
 	public String[][] getComponentiModello(String tipo) throws SQLException{
 		ResultSet result;
 		int i=0;
@@ -198,9 +215,10 @@ public class DataBase {
 	}
 	
 	/**
-	 * @param nome
-	 * @param tipo
-	 * @return config, variabile locale di tipo Array di String, la sua lunghezza varia a seconda della variabile tipo.
+	 * Metodo che permette di trovare la configurazione standard di un tipo di computer.
+	 * @param nome				Nome computer
+	 * @param tipo				Tipo di computer
+	 * @return config           Lista di componenti costituenti la configurazione standard
 	 * @throws SQLException
 	 */
 	public String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
@@ -229,6 +247,13 @@ public class DataBase {
 	}
 	
 	
+	/**
+	 * Metodo che restituisce la configurazione scelta per un particolare computer ordinato.
+	 * @param numOrdine				Numero dell'ordine
+	 * @param tipoComputer			Tipo di computer
+	 * @return config				Lista di componenti costituenti la configurazione scelta
+	 * @throws SQLException
+	 */
 	public String[][] cercaConfigurazioneScelta(int numOrdine, String tipoComputer) throws SQLException{
 		Statement stCercaNomePrezzo = con.createStatement();
 		ResultSet result = null, result1 = null;
@@ -260,22 +285,30 @@ public class DataBase {
 		return config;
 	}
 	
+	/**
+	 * Metodo che crea un nuovo ordine e lo inserisce nel DataBase
+	 * @param comp					Computer ordinato
+	 * @param prezzoTotale			Prezzo totale
+	 * @param cliente				Cliente che ha effettuato l'ordine
+	 * @return numOrdineMax			Numero dell'ordine creato
+	 * @throws SQLException
+	 */
 	public int creaNuovaOrdine(Computer comp, float prezzoTotale, Cliente cliente) throws SQLException{
 		
 		ResultSet result = null;
 		int numOrdineMax = 1;
 		if(comp.getTipo().compareTo("SERVER")==0){
-			setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+			setStNuovoOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
 					"ram, cpu,pci, mlc, hd1, hd2, hd3, hd4, dvd, war) " +
 					"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), " +
 					"UPPER(?), UPPER(?));"));
 		}else if(comp.getTipo().compareTo("DESKTOP")==0){
-			setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+			setStNuovoOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
 					"ram, cpu,mou, hd1, hd2,gpu, dvd, war, kei, mon) " +
 					"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), " +
 					"UPPER(?), UPPER(?));"));
 		}else{
-			setStNuovaOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
+			setStNuovoOrdine(con.prepareStatement("insert into ordini (data_modifica, codice, totale, stato, cliente_CF, indirizzo_invio, nome_computer, " +
 					"ram, cpu,hd1,gpu, dvd, war) " +
 					"VALUES(NOW(),?, ?, UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?), UPPER(?));"));
 		}
@@ -292,19 +325,19 @@ public class DataBase {
 				numOrdineMax = result.getInt(1)+1;
 			}
 			}
-			stNuovaOrdine.setInt(1, numOrdineMax);
-			stNuovaOrdine.setFloat(2, prezzoTotale);
-			stNuovaOrdine.setString(3, "ORDINATO");
-			stNuovaOrdine.setString(4, cliente.getCf());
-			stNuovaOrdine.setString(5, cliente.getIndirizzo());
-			stNuovaOrdine.setString(6, comp.getNome());
+			stNuovoOrdine.setInt(1, numOrdineMax);
+			stNuovoOrdine.setFloat(2, prezzoTotale);
+			stNuovoOrdine.setString(3, "ORDINATO");
+			stNuovoOrdine.setString(4, cliente.getCf());
+			stNuovoOrdine.setString(5, cliente.getIndirizzo());
+			stNuovoOrdine.setString(6, comp.getNome());
 			
 			int i;
 			for(i=0; i<comp.getConfigurazione().getComponentiScelti().length;i++){
-				stNuovaOrdine.setString(i+7, comp.getConfigurazione().getComponentiScelti()[i].getCodice());
+				stNuovoOrdine.setString(i+7, comp.getConfigurazione().getComponentiScelti()[i].getCodice());
 			}
 			
-			stNuovaOrdine.executeUpdate();
+			stNuovoOrdine.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -312,6 +345,12 @@ public class DataBase {
 		return numOrdineMax;
 	}
 	
+	/**
+	 * Metodo che permette di ottenere la data di un ordine
+	 * @param codice		Numero d'ordine
+	 * @return data			Data dell'ordine
+	 * @throws SQLException
+	 */
 	public String[] getDataOrdine(int codice) throws SQLException{
 		String data[] = new String[2];
 		Statement st = con.createStatement();
@@ -323,119 +362,6 @@ public class DataBase {
 		
 		return data;
 	}
-	
-	/**
-	 * @return  the st
-	 * @uml.property  name="st"
-	 */
-	public Statement getSt() {
-		return st;
-	}
-
-	/**
-	 * @param st  the st to set
-	 * @uml.property  name="st"
-	 */
-	public void setSt(Statement st) {
-		this.st = st;
-	}
-
-	/**
-	 * @return  the stConsultaLog
-	 * @uml.property  name="stConsultaLog"
-	 */
-	public PreparedStatement getStConsultaLog() {
-		return stConsultaLog;
-	}
-
-	/**
-	 * @param stConsultaLog  the stConsultaLog to set
-	 * @uml.property  name="stConsultaLog"
-	 */
-	public void setStConsultaLog(PreparedStatement stConsultaLog) {
-		this.stConsultaLog = stConsultaLog;
-	}
-
-	/**
-	 * @return  the stNuevoCliente
-	 * @uml.property  name="stNuevoCliente"
-	 */
-	public PreparedStatement getStNuevoCliente() {
-		return stNuevoCliente;
-	}
-
-	/**
-	 * @param stNuevoCliente  the stNuevoCliente to set
-	 * @uml.property  name="stNuevoCliente"
-	 */
-	public void setStNuevoCliente(PreparedStatement stNuevoCliente) {
-		this.stNuevoCliente = stNuevoCliente;
-	}
-
-	/**
-	 * @return  the stConsultaComputer
-	 * @uml.property  name="stConsultaComputer"
-	 */
-	public PreparedStatement getStConsultaComputer() {
-		return stConsultaComputer;
-	}
-
-	/**
-	 * @param stConsultaComputer  the stConsultaComputer to set
-	 * @uml.property  name="stConsultaComputer"
-	 */
-	public void setStConsultaComputer(PreparedStatement stConsultaComputer) {
-		this.stConsultaComputer = stConsultaComputer;
-	}
-
-	/**
-	 * @return  the stConta
-	 * @uml.property  name="stConta"
-	 */
-	public PreparedStatement getStConta() {
-		return stConta;
-	}
-
-	/**
-	 * @param stConta  the stConta to set
-	 * @uml.property  name="stConta"
-	 */
-	public void setStConta(PreparedStatement stConta) {
-		this.stConta = stConta;
-	}
-
-	/**
-	 * @return  the stNuovaOrdine
-	 * @uml.property  name="stNuovaOrdine"
-	 */
-	public PreparedStatement getStNuovaOrdine() {
-		return stNuovaOrdine;
-	}
-
-	/**
-	 * @param stNuovaOrdine  the stNuovaOrdine to set
-	 * @uml.property  name="stNuovaOrdine"
-	 */
-	public void setStNuovaOrdine(PreparedStatement stNuovaOrdine) {
-		this.stNuovaOrdine = stNuovaOrdine;
-	}
-
-	/**
-	 * @return  the stConsultaUltimaOrd
-	 * @uml.property  name="stConsultaUltimaOrd"
-	 */
-	public PreparedStatement getStConsultaUltimaOrd() {
-		return stConsultaUltimaOrd;
-	}
-
-	/**
-	 * @param stConsultaUltimaOrd  the stConsultaUltimaOrd to set
-	 * @uml.property  name="stConsultaUltimaOrd"
-	 */
-	public void setStConsultaUltimaOrd(PreparedStatement stConsultaUltimaOrd) {
-		this.stConsultaUltimaOrd = stConsultaUltimaOrd;
-	}
-
 	public int registrarePagamento(int numeroOrdine, float prezzo,
 			String tipoPagamento, String arg1, String arg2) {
 		ResultSet result = null;
@@ -464,7 +390,7 @@ public class DataBase {
 		}
 		
 		try {
-			registraDetagliPagamento(numMaxPago, tipoPagamento, arg1, arg2);
+			registraDettagliPagamento(numMaxPago, tipoPagamento, arg1, arg2);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -472,16 +398,31 @@ public class DataBase {
 		return numMaxPago;
 	}
 	
-	private void registraDetagliPagamento(int numPagamento, String tipoPagamento, String arg1, String arg2) throws SQLException{
-		stInsertDetagliPagamento = con.createStatement();
+	/**
+	 * Metodo per registrare nel DataBase i dettagli di un pagamento.
+	 * @param numPagamento			Numero del pagamento
+	 * @param tipoPagamento			Tipo di pagamento
+	 * @param arg1
+	 * @param arg2
+	 * @throws SQLException
+	 */
+	private void registraDettagliPagamento(int numPagamento, String tipoPagamento, String arg1, String arg2) throws SQLException{
+		stInsertDettagliPagamento = con.createStatement();
 		if(tipoPagamento.compareTo("Bonifico")==0){
-			stInsertDetagliPagamento.executeUpdate("Insert into bonifico values('"+numPagamento+"','"+arg1+"','"+arg2+"'); ");
+			stInsertDettagliPagamento.executeUpdate("Insert into bonifico values('"+numPagamento+"','"+arg1+"','"+arg2+"'); ");
 		}else if (tipoPagamento.compareTo("Carta di Credito")==0){
-			stInsertDetagliPagamento.executeUpdate("Insert into carta_credito values('"+numPagamento+"', '"+arg2+"', '"+arg1+"'); ");
+			stInsertDettagliPagamento.executeUpdate("Insert into carta_credito values('"+numPagamento+"', '"+arg2+"', '"+arg1+"'); ");
 		}
 	}
 	
-	public String[] cercaDetagliPagamento(int numPagamento, String tipoPagamento) throws SQLException{
+	/**
+	 * Metodo che restituisce i dettagli di un certo pagamento.
+	 * @param numPagamento			Numero di pagamento
+	 * @param tipoPagamento			Tipo di pagamento
+	 * @return args					Dettagli del pagamento
+	 * @throws SQLException
+	 */
+	public String[] cercaDettagliPagamento(int numPagamento, String tipoPagamento) throws SQLException{
 		String[] args = new String[2];
 		Statement stCercaDetagliPagamento = con.createStatement();
 		ResultSet result = null;
@@ -499,60 +440,24 @@ public class DataBase {
 		return args;
 	}
 
+	/**
+	 * Metodo per aggiornare lo stato di un ordine
+	 * @param stato				Stato dell'ordine
+	 * @param numeroOrdine		Numero dell'ordine
+	 * @throws SQLException
+	 */
 	public void aggiornaStatoOrdine(String stato, int numeroOrdine) throws SQLException {
 		stAggiornaStatoOrdine.setString(1, stato);
 		stAggiornaStatoOrdine.setInt(2,numeroOrdine);
 		stAggiornaStatoOrdine.executeUpdate();
 		
 	}
-
+	
 	/**
-	 * @return  the stMaxPagamento
-	 * @uml.property  name="stMaxPagamento"
+	 * Metodo che restituisce gli ordini effettuati da un cliente
+	 * @param cf			Codice fiscale del cliente
+	 * @return ordini		Ordini effettuati dal cliente
 	 */
-	public PreparedStatement getStMaxPagamento() {
-		return stMaxPagamento;
-	}
-
-	/**
-	 * @param stMaxPagamento  the stMaxPagamento to set
-	 * @uml.property  name="stMaxPagamento"
-	 */
-	public void setStMaxPagamento(PreparedStatement stMaxPagamento) {
-		this.stMaxPagamento = stMaxPagamento;
-	}
-
-	/**
-	 * @return  the stInsertPagamento
-	 * @uml.property  name="stInsertPagamento"
-	 */
-	public PreparedStatement getStInsertPagamento() {
-		return stInsertPagamento;
-	}
-
-	/**
-	 * @param stInsertPagamento  the stInsertPagamento to set
-	 * @uml.property  name="stInsertPagamento"
-	 */
-	public void setStInsertPagamento(PreparedStatement stInsertPagamento) {
-		this.stInsertPagamento = stInsertPagamento;
-	}
-
-	/**
-	 * @return  the stConsultaOrdini
-	 * @uml.property  name="stConsultaOrdini"
-	 */
-	public Statement getStConsultaOrdini() {
-		return stConsultaOrdini;
-	}
-
-	/**
-	 * @param stConsultaOrdini the stConsultaOrdini to set
-	 */
-	public void setStConsultaOrdini(PreparedStatement stConsultaOrdini) {
-		this.stConsultaOrdini = stConsultaOrdini;
-	}
-
 	public String[][] consultaOrdini(String cf) {
 		//ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer, pagamenti.codice
 		String[][] ordini = null;
@@ -594,7 +499,12 @@ public class DataBase {
 		return ordini;
 	}
 
-	public String[][] cercaOrdiniNonPagate(String cf){
+	/**
+	 * Metodo che restituisce gli ordini non ancora pagati da un cliente.
+	 * @param cf			Codice fiscale del cliente
+	 * @return ordini		Ordini non ancora pagati
+	 */
+	public String[][] cercaOrdiniNonPagati(String cf){
 
 				String[][] ordini = null;
 					
@@ -629,38 +539,14 @@ public class DataBase {
 				
 				return ordini;
 	}
-	/**
-	 * @return  the stAggiornaStatoOrdine
-	 * @uml.property  name="stAggiornaStatoOrdine"
-	 */
-	public PreparedStatement getStAggiornaStatoOrdine() {
-		return stAggiornaStatoOrdine;
-	}
-
-	/**
-	 * @param stAggiornaStatoOrdine  the stAggiornaStatoOrdine to set
-	 * @uml.property  name="stAggiornaStatoOrdine"
-	 */
-	public void setStAggiornaStatoOrdine(PreparedStatement stAggiornaStatoOrdine) {
-		this.stAggiornaStatoOrdine = stAggiornaStatoOrdine;
-	}
-
-	/**
-	 * @return  the stConsultaDipendente
-	 * @uml.property  name="stConsultaDipendente"
-	 */
-	public PreparedStatement getStConsultaDipendente() {
-		return stConsultaDipendente;
-	}
-
-	/**
-	 * @param stConsultaDipendente  the stConsultaDipendente to set
-	 * @uml.property  name="stConsultaDipendente"
-	 */
-	public void setStConsultaDipendente(PreparedStatement stConsultaDipendente) {
-		this.stConsultaDipendente = stConsultaDipendente;
-	}
 	
+	/**
+	 * Metodo che restituisce i dati di un dipendente dell'azienda
+	 * @param id				Numero identificativo del dipendente
+	 * @param password			Password del dipendente
+	 * @return datiImpiegato	Dati del dipendente
+	 * @throws SQLException
+	 */
 	public String[] cercaDipendente(int id, String password) throws SQLException{
 		String[] datiImpiegato = new String[3];
 		stConsultaDipendente.setInt(1, id);
@@ -678,6 +564,11 @@ public class DataBase {
 		
 	}
 
+	/**
+	 * Metodo che restituisce una lista degli ordini in base al loro stato
+	 * @param stato		Stato dell'ordine
+	 * @return ordini	Ordini trovati in base allo stato
+	 */
 	public String[][] cercaOrdini(String stato) {
 		//ordini.codice, ordini.data, ordini.totale, stato, tipo, nome_computer, pagamenti.codice
 				String[][] ordini = null;
@@ -719,6 +610,11 @@ public class DataBase {
 				return ordini;
 	}
 	
+	/**
+	 * Metodo che restituisce un cliente in base al codice fiscale
+	 * @param cf			Codice fiscale del cliente
+	 * @return cliente		Cliente trovato
+	 */
 	public String[] cercaCliente(String cf){
 		String[] cliente = null;
 		try {
@@ -739,11 +635,23 @@ public class DataBase {
 		
 	}
 
+	/**
+	 * Metodo per confermare un pagamento
+	 * @param valore				True se il pagamento  confermato, false altrimenti
+	 * @param codicePagamento		Codice del pagamento
+	 * @throws SQLException
+	 */
 	public void confermaPagamento(boolean valore, int codicePagamento) throws SQLException {
 		Statement stConferma = con.createStatement();
 		stConferma.executeUpdate("update pagamenti set confermato="+valore+" where codice='"+codicePagamento+"';");
 	}
 	
+	/**
+	 * Metodo che restituisce il codice fiscale del cliente che ha effettuato un certo ordine.
+	 * @param numOrdine			Numero dell'ordine
+	 * @return cf				Codice fiscale del cliente che ha effettuato l'ordine
+	 * @throws SQLException
+	 */
 	public String cercaClienteDalOrdine(int numOrdine) throws SQLException{
 		String cf = null;
 		stCliente = con.createStatement();
@@ -754,6 +662,12 @@ public class DataBase {
 		return cf;
 	}
 	
+	/**
+	 * Metodo che restituisce la fattura di un certo ordine.
+	 * @param codiceOrdine			Numero dell'ordine
+	 * @return campiFattura			Contenuto della fattura dell'ordine
+	 * @throws SQLException
+	 */
 	public String[] cercaFattura(int codiceOrdine) throws SQLException{
 		String[] campiFattura = new String[2];
 		
@@ -768,6 +682,12 @@ public class DataBase {
 		
 	}
 	
+	/**
+	 * Metodo che permette di creare la fattura di un certo ordine.
+	 * @param codiceOrdine				Numero d'ordine da fatturare
+	 * @return campiFattura				Contenuto della fattura creata
+	 * @throws SQLException
+	 */
 	public String[] creaFattura(int codiceOrdine) throws SQLException{
 		
 		Statement stFattura = con.createStatement();
@@ -777,12 +697,210 @@ public class DataBase {
 		
 	}
 
+	/**
+	 * Metodo per cancellare un pagamento
+	 * @param tipoPagamento		Tipo di pagamento
+	 * @param numPagamento		Numero di pagamento
+	 * @throws SQLException
+	 */
 	public void cancellaPagamento(String tipoPagamento, int numPagamento) throws SQLException {
 		java.sql.CallableStatement cs = null;
 		cs = con.prepareCall("{call deleteBonifico(?, ?)}");
 		cs.setInt(1, numPagamento);
 		cs.setString(2, tipoPagamento);
 		cs.executeQuery();
+	}
+	
+	/**
+	 * Getter of st
+	 * @return st
+	 */
+	public Statement getSt() {
+		return st;
+	}
+
+	/**
+	 * Setter of st
+	 * @param st
+	 */
+	public void setSt(Statement st) {
+		this.st = st;
+	}
+
+	/**
+	 * Getter of stConsultaLog
+	 * @return stConsultaLog
+	 */
+	public PreparedStatement getStConsultaLog() {
+		return stConsultaLog;
+	}
+
+	/**
+	 * Setter of stConsultaLog
+	 * @param stConsultaLog
+	 */
+	public void setStConsultaLog(PreparedStatement stConsultaLog) {
+		this.stConsultaLog = stConsultaLog;
+	}
+
+	/**
+	 * Getter of stNuovoCliente
+	 * @return stNuovoCliente
+	 */
+	public PreparedStatement getStNuovoCliente() {
+		return stNuovoCliente;
+	}
+
+	/**
+	 * Setter of stNuovoCliente
+	 * @param stNuovoCliente
+	 */
+	public void setStNuovoCliente(PreparedStatement stNuovoCliente) {
+		this.stNuovoCliente = stNuovoCliente;
+	}
+
+	/**
+	 * Getter of stConsultaComputer
+	 * @return stConsultaComputer
+	 */
+	public PreparedStatement getStConsultaComputer() {
+		return stConsultaComputer;
+	}
+
+	/**
+	 * Setter of stConsultaComputer
+	 * @param stConsultaComputer
+	 */
+	public void setStConsultaComputer(PreparedStatement stConsultaComputer) {
+		this.stConsultaComputer = stConsultaComputer;
+	}
+
+	/**
+	 * Getter of stConta
+	 * @return stConta
+	 */
+	public PreparedStatement getStConta() {
+		return stConta;
+	}
+
+	/**
+	 * Setter of stConta
+	 * @param stConta
+	 */
+	public void setStConta(PreparedStatement stConta) {
+		this.stConta = stConta;
+	}
+
+	/**
+	 * Getter of stNuovoOrdine
+	 * @return stNuovoOrdine
+	 */
+	public PreparedStatement getStNuovoOrdine() {
+		return stNuovoOrdine;
+	}
+
+	/**
+	 * Setter of stNuovoOrdine
+	 * @param stNuovoOrdine
+	 */
+	public void setStNuovoOrdine(PreparedStatement stNuovoOrdine) {
+		this.stNuovoOrdine = stNuovoOrdine;
+	}
+
+	/**
+	 * Getter of stConsultaUltimaOrd
+	 * @return stConsultaUltimaOrd
+	 */
+	public PreparedStatement getStConsultaUltimaOrd() {
+		return stConsultaUltimaOrd;
+	}
+
+	/**
+	 * Setter of stConsultaUltimaOrd
+	 * @param stConsultaUltimaOrd
+	 */
+	public void setStConsultaUltimaOrd(PreparedStatement stConsultaUltimaOrd) {
+		this.stConsultaUltimaOrd = stConsultaUltimaOrd;
+	}
+
+	/**
+	 * Getter of stMaxPagamento
+	 * @return stMaxPagamento
+	 */
+	public PreparedStatement getStMaxPagamento() {
+		return stMaxPagamento;
+	}
+
+	/**
+	 * Setter of stMaxPagamento
+	 * @param stMaxPagamento
+	 */
+	public void setStMaxPagamento(PreparedStatement stMaxPagamento) {
+		this.stMaxPagamento = stMaxPagamento;
+	}
+
+	/**
+	 * Getter of stInsertPagamento
+	 * @return stInsertPagamento
+	 */
+	public PreparedStatement getStInsertPagamento() {
+		return stInsertPagamento;
+	}
+
+	/**
+	 * Setter of stInsertPagamento
+	 * @param stInsertPagamento
+	 */
+	public void setStInsertPagamento(PreparedStatement stInsertPagamento) {
+		this.stInsertPagamento = stInsertPagamento;
+	}
+
+	/**
+	 * Getter of stConsultaOrdini
+	 * @return stConsultaOrdini
+	 */
+	public Statement getStConsultaOrdini() {
+		return stConsultaOrdini;
+	}
+
+	/**
+	 * Setter of stConsultaOrdini
+	 * @param stConsultaOrdini
+	 */
+	public void setStConsultaOrdini(PreparedStatement stConsultaOrdini) {
+		this.stConsultaOrdini = stConsultaOrdini;
+	}
+
+	/**
+	 * Getter od stAggiornaStatoOrdine
+	 * @return stAggiornaStatoOrdine
+	 */
+	public PreparedStatement getStAggiornaStatoOrdine() {
+		return stAggiornaStatoOrdine;
+	}
+
+	/**
+	 * Setter of stAggiornaStatoOrdine
+	 * @param stAggiornaStatoOrdine
+	 */
+	public void setStAggiornaStatoOrdine(PreparedStatement stAggiornaStatoOrdine) {
+		this.stAggiornaStatoOrdine = stAggiornaStatoOrdine;
+	}
+
+	/**
+	 * Getter of stConsultaDipendente
+	 * @return stConsultaDipendente
+	 */
+	public PreparedStatement getStConsultaDipendente() {
+		return stConsultaDipendente;
+	}
+
+	/**
+	 * Setter of stConsultaDipendente
+	 * @param stConsultaDipendente
+	 */
+	public void setStConsultaDipendente(PreparedStatement stConsultaDipendente) {
+		this.stConsultaDipendente = stConsultaDipendente;
 	}
 
 }

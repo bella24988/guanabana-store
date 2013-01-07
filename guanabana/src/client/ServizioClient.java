@@ -25,50 +25,38 @@ import modello.Ordine;
 import modello.Pagamento;
 
 
-import conexionInterface.InterfacciaCliente;
+import connectionInterface.InterfacciaCliente;
 
 /**
- * Classe è rappresenta il servizio che apporta la comunicazione fra client 
- * e server.
- * Implementa la interfacciaCliente
- * @author  Veronica Melendez
- * @category Class
+ * Classe ServizioClient: è la classe che rende disponibile
+ * il servizio che permette la comunicazione fra client e server per
+ * il pacchetto rivolto al cliente.
+ * Implementa InterfacciaCliente.
+ * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
-public class Client implements InterfacciaCliente {
+public class ServizioClient implements InterfacciaCliente {
 	
 	/**
-	 * @uml.property  name="host"
-	 */
-	private String host; 
-	/**
-	 * @uml.property name="port"
-	 * 
-	 */
-	private int port;
-	private InputStream lettura;
-	private OutputStream scritura;
-	/**
-	 *@uml.property name="socket"
-	 * 
+	 * Dichiarazione delle variabili
 	 */
 	private Socket socket;
+	private String host; 
+	private int port;
+	private InputStream lettura;
+	private OutputStream scrittura;
 	private ObjectInputStream buffer;
 	private ObjectOutputStream writer;
-	/**
-	 * @uml.property  name="tipo"
-	 */
+	
 	private String tipo;
-	/**
-	 * @uml.property  name="num"
-	 */
 	private int num;
 	
 	/**
+	 * Costruttore del servizio client-server
 	 * @param host
-	 * @category Constructor
-	 * 
 	 */
-	public Client(String host) {
+	public ServizioClient(String host) {
 		
 		super();
 		setHost(host);
@@ -83,12 +71,13 @@ public class Client implements InterfacciaCliente {
 		}
 	}
 
+	
 	@Override
 	public void aprireCollegamento() throws UnknownHostException, IOException {
 		socket = new Socket(host, 4000);
 		
 		lettura = socket.getInputStream();
-		scritura = socket.getOutputStream();
+		scrittura = socket.getOutputStream();
 		
 		System.out.println("Sono il client e apro porte!");
 	}
@@ -96,7 +85,7 @@ public class Client implements InterfacciaCliente {
 	@Override
 	public Cliente fareLogin(String user, String password) throws IOException, ClassNotFoundException {
 		Cliente cliente;
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		writer.writeObject("login");
 		writer.flush();
 		System.out.println("Sono il client, escribi al server login");
@@ -124,7 +113,7 @@ public class Client implements InterfacciaCliente {
 
 	@Override
 	public Computer[] cercaModelli(String tipo, int numComputer) throws IOException, ClassNotFoundException {
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		Computer[] modelli;
 		
 		writer.writeObject("cercaModelli");//scrivo 1
@@ -152,6 +141,7 @@ public class Client implements InterfacciaCliente {
 			}
 	}
 
+	
 	@Override
 	public void cercaComponenti(String modello) {
 		// TODO Auto-generated method stub
@@ -172,28 +162,14 @@ public class Client implements InterfacciaCliente {
 	}
 
 
-	/**
-	 * @return  the host
-	 * @uml.property  name="host"
-	 */
-	public String getHost() {
-		return host;
-	}
-
-	/**
-	 * @param host  the host to set
-	 * @uml.property  name="host"
-	 */
-	public void setHost(String host) {
-		this.host = host;
-	}
+	
 
 	@Override
-	public Cliente registreNuovoCliente(String cf, String nome, String cognome,
+	public Cliente registraNuovoCliente(String cf, String nome, String cognome,
 			String email, String indirizzo, String telefono, String password) throws IOException, ClassNotFoundException {
 		
 		Cliente cliente;
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		writer.writeObject("registrati");
 		writer.flush();
 		buffer = new ObjectInputStream(lettura);
@@ -212,6 +188,10 @@ public class Client implements InterfacciaCliente {
 		return cliente;
 	}
 	
+	/**
+	 * Utilizzato per chiudere la connessione client-server
+	 * @throws IOException
+	 */
 	public void chiudereCollegamento() throws IOException{
 		writer.close();
 		try {
@@ -228,7 +208,7 @@ public class Client implements InterfacciaCliente {
 	public int conta(String cosa) throws IOException {
 		int num=0;
 		String risposta ="";
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		writer.writeObject("conta");
 		writer.flush();
 		buffer = new ObjectInputStream(lettura);
@@ -255,44 +235,12 @@ public class Client implements InterfacciaCliente {
 		return num;
 	}
 
-	/**
-	 * @return  the tipo
-	 * @uml.property  name="tipo"
-	 */
-	public String getTipo() {
-		return tipo;
-	}
-
-	/**
-	 * @param tipo  the tipo to set
-	 * @uml.property  name="tipo"
-	 */
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	/**
-	 * @return  the num
-	 * @uml.property  name="num"
-	 */
-	public int getNum() {
-		return num;
-	}
-
-	/**
-	 * @param num  the num to set
-	 * @uml.property  name="num"
-	 */
-	public void setNum(int num) {
-		this.num = num;
-	}
-
 	@Override
 	public Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente)
 			throws IOException {
 	Ordine ordine = null;
 		
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("creaOrdine");
 		writer.flush();
@@ -340,7 +288,7 @@ public class Client implements InterfacciaCliente {
 			throws IOException {
 		Pagamento pagamento = null;
 		
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("registraPagamento");
 		writer.flush();
@@ -381,7 +329,7 @@ public class Client implements InterfacciaCliente {
 	@Override
 	public Ordine[] consultaOrdini(Cliente cliente) throws IOException {
 		Ordine[] ordini = null;
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("consultaOrdini");
 		writer.flush();
@@ -412,7 +360,7 @@ public class Client implements InterfacciaCliente {
 	@Override
 	public Ordine[] consultaCarrello(Cliente cliente) throws IOException {
 		Ordine[] ordini = null;
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("carrello");
 		writer.flush();
@@ -443,7 +391,7 @@ public class Client implements InterfacciaCliente {
 	@Override
 	public void aggiornaOrdine(int numOrdine, String nuovoStato)
 			throws IOException {
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("aggiornaStato");
 		writer.flush();
@@ -473,19 +421,15 @@ public class Client implements InterfacciaCliente {
 	}
 
 	/**
-	 * @return the port
+	 * Metodo che permette di inviare una mail di conferma dell'avvenuto acquisto
+	 * al destinatario specificato.
+	 * @param to						Destinatario della mail
+	 * @param messaggio					Testo del messaggio da inviare
+	 * @param subject					Oggetto della mail
+	 * @throws UnknownHostException
+	 * @throws AddressException
+	 * @throws MessagingException
 	 */
-	public int getPort() {
-		return port;
-	}
-
-	/**
-	 * @param port the port to set
-	 */
-	public void setPort(int port) {
-		this.port = port;
-	}
-
 	public void inviaEmailConferma(String to, String messaggio, String subject) throws UnknownHostException, AddressException, MessagingException{
 		String host = "smtp.gmail.com";
 	    String from = "guanabana.store";
@@ -526,6 +470,70 @@ public class Client implements InterfacciaCliente {
 	public Cliente cercaCliente(String cf) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Getter of host
+	 * @return host
+	 */
+	public String getHost() {
+		return host;
+	}
+
+	/**
+	 * Setter of host
+	 * @param host
+	 */
+	public void setHost(String host) {
+		this.host = host;
+	}
+	
+	/**
+	 * Getter of tipo
+	 * @return tipo
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * Setter of tipo
+	 * @param tipo
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * Getter of num
+	 * @return num
+	 */
+	public int getNum() {
+		return num;
+	}
+
+	/**
+	 * Setter of num
+	 * @param num
+	 */
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
+	/**
+	 * Getter of port
+	 * @return port
+	 */
+	public int getPort() {
+		return port;
+	}
+
+	/**
+	 * Setter of port
+	 * @param port
+	 */
+	public void setPort(int port) {
+		this.port = port;
 	}
 
 }

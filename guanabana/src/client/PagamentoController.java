@@ -12,18 +12,25 @@ import javax.mail.internet.AddressException;
 
 import modello.Pagamento;
 
+/**
+ * Classe PagamentoController: controller del pannello di pagamento.
+ * Implementa ActionListener.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
+ */
 public class PagamentoController implements ActionListener {
 
 	/**
-	 * @uml.property name="pagamentoPanel"
-	 * @uml.associationEnd
+	 * Dichiarazione delle variabili
 	 */
 	private PagamentoPanel pagamentoPanel;
-	/**
-	 * @uml.property name="tipoPagamento"
-	 */
 	private String tipoPagamento;
 
+	/**
+	 * Costruttore del controller del pannello di pagamento.
+	 * @param pagamentoPanel
+	 */
 	public PagamentoController(PagamentoPanel pagamentoPanel) {
 		super();
 		this.pagamentoPanel = pagamentoPanel;
@@ -34,26 +41,26 @@ public class PagamentoController implements ActionListener {
 		if (e.getActionCommand().equalsIgnoreCase("carta di credito")) {
 			pagamentoPanel.getPanelCartaCredito().setVisible(true);
 			pagamentoPanel.getPanelBonifico().setVisible(false);
-			pagamentoPanel.getPanelContrasegno().setVisible(false);
+			pagamentoPanel.getPanelContrassegno().setVisible(false);
 			pagamentoPanel.setTipoPagamentoScelto(1);
 
 		} else if (e.getActionCommand().equalsIgnoreCase("bonifico")) {
 			pagamentoPanel.getPanelBonifico().setVisible(true);
-			pagamentoPanel.getPanelContrasegno().setVisible(false);
+			pagamentoPanel.getPanelContrassegno().setVisible(false);
 			pagamentoPanel.getPanelCartaCredito().setVisible(false);
 			pagamentoPanel.setTipoPagamentoScelto(2);
 
 		} else if (e.getActionCommand().equalsIgnoreCase("contrassegno")) {
-			pagamentoPanel.getPanelContrasegno().setVisible(true);
+			pagamentoPanel.getPanelContrassegno().setVisible(true);
 			pagamentoPanel.getPanelCartaCredito().setVisible(false);
 			pagamentoPanel.getPanelBonifico().setVisible(false);
 			pagamentoPanel.setTipoPagamentoScelto(3);
 
 		} else if (e.getActionCommand().equalsIgnoreCase("accetta")) {
 			pagamentoPanel.setEnabled(false);
-			if (pagamentoPanel.getContenutoPanel().getClienteLogato() != null) {
+			if (pagamentoPanel.getContenutoPanel().getClienteLoggato() != null) {
 
-				Client client = new Client(pagamentoPanel.getContenutoPanel()
+				ServizioClient client = new ServizioClient(pagamentoPanel.getContenutoPanel()
 						.getHost());
 
 				if (pagamentoPanel.getTipoPagamentoScelto() == 0) {
@@ -113,6 +120,11 @@ public class PagamentoController implements ActionListener {
 
 	}
 
+	/**
+	 * Validazione dei campi del form di pagamento, ottenuta con Java Pattern
+	 * @param p
+	 * @return true or false se il form è rispettivamente valido o non valido
+	 */
 	private boolean validate(PagamentoPanel p) {
 
 		if (p.getTipoPagamentoScelto() == 1) {
@@ -195,34 +207,32 @@ public class PagamentoController implements ActionListener {
 	}
 
 	/**
-	 * @return the pagamentoPanel
-	 * @uml.property name="pagamentoPanel"
+	 * Getter of pagamentoPanel
+	 * @return pagamentoPanel
 	 */
 	public PagamentoPanel getPagamentoPanel() {
 		return pagamentoPanel;
 	}
 
 	/**
+	 * Setter of pagamentoPanel
 	 * @param pagamentoPanel
-	 *            the pagamentoPanel to set
-	 * @uml.property name="pagamentoPanel"
 	 */
 	public void setPagamentoPanel(PagamentoPanel pagamentoPanel) {
 		this.pagamentoPanel = pagamentoPanel;
 	}
 
 	/**
-	 * @return the tipoPagamento
-	 * @uml.property name="tipoPagamento"
+	 * Getter of tipoPagamento
+	 * @return tipoPagamento
 	 */
 	public String getTipoPagamento() {
 		return tipoPagamento;
 	}
 
 	/**
+	 * Setter of tipoPagamento
 	 * @param tipoPagamento
-	 *            the tipoPagamento to set
-	 * @uml.property name="tipoPagamento"
 	 */
 	public void setTipoPagamento(String tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;

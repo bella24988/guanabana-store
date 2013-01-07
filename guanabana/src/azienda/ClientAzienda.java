@@ -22,19 +22,31 @@ import modello.Dipendente;
 import modello.Fattura;
 import modello.Ordine;
 import modello.Pagamento;
-import conexionInterface.InterfacciaAzienda;
+import connectionInterface.InterfacciaAzienda;
 
+/**
+ * Classe ClientAzienda: è la classe che rende disponibile
+ * il servizio che permette la comunicazione fra client e server per
+ * il pacchetto rivolto all'azienda.
+ * Implementa InterfacciaAzienda.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
 public class ClientAzienda implements InterfacciaAzienda{
 	
+	/**
+	 * Dichiarazione delle variabili
+	 */
 	private InputStream lettura;
-	private OutputStream scritura;
+	private OutputStream scrittura;
 	private Socket socket;
 	private ObjectInputStream buffer;
 	private ObjectOutputStream writer;
+	
 	/**
+	 * Costruttore del servizio client-server
 	 * @param host
-	 * @category Constructor
-	 * 
 	 */
 	public ClientAzienda() {
 		super();
@@ -52,9 +64,13 @@ public class ClientAzienda implements InterfacciaAzienda{
 		socket = new Socket("localhost", 4000);
 		
 		lettura = socket.getInputStream();
-		scritura = socket.getOutputStream();
+		scrittura = socket.getOutputStream();
 	}
 
+	/**
+	 * Metodo per chiudere la connessione client-server
+	 * @throws IOException
+	 */
 	public void chiudereCollegamento() throws IOException{
 		writer.close();
 		try {
@@ -69,7 +85,7 @@ public class ClientAzienda implements InterfacciaAzienda{
 	@Override
 	public Dipendente logDipendente(int id, String password) throws IOException {
 		Dipendente impiegato = null;
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		writer.writeObject("logDipendente");
 		writer.flush();
 		buffer = new ObjectInputStream(lettura);
@@ -95,11 +111,12 @@ public class ClientAzienda implements InterfacciaAzienda{
 		return impiegato;
 	}
 
+	@Override
 	public Cliente cercaClienteDalOrdine(int ordine) throws IOException {
 		
 		Cliente cliente = null;
 		
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("azienda cerca cliente");
 		writer.flush();
@@ -123,7 +140,7 @@ public class ClientAzienda implements InterfacciaAzienda{
 	@Override
 	public Ordine[] cercaOrdini(String stato) throws IOException {
 		Ordine[] ordini = null;
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("cerca ordini");
 		writer.flush();
@@ -147,7 +164,7 @@ public class ClientAzienda implements InterfacciaAzienda{
 
 	@Override
 	public void aggiornaStatoOrdine(String nuovoStato, int numOrdine) throws IOException {
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("aggiornaStato");
 		writer.flush();
@@ -176,9 +193,10 @@ public class ClientAzienda implements InterfacciaAzienda{
 		chiudereCollegamento();
 	}
 
+	@Override
 	public void confermarePagamento(boolean valore, int i) throws IOException, ClassNotFoundException {
 		
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("confermarePagamento");
 		writer.flush();
@@ -199,6 +217,16 @@ public class ClientAzienda implements InterfacciaAzienda{
 		chiudereCollegamento();
 	}
 
+	/**
+	 * Metodo che permette di inviare una mail di conferma dell'avvenuto acquisto
+	 * al destinatario specificato.
+	 * @param to						Destinatario della mail
+	 * @param messaggio					Testo del messaggio da inviare
+	 * @param subject					Oggetto della mail
+	 * @throws UnknownHostException
+	 * @throws AddressException
+	 * @throws MessagingException
+	 */
 	public void inviaEmailConferma(String to, String messaggio, String subject) throws UnknownHostException, AddressException, MessagingException{
 		String host = "smtp.gmail.com";
 	    String from = "guanabana.store";
@@ -227,10 +255,10 @@ public class ClientAzienda implements InterfacciaAzienda{
 	    transport.close();
 	    }
 
-	
+	@Override
 	public Fattura cercaFattura(Ordine ordine) throws IOException, ClassNotFoundException {
 		Fattura fattura = null;
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		
 		writer.writeObject("cerca fattura");
 		writer.flush();
@@ -249,8 +277,9 @@ public class ClientAzienda implements InterfacciaAzienda{
 		return fattura;
 	}
 
+	@Override
 	public void cancellaPagamento(Pagamento pagamento) throws IOException, ClassNotFoundException {
-		writer = new ObjectOutputStream(scritura);
+		writer = new ObjectOutputStream(scrittura);
 		writer.writeObject("cancella pagamento");
 		writer.flush();
 		buffer = new ObjectInputStream(lettura);

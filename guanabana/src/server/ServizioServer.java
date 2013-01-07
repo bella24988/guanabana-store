@@ -22,8 +22,9 @@ import modello.Laptop;
 import modello.Ordine;
 import modello.Pagamento;
 import modello.Server;
-import conexionInterface.InterfacciaAzienda;
-import conexionInterface.InterfacciaCliente;
+import connectionInterface.InterfacciaAzienda;
+import connectionInterface.InterfacciaCliente;
+
 import java.util.Collection;
 
 
@@ -112,7 +113,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 					i++;
 				}
 				variabile[6]=temp;
-				scrive.writeObject(registreNuovoCliente(variabile[0],variabile[1],variabile[2],variabile[3],variabile[4],variabile[5],variabile[6]));
+				scrive.writeObject(registraNuovoCliente(variabile[0],variabile[1],variabile[2],variabile[3],variabile[4],variabile[5],variabile[6]));
 				scrive.flush();
 				
 			}else if(richiestaClient.compareTo("cercaModelli")==0){
@@ -395,7 +396,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 
 	@Override
-	public Cliente registreNuovoCliente(String cf, String nome, String cognome,
+	public Cliente registraNuovoCliente(String cf, String nome, String cognome,
 			String email, String indirizzo, String telefono, String password){
 		
 		try {
@@ -634,7 +635,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	public Ordine[] consultaCarrello(Cliente cliente) throws IOException {
 		Ordine[] ordini;//Dichiarazione delle ordine
 		
-		String [][] risultato = db.cercaOrdiniNonPagate(cliente.getCf());//Consulta al Data Base qualle sono le ordini
+		String [][] risultato = db.cercaOrdiniNonPagati(cliente.getCf());//Consulta al Data Base qualle sono le ordini
 		ordini = new Ordine[risultato.length];
 		Computer[] computer = new Computer[risultato.length];
 		
@@ -794,7 +795,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		Pagamento pagamento = null;
 		String[] args = new String[2];
 		try {
-			args = db.cercaDetagliPagamento(numPagamento, tipoPagamento);
+			args = db.cercaDettagliPagamento(numPagamento, tipoPagamento);
 		} catch (Exception e) {
 			System.out.println("fallito il db del pagamento");
 		}

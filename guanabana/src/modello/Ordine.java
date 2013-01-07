@@ -2,42 +2,34 @@ package modello;
 
 import java.io.Serializable;
 
-
 /**
+ * Classe Ordine: Modello di un ordine effettuato sul sito.
+ * Implementa Serializable.
  * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class Ordine implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * @uml.property  name="numeroOrdine"
+	 * Dichiarazione delle variabili
 	 */
-	private int numeroOrdine;
-	/**
-	 * @uml.property  name="computer"
-	 * @uml.associationEnd  
-	 */
-	private Computer computer;
-	private float totale;
-	/**
-	 * @uml.property  name="cliente"
-	 * @uml.associationEnd  
-	 */
-	private Cliente cliente;
-	/**
-	 * @uml.property  name="data"
-	 */
-	private String data;
-	/**
-	 * @uml.property  name="stato"
-	 */
-	private String stato;
-	
-	
+	private int numeroOrdine;		//Numero dell'ordine
+	private Computer computer;		//Computer ordinato
+	private float totale;			//Prezzo totale
+	private Cliente cliente;		//Cliente che ha effettuato l'ordine
+	private String data;			//Data dell'ordine
+	private String stato;			//Stato dell'ordine
+	private Pagamento pagamento;    //Pagamento dell'ordine
 
+	/**
+	 * Costruttore di un ordine.
+	 * @param numeroOrdine			Numero dell'ordine
+	 * @param computer				Computer ordinato
+	 * @param prezzo				Prezzo totale
+	 * @param cliente				Cliente che ha effettuato l'ordine
+	 */
 	public Ordine(int numeroOrdine, Computer computer, float prezzo, Cliente cliente) {
 		super();
 		this.numeroOrdine = numeroOrdine;
@@ -45,161 +37,19 @@ public class Ordine implements Serializable{
 		this.totale = prezzo;
 		this.cliente = cliente;
 	}
-
-	/**
-	 * @return  the numeroOrdine
-	 * @uml.property  name="numeroOrdine"
-	 */
-	public int getNumeroOrdine() {
-		return numeroOrdine;
-	}
-
-	/**
-	 * @param numeroOrdine  the numeroOrdine to set
-	 * @uml.property  name="numeroOrdine"
-	 */
-	public void setNumeroOrdine(int numeroOrdine) {
-		this.numeroOrdine = numeroOrdine;
-	}
-
-	/**
-	 * @return  the computer
-	 * @uml.property  name="computer"
-	 */
-	public Computer getComputer() {
-		return computer;
-	}
-
-	/**
-	 * @param computer  the computer to set
-	 * @uml.property  name="computer"
-	 */
-	public void setComputer(Computer computer) {
-		this.computer = computer;
-	}
-
-	/**
-	 * @return the prezzo
-	 */
-	public float getPrezzo() {
-		return totale;
-	}
-
-	/**
-	 * @param prezzo the prezzo to set
-	 */
-	public void setPrezzo(float prezzo) {
-		this.totale = prezzo;
-	}
-
-	/**
-	 * @return  the cliente
-	 * @uml.property  name="cliente"
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * @param cliente  the cliente to set
-	 * @uml.property  name="cliente"
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	/**
-	 * @return  the data
-	 * @uml.property  name="data"
-	 */
-	public String getData() {
-		return data;
-	}
-
-	/**
-	 * @param data  the data to set
-	 * @uml.property  name="data"
-	 */
-	public void setData(String data) {
-		this.data = data;
-	}
-
-	/**
-	 * @return  the stato
-	 * @uml.property  name="stato"
-	 */
-	public String getStato() {
-		return stato;
-	}
-
-	/**
-	 * @param stato  the stato to set
-	 * @uml.property  name="stato"
-	 */
-	public void setStato(String stato) {
-		this.stato = stato;
-	}
-
-	/** 
-	 * @uml.property name="pagamento"
-	 * @uml.associationEnd aggregation="composite" inverse="ordine:modello.Pagamento"
-	 * @uml.association name="conclusa con"
-	 */
-	private Pagamento pagamento;
-
-
-
-	/** 
-	 * Getter of the property <tt>pagamento</tt>
-	 * @return  Returns the pagamento.
-	 * @uml.property  name="pagamento"
-	 */
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-	/** 
-	 * Setter of the property <tt>pagamento</tt>
-	 * @param pagamento  The pagamento to set.
-	 * @uml.property  name="pagamento"
-	 */
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
-	}
-
-	/** 
-	 * @uml.property name="richiestaSpedizione"
-	 * @uml.associationEnd aggregation="composite" inverse="ordine:modello.RichiestaSpedizione"
-	 * @uml.association name="crea"
-	 */
-	private RichiestaSpedizione richiestaSpedizione;
-
-
-
-	/** 
-	 * Getter of the property <tt>richiestaSpedizione</tt>
-	 * @return  Returns the richiestaSpedizione.
-	 * @uml.property  name="richiestaSpedizione"
-	 */
-	public RichiestaSpedizione getRichiestaSpedizione() {
-		return richiestaSpedizione;
-	}
-
-	/** 
-	 * Setter of the property <tt>richiestaSpedizione</tt>
-	 * @param richiestaSpedizione  The richiestaSpedizione to set.
-	 * @uml.property  name="richiestaSpedizione"
-	 */
-	public void setRichiestaSpedizione(RichiestaSpedizione richiestaSpedizione) {
-		this.richiestaSpedizione = richiestaSpedizione;
-	}
 	
-	public String getMessaggioEmail(Pagamento pagamento, String msnAdjunto){
+	/**
+	 * Metodo che permette di generare l'email riassuntiva dell'ordine
+	 * @param pagamento
+	 * @param mesAggiunto
+	 * @return messaggio
+	 */
+	public String getMessaggioEmail(Pagamento pagamento, String mesAggiunto){
 		String messaggio ="<p class=MsoNormal align=center style='text-align:center'>" +
 				"<span style='font-size:50.0pt;color:#76923C;mso-themecolor:accent3;mso-themeshade:191'>Ricevuta</span></p>" +
 				"<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span" +
 				"style='color:#76923C;mso-themecolor:accent3;mso-themeshade:191'><o:p>&nbsp;</o:p></span></b></p>" +
-				"<p class=MsoNormal><span style='font-size:18.0pt'>"+msnAdjunto+"</span></p>" +
+				"<p class=MsoNormal><span style='font-size:18.0pt'>"+mesAggiunto+"</span></p>" +
 				"<div align=center>" +
 				"<table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0>" +
 				"<tr>" +
@@ -336,7 +186,7 @@ public class Ordine implements Serializable{
 				"<p class=MsoNormal><span style='font-size:18.0pt'>Totale da pagare: "+totale+"<o:p></o:p></span></p>" +
 				"<p class=MsoNormal><span style='font-size:18.0pt'>Metodo di pagamento scelto: <span"+
 				"class=SpellE>"+pagamento.getTipoPagamento()+"</span><o:p></o:p></span></p>"+
-				detagliPagamento(pagamento)+
+				dettagliPagamento(pagamento)+
 				"<p class=MsoNormal><span style='font-size:18.0pt'>Codice pagamento: "+pagamento.getNumPagamento()+"</span></p>"+
 				"<p class=MsoNormal><span style='font-size:18.0pt'>Stato del pagamento: "+statoPagamento(pagamento.isConfermato())+"</span></p>"+
 				"<p class=MsoNormal align=center style='text-align:center'><span"+
@@ -345,7 +195,7 @@ public class Ordine implements Serializable{
 				"<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span"+
 				"style='color:#76923C;mso-themecolor:accent3;mso-themeshade:191'>Grazie per "+
 				"l&rsquo;acquisto! In qualunque momento potr&agrave; consultare lo stato dei suoi ordini oppure"+
-				"cancellare l&rsquo;ordine traverso il nostro sito web <a"+
+				"cancellare l&rsquo;ordine attraverso il nostro sito web <a"+
 				"href='http://www.guanabana-store.com'>www.guanabana-store.com</a> nella voce &ldquo;I "+
 				"tuoi ordini&rdquo;.<o:p></o:p></span></p>"+
 				
@@ -357,12 +207,21 @@ public class Ordine implements Serializable{
 		
 	}
 	
+	/**
+	 * Metodo che permette di verificare lo stato del pagamento di un ordine.
+	 * @param confermato			True se il pagamento è confermato, false altrimenti
+	 * @return "Pagato" se il pagamento è confermato, "Non pagato" altrimenti
+	 */
 	private String statoPagamento(boolean confermato) {
 		 if(confermato){
 			 return "Pagato";
 		 }else return "Non pagato";
 	}
 
+	/**
+	 * Metodo di supporto a getMessaggioEmail().
+	 * @return string
+	 */
 	private String forMancante(){
 		String forMancante="";
 		for(int i = 0; i< computer.getConfigurazione().getComponentiScelti().length;i++){
@@ -389,25 +248,169 @@ public class Ordine implements Serializable{
 		return forMancante;
 	}
 	
-	private String detagliPagamento(Pagamento pagamento){
-		String detagli;
+	/**
+	 * Metodo che permette di visualizzare i dettagli di un pagamento.
+	 * @param pagamento		Pagamento di cui si vogliono i dettagli
+	 * @return dettagli		Dettagli del pagamento
+	 */
+	private String dettagliPagamento(Pagamento pagamento){
+		String dettagli;
 		
 		if(pagamento.getTipoPagamento().compareTo("Carta di Credito")==0||pagamento.getTipoPagamento().compareTo("CARTA DI CREDITO")==0){
 			CartaCredito cc = (CartaCredito) pagamento;
-			detagli="<p class=MsoNormal><span style='font-size:14.0pt'>Carta numero: ****"+cc.getCodice().substring(12,16)+"<o:p></o:p></span></p>"+
+			dettagli="<p class=MsoNormal><span style='font-size:14.0pt'>Carta numero: ****"+cc.getCodice().substring(12,16)+"<o:p></o:p></span></p>"+
 					"<p class=MsoNormal><span style='font-size:14.0pt'>Intestatario: "+cc.getIntestatario()+"<o:p></o:p></span></p>";
 			
 		}else if(pagamento.getTipoPagamento().compareTo("Bonifico")==0||pagamento.getTipoPagamento().compareTo("BONIFICO")==0){
 			Bonifico bon = (Bonifico) pagamento;
-			detagli="<p class=MsoNormal><span style='font-size:14.0pt'>Numero bonifico: "+bon.getCodice()+"<o:p></o:p></span></p>" +
+			dettagli="<p class=MsoNormal><span style='font-size:14.0pt'>Numero bonifico: "+bon.getCodice()+"<o:p></o:p></span></p>" +
 					"<p class=MsoNormal><span style='font-size:14.0pt'>Banca :"+bon.getBanca()+"<o:p></o:p></span></p>";
 		}else{
-			detagli="<p class=MsoNormal><span style='font-size:14.0pt'>Al momento della consegna dovr&agrave; pagare in assegno o contanti<o:p></o:p></span></p>";
+			dettagli="<p class=MsoNormal><span style='font-size:14.0pt'>Al momento della consegna dovr&agrave; pagare tramite assegno o contanti<o:p></o:p></span></p>";
 		}
 		
 		
-		return detagli;
+		return dettagli;
 	}
 	
+
+	/**
+	 * Getter of numeroOrdine
+	 * @return numeroOrdine
+	 */
+	public int getNumeroOrdine() {
+		return numeroOrdine;
+	}
+
+	/**
+	 * Setter of numeroOrdine
+	 * @param numeroOrdine
+	 */
+	public void setNumeroOrdine(int numeroOrdine) {
+		this.numeroOrdine = numeroOrdine;
+	}
+
+	/**
+	 * Getter of computer
+	 * @return computer
+	 */
+	public Computer getComputer() {
+		return computer;
+	}
+
+	/**
+	 * Setter of computer
+	 * @param computer
+	 */
+	public void setComputer(Computer computer) {
+		this.computer = computer;
+	}
+
+	/**
+	 * Getter of prezzo
+	 * @return prezzo
+	 */
+	public float getPrezzo() {
+		return totale;
+	}
+
+	/**
+	 * Setter of prezzo
+	 * @param prezzo
+	 */
+	public void setPrezzo(float prezzo) {
+		this.totale = prezzo;
+	}
+
+	/**
+	 * Getter of cliente
+	 * @return cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	/**
+	 * Setter of cliente
+	 * @param cliente
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	/**
+	 * Getter of data
+	 * @return data
+	 */
+	public String getData() {
+		return data;
+	}
+
+	/**
+	 * Setter of data
+	 * @param data
+	 */
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	/**
+	 * Getter of stato
+	 * @return stato
+	 */
+	public String getStato() {
+		return stato;
+	}
+
+	/**
+	 * Setter of stato
+	 * @param stato
+	 */
+	public void setStato(String stato) {
+		this.stato = stato;
+	}
+
+	/** 
+	 * Getter of pagamento
+	 * @return pagamento
+	 */
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	/** 
+	 * Setter of pagamento
+	 * @param pagamento
+	 */
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+//	/** 
+//	 * @uml.property name="richiestaSpedizione"
+//	 * @uml.associationEnd aggregation="composite" inverse="ordine:modello.RichiestaSpedizione"
+//	 * @uml.association name="crea"
+//	 */
+//	private RichiestaSpedizione richiestaSpedizione;
+//
+//
+//
+//	/** 
+//	 * Getter of the property <tt>richiestaSpedizione</tt>
+//	 * @return  Returns the richiestaSpedizione.
+//	 * @uml.property  name="richiestaSpedizione"
+//	 */
+//	public RichiestaSpedizione getRichiestaSpedizione() {
+//		return richiestaSpedizione;
+//	}
+//
+//	/** 
+//	 * Setter of the property <tt>richiestaSpedizione</tt>
+//	 * @param richiestaSpedizione  The richiestaSpedizione to set.
+//	 * @uml.property  name="richiestaSpedizione"
+//	 */
+//	public void setRichiestaSpedizione(RichiestaSpedizione richiestaSpedizione) {
+//		this.richiestaSpedizione = richiestaSpedizione;
+//	}
 
 }

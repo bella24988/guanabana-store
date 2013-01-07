@@ -3,10 +3,36 @@ package modello;
 import java.io.Serializable;
 import java.util.Collection;
 
-
+/**
+ * Classe Componente: Modello di componente selezionabile in una configurazione.
+ * Implementa Serializable.
+ * @author Gabriele
+ * @author  Veronica
+ * @version 3.0 Jan 3, 2013.
+ */
 public class Componente implements Serializable{
 	
+	/**
+	 * Serializzazione.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Dichiarazione delle variabili.
+	 */
+	private String codice;   //codice del componente
+	private String modello;  //modello del componente
+	private String tipo;     //tipo di componente
+	private String nome;     //nome del componente
+	private float prezzo;    //prezzo del componente
+	private boolean standard;//true se il componente fa parte della configurazione standard, false altrimenti
+	private boolean scelto;  //true se il componente è stato scelto in una configurazione, false altrimenti
+
+
 	
+	private Collection componenti; //lista di componenti
+
+
 
 	public Componente(String codice, String nome, float prezzo, String tipo) {
 		super();
@@ -16,197 +42,131 @@ public class Componente implements Serializable{
 		this.prezzo = prezzo;
 	}
 
+	
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="configurazione"
-	 * @uml.associationEnd  multiplicity="(1 -1)" inverse="componente:guanabana.Configurazione"
-	 * @uml.association  name="possiede"
-	 */
-
-	/**
-	 * @uml.property  name="codice"
-	 */
-	private String codice;
-
-	/**
-	 * Getter of the property <tt>codice</tt>
-	 * @return  Returns the codice.
-	 * @uml.property  name="codice"
+	 * Getter of codice
+	 * @return codice
 	 */
 	public String getCodice() {
 		return codice;
 	}
 
 	/**
-	 * Setter of the property <tt>codice</tt>
-	 * @param codice  The codice to set.
-	 * @uml.property  name="codice"
+	 * Setter of codice
+	 * @param codice
 	 */
 	public void setCodice(String codice) {
 		this.codice = codice;
 	}
 
-	/**
-	 * @uml.property  name="modello"
-	 */
-	private String modello;
-
 	/** 
-	 * Getter of the property <tt>nome</tt>
-	 * @return  Returns the nome.
-	 * @uml.property  name="modello"
+	 * Getter of modello
+	 * @return modello
 	 */
 	public String getModello() {
 		return modello;
 	}
 
 	/** 
-	 * Setter of the property <tt>nome</tt>
-	 * @param nome  The nome to set.
-	 * @uml.property  name="modello"
+	 * Setter of modello
+	 * @param modello
 	 */
 	public void setModello(String modello) {
 		this.modello = modello;
 	}
 
-	/**
-	 * @uml.property  name="tipo"
-	 */
-	private String tipo;
 
 	/**
-	 * Getter of the property <tt>tipo</tt>
-	 * @return  Returns the tipo.
-	 * @uml.property  name="tipo"
+	 * Getter of tipo
+	 * @return tipo
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * Setter of the property <tt>tipo</tt>
-	 * @param tipo  The tipo to set.
-	 * @uml.property  name="tipo"
+	 * Setter of tipo
+	 * @param tipo
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
 	/**
-	 * @uml.property  name="nome"
-	 */
-	private String nome;
-
-	/**
-	 * Getter of the property <tt>nome</tt>
-	 * @return  Returns the nome.
-	 * @uml.property  name="nome"
+	 * Getter of nome
+	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * Setter of the property <tt>nome</tt>
-	 * @param nome  The nome to set.
-	 * @uml.property  name="nome"
+	 * Setter of nome
+	 * @param nome
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @uml.property  name="prezzo"
-	 */
-	private float prezzo;
-
-	/**
-	 * Getter of the property <tt>prezzo</tt>
-	 * @return  Returns the prezzo.
-	 * @uml.property  name="prezzo"
+	 * Getter of prezzo
+	 * @return prezzo
 	 */
 	public float getPrezzo() {
 		return prezzo;
 	}
 
 	/**
-	 * Setter of the property <tt>prezzo</tt>
-	 * @param prezzo  The prezzo to set.
-	 * @uml.property  name="prezzo"
+	 * Setter of prezzo
+	 * @param prezzo
 	 */
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
 
 	/**
-	 * @uml.property  name="componenti"
-	 * @uml.associationEnd  multiplicity="(1 -1)"
-	 * @uml.association  name="contiene"
-	 */
-	private Collection componenti;
-
-	/**
-	 * Getter of the property <tt>componenti</tt>
-	 * @return  Returns the componenti.
-	 * @uml.property  name="componenti"
+	 * Getter of componenti
+	 * @return componenti
 	 */
 	public Collection getComponenti() {
 		return componenti;
 	}
 
 	/**
-	 * Setter of the property <tt>componenti</tt>
-	 * @param componenti  The componenti to set.
-	 * @uml.property  name="componenti"
+	 * Setter of componenti
+	 * @param componenti
 	 */
 	public void setComponenti(Collection componenti) {
 		this.componenti = componenti;
 	}
 
 	/**
-	 * @uml.property  name="standard"
-	 */
-	private boolean standard;
-
-	/**
-	 * Getter of the property <tt>standard</tt>
-	 * @return  Returns the standard.
-	 * @uml.property  name="standard"
+	 * Getter of standard
+	 * @return standard
 	 */
 	public boolean isStandard() {
 		return standard;
 	}
 
 	/**
-	 * Setter of the property <tt>standard</tt>
-	 * @param standard  The standard to set.
-	 * @uml.property  name="standard"
+	 * Setter of standard
+	 * @param standard
 	 */
 	public void setStandard(boolean standard) {
 		this.standard = standard;
 	}
 
 	/**
-	 * @uml.property  name="scelto"
-	 */
-	private boolean scelto;
-
-	/**
-	 * Getter of the property <tt>scelto</tt>
-	 * @return  Returns the scelto.
-	 * @uml.property  name="scelto"
+	 * Getter of scelto
+	 * @return scelto
 	 */
 	public boolean isScelto() {
 		return scelto;
 	}
 
 	/**
-	 * Setter of the property <tt>scelto</tt>
-	 * @param scelto  The scelto to set.
-	 * @uml.property  name="scelto"
+	 * Setter of scelto
+	 * @param scelto
 	 */
 	public void setScelto(boolean scelto) {
 		this.scelto = scelto;

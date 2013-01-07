@@ -16,76 +16,49 @@ import javax.swing.JTextArea;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 
+/**
+ * Classe PagamentoPanel: pannello che permette di selezionare le modalitˆ di pagamento
+ * (carta di credito, bonifico o contrassegno) e di procedere effettivamente al pagamento.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
+ */
 public class PagamentoPanel extends JPanel {
-
-	/**
-	 * @uml.property name="contenutoPanel"
-	 * @uml.associationEnd
-	 */
-	private ContenutoPanel contenutoPanel;
-
+	
 	private static final long serialVersionUID = 1L;
-	private JTextField txtNumordine;
-	private JTextArea txtErrore;
-	private JTextField txtTotale;
-	/**
-	 * @uml.property name="pagamentoController"
-	 * @uml.associationEnd
-	 */
-	private PagamentoController pagamentoController;
-	/**
-	 * @uml.property name="txtCarta"
-	 */
-	private JTextField txtCarta;
-	/**
-	 * @uml.property name="txtIntestatario"
-	 */
-	private JTextField txtIntestatario;
-	/**
-	 * @uml.property name="txtCodSicurezza"
-	 */
-	private JTextField txtCodSicurezza;
-	private static String[] mesi = { "", "Gennaio", "Febbraio", "Marzo",
-			"Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre",
-			"Ottobre", "Novembre", "Dicembre" };
-	/**
-	 * @uml.property name="anni"
-	 */
-	private static String[] anni;
-	private JPanel tipoPagamento;
-	/**
-	 * @uml.property name="txtCodiceBonifico"
-	 */
-	private JTextField txtCodiceBonifico;
-	/**
-	 * @uml.property name="txtBanca"
-	 */
-	private JTextField txtBanca;
-	/**
-	 * @uml.property name="panelCartaCredito"
-	 */
-	private JPanel panelCartaCredito;
 
 	/**
-	 * @uml.property name="panelBonifico"
-	 */
-	private JPanel panelBonifico;
-
-	/**
-	 * @uml.property name="panelContrasegno"
-	 */
-	private JPanel panelContrasegno;
-	private JComboBox cmbMesi;
-
-	private JComboBox cmbAnni;
-	/**
-	 * @uml.property name="tipoPagamentoScelto"
+	 * Dichiarazione delle variabili
 	 */
 	private int tipoPagamentoScelto;
 
+	private JTextField txtNumordine;
+	private JTextField txtTotale;
+	private JTextField txtCarta;
+	private JTextField txtIntestatario;
+	private JTextField txtCodSicurezza;
+	private JTextField txtCodiceBonifico;
+	private JTextField txtBanca;
+	
+	private JTextArea txtErrore;
+	
+	private JComboBox cmbMesi;
+	private JComboBox cmbAnni;
+	
+	private static String[] anni;
+	private static String[] mesi = { "", "Gennaio", "Febbraio", "Marzo",
+		"Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre",
+		"Ottobre", "Novembre", "Dicembre" };
+	
+	private JPanel tipoPagamento;
+	private JPanel panelCartaCredito;
+	private JPanel panelBonifico;
+	private JPanel panelContrassegno;
+	private ContenutoPanel contenutoPanel;
+	private PagamentoController pagamentoController;
+
 	/**
-	 * Create the panel.
-	 * 
+	 * Costruttore del pannello di pagamento
 	 * @param contenutoPanel
 	 */
 	public PagamentoPanel(ContenutoPanel contenutoPanel) {
@@ -201,14 +174,14 @@ public class PagamentoPanel extends JPanel {
 		add(tipoPagamento, gbc_tipoPagamento);
 		tipoPagamento.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelCartaCredito = new JPanel();
-		panelTipoPagamentoReset(panelCartaCredito);
+		tipoPagamentoReset(panelCartaCredito);
 		mostraCampiCarta(panelCartaCredito);
 		panelBonifico = new JPanel();
-		panelTipoPagamentoReset(panelBonifico);
+		tipoPagamentoReset(panelBonifico);
 		mostraCampiBonifico(panelBonifico);
-		panelContrasegno = new JPanel();
-		panelTipoPagamentoReset(panelContrasegno);
-		mostraCampiContrasegno(panelContrasegno);
+		panelContrassegno = new JPanel();
+		tipoPagamentoReset(panelContrassegno);
+		mostraCampiContrassegno(panelContrassegno);
 
 		tipoPagamento.setVisible(true);
 
@@ -244,22 +217,10 @@ public class PagamentoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the pagamentoController
-	 * @uml.property name="pagamentoController"
+	 * Permette di mostrare i campi del form per il pagamento
+	 * con carta di credito, quando l'utente lo seleziona
+	 * @param panel
 	 */
-	public PagamentoController getPagamentoController() {
-		return pagamentoController;
-	}
-
-	/**
-	 * @param pagamentoController
-	 *            the pagamentoController to set
-	 * @uml.property name="pagamentoController"
-	 */
-	public void setPagamentoController(PagamentoController pagamentoController) {
-		this.pagamentoController = pagamentoController;
-	}
-
 	public void mostraCampiCarta(JPanel panel) {
 
 		JLabel lblNumeroDeLa = new JLabel("Numero Carta:");
@@ -341,7 +302,12 @@ public class PagamentoPanel extends JPanel {
 		txtCodSicurezza.setColumns(10);
 
 	}
-
+	
+	/**
+	 * Permette di mostrare i campi del form per il pagamento
+	 * con bonifico, quando l'utente lo seleziona
+	 * @param panel
+	 */
 	public void mostraCampiBonifico(JPanel panel) {
 
 		JLabel lblCodiceBonifico = new JLabel("Codice bonifico:");
@@ -381,26 +347,58 @@ public class PagamentoPanel extends JPanel {
 		txtBanca.setColumns(10);
 
 	}
+	
+	/**
+	 * Permette di mostrare i campi per il pagamento
+	 * con contrassegno, quando l'utente lo seleziona
+	 * @param panel
+	 */
+	public void mostraCampiContrassegno(JPanel panel) {
 
-	public void mostraCampiContrasegno(JPanel panel) {
-
-		JTextArea txtrIlMancatoPagamento = new JTextArea();
-		txtrIlMancatoPagamento
-				.setText("Il mancato pagamento il giorno della consegna \r\ncomporter\u00E0 una sanzione pari alle spese di\r\nspezione pi\u00F9 100 Euro per agravante.");
-		GridBagConstraints gbc_txtrIlMancatoPagamento = new GridBagConstraints();
-		gbc_txtrIlMancatoPagamento.gridheight = 4;
-		gbc_txtrIlMancatoPagamento.gridwidth = 3;
-		gbc_txtrIlMancatoPagamento.insets = new Insets(0, 0, 5, 5);
-		gbc_txtrIlMancatoPagamento.fill = GridBagConstraints.BOTH;
-		gbc_txtrIlMancatoPagamento.gridx = 0;
-		gbc_txtrIlMancatoPagamento.gridy = 0;
-		panel.add(txtrIlMancatoPagamento, gbc_txtrIlMancatoPagamento);
+		JTextArea txtrMancatoPagamento = new JTextArea();
+		txtrMancatoPagamento
+				.setText("Il mancato pagamento il giorno della consegna \r\ncomporter\u00E0 una sanzione pari alle spese di\r\nspezione pi\u00F9 100 Euro per aggravante.");
+		GridBagConstraints gbc_txtrMancatoPagamento = new GridBagConstraints();
+		gbc_txtrMancatoPagamento.gridheight = 4;
+		gbc_txtrMancatoPagamento.gridwidth = 3;
+		gbc_txtrMancatoPagamento.insets = new Insets(0, 0, 5, 5);
+		gbc_txtrMancatoPagamento.fill = GridBagConstraints.BOTH;
+		gbc_txtrMancatoPagamento.gridx = 0;
+		gbc_txtrMancatoPagamento.gridy = 0;
+		panel.add(txtrMancatoPagamento, gbc_txtrMancatoPagamento);
 
 	}
-
+	
 	/**
-	 * @return
-	 * @uml.property name="anni"
+	 * Permette di resettare e riportare alla situazione iniziale
+	 * il pannello di pagamento
+	 * @param panel
+	 */
+	private void tipoPagamentoReset(JPanel panel) {
+		tipoPagamento.add(panel);
+		panel.setBackground(Color.white);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { Double.MIN_VALUE };
+		panel.setLayout(gbl_panel);
+		panel.setVisible(false);
+	}
+	
+	/**
+	 * Mostra a video un messaggio d'errore
+	 * @param s			Stringa da mostrare a video
+	 */
+	public void mostraMessaggioErrore(String s) {
+		txtErrore.setText(s);
+		txtErrore.setVisible(true);
+
+	}
+	
+	/**
+	 * Getter of anni
+	 * @return anni
 	 */
 	private String[] getAnni() {
 		anni = new String[11];
@@ -412,172 +410,197 @@ public class PagamentoPanel extends JPanel {
 		return anni;
 	}
 
-	private void panelTipoPagamentoReset(JPanel panel) {
-		tipoPagamento.add(panel);
-		panel.setBackground(Color.white);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0 };
-		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0 };
-		gbl_panel.columnWeights = new double[] { Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { Double.MIN_VALUE };
-		panel.setLayout(gbl_panel);
-		panel.setVisible(false);
+	
+	/**
+	 * Getter of pagamentoController
+	 * @return pagamentoController
+	 */
+	public PagamentoController getPagamentoController() {
+		return pagamentoController;
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="panelCartaCredito"
+	 * Setter of pagamentoController
+	 * @param pagamentoController
+	 */
+	public void setPagamentoController(PagamentoController pagamentoController) {
+		this.pagamentoController = pagamentoController;
+	}
+	
+	/**
+	 * Getter of panelCartaCredito
+	 * @return panelCartaCredito
 	 */
 	public JPanel getPanelCartaCredito() {
 		return panelCartaCredito;
 	}
 
 	/**
+	 * Setter of panelCartaCredito
 	 * @param panelCartaCredito
-	 * @uml.property name="panelCartaCredito"
 	 */
 	public void setPanelCartaCredito(JPanel panelCartaCredito) {
 		this.panelCartaCredito = panelCartaCredito;
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="panelBonifico"
+	 * Getter of panelBonifico
+	 * @return panelBonifico
 	 */
 	public JPanel getPanelBonifico() {
 		return panelBonifico;
 	}
 
 	/**
+	 * Setter of panelBonifico
 	 * @param panelBonifico
-	 * @uml.property name="panelBonifico"
 	 */
 	public void setPanelBonifico(JPanel panelBonifico) {
 		this.panelBonifico = panelBonifico;
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="panelContrasegno"
+	 * Getter of panelContrassegno
+	 * @return panelContrassegno
 	 */
-	public JPanel getPanelContrasegno() {
-		return panelContrasegno;
+	public JPanel getPanelContrassegno() {
+		return panelContrassegno;
 	}
 
 	/**
-	 * @param panelContrasegno
-	 * @uml.property name="panelContrasegno"
+	 * Setter of panelContrassegno
+	 * @param panelContr
 	 */
-	public void setPanelContrasegno(JPanel panelContrasegno) {
-		this.panelContrasegno = panelContrasegno;
+	public void setPanelContrassegno(JPanel panelContr) {
+		this.panelContrassegno = panelContr;
 	}
 
 	/**
-	 * @return the contenutoPanel
-	 * @uml.property name="contenutoPanel"
+	 * Getter of contenutoPanel
+	 * @return contenutoPanel
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
+	 * Setter of contenutoPanel
 	 * @param contenutoPanel
-	 *            the contenutoPanel to set
-	 * @uml.property name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
 	}
 
+	/**
+	 * Getter del mese selezionato
+	 * @return mese selezionato dall'utente
+	 */
 	public int getMeseSelezionato() {
 		return cmbMesi.getSelectedIndex();
 	}
 
+	/**
+	 * Getter dell'anno selezionato
+	 * @return anno selezionato dall'utente
+	 */
 	public int getAnnoSelezionato() {
 		return cmbAnni.getSelectedIndex();
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="txtCarta"
+	 * Getter of txtCarta
+	 * @return txtCarta
 	 */
 	public String getTxtCarta() {
 		return txtCarta.getText();
 	}
 
+	/**
+	 * Setter of txtCarta
+	 * @param txtCarta
+	 */
 	public void setTxtCarta(String txtCarta) {
 		this.txtCarta.setText(txtCarta);
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="txtIntestatario"
+	 * Getter of txtIntestatario
+	 * @return txtIntestatario
 	 */
 	public String getTxtIntestatario() {
 		return txtIntestatario.getText();
 	}
 
+	/**
+	 * Setter of txtIntestatario
+	 * @param txtIntestatario
+	 */
 	public void setTxtIntestatario(String txtIntestatario) {
 		this.txtIntestatario.setText(txtIntestatario);
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="txtCodSicurezza"
+	 * Getter of txtCodSicurezza
+	 * @return txtCodSicurezza
 	 */
 	public String getTxtCodSicurezza() {
 		return txtCodSicurezza.getText();
 	}
 
+	/**
+	 * Setter of txtCodSicurezza
+	 * @param txtCodSicurezza
+	 */
 	public void setTxtCodSicurezza(String txtCodSicurezza) {
 		this.txtCodSicurezza.setText(txtCodSicurezza);
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="txtCodiceBonifico"
+	 * Getter of txtCodiceBonifico
+	 * @return txtCodiceBonifico
 	 */
 	public String getTxtCodiceBonifico() {
 		return txtCodiceBonifico.getText();
 	}
 
+	/**
+	 * Setter of txtCodiceBonifico
+	 * @param txtCodiceBonifico
+	 */
 	public void setTxtCodiceBonifico(String txtCodiceBonifico) {
 		this.txtCodiceBonifico.setText(txtCodiceBonifico);
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="txtBanca"
+	 * Getter of txtBanca
+	 * @return txtBanca
 	 */
 	public String getTxtBanca() {
 		return txtBanca.getText();
 	}
 
+	/**
+	 * Setter of txtBanca
+	 * @param txtBanca
+	 */
 	public void setTxtBanca(String txtBanca) {
 		this.txtBanca.setText(txtBanca);
 	}
 
 	/**
-	 * @return the tipoPagamentoScelto
-	 * @uml.property name="tipoPagamentoScelto"
+	 * Getter of tipoPagamentoScelto
+	 * @return tipoPagamentoScelto
 	 */
 	public int getTipoPagamentoScelto() {
 		return tipoPagamentoScelto;
 	}
 
 	/**
+	 * Setter of tipoPagamentoScelto
 	 * @param tipoPagamentoScelto
-	 *            the tipoPagamentoScelto to set
-	 * @uml.property name="tipoPagamentoScelto"
 	 */
 	public void setTipoPagamentoScelto(int tipoPagamentoScelto) {
 		this.tipoPagamentoScelto = tipoPagamentoScelto;
-	}
-
-	public void mostraMessaggioErrore(String s) {
-		txtErrore.setText(s);
-		txtErrore.setVisible(true);
-
 	}
 
 }

@@ -3,31 +3,30 @@ package modello;
 import java.io.Serializable;
 
 /**
- * @author  Veronica
+ * Classe Dipendente: Modello di dipendente dell'azienda.
+ * Implementa Serializable.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class Dipendente implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * @uml.property  name="nome"
+	 * Dichiarazione delle variabili
 	 */
-	private String nome;
-	/**
-	 * @uml.property  name="cognome"
-	 */
-	private String cognome;
-	/**
-	 * @uml.property  name="id"
-	 */
-	private int id;
-	/**
-	 * @uml.property  name="dipartimento"
-	 */
-	private String dipartimento;
+	private String nome;			//Nome del dipendente
+	private String cognome;			//Cognome del dipendente
+	private int id;					//Numero identificativo del dipendente
+	private String dipartimento;	//Dipartimento di appartenenza del dipendente
 	
+	/**
+	 * Costruttore di un dipendente dell'azienda.
+	 * @param nome					Nome del dipendente
+	 * @param cognome				Cognome del dipendente
+	 * @param id					Numero identificativo del dipendente
+	 * @param dipartimento			Dipartimento di appartenenza del dipendente
+	 */
 	public Dipendente(String nome, String cognome, int id,
 			String dipartimento) {
 		super();
@@ -38,70 +37,67 @@ public class Dipendente implements Serializable{
 	}
 
 	/**
-	 * @return  the nome
-	 * @uml.property  name="nome"
+	 * Getter of nome
+	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * @param nome  the nome to set
-	 * @uml.property  name="nome"
+	 * Setter of nome
+	 * @param nome
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @return  the cognome
-	 * @uml.property  name="cognome"
+	 * Getter of cognome
+	 * @return cognome
 	 */
 	public String getCognome() {
 		return cognome;
 	}
 
 	/**
-	 * @param cognome  the cognome to set
-	 * @uml.property  name="cognome"
+	 * Setter of cognome
+	 * @param cognome
 	 */
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
 
 	/**
-	 * @return  the id
-	 * @uml.property  name="id"
+	 * Getter of id
+	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * @param id2  the id to set
-	 * @uml.property  name="id"
+	 * Setter of id
+	 * @param id
 	 */
-	public void setId(int id2) {
-		this.id = id2;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
-	 * @return  the dipartimento
-	 * @uml.property  name="dipartimento"
+	 * Getter of dipartimento
+	 * @return dipartimento
 	 */
 	public String getDipartimento() {
 		return dipartimento;
 	}
 
 	/**
-	 * @param dipartimento  the dipartimento to set
-	 * @uml.property  name="dipartimento"
+	 * Setter of dipartimento
+	 * @param dipartimento
 	 */
 	public void setDipartimento(String dipartimento) {
 		this.dipartimento = dipartimento;
 	}
-	
-	
-	
 
 }

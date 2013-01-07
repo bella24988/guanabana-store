@@ -10,38 +10,31 @@ import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
-import modello.Componente;
-import modello.Computer;
 import modello.Configurazione;
 
-/**
+/** 
+ * Classe ConfigPanel: Pannello che consente di configurare il device scelto
+ * @author Gabriele
  * @author Veronica
+ * @version 3.0 Jan 3, 2013.
  */
 public class ConfigPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property name="preventivoController"
-	 * @uml.associationEnd
-	 */
+	
+	/** Controller del pannello del preventivo */
 	private PreventivoController preventivoController;
-	/**
-	 * @uml.property name="configurazione"
-	 * @uml.associationEnd multiplicity="(0 -1)"
-	 */
+	
+	/** Configurazione */
 	private Configurazione configurazione;
 
-	// numero massimo di componenti configurabili rispettivamente per laptop,
-	// desktop e server
-	private static final int[] maxElementiConfig = { 6, 10, 10 };
-	// doppi array contenente i tipi di componenti configurabili rispettivamente
-	// per laptop, desktop e server
-
-	private static final String[] lblComp = { "Laptop", "Desktop", "Server" };
+	
+	/** Tipo di computer */
+	private int compTipo;
+	
+	/** 
+	 * Doppi array contenente i tipi di componenti configurabili rispettivamente per laptop, desktop e server 
+	 */
 	private static final String[][] tipoComponenti = {
 			{ "RAM", "CPU", "HD0", "GPU", "DVD", "WAR" },
 			{ "RAM", "CPU", "MOU", "HD0", "HDD", "GPU", "DVD", "WAR", "KEY",
@@ -60,15 +53,14 @@ public class ConfigPanel extends JPanel {
 					"Hard Disk (opzionale2):", "Hard Disk (opzionale 3):",
 					"Unitˆ ottica:", "Scheda PCI:", "Garanzia:" } };
 
-	private int compTipo;
+	private static final String[] lblComp = { "Laptop", "Desktop", "Server" };
+	
 
-	/**
-	 * @param componenti
-	 * @param configStandard
+	/** Costruttore del pannello di configurazione
+	 * @param config
 	 * @param preventivoController
 	 * @param computerType
 	 */
-
 	public ConfigPanel(Configurazione config,
 			PreventivoController preventivoController, int computerType) {
 		super();
@@ -107,6 +99,7 @@ public class ConfigPanel extends JPanel {
 
 		System.out.println("Lunghezza componenti"
 				+ tipoComponenti[computerType].length);
+		@SuppressWarnings("unused")
 		ButtonGroup[] group = new ButtonGroup[tipoComponenti[computerType].length];
 		for (int indiceComponenti = 0; indiceComponenti < tipoComponenti[computerType].length; indiceComponenti++) {
 
@@ -156,6 +149,13 @@ public class ConfigPanel extends JPanel {
 
 	}
 
+	/** Metodo che consente di mostrare il prezzo corretto di un componente e di configurare il radio button corrispondente
+	 * @param rdbtn				Radio button da configurare
+	 * @param indexTipoComp		Tipo di computer
+	 * @param indexComp
+	 * @param conf				Configurazione
+	 * @return
+	 */
 	private JRadioButton configButtons(JRadioButton rdbtn, int indexTipoComp,
 			int indexComp, Configurazione conf) {
 
@@ -177,54 +177,52 @@ public class ConfigPanel extends JPanel {
 		return rdbtn;
 	}
 
-	/**
-	 * @return
-	 * @uml.property name="preventivoController"
+	/** Restituisce il controller del preventivo
+	 * @return preventivoController
 	 */
 	public PreventivoController getPreventivoController() {
 		return preventivoController;
 	}
 
-	/**
-	 * @param preventivoController
-	 * @uml.property name="preventivoController"
+	/** Setter del controller del preventivo
+	 * @param preventivoController		Controller da settare
 	 */
 	public void setPreventivoController(
 			PreventivoController preventivoController) {
 		this.preventivoController = preventivoController;
 	}
 
-	/**
-	 * @return
-	 * @uml.property name="configurazione"
+	/** Restituisce la configurazione scelta
+	 * @return configurazione
 	 */
 	public Configurazione getConfigurazione() {
 		return configurazione;
 	}
 
-	/**
-	 * @param configurazione
-	 * @uml.property name="configurazione"
+	/** Setter della configurazione
+	 * @param configurazione		Configurazione da settare
 	 */
 	public void setConfigurazione(Configurazione configurazione) {
 		this.configurazione = configurazione;
 	}
 
-	/**
-	 * @return the compTipo
+	/** Restituisce il tipo di computer
+	 * @return compTipo
 	 */
 	public int getCompTipo() {
 		return compTipo;
 	}
 
-	/**
-	 * @param compTipo
-	 *            the compTipo to set
+	/** Setter del tipo di computer
+	 * @param compTipo		Tipo di computer da settare
 	 */
 	public void setCompTipo(int compTipo) {
 		this.compTipo = compTipo;
 	}
 
+	/** Restituisce il tipo di componenti
+	 * @return tipoComponenti
+	 */
 	public static String[][] getTipocomponenti() {
 		return tipoComponenti;
 	}

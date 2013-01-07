@@ -14,30 +14,30 @@ import modello.Ordine;
 import java.awt.Color;
 
 /**
- * @author  Veronica
+ * Classe AnnullaOrdinePanel: Pannello che consente di annullare l'ordine
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class AnnullaOrdinePanel extends JPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
+	/** Campi di testo per contenere i dati dell'ordine */
 	private JTextField txtNroOrdine;
 	private JTextField txtData;
 	private JTextField txtComputer;
 	private JTextField txtStato;
-	/**
-	 * @uml.property  name="ordine"
-	 * @uml.associationEnd  
-	 */
+	
+	/** Ordine da annullare */
 	private Ordine ordine;
-	/**
-	 * @uml.property  name="contenutoPanel"
-	 * @uml.associationEnd  
-	 */
+	
+	/** Pannello contenitore */
 	private ContenutoPanel contenutoPanel;
 
-	/**
-	 * Create the panel.
+	
+	/** Costruttore del pannello
+	 * @param ordine		Ordine da annullare
 	 */
 	public AnnullaOrdinePanel(Ordine ordine) {
 		this.ordine = ordine;
@@ -153,33 +153,29 @@ public class AnnullaOrdinePanel extends JPanel {
 
 	}
 
-	/**
-	 * @return  the ordine
-	 * @uml.property  name="ordine"
+	/** Restituisce l'ordine in atto
+	 * @return ordine
 	 */
 	public Ordine getOrdine() {
 		return ordine;
 	}
 
-	/**
-	 * @param ordine  the ordine to set
-	 * @uml.property  name="ordine"
+	/** Setter dell'ordine
+	 * @param ordine 		Ordine da settare
 	 */
 	public void setOrdine(Ordine ordine) {
 		this.ordine = ordine;
 	}
 
-	/**
-	 * @return  the contenutoPanel
-	 * @uml.property  name="contenutoPanel"
+	/** Restituisce il pannello contenitore in uso
+	 * @return contenutoPanel
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
-	/**
-	 * @param contenutoPanel  the contenutoPanel to set
-	 * @uml.property  name="contenutoPanel"
+	/** Setter del pannello contenitore
+	 * @param contenutoPanel		Pannello contenitore da settare
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;

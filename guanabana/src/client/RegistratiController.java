@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.Pattern;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
@@ -16,39 +14,48 @@ import client.ContenutoPanel;
 import client.LogPanel;
 import client.RegistratiView;
 
+/**
+ * Classe RegistratiController: Controlla il processo di registrazione e i pulsanti per confermare
+ * la registrazione dopo aver compilato il form.
+ * Implementa ActionListener.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013. 
+ */
 public class RegistratiController implements ActionListener {
 
 	/**
-	 * @uml.property name="logpanel"
-	 * @uml.associationEnd
+	 * Dichiarazione delle variabili
 	 */
 	LogPanel logpanel;
-	/**
-	 * @uml.property name="contenuto"
-	 * @uml.associationEnd
-	 */
 	ContenutoPanel contenuto;
-	/**
-	 * @uml.property name="registrati"
-	 * @uml.associationEnd
-	 */
 	RegistratiView registrati;
-	/**
-	 * @uml.property name="cliente"
-	 * @uml.associationEnd
-	 */
+	
+	private ServizioClient client;
+	
 	Cliente cliente;
 
+	/**
+	 * Primo costruttore del controller, prende come parametro il pannello di registrazione
+	 * @param registrati
+	 */
 	public RegistratiController(RegistratiView registrati) {
 		this.setRegistrati(registrati);
 	}
 
+	/**
+	 * Secondo costruttore del controller, associa al pannello di login e a quello dei contenuti
+	 * l'utente registrato
+	 * @param logpanel
+	 * @param contenuto
+	 */
 	public RegistratiController(LogPanel logpanel, ContenutoPanel contenuto) {
 		super();
 		this.setLogpanel(logpanel);
 		this.setContenuto(contenuto);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equalsIgnoreCase("Registrati")) {
 			contenuto.mostraFormularioRegistrati(logpanel);
@@ -72,12 +79,12 @@ public class RegistratiController implements ActionListener {
 							+ registrati.getTxtProvincia() + ". "
 							+ registrati.getTxtStato();
 
-					client = new Client(registrati.getLogPanel().getContenuto()
+					client = new ServizioClient(registrati.getLogPanel().getContenuto()
 							.getHost());
 					try {
 						try {
 							cliente = client
-									.registreNuovoCliente(
+									.registraNuovoCliente(
 											registrati.getTxtCf(), registrati
 													.getTxtNome(), registrati
 													.getTxtCognome(),
@@ -92,13 +99,13 @@ public class RegistratiController implements ActionListener {
 								registrati.setTxtNome(cliente.getNome() + " "
 										+ cliente.getCognome());
 								registrati.getLogPanel().getContenuto()
-										.setClienteLogato(cliente);
+										.setClienteLoggato(cliente);
 								client.inviaEmailConferma(registrati.getTxtEmail(),//email cliente
 										cliente.getMessaggio(),//messaggio della email
 										"Guanabana - Registrazione");//subject della email
 
 								if (registrati.getLogPanel().getContenuto()
-										.getAttessaCompra() == true) {
+										.getWaitForBuy() == true) {
 
 									registrati.getLogPanel().getContenuto()
 											.continuaOperazione();
@@ -122,7 +129,7 @@ public class RegistratiController implements ActionListener {
 						e1.printStackTrace();
 						registrati.mostraMessaggio("Errore con il server");
 					}
-					registrati.ocultaFinestra(cliente);
+					registrati.nascondiFinestra(cliente);
 
 				} else {
 					registrati.mostraMessaggio("Le password non coincidono");
@@ -135,6 +142,13 @@ public class RegistratiController implements ActionListener {
 
 	}
 
+	/**
+	 * Restituisce true se i valori psw1 e psw2 coincidono, false altrimenti.
+	 * Utilizzato per controllare la coincidenza dei campi "Password" e "Conferma Password"
+	 * @param psw1
+	 * @param psw2
+	 * @return true or false
+	 */
 	private boolean passwordUguali(String psw1, String psw2) {
 
 		if (psw2.compareTo(psw1) != 0) {
@@ -142,10 +156,14 @@ public class RegistratiController implements ActionListener {
 		} else {
 			return true;
 		}
-		// return true;
-
 	}
 
+	/**
+	 * Metodo che permette di validare tutti i campi del form
+	 * di registrazione, utilizzando Java Pattern
+	 * @param r
+	 * @return int value that represent validation
+	 */
 	private int validate(RegistratiView r) {
 
 		Matcher nomeMatcher = null;
@@ -289,131 +307,66 @@ public class RegistratiController implements ActionListener {
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="registrati"
+	 * Getter of registrati
+	 * @return registrati
 	 */
 	public RegistratiView getRegistrati() {
 		return registrati;
 	}
 
 	/**
+	 * Setter of registrati
 	 * @param registrati
-	 * @uml.property name="registrati"
 	 */
 	public void setRegistrati(RegistratiView registrati) {
 		this.registrati = registrati;
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="contenuto"
+	 * Getter of contenuto
+	 * @return contenuto
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 	/**
+	 * Setter of contenuto
 	 * @param contenuto
-	 * @uml.property name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="logpanel"
+	 * Getter of logpanel
+	 * @return logpanel
 	 */
 	public LogPanel getLogpanel() {
 		return logpanel;
 	}
 
 	/**
+	 * Setter of logpanel
 	 * @param logpanel
-	 * @uml.property name="logpanel"
 	 */
 	public void setLogpanel(LogPanel logpanel) {
 		this.logpanel = logpanel;
 	}
 
 	/**
-	 * @uml.property name="registratiView"
-	 * @uml.associationEnd
+	 * Getter of client
+	 * @return client
 	 */
-	private RegistratiView registratiView;
-
-	/**
-	 * Getter of the property <tt>registratiView</tt>
-	 * 
-	 * @return Returns the registratiView.
-	 * @uml.property name="registratiView"
-	 */
-	public RegistratiView getRegistratiView() {
-		return registratiView;
-	}
-
-	/**
-	 * Setter of the property <tt>registratiView</tt>
-	 * 
-	 * @param registratiView
-	 *            The registratiView to set.
-	 * @uml.property name="registratiView"
-	 */
-	public void setRegistratiView(RegistratiView registratiView) {
-		this.registratiView = registratiView;
-	}
-
-	/**
-	 * @uml.property name="contenutoPanel"
-	 * @uml.associationEnd
-	 */
-	private ContenutoPanel contenutoPanel;
-
-	/**
-	 * Getter of the property <tt>contenutoPanel</tt>
-	 * 
-	 * @return Returns the contenutoPanel.
-	 * @uml.property name="contenutoPanel"
-	 */
-	public ContenutoPanel getContenutoPanel() {
-		return contenutoPanel;
-	}
-
-	/**
-	 * Setter of the property <tt>contenutoPanel</tt>
-	 * 
-	 * @param contenutoPanel
-	 *            The contenutoPanel to set.
-	 * @uml.property name="contenutoPanel"
-	 */
-	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
-		this.contenutoPanel = contenutoPanel;
-	}
-
-	/**
-	 * @uml.property name="client"
-	 * @uml.associationEnd
-	 */
-	private Client client;
-
-	/**
-	 * Getter of the property <tt>client</tt>
-	 * 
-	 * @return Returns the client.
-	 * @uml.property name="client"
-	 */
-	public Client getClient() {
+	public ServizioClient getClient() {
 		return client;
 	}
 
 	/**
-	 * Setter of the property <tt>client</tt>
-	 * 
+	 * Setter of client
 	 * @param client
-	 *            The client to set.
-	 * @uml.property name="client"
 	 */
-	public void setClient(Client client) {
+	public void setClient(ServizioClient client) {
 		this.client = client;
 	}
 

@@ -16,22 +16,33 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-public class VenditaDaGestirePanel extends JPanel {
+/**
+ * Classe VenditeDaGestirePanel: Pannello rivolto al reparto vendite, 
+ * che si occupa degli ordini ancora in gestione (in attesa di pagamento o da spedire).
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
+public class VenditeDaGestirePanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Dichiarazione delle variabili
+	 */
 	private Ordine[] ordini;
-	private VenditaDaGestireController venGestireController;
+	private VenditeDaGestireController venGestireController;
 	private JCheckBox[] conferma;
 	private JButton[] btnInviaMagazzino;
 
+	
 	/**
-	 * Create the panel.
+	 * Costruttore del pannello delle vendite da gestire.
+	 * @param ordini
+	 * @param veDaGestireController
 	 */
-	public VenditaDaGestirePanel(Ordine[] ordini,
-			VenditaDaGestireController veDaGestireController) {
+	public VenditeDaGestirePanel(Ordine[] ordini,
+			VenditeDaGestireController veDaGestireController) {
 		this.venGestireController = veDaGestireController;
 		this.ordini = ordini;
 		String tipoOK = "Contrassegno";
@@ -83,7 +94,7 @@ public class VenditaDaGestirePanel extends JPanel {
 		gbc_lblTipoPagamento.gridy = 1;
 		add(lblTipoPagamento, gbc_lblTipoPagamento);
 
-		JLabel lblDetagli = new JLabel("Detagli Pagamento");
+		JLabel lblDetagli = new JLabel("Dettagli Pagamento");
 		lblDetagli.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTipoPagamento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblDetagli = new GridBagConstraints();
@@ -212,9 +223,9 @@ public class VenditaDaGestirePanel extends JPanel {
 				if (conferma[indiceArray].isSelected()
 						|| ordini[indiceArray].getPagamento().getTipoPagamento()
 								.compareTo(tipoOK) == 0) {
-					mostraButtoneInvio(indiceArray);
+					mostraBottoneInvio(indiceArray);
 				} else {
-					nascondiButtoneInvio(indiceArray);
+					nascondiBottoneInvio(indiceArray);
 				}
 			}else{
 				btnInviaMagazzino[indiceArray].setEnabled(true);
@@ -237,14 +248,23 @@ public class VenditaDaGestirePanel extends JPanel {
 
 	}
 
-	public void mostraButtoneInvio(int indiceArray) {
+	/**
+	 * Metodo che mostra il bottone di invio dell'ordine al magazzino, che permette
+	 * di inoltrare l'ordine al reparto magazzino una volta ricevuto il pagamento.
+	 * @param indiceArray
+	 */
+	public void mostraBottoneInvio(int indiceArray) {
 		ordini[indiceArray].getPagamento().setConfermato(true);
 		btnInviaMagazzino[indiceArray].setEnabled(true);
 		btnInviaMagazzino[indiceArray].setText("invia al magazzino");
 		btnInviaMagazzino[indiceArray].setActionCommand("invia al magazzino");
 	}
 
-	public void nascondiButtoneInvio(int indiceArray) {
+	/**
+	 * Metodo che nasconde il bottone di inoltro dell'ordine al magazzino.
+	 * @param indiceArray
+	 */
+	public void nascondiBottoneInvio(int indiceArray) {
 		ordini[indiceArray].getPagamento().setConfermato(false);
 		btnInviaMagazzino[indiceArray].setEnabled(true);
 		btnInviaMagazzino[indiceArray].setText("richiede pagamento");
@@ -252,33 +272,35 @@ public class VenditaDaGestirePanel extends JPanel {
 	}
 
 	/**
-	 * @return the ordini
+	 * Getter of ordini
+	 * @return ordini
 	 */
 	public Ordine[] getOrdini() {
 		return ordini;
 	}
 
 	/**
+	 * Setter of ordini
 	 * @param ordini
-	 *            the ordini to set
 	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
 	}
 
 	/**
-	 * @return the venGestireController
+	 * Getter of venGestireController
+	 * @return venGestireController
 	 */
-	public VenditaDaGestireController getVenGestireController() {
+	public VenditeDaGestireController getVenGestireController() {
 		return venGestireController;
 	}
 
 	/**
+	 * Setter of venGestireController
 	 * @param venGestireController
-	 *            the venGestireController to set
 	 */
 	public void setVenGestireController(
-			VenditaDaGestireController venGestireController) {
+			VenditeDaGestireController venGestireController) {
 		this.venGestireController = venGestireController;
 	}
 

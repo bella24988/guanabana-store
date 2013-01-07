@@ -17,70 +17,43 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+/**
+ * Classe Fattura: Modello di una fattura di un acquisto.
+ * Implementa Serializable.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
 public class Fattura implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Dichiarazione delle variabili
+	 */
+	private Ordine ordine;		//Ordine da fatturare
+	private String codice;		//Codice dell'ordine
+	private String data;		//Data della fattura
 
 
 	/**
-	 * 
+	 * Costruttore di una fattura di un acquisto.
+	 * @param ordine			Ordine da fatturare
+	 * @param codice			Codice dell'ordine
+	 * @param data				Data della fattura
 	 */
-	private static final long serialVersionUID = 1L;
-
 	public Fattura(Ordine ordine, String codice, String data) {
 		super();
 		this.ordine = ordine;
 		this.codice = codice;
 		this.data = data;
 	}
-
-	private Ordine ordine;
+	
 	/**
-	 * @uml.property  name="codice"
-	 */
-	private String codice;
-
-	/**
-	 * Getter of the property <tt>codice</tt>
-	 * @return  Returns the codice.
-	 * @uml.property  name="codice"
-	 */
-	public String getCodice() {
-		return codice;
-	}
-
-	/**
-	 * Setter of the property <tt>codice</tt>
-	 * @param codice  The codice to set.
-	 * @uml.property  name="codice"
-	 */
-	public void setCodice(String codice) {
-		this.codice = codice;
-	}
-
-	/**
-	 * @uml.property  name="data"
-	 */
-	private String data;
-
-	/**
-	 * Getter of the property <tt>data</tt>
-	 * @return  Returns the data.
-	 * @uml.property  name="data"
-	 */
-	public String getData() {
-		return data;
-	}
-
-	/**
-	 * Setter of the property <tt>data</tt>
-	 * @param data  The data to set.
-	 * @uml.property  name="data"
-	 */
-	public void setData(String data) {
-		this.data = data;
-	}
-
-		
-	/**
+	 * Metodo che permette di generare la fattura di un ordine.
+	 * @param filename			Nome del file generato
+	 * @throws DocumentException
+	 * @throws IOException
 	 */
 	public void generareFattura(String filename) throws DocumentException, IOException {
         // step 1
@@ -126,10 +99,9 @@ public class Fattura implements Serializable{
         
         PdfPTable table = new PdfPTable(3);
        
-		Paragraph titoloTabella = new Paragraph("Detagli della Fattura");
+		Paragraph titoloTabella = new Paragraph("Dettagli dell'ordine");
 		titoloTabella.setAlignment(Element.ALIGN_CENTER);
 		
-		//asparrago 123 	160 	91
 		int r=123;
         int g=160;
         int b=91;        
@@ -178,9 +150,9 @@ public class Fattura implements Serializable{
 		
 		table.addCell(String.valueOf(ordine.getPrezzo()));
 		
-		Paragraph piePagina = new Paragraph("Grazie per l'acquisto! \nA seconda del metodo di pagamento scelto, possono essere necessari fino a 7 giorni lavorativi per l'accredito del rimborso sul vostro conto, dopo l'elaborazione da parte di Guanabana. Per i pagamenti tramite bonifico, vi richiederemo i dettagli della vostra banca per accreditare il rimborso sul vostro conto." +
-				"\nSulle carte di credito non vengono addebitati i costi fintanto che l'ordine non viene spedito. Per qualsiasi tipo di annullamento dell'ordine prima della spedizione, l'importo dell'autorizzazione trattenuto sulla vostra carta verrà rimosso entro 3 giorni dalla società erogatrice della carta di credito." +
-				"\nSe l'ordine è già stato spedito e desiderate restituirlo per ottenere un rimborso.\nData: "+getData(), style1);
+		Paragraph piePagina = new Paragraph("Grazie per l'acquisto! \nA seconda del metodo di pagamento scelto, possono essere necessari fino a 7 giorni lavorativi per l'elaborazione dell'ordine. Per i pagamenti tramite bonifico, vi saranno richiesti i vostri estremi bancari per addebitare l'importo sul vostro conto." +
+				"\nNon vi verrà addebitato nessun costo sulla vostra carta di credito finchè l'ordine non risulterà spedito. Per qualsiasi tipo di annullamento dell'ordine prima della spedizione, l'importo dell'autorizzazione trattenuto sulla vostra carta verrà restituito entro 3 giorni dalla società erogatrice della carta di credito." +
+				"\nData: "+getData(), style1);
 		piePagina.setAlignment(Element.ALIGN_CENTER);
 		
 		PdfPTable tablePagamento = new PdfPTable(2);
@@ -205,13 +177,53 @@ public class Fattura implements Serializable{
         java.awt.Desktop.getDesktop().open(new File(filename));
     }
 
+	
+	/**
+	 * Getter of codice
+	 * @return codice
+	 */
+	public String getCodice() {
+		return codice;
+	}
+
+	/**
+	 * Setter of codice
+	 * @param codice
+	 */
+	public void setCodice(String codice) {
+		this.codice = codice;
+	}
+
+	/**
+	 * Getter of data
+	 * @return data.
+	 */
+	public String getData() {
+		return data;
+	}
+
+	/**
+	 * Setter of data
+	 * @param data
+	 */
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	/**
+	 * Getter of ordine
+	 * @return ordine
+	 */
 	public Ordine getOrdine() {
 		return ordine;
 	}
 
+	/**
+	 * Setter of ordine
+	 * @param ordine
+	 */
 	public void setOrdine(Ordine ordine) {
 		this.ordine = ordine;
 	}
-
 	
 }

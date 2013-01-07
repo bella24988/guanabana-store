@@ -1,57 +1,63 @@
 package modello;
 
-
 /**
+ * Classe Bonifico: Modello del pagamento con bonifico.
+ * Estende la classe Pagamento.
  * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class Bonifico extends Pagamento {
 	
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Dichiarazione delle variabili
+	 */
+	private String codice; //codice del bonifico
+	private String Banca;  //banca del cliente
 
+	/**
+	 * Costruttore del pagamento con bonifico
+	 * @param ordine				Ordine pagato con bonifico
+	 * @param tipoPagamento			Tipo di pagamento
+	 * @param numPagamento			Numero di pagamento
+	 * @param confermato			True se il pagamento è confermato, false altrimenti
+	 */
 	public Bonifico(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super(ordine, "Bonifico", numPagamento, confermato);
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="codice"
-	 */
-	private String codice;
-	/**
-	 * @uml.property  name="banca"
-	 */
-	private String Banca;
-	/**
-	 * @return  the codice
-	 * @uml.property  name="codice"
+	 * Getter of codice
+	 * @return codice
 	 */
 	public String getCodice() {
 		return codice;
 	}
+	
 	/**
-	 * @param codice  the codice to set
-	 * @uml.property  name="codice"
+	 * Setter of codice
+	 * @param codice
 	 */
 	public void setCodice(String codice) {
 		this.codice = codice;
 	}
+	
 	/**
-	 * @return  the banca
-	 * @uml.property  name="banca"
+	 * Getter of banca
+	 * @return banca
 	 */
 	public String getBanca() {
 		return Banca;
 	}
+	
 	/**
-	 * @param banca  the banca to set
-	 * @uml.property  name="banca"
+	 * Setter of banca
+	 * @param banca
 	 */
 	public void setBanca(String banca) {
 		Banca = banca;
 	}
-	
-
 
 }

@@ -3,11 +3,6 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.UnknownHostException;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
-
 import com.itextpdf.text.DocumentException;
 
 import azienda.ClientAzienda;
@@ -17,16 +12,22 @@ import modello.Ordine;
 
 
 /**
+ * Classe TuoiOrdiniController: Controller del pannello "I tuoi ordini".
+ * Implementa ActionListener.
  * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class TuoiOrdiniController implements ActionListener{
 	/**
-	 * @uml.property  name="tOrdiniPanel"
-	 * @uml.associationEnd  
+	 * Dichiarazione delle variabili
 	 */
 	private TuoiOrdiniPanel tOrdiniPanel;
 
-	
+	/**
+	 * Costruttore del controller
+	 * @param tOrdiniPanel
+	 */
 	public TuoiOrdiniController(TuoiOrdiniPanel tOrdiniPanel) {
 		super();
 		this.tOrdiniPanel = tOrdiniPanel;
@@ -74,21 +75,19 @@ public class TuoiOrdiniController implements ActionListener{
 	}
 
 	/**
-	 * @return  the tOrdiniPanel
-	 * @uml.property  name="tOrdiniPanel"
+	 * Getter of tOrdiniPanel
+	 * @return tOrdiniPanel
 	 */
 	public TuoiOrdiniPanel gettOrdiniPanel() {
 		return tOrdiniPanel;
 	}
 
 	/**
-	 * @param tOrdiniPanel  the tOrdiniPanel to set
-	 * @uml.property  name="tOrdiniPanel"
+	 * Setter of tOrdiniPanel
+	 * @param tOrdiniPanel
 	 */
 	public void settOrdiniPanel(TuoiOrdiniPanel tOrdiniPanel) {
 		this.tOrdiniPanel = tOrdiniPanel;
 	}
-	
-	
 
 }

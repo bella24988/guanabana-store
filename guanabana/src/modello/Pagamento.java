@@ -3,24 +3,32 @@ package modello;
 import java.io.Serializable;
 
 /**
- * @author  Veronica
+ * Classe Pagamento: Modello di un pagamento effettuato.
+ * Implementa Serializable.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
  */
 public class Pagamento implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="tipoPagamento"
-	 */
-	private String tipoPagamento;
-	/**
-	 * @uml.property  name="numPagamento"
-	 */
-	private int numPagamento;
-	private boolean confermato;
 	
+	/**
+	 * Dichiarazione delle variabili
+	 */
+	private String tipoPagamento;		//Tipo di pagamento (bonifico, contrassegno o carta di credito)
+	private int numPagamento;			//Numero del pagamento
+	private boolean confermato;			//True se il pagamento è confermato, false altrimenti
+	private Ordine ordine = null;		//Ordine pagato
+	private Fattura fattura = null;		//Fattura del pagamento
+	
+	/**
+	 * Costruttore di un pagamento effettuato.
+	 * @param ordine					Ordine pagato
+	 * @param tipoPagamento				Tipo di pagamento
+	 * @param numPagamento				Numero del pagamento
+	 * @param confermato				True se il pagamento è confermato, false altrimenti
+	 */
 	public Pagamento(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super();
 		this.setOrdine(ordine);
@@ -28,93 +36,86 @@ public class Pagamento implements Serializable{
 		this.setNumPagamento(numPagamento);
 		this.setConfermato(confermato);
 	}
+	
 	/**
-	 * @return  the tipoPagamento
-	 * @uml.property  name="tipoPagamento"
+	 * Getter of tipoPagamento
+	 * @return tipoPagamento
 	 */
 	public String getTipoPagamento() {
 		return tipoPagamento;
 	}
+	
 	/**
-	 * @param tipoPagamento  the tipoPagamento to set
-	 * @uml.property  name="tipoPagamento"
+	 * Setter of tipoPagamento
+	 * @param tipoPagamento
 	 */
 	public void setTipoPagamento(String tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;
 	}
+	
 	/**
-	 * @return  the numPagamento
-	 * @uml.property  name="numPagamento"
+	 * Getter of numPagamento
+	 * @return numPagamento
 	 */
 	public int getNumPagamento() {
 		return numPagamento;
 	}
+	
 	/**
-	 * @param numPagamento  the numPagamento to set
-	 * @uml.property  name="numPagamento"
+	 * Setter of numPagamento
+	 * @param numPagamento
 	 */
 	public void setNumPagamento(int numPagamento) {
 		this.numPagamento = numPagamento;
 	}
-	/** 
-	 * @uml.property name="ordine"
-	 * @uml.associationEnd multiplicity="(1 1)" inverse="pagamento:modello.Ordine"
-	 * @uml.association name="conclusa con"
-	 */
-	private Ordine ordine = null;
-	/** 
-	 * Getter of the property <tt>ordine</tt>
-	 * @return  Returns the ordine.
-	 * @uml.property  name="ordine"
+	
+	
+	/**
+	 * Getter of ordine
+	 * @return ordine
 	 */
 	public Ordine getOrdine() {
 		return ordine;
 	}
+	
 	/** 
-	 * Setter of the property <tt>ordine</tt>
-	 * @param ordine  The ordine to set.
-	 * @uml.property  name="ordine"
+	 * Setter of ordine
+	 * @param ordine
 	 */
 	public void setOrdine(Ordine ordine) {
 		this.ordine = ordine;
 	}
+	
 	/** 
-	 * @uml.property name="fattura"
-	 * @uml.associationEnd multiplicity="(1 1)" aggregation="composite" inverse="pagamento:modello.Fattura"
-	 * @uml.association name="genera"
-	 */
-	private Fattura fattura = null;
-	/** 
-	 * Getter of the property <tt>fattura</tt>
-	 * @return  Returns the fattura.
-	 * @uml.property  name="fattura"
+	 * Getter of fattura
+	 * @return fattura
 	 */
 	public Fattura getFattura() {
 		return fattura;
 	}
+	
 	/** 
-	 * Setter of the property <tt>fattura</tt>
-	 * @param fattura  The fattura to set.
-	 * @uml.property  name="fattura"
+	 * Setter of fattura
+	 * @param fattura
 	 */
 	public void setFattura(Fattura fattura) {
 		this.fattura = fattura;
 	}
+	
 	/**
-	 * @return the confermato
+	 * Getter of confermato
+	 * @return confermato
 	 */
 	public boolean isConfermato() {
 		return confermato;
 	}
+	
 	/**
-	 * @param confermato the confermato to set
+	 * Setter of confermato
+	 * @param confermato
 	 */
 	public void setConfermato(boolean confermato) {
 		this.confermato = confermato;
 	}
-	
-
-	
-	
 	
 }

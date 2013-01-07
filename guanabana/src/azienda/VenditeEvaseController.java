@@ -9,13 +9,26 @@ import javax.swing.JCheckBox;
 
 import modello.Ordine;
 
+/**
+ * Classe VenditeEvaseController: Controller del pannello rivolto al reparto
+ * vendite, che si occupa degli ordini evasi.
+ * Implementa ActionListener e ItemListener.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
 public class VenditeEvaseController implements ActionListener, ItemListener{
 	
+	/**
+	 * Dichiarazione delle variabili
+	 */
 	SistemaGestioneFinestra sistemaGestioneFinestra;
 	VenditeEvasePanel veEvasePanel;
-	
-	
 
+	/**
+	 * Costruttore del pannello delle vendite evase
+	 * @param sistemaGestioneFinestra
+	 */
 	public VenditeEvaseController(
 			SistemaGestioneFinestra sistemaGestioneFinestra) {
 		super();
@@ -32,10 +45,15 @@ public class VenditeEvaseController implements ActionListener, ItemListener{
 		
 	}
 	
+	/**
+	 * Metodo che permette di aggiornare la pagina degli ordini evasi.
+	 * @param tipo
+	 * @param tipo1
+	 */
 	private void refreshFinestra(String tipo, String tipo1){
 		sistemaGestioneFinestra.pulisceSchermo();
-		Ordine[] ordini1 = sistemaGestioneFinestra.enlistaOrdini(tipo);
-		Ordine[] ordini2 = sistemaGestioneFinestra.enlistaOrdini(tipo1);
+		Ordine[] ordini1 = sistemaGestioneFinestra.elencaOrdini(tipo);
+		Ordine[] ordini2 = sistemaGestioneFinestra.elencaOrdini(tipo1);
 		Ordine[] ordini = new Ordine[ordini1.length+ordini2.length];
 		
 		for (int i = 0; i < ordini1.length; i++) {

@@ -3,35 +3,27 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modello.Computer;
-import modello.Configurazione;
-
 
 /**
- * @author  Veronica
+ * Classe PreventivoController: Controlla il pannello di preventivo,
+ * aggiornando il prezzo totale a seguito del cambio di configurazione
+ * e permettendo di passare poi all'ordine e pagamento.
+ * Implementa ActionListener.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class PreventivoController implements ActionListener{
 	
 	/**
-	 * @uml.property  name="configPanel"
-	 * @uml.associationEnd  
+	 * Dichiarazione delle variabili
 	 */
 	private ConfigPanel configPanel;
-	
-
-	/**
-	 * @uml.property  name="preventivoPanel"
-	 * @uml.associationEnd  
-	 */
 	private PreventivoPanel preventivoPanel;
-	/**
-	 * @uml.property  name="computer"
-	 * @uml.associationEnd  
-	 */
+	private ContenutoPanel contenutoPanel;
+
 	private Computer computer;
-	/**
-	 * @uml.property  name="configurazioneScelta"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
-	 */
+	
 	private float prezzoRamOld;
 	private float prezzoCpuOld;
 	private float prezzoPciOld;
@@ -46,17 +38,12 @@ public class PreventivoController implements ActionListener{
 	private float prezzoGpuOld;
 	private float prezzoKeyOld;
 	private float prezzoMonOld;
+	
 	private int indiceCompScelti;
+
 	/**
-	 * @uml.property  name="contenutoPanel"
-	 * @uml.associationEnd  
+	 * Costruttore del controller del preventivo
 	 */
-	private ContenutoPanel contenutoPanel;
-
-	
-	
-
-
 	public PreventivoController() {
 		super();
 	}
@@ -127,6 +114,13 @@ public class PreventivoController implements ActionListener{
 		
 	}
 	
+	/**
+	 * Permette di aggiornare il prezzo totale, calcolando la differenza dopo un cambio
+	 * di configurazione
+	 * @param i
+	 * @param prezzoVecchio				Prezzo totale da aggiornare
+	 * @return prezzo					Prezzo totale aggiornato
+	 */
 	private float calcolarePrezzoTotale(int i, float prezzoVecchio){
 		float prezzo = configPanel.getConfigurazione().getComponenti()[i].getPrezzo();
 		float temp = new Float( preventivoPanel.getTotalePreventivo());
@@ -135,14 +129,18 @@ public class PreventivoController implements ActionListener{
 		return prezzo;
 	}
 
-
+	/**
+	 * Setta i componenti della configurazione scelta
+	 * @param indexConfigScelta
+	 * @param indexComponenti
+	 */
 	public void setElementiConfigurazione(int indexConfigScelta, int indexComponenti){
 		configPanel.getConfigurazione().setConfigurazioneScelta(indexComponenti, indexConfigScelta);
 	}
 
 	/**
-	 * @return  the preventivoPanel
-	 * @uml.property  name="preventivoPanel"
+	 * Getter of preventivoPanel
+	 * @return preventivoPanel
 	 */
 	public PreventivoPanel getPreventivoPanel() {
 		return preventivoPanel;
@@ -150,61 +148,56 @@ public class PreventivoController implements ActionListener{
 
 
 	/**
-	 * @param preventivoPanel  the preventivoPanel to set
-	 * @uml.property  name="preventivoPanel"
+	 * Setter of preventivoPanel
+	 * @param preventivoPanel
 	 */
 	public void setPreventivoPanel(PreventivoPanel preventivoPanel) {
 		this.preventivoPanel = preventivoPanel;
 	}
 
-
-	
-
 	/**
-	 * @return  the contenutoPanel
-	 * @uml.property  name="contenutoPanel"
+	 * Getter of contenutoPanel
+	 * @return contenutoPanel
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel  the contenutoPanel to set
-	 * @uml.property  name="contenutoPanel"
+	 * Setter of contenutoPanel
+	 * @param contenutoPanel
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
 	}
-
-
 	
 	/**
-	 * @return
-	 * @uml.property  name="configPanel"
+	 * Getter of configPanel
+	 * @return configPanel
 	 */
 	public ConfigPanel getConfigPanel() {
 		return configPanel;
 	}
 
 	/**
+	 * Setter of configPanel
 	 * @param configPanel
-	 * @uml.property  name="configPanel"
 	 */
 	public void setConfigPanel(ConfigPanel configPanel) {
 		this.configPanel = configPanel;
 	}
 
 	/**
-	 * @return  the computer
-	 * @uml.property  name="computer"
+	 * Getter of computer
+	 * @return computer
 	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
 	/**
-	 * @param computer  the computer to set
-	 * @uml.property  name="computer"
+	 * Setter of computer
+	 * @param computer
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;

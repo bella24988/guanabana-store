@@ -21,12 +21,14 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 /**
- * @author Lele Classe LogPanel: contiene un pannello panelLogin che contiene i
- *         campi di testo per inserire username e password, con i tasti login e
- *         registrati, nel caso in cui non sia stato effettuato il login. In
- *         caso di login effettuato contiene il pannello di saluto. La classe
- *         contiene inoltre un TextArea dove vengono visualizzati i messaggi
- *         ricevuti dal server.
+ * Classe LogPanel: contiene un pannello panelLogin che contiene i campi di
+ * testo per inserire username e password, con i tasti login e registrati, nel
+ * caso in cui non sia stato effettuato il login. In caso di login effettuato
+ * contiene il pannello di saluto. La classe contiene inoltre un TextArea dove
+ * vengono visualizzati i messaggi ricevuti dal server.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
  */
 public class LogPanel extends JPanel {
 
@@ -36,48 +38,28 @@ public class LogPanel extends JPanel {
 	 */
 	private JLabel lblUser; // Etichetta email
 	private JLabel lblPassword; // Etichetta password
+	
 	public JButton btnRegistrati; // Bottone registrati
 	public JButton btnLog; // Bottone login
-	/**
-	 * @uml.property name="txtUser"
-	 */
+	
 	public JTextField txtUser; // Campo di testo email
-	/**
-	 * @uml.property name="txtPassword"
-	 */
 	public JPasswordField txtPassword; // Campo di testo password
-	/**
-	 * @uml.property name="logController"
-	 * @uml.associationEnd
-	 */
+
 	private LogController logController; // Controllore per il bottone login
-	/**
-	 * @uml.property name="registratiController"
-	 * @uml.associationEnd
-	 */
 	private RegistratiController registratiController; // Controllore per il
 														// bottone registrati
-	/**
-	 * @uml.property name="salutoPanel"
-	 * @uml.associationEnd
-	 */
+
 	private SalutoPanel salutoPanel; // Pannello di saluto
-	private JPanel panelLogin; // Pannello che contiene gli elementi per fare il
-								// login
-	/**
-	 * @uml.property name="txaMessaggio"
-	 */
+	private JPanel panelLogin; // Pannello che contiene gli elementi per fare il login
+	private ContenutoPanel contenuto; // Pannello contenuto
+	
 	private JTextArea txaMessaggio; // Box per i messaggi ricevuti dal server
 									// (errori ecc..)
-	/**
-	 * @uml.property name="contenuto"
-	 * @uml.associationEnd
-	 */
-	private ContenutoPanel contenuto; // Pannello contenuto
+	
 
 	/**
+	 * Costruttore del pannello di login
 	 * @param contenuto
-	 *            Costruttore: crea il pannello con il pannello login
 	 */
 	public LogPanel(ContenutoPanel contenuto) {
 		// Controllori
@@ -201,9 +183,9 @@ public class LogPanel extends JPanel {
 	}
 
 	/**
+	 *  Mostra salutoPanel una volta fatto il login
 	 * @param cliente
 	 * @param cognome
-	 *            Mostra salutoPanel una volta fatto il login
 	 */
 	public void loginFatto(Cliente cliente) {
 		logController.setCliente(cliente);
@@ -216,15 +198,18 @@ public class LogPanel extends JPanel {
 				+ cliente.getCognome(), this);
 		add(salutoPanel, BorderLayout.NORTH);
 
-		if (contenuto.getAttessaCompra() == true) {
-			contenuto.setClienteLogato(cliente);
+		if (contenuto.getWaitForBuy() == true) {
+			contenuto.setClienteLoggato(cliente);
 			contenuto.continuaOperazione();
 		}
 	}
 
+	/**
+	 * Nasconde il form di registrazione
+	 */
 	public void nascondiFormRegistrazione() {
 		contenuto.pulisceSchermo();
-		contenuto.setClienteLogato(logController.getCliente());
+		contenuto.setClienteLoggato(logController.getCliente());
 	}
 
 	/**
@@ -241,19 +226,29 @@ public class LogPanel extends JPanel {
 		setTxtPassword("");
 	}
 
+	/**
+	 * Riporta il pannello alla situazione iniziale una volta effettuato il logout
+	 */
 	public void logoutFatto() {
 		salutoPanel.setVisible(false);
 		sbloccareInserimento();
-		contenuto.setClienteLogato(null);
+		contenuto.setClienteLoggato(null);
 		contenuto.removeAll();
 		contenuto.pulisceSchermo();
 	}
 
+	/**
+	 * Mostra il messaggio d'errore passato dal parametro
+	 * @param messaggio
+	 */
 	public void mostraMessaggioErrore(String messaggio) {
 		txaMessaggio.setVisible(true);
 		setTxaMessaggio(messaggio);
 	}
 
+	/**
+	 * Nasconde il messaggio d'errore
+	 */
 	public void nascondiMessaggioErrore() {
 		if (txaMessaggio.isVisible() == true) {
 			txaMessaggio.setVisible(false);
@@ -261,67 +256,83 @@ public class LogPanel extends JPanel {
 	}
 
 	// inizio getters and setters
+	
 	/**
-	 * @return
-	 * @uml.property name="txtUser"
+	 * Getter of TxtUser
+	 * @return txtUser
 	 */
 	public String getTxtUser() {
 		return txtUser.getText();
 	}
 
+	/**
+	 * Setter of TxtUser
+	 * @param txtUser
+	 */
 	public void setTxtUser(String txtUser) {
 		this.txtUser.setText(txtUser);
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="txtPassword"
+	 * Getter of TxtPassword
+	 * @return txtPassword
 	 */
 	public char[] getTxtPassword() {
 		return txtPassword.getPassword();
 	}
 
+	/**
+	 * Setter of txtPassword
+	 * @param txtPassword
+	 */
 	public void setTxtPassword(String txtPassword) {
 		this.txtPassword.setText(txtPassword);
 	}
 
 	/**
-	 * @return the txaMessaggio
-	 * @uml.property name="txaMessaggio"
+	 * Getter of txaMessaggio
+	 * @return txaMessaggio
 	 */
 	public String getTxaMessaggio() {
 		return txaMessaggio.getText();
 	}
 
 	/**
+	 * Setter of txaMessaggio
 	 * @param txaMessaggio
-	 *            the txaMessaggio to set
 	 */
 	public void setTxaMessaggio(String txaMessaggio) {
 		this.txaMessaggio.setText(txaMessaggio);
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="contenuto"
+	 * Getter of contenuto
+	 * @return contenuto
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 	/**
+	 * Setter of contenuto
 	 * @param contenuto
-	 *            the contenuto to set
-	 * @uml.property name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
 	}
 
+	/**
+	 * Getter of btnRegistrati
+	 * @return btnRegistrati
+	 */
 	public JButton getBtnRegistrati() {
 		return btnRegistrati;
 	}
 
+	/**
+	 * Setter of btnRegistrati
+	 * @param btnRegistrati
+	 */
 	public void setBtnRegistrati(JButton btnRegistrati) {
 		this.btnRegistrati = btnRegistrati;
 	}

@@ -11,62 +11,35 @@ import javax.swing.ScrollPaneConstants;
 import modello.Computer;
 
 /**
+ * Classe ModelloView: Pannello che mostra i modelli disponibili per il tipo di computer selezionato
  * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class ModelloView extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel modelsPanel;
+	
 	/**
-	 * @uml.property name="configPanel"
-	 * @uml.associationEnd
-	 */
-	private ConfigPanel configPanel;
-	/**
-	 * @uml.property name="contenutoPanel"
-	 * @uml.associationEnd
-	 */
-	private ContenutoPanel contenutoPanel;
-	/**
-	 * @uml.property name="numButtons"
+	 * Dichiarazione delle variabili
 	 */
 	private int numButtons;
-	/**
-	 * @uml.property name="nome"
-	 */
 	private String[] nome;
-	/**
-	 * @uml.property name="prezzo"
-	 */
 	private float[] prezzo;
 	private JButton[] btnModels;
-
-	/**
-	 * @uml.property name="modelloController"
-	 * @uml.associationEnd
-	 */
-	private ModelloController modelloController;
-	/**
-	 * @uml.property name="preventivoPanel"
-	 * @uml.associationEnd
-	 */
+	
+	private JPanel modelsPanel;
+	private ConfigPanel configPanel;
+	private ContenutoPanel contenutoPanel;
 	private PreventivoPanel preventivoPanel;
-	/**
-	 * @uml.property name="computer"
-	 * @uml.associationEnd
-	 */
-	private Computer computer;
-	/**
-	 * @uml.property name="preventivoController"
-	 * @uml.associationEnd
-	 */
+
+	private ModelloController modelloController;
 	private PreventivoController preventivoController;
 
+	private Computer computer;
+
 	/**
-	 * Create the panel.
+	 * Costruttore del pannello di scelta dei modelli
 	 */
 	public ModelloView() {
 
@@ -75,6 +48,13 @@ public class ModelloView extends JPanel {
 		modelsPanel.setBackground(Color.white);
 	}
 
+	/**
+	 * Mostra i pulsanti di scelta fra i modelli disponibili in base al tipo di computer scelto,
+	 * evidenziando nome e prezzo dei modelli.
+	 * @param num
+	 * @param computer
+	 * @param tipo
+	 */
 	public void mostraButtons(int num, Computer[] computer, String tipo) {
 
 		int i = 0;
@@ -96,89 +76,17 @@ public class ModelloView extends JPanel {
 		}
 	}
 
+	/**
+	 * Nasconde i pulsanti di scelta fra i modelli disponibili.
+	 */
 	public void nascondeButtons() {
 		setVisible(false);
 	}
-
+	
 	/**
-	 * @return the numButtons
-	 * @uml.property name="numButtons"
+	 * Mostra i componenti selezionabili per il computer passato come parametro
+	 * @param comp
 	 */
-	public int getNumButtons() {
-		return numButtons;
-	}
-
-	/**
-	 * @param numButtons
-	 *            the numButtons to set
-	 * @uml.property name="numButtons"
-	 */
-	public void setNumButtons(int numButtons) {
-		this.numButtons = numButtons;
-	}
-
-	/**
-	 * @return the nome
-	 * @uml.property name="nome"
-	 */
-	public String[] getNome() {
-		return nome;
-	}
-
-	/**
-	 * @param nome
-	 *            the nome to set
-	 * @uml.property name="nome"
-	 */
-	public void setNome(String[] nome) {
-		this.nome = nome;
-	}
-
-	/**
-	 * @return the prezzo
-	 * @uml.property name="prezzo"
-	 */
-	public float[] getPrezzo() {
-		return prezzo;
-	}
-
-	/**
-	 * @param prezzo
-	 *            the prezzo to set
-	 * @uml.property name="prezzo"
-	 */
-	public void setPrezzo(float[] prezzo) {
-		this.prezzo = prezzo;
-	}
-
-	/**
-	 * @uml.property name="modelloController"
-	 * @uml.associationEnd
-	 */
-	private ModelloController controller;
-
-	/**
-	 * Getter of the property <tt>modelloController</tt>
-	 * 
-	 * @return Returns the controller.
-	 * @uml.property name="modelloController"
-	 */
-	public ModelloController getModelloController() {
-		return controller;
-	}
-
-	// ann
-	/**
-	 * Setter of the property <tt>modelloController</tt>
-	 * 
-	 * @param modelloController
-	 *            The controller to set.
-	 * @uml.property name="modelloController"
-	 */
-	public void setModelloController(ModelloController modelloController) {
-		controller = modelloController;
-	}
-
 	public void mostraComponente(Computer comp) {
 		int type = 0;
 		modelsPanel.setVisible(false);
@@ -196,6 +104,11 @@ public class ModelloView extends JPanel {
 		setSecondoComputer(comp);
 	}
 
+	/**
+	 * Metodo di supporto a mostraComponente: in base al computer selezionato imposta la configurazione standard e
+	 * l'associa al pannello di preventivo, cos“ da permettere l'aggiornamento in tempo reale del prezzo totale.
+	 * @param comp
+	 */
 	private void setSecondoComputer(Computer comp) {
 
 		preventivoPanel = new PreventivoPanel(preventivoController);
@@ -213,33 +126,80 @@ public class ModelloView extends JPanel {
 	}
 
 	/**
-	 * @return the contenutoPanel
-	 * @uml.property name="contenutoPanel"
+	 * Getter of numButtons
+	 * @return numButtons
+	 */
+	public int getNumButtons() {
+		return numButtons;
+	}
+
+	/**
+	 * Setter of numButtons
+	 * @param numButtons
+	 */
+	public void setNumButtons(int numButtons) {
+		this.numButtons = numButtons;
+	}
+
+	/**
+	 * Getter of nome
+	 * @return nome
+	 */
+	public String[] getNome() {
+		return nome;
+	}
+
+	/**
+	 * Setter of nome
+	 * @param nome
+	 */
+	public void setNome(String[] nome) {
+		this.nome = nome;
+	}
+
+	/**
+	 * Getter of prezzo
+	 * @return prezzo
+	 */
+	public float[] getPrezzo() {
+		return prezzo;
+	}
+
+	/**
+	 * Setter of prezzo
+	 * @param prezzo
+	 */
+	public void setPrezzo(float[] prezzo) {
+		this.prezzo = prezzo;
+	}
+	
+	/**
+	 * Getter of contenutoPanel
+	 * @return contenutoPanel
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
+	 * Setter of contenutoPanel
 	 * @param contenutoPanel
-	 *            the contenutoPanel to set
-	 * @uml.property name="contenutoPanel"
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="computer"
+	 * Getter of computer
+	 * @return computer
 	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
 	/**
+	 * Setter of computer
 	 * @param computer
-	 * @uml.property name="computer"
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;

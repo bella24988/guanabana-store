@@ -20,12 +20,23 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 
+/**
+ * Classe SistemaGestioneFinestra: Classe che si occupa
+ * di gestire l'interfaccia grafica del programma lato azienda
+ * in ogni momento, caricando il pannello corrispondente al tipo
+ * di dipendente che ha effettuato il login.
+ * Estende JFrame
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
+ */
 public class SistemaGestioneFinestra extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Dichiarazione delle variabili
+	 */
 	private Dipendente dipendente;
 	private JMenuBar menuBar;
 	private JPanel contenutoPanel;
@@ -34,8 +45,7 @@ public class SistemaGestioneFinestra extends JFrame {
 	private boolean ok;
 
 	/**
-	 * Create the frame.
-	 * 
+	 * Costruttore del sistema di gestione della finestra
 	 * @param logControllerAzienda
 	 * @param dipendente
 	 */
@@ -110,8 +120,12 @@ public class SistemaGestioneFinestra extends JFrame {
 
 	}
 
+	/**
+	 * Metodo che mostra il menu per gli impiegati
+	 * al reparto vendite.
+	 */
 	private void mostraMenuVendita() {
-		VenditaDaGestireController venGestireController = new VenditaDaGestireController(
+		VenditeDaGestireController venGestireController = new VenditeDaGestireController(
 				this);
 		JMenu mnVendite = new JMenu("Vendite");
 		menuBar.add(mnVendite);
@@ -137,17 +151,25 @@ public class SistemaGestioneFinestra extends JFrame {
 		mntmPagate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
+	/**
+	 * Metodo che mostra il menu per gli impiegati
+	 * al reparto magazzino
+	 */
 	private void mostraMenuMagazzino() {
 		JMenuItem mntmMagazzino = new JMenuItem("Magazzino");
 		menuBar.add(mntmMagazzino);
 		mntmMagazzino.setBackground(Color.white);
 		mntmMagazzino.setIcon(new ImageIcon(SistemaGestioneFinestra.class
 				.getResource("/icons/order_icon.jpg")));
-		MagazinoController controller = new MagazinoController(this);
+		MagazzinoController controller = new MagazzinoController(this);
 		mntmMagazzino.addActionListener(controller);
 		mntmMagazzino.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
+	/**
+	 * Metodo che mostra il menu per gli impiegati
+	 * al reparto spedizioni
+	 */
 	private void mostraMenuSpedizione() {
 		JMenuItem mntmSpedizione = new JMenuItem("Spedizione");
 		SpedizioneController spedizioneController = new SpedizioneController(this);
@@ -161,78 +183,28 @@ public class SistemaGestioneFinestra extends JFrame {
 				.setToolTipText("Clicca per vedere le richieste di spedizioni");
 		mntmSpedizione.addActionListener(spedizioneController);
 	}
-
+	
 	/**
-	 * @return the dipendente
+	 * Metodo che restituisce la lista degli ordini in base al loro stato
+	 * @param stato
+	 * @return ordini
 	 */
-	public Dipendente getDipendente() {
-		return dipendente;
-	}
-
-	/**
-	 * @param dipendente
-	 *            the dipendente to set
-	 */
-	public void setDipendente(Dipendente dipendente) {
-		this.dipendente = dipendente;
-	}
-
-	public JPanel getContenutoPanel() {
-		return contenutoPanel;
-	}
-
-	public void setContenutoPanel(JPanel contenutoPanel) {
-		this.contenutoPanel = contenutoPanel;
-	}
-
-	/**
-	 * Getter of the property <tt>logControllerAzienda</tt>
-	 * 
-	 * @return Returns the controllerAzienda.
-	 * @uml.property name="logControllerAzienda"
-	 */
-	public LogControllerAzienda getLogControllerAzienda() {
-		return logControllerAzienda;
-	}
-
-	/**
-	 * Setter of the property <tt>logControllerAzienda</tt>
-	 * 
-	 * @param logControllerAzienda
-	 *            The controllerAzienda to set.
-	 * @uml.property name="logControllerAzienda"
-	 */
-	public void setLogControllerAzienda(
-			LogControllerAzienda logControllerAzienda) {
-		this.logControllerAzienda = logControllerAzienda;
-	}
-
-	public String getTxtErrore() {
-		return txtErrore.getText();
-	}
-
-	public void setTxtErrore(String txtErrore) {
-		this.txtErrore.setText(txtErrore);
-		if (txtErrore == "") {
-			this.txtErrore.setVisible(false);
-		} else {
-			this.txtErrore.setVisible(true);
+	public Ordine[] elencaOrdini(String stato) {
+			
+			ClientAzienda servizioClientAzienda = new ClientAzienda();
+			Ordine[] ordini = null;
+			try {
+				ordini = servizioClientAzienda.cercaOrdini(stato);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return ordini;
 		}
-	}
-
-	public Ordine[] enlistaOrdini(String stato) {
-		
-		ClientAzienda servizioClientAzienda = new ClientAzienda();
-		Ordine[] ordini = null;
-		try {
-			ordini = servizioClientAzienda.cercaOrdini(stato);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ordini;
-	}
-
+	
+	/**
+	 * Metodo per aggiornare la pagina.
+	 */
 	public void Refresh() {
 		if (ok) {
 			this.setBounds(100, 100, 950, 550);
@@ -245,6 +217,9 @@ public class SistemaGestioneFinestra extends JFrame {
 
 	}
 
+	/**
+	 * Metodo per pulire lo schermo
+	 */
 	public void pulisceSchermo() {
 		this.getContenutoPanel().removeAll();
 		JPanel panelPulito = new JPanel();
@@ -252,4 +227,76 @@ public class SistemaGestioneFinestra extends JFrame {
 		panelPulito.setSize(800, 800);
 		getContenutoPanel().removeAll();
 	}
+	
+	/**
+	 * Getter of dipendente
+	 * @return dipendente
+	 */
+	public Dipendente getDipendente() {
+		return dipendente;
+	}
+
+	/**
+	 * Setter of dipendente
+	 * @param dipendente
+	 */
+	public void setDipendente(Dipendente dipendente) {
+		this.dipendente = dipendente;
+	}
+
+	/**
+	 * Getter of contenutoPanel
+	 * @return contenutoPanel
+	 */
+	public JPanel getContenutoPanel() {
+		return contenutoPanel;
+	}
+
+	/**
+	 * Setter of contenutoPanel
+	 * @param contenutoPanel
+	 */
+	public void setContenutoPanel(JPanel contenutoPanel) {
+		this.contenutoPanel = contenutoPanel;
+	}
+
+	/**
+	 * Getter of logControllerAzienda
+	 * @return logControllerAzienda.
+	 */
+	public LogControllerAzienda getLogControllerAzienda() {
+		return logControllerAzienda;
+	}
+
+	/**
+	 * Setter of logControllerAzienda
+	 * 
+	 * @param logControllerAzienda
+	 */
+	public void setLogControllerAzienda(
+			LogControllerAzienda logControllerAzienda) {
+		this.logControllerAzienda = logControllerAzienda;
+	}
+
+	/**
+	 * Getter of txtErrore
+	 * @return txtErrore
+	 */
+	public String getTxtErrore() {
+		return txtErrore.getText();
+	}
+
+	/**
+	 * Setter of txtErrore
+	 * @param txtErrore
+	 */
+	public void setTxtErrore(String txtErrore) {
+		this.txtErrore.setText(txtErrore);
+		if (txtErrore == "") {
+			this.txtErrore.setVisible(false);
+		} else {
+			this.txtErrore.setVisible(true);
+		}
+	}
+
 }

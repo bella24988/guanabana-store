@@ -7,18 +7,26 @@ import java.io.IOException;
 import modello.Ordine;
 
 /**
- * @author  Veronica
+ * Classe MagazzinoController: Controller del pannello di magazzino.
+ * Implementa ActionListener.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
-public class MagazinoController implements ActionListener{
+public class MagazzinoController implements ActionListener{
+	
 	/**
-	 * @uml.property  name="panelPrincipalGestione"
-	 * @uml.associationEnd  
+	 * Dichiarazione delle variabili
 	 */
-	private MagazinoPanel magazzinoPanel;
+	private MagazzinoPanel magazzinoPanel;
 	private Ordine[] ordini;
 	private SistemaGestioneFinestra sistemaGestioneFinestra;
 
-	public MagazinoController(SistemaGestioneFinestra sisFinestra) {
+	/**
+	 * Costruttore del controller di magazzino
+	 * @param sisFinestra
+	 */
+	public MagazzinoController(SistemaGestioneFinestra sisFinestra) {
 		this.setSistemaGestioneFinestra(sisFinestra);
 	}
 
@@ -37,7 +45,7 @@ public class MagazinoController implements ActionListener{
 				servizioClientAzienda.aggiornaStatoOrdine("PRONTO PER LA SPEDIZIONE", ordine.getNumeroOrdine());
 				refreshOrdini();	
 			} catch (IOException e1) {
-				sistemaGestioneFinestra.setTxtErrore("Non è stato possibile communicare con il server");
+				sistemaGestioneFinestra.setTxtErrore("Non e' stato possibile comunicare con il server");
 				e1.printStackTrace();
 			}
 			
@@ -48,10 +56,13 @@ public class MagazinoController implements ActionListener{
 		
 	}
 	
+	/**
+	 * Metodo per aggiornare gli ordini richiesti al magazzino
+	 */
 	public void refreshOrdini() {
 		sistemaGestioneFinestra.pulisceSchermo();
-		setOrdini(sistemaGestioneFinestra.enlistaOrdini("RICHIESTO AL MAGAZZINO"));
-		magazzinoPanel = new MagazinoPanel(ordini, this);
+		setOrdini(sistemaGestioneFinestra.elencaOrdini("RICHIESTO AL MAGAZZINO"));
+		magazzinoPanel = new MagazzinoPanel(ordini, this);
 		if(getOrdini()!=null){
 		sistemaGestioneFinestra.getContenutoPanel().add(magazzinoPanel);
 		magazzinoPanel.setVisible(true);
@@ -66,44 +77,42 @@ public class MagazinoController implements ActionListener{
 
 
 	/**
-	 * @return  the panelPrincipalGestione
-	 * @uml.property  name="panelPrincipalGestione"
+	 * Getter of magazzinoPanel
+	 * @return  magazzinoPanel
 	 */
-	public MagazinoPanel getPanelPrincipalGestione() {
+	public MagazzinoPanel getPanelPrincipalGestione() {
 		return magazzinoPanel;
 	}
 
 
 
 	/**
-	 * @param panelPrincipalGestione  the panelPrincipalGestione to set
-	 * @uml.property  name="panelPrincipalGestione"
+	 * Setter of magazzinoPanel
+	 * @param panelPrincipalGestione
 	 */
-	public void setPanelPrincipalGestione(MagazinoPanel panelPrincipalGestione) {
+	public void setPanelPrincipalGestione(MagazzinoPanel panelPrincipalGestione) {
 		this.magazzinoPanel = panelPrincipalGestione;
 	}
 
 	/**
-	 * @return the ordini
-	 * @uml.property name="ordini"
+	 * Getter of ordini
+	 * @return ordini
 	 */
 	public Ordine[] getOrdini() {
 		return ordini;
 	}
 
 	/**
+	 * Setter of ordini
 	 * @param ordini
-	 *            the ordini to set
-	 * @uml.property name="ordini"
 	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
 	}
 
-
-
 	/**
-	 * @return the sistemaGestioneFinestra
+	 * Getter of sistemaGestioneFinestra
+	 * @return sistemaGestioneFinestra
 	 */
 	public SistemaGestioneFinestra getSistemaGestioneFinestra() {
 		return sistemaGestioneFinestra;
@@ -112,7 +121,8 @@ public class MagazinoController implements ActionListener{
 
 
 	/**
-	 * @param sistemaGestioneFinestra the sistemaGestioneFinestra to set
+	 * Setter of sistemaGestioneFinestra
+	 * @param sistemaGestioneFinestra
 	 */
 	public void setSistemaGestioneFinestra(SistemaGestioneFinestra sistemaGestioneFinestra) {
 		this.sistemaGestioneFinestra = sistemaGestioneFinestra;

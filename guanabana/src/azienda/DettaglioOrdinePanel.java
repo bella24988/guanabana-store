@@ -11,15 +11,27 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-public class DetaglioOrdinePanel extends JPanel {
+/**
+ * Classe DettaglioOrdinePanel: Pannello che permette di visualizzare
+ * il dettaglio di un ordine.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
+public class DettaglioOrdinePanel extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Dichiarazione delle variabili
+	 */
 	private JTextField txtNroordine;
 	private JTextField txtData;
 	private JTextField txtNomeComputer;
 
 	/**
-	 * Create the panel.
+	 * Costruttore del pannello di dettaglio ordine
 	 */
-	public DetaglioOrdinePanel() {
+	public DettaglioOrdinePanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -91,7 +103,7 @@ public class DetaglioOrdinePanel extends JPanel {
 		gbc_separator.gridy = 2;
 		add(separator, gbc_separator);
 
-		JLabel lblComponentiRichiesti = new JLabel("Componenti richiesti");
+		JLabel lblComponentiRichiesti = new JLabel("Componenti richiesti:");
 		lblComponentiRichiesti.setBackground(Color.LIGHT_GRAY);
 		GridBagConstraints gbc_lblComponentiRichiesti = new GridBagConstraints();
 		gbc_lblComponentiRichiesti.insets = new Insets(0, 0, 5, 0);
@@ -133,7 +145,7 @@ public class DetaglioOrdinePanel extends JPanel {
 		add(chckbxTrovato, gbc_chckbxTrovato);
 
 		JButton btnConfermaAssamblaggioPronto = new JButton(
-				"Conferma Assamblaggio/ Pronto per la spedizione");
+				"Conferma Assemblaggio / Pronto per la spedizione");
 		GridBagConstraints gbc_btnConfermaAssamblaggioPronto = new GridBagConstraints();
 		gbc_btnConfermaAssamblaggioPronto.gridwidth = 6;
 		gbc_btnConfermaAssamblaggioPronto.gridx = 0;

@@ -2,52 +2,41 @@ package modello;
 
 import java.io.Serializable;
 
-
-
 /**
+ * Classe Cliente: Modello di cliente dell'azienda.
+ * Implementa Serializable.
  * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class Cliente implements Serializable{
 
 	/**
-	 * 
+	 * Serializzazione
 	 */
 	private static final long serialVersionUID = -321784570519146557L;
-	/**
-	 * @uml.property  name="cf"
-	 */
-	private String cf;
-	/**
-	 * @uml.property  name="nome"
-	 */
-	private String nome;
-	/**
-	 * @uml.property  name="cognome"
-	 */
-	private String cognome;
-	/**
-	 * @uml.property  name="email"
-	 */
-	private String email;
-	/**
-	 * @uml.property  name="password"
-	 */
-	private String password;
-	/**
-	 * @uml.property  name="indirizzo"
-	 */
-	private String indirizzo;
-	/**
-	 * @uml.property  name="telefono"
-	 */
-	private String telefono;
-
-	/**
-	 */
 	
-
 	/**
-		 */			
+	 * Dichiarazione delle variabili
+	 */
+	private String cf;        //codice fiscale del cliente
+	private String nome;      //nome del cliente
+	private String cognome;   //cognome del cliente
+	private String email;     //email del cliente
+	private String password;  //password d'accesso del cliente
+	private String indirizzo; //indirizzo del cliente
+	private String telefono;  //telefono del cliente
+	
+	/**
+	 * Costruttore del cliente
+	 * @param cf			Codice fiscale del cliente
+	 * @param nome			Nome del cliente
+	 * @param cognome		Cognome del cliente
+	 * @param email			Email del cliente
+	 * @param indirizzo		Indirizzo del cliente
+	 * @param telefono		Telefono del cliente
+	 * @param password		Password d'accesso del cliente
+	 */
 	public Cliente(String cf, String nome, String cognome, String email,
 	 String indirizzo, String telefono,String password) {
 		super();
@@ -61,27 +50,31 @@ public class Cliente implements Serializable{
 		
 	}
 
+	/**
+	 * Costruttore del cliente vuoto
+	 */
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Metodo che permette di registrare un cliente
+	 */
 	public void registrareCliente(){
 		
 	}
 
-
 	/**
-	 * @return
-	 * @uml.property  name="cf"
+	 * Getter of cf
+	 * @return cf
 	 */
 	public String getCf() {
 		return cf;
 	}
 
 	/**
-	 * Setter of the property <tt>cf</tt>
-	 * @param cf  The cf to set.
-	 * @uml.property  name="cf"
+	 * Setter of cf
+	 * @param cf 
 	 */
 	public void setCf(String cf) {
 		this.cf = cf;
@@ -89,17 +82,16 @@ public class Cliente implements Serializable{
 
 	
 	/**
-	 * @return
-	 * @uml.property  name="nome"
+	 * Getter of nome
+	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * Setter of the property <tt>nome</tt>
-	 * @param nome  The nome to set.
-	 * @uml.property  name="nome"
+	 * Setter of nome
+	 * @param nome
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -107,34 +99,32 @@ public class Cliente implements Serializable{
 
 	
 	/**
-	 * @return
-	 * @uml.property  name="cognome"
+	 * Getter of cognome
+	 * @return cognome
 	 */
 	public String getCognome() {
 		return cognome;
 	}
 
 	/**
-	 * Setter of the property <tt>cognome</tt>
-	 * @param cognome  The cognome to set.
-	 * @uml.property  name="cognome"
+	 * Setter of cognome
+	 * @param cognome
 	 */
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
 
 	/**
-	 * @uml.property  name="email"
+	 * Getter of email
+	 * @return email
 	 */
-
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * Setter of the property <tt>email</tt>
-	 * @param email  The email to set.
-	 * @uml.property  name="email"
+	 * Setter of email
+	 * @param email
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -142,17 +132,16 @@ public class Cliente implements Serializable{
 
 	
 	/**
-	 * @return
-	 * @uml.property  name="indirizzo"
+	 * Getter of indirizzo
+	 * @return indirizzo
 	 */
 	public String getIndirizzo() {
 		return indirizzo;
 	}
 
 	/**
-	 * Setter of the property <tt>indirizzo</tt>
-	 * @param indirizzo  The indirizzo to set.
-	 * @uml.property  name="indirizzo"
+	 * Setter of indirizzo
+	 * @param indirizzo
 	 */
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
@@ -160,17 +149,16 @@ public class Cliente implements Serializable{
 
 	
 	/**
-	 * @return
-	 * @uml.property  name="telefono"
+	 * Getter of telefono
+	 * @return telefono
 	 */
 	public String getTelefono() {
 		return telefono;
 	}
 
 	/**
-	 * Setter of the property <tt>telefono</tt>
-	 * @param telefono  The telefono to set.
-	 * @uml.property  name="telefono"
+	 * Setter of telefono
+	 * @param telefono
 	 */
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
@@ -178,25 +166,28 @@ public class Cliente implements Serializable{
 
 
 	/**
-	 * @return
-	 * @uml.property  name="password"
+	 * Getter of password
+	 * @return password
 	 */
 	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * Setter of the property <tt>password</tt>
-	 * @param password  The password to set.
-	 * @uml.property  name="password"
+	 * Setter of password
+	 * @param password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
+	/**
+	 * Getter of messaggio
+	 * @return messaggio
+	 */
 	public String getMessaggio(){
 		String messaggio = "<p class=MsoNormal><span style='font-size:14.0pt'>"+getNome()+" "+getCognome()+
-				", Grazie per aversi registrato al nostro sito!</span></p>"+
+				", Grazie per aver completato la registrazione al nostro sito!</span></p>"+
 				"<p class=MsoNormal><span style='font-size:10.0pt'>Utente: "+getEmail()+"</span></p>"+
 				"<p class=MsoNormal><span style='font-size:10.0pt'>Password: "+getPassword()+"</span></p>";
 		return messaggio;

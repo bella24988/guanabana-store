@@ -1,91 +1,95 @@
 package modello;
 
-
-
-
 /**
+ * Classe CartaCredito: Modello del pagamento con carta di credito.
+ * Estende la classe Pagamento.
+ * @author Gabriele
  * @author  Veronica
+ * @version 3.0 Jan 3, 2013.
  */
 public class CartaCredito extends Pagamento {
 	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Dichiarazione delle variabili
+	 */
+	private String intestatario; //intestatario della carta
+	private String codice;       //numero della carta
+	private String dataScadenza; //data di scadenza della carta
+	private String cvs;			 //codice segreto della carta
+	
+	/**
+	 * Costruttore del pagamento con carta di credito
+	 * @param ordine				Ordine pagato con carta di credito
+	 * @param tipoPagamento			Tipo di pagamento
+	 * @param numPagamento			Numero di pagamento
+	 * @param confermato			True se il pagamento è confermato, false altrimenti
+	 */
 	public CartaCredito(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super(ordine, "Carta di Credito", numPagamento, confermato);
 		// TODO Auto-generated constructor stub
 	}
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="intestatario"
-	 */
-	private String intestatario;
-	/**
-	 * @uml.property  name="codice"
-	 */
-	private String codice;
-	/**
-	 * @uml.property  name="dataScadenza"
-	 */
-	private String dataScadenza;
-	/**
-	 * @uml.property  name="cvs"
-	 */
-	private String cvs;
-	
 	
 	/**
-	 * @return  the intestatario
-	 * @uml.property  name="intestatario"
+	 * Getter of intestatario
+	 * @return intestatario
 	 */
 	public String getIntestatario() {
 		return intestatario;
 	}
+	
 	/**
-	 * @param intestatario  the intestatario to set
-	 * @uml.property  name="intestatario"
+	 * Setter of intestatario
+	 * @param intestatario
 	 */
 	public void setIntestatario(String intestatario) {
 		this.intestatario = intestatario;
 	}
+	
 	/**
-	 * @return  the codice
-	 * @uml.property  name="codice"
+	 * Getter of codice
+	 * @return codice
 	 */
 	public String getCodice() {
 		return codice;
 	}
+	
 	/**
-	 * @param codice  the codice to set
-	 * @uml.property  name="codice"
+	 * Setter of codice
+	 * @param codice
 	 */
 	public void setCodice(String codice) {
 		this.codice = codice;
 	}
+	
 	/**
-	 * @return  the dataScadenza
-	 * @uml.property  name="dataScadenza"
+	 * Getter of dataScadenza
+	 * @return dataScadenza
 	 */
 	public String getDataScadenza() {
 		return dataScadenza;
 	}
+	
 	/**
-	 * @param dataScadenza  the dataScadenza to set
-	 * @uml.property  name="dataScadenza"
+	 * Setter of dataScadenza
+	 * @param dataScadenza
 	 */
 	public void setDataScadenza(String dataScadenza) {
 		this.dataScadenza = dataScadenza;
 	}
+	
 	/**
-	 * @return  the cvs
-	 * @uml.property  name="cvs"
+	 * Getter of cvs
+	 * @return cvs
 	 */
 	public String getCvs() {
 		return cvs;
 	}
+	
 	/**
-	 * @param cvs  the cvs to set
-	 * @uml.property  name="cvs"
+	 * Setter of cvs
+	 * @param cvs
 	 */
 	public void setCvs(String cvs) {
 		this.cvs = cvs;

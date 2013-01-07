@@ -15,20 +15,29 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
+/**
+ * Classe LogPanel: pannello che permette di fare il login del dipendente.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
 public class LogPanel extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
+	 * Dichiarazione delle variabili
 	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUser;
 	private JPasswordField txtPassword;
-	private LogControllerAzienda logControllerAzienda;
 	private JTextArea txtErrore;
+	
+	private LogControllerAzienda logControllerAzienda;
+
 
 	/**
-	 * Create the frame.
+	 * Costruttore del pannello di login dei dipendenti
 	 */
 	public LogPanel() {
 		setLogControllerAzienda(new LogControllerAzienda(this));
@@ -83,7 +92,7 @@ public class LogPanel extends JFrame {
 
 		JButton btnEntra = new JButton("Entra");
 		btnEntra.setBackground(Color.WHITE);
-		//btnEntra.setIcon(new ImageIcon(LogPanel.class.getResource("/icons/login_icon1.gif")));
+		btnEntra.setIcon(new ImageIcon(LogPanel.class.getResource("/icons/login_icon1.gif")));
 		GridBagConstraints gbc_btnEntra = new GridBagConstraints();
 		gbc_btnEntra.insets = new Insets(0, 0, 5, 0);
 		gbc_btnEntra.fill = GridBagConstraints.HORIZONTAL;
@@ -107,47 +116,66 @@ public class LogPanel extends JFrame {
 	}
 
 	/**
-	 * Getter of the property <tt>logControllerAzienda</tt>
-	 * 
-	 * @return Returns the controllerAzienda.
-	 * @uml.property name="logControllerAzienda"
+	 * Getter of logControllerAzienda
+	 * @return logControllerAzienda.
 	 */
 	public LogControllerAzienda getLogControllerAzienda() {
 		return logControllerAzienda;
 	}
 
 	/**
-	 * Setter of the property <tt>logControllerAzienda</tt>
-	 * 
+	 * Setter of logControllerAzienda
 	 * @param logControllerAzienda
-	 *            The controllerAzienda to set.
-	 * @uml.property name="logControllerAzienda"
 	 */
 	public void setLogControllerAzienda(
 			LogControllerAzienda logControllerAzienda) {
 		this.logControllerAzienda = logControllerAzienda;
 	}
 
+	/**
+	 * Getter of txtUser
+	 * @return txtUser
+	 */
 	public String getTxtUser() {
 		return txtUser.getText();
 	}
 
+	/**
+	 * Setter of txtUser
+	 * @param txtUser
+	 */
 	public void setTxtUser(String txtUser) {
 		this.txtUser.setText(txtUser);
 	}
 
+	/**
+	 * Getter of txtPassword
+	 * @return txtPassword
+	 */
 	public char[] getTxtPassword() {
 		return txtPassword.getPassword();
 	}
 
+	/**
+	 * Setter of txtPassword
+	 * @param txtPassword
+	 */
 	public void setTxtPassword(String txtPassword) {
 		this.txtPassword.setText(txtPassword);
 	}
 
+	/**
+	 * Getter of txtErrore
+	 * @return txtErrore
+	 */
 	public String getTxtErrore() {
 		return txtErrore.getText();
 	}
 
+	/**
+	 * Setter of txtErrore
+	 * @param txtErrore
+	 */
 	public void setTxtErrore(String txtErrore) {
 		this.txtErrore.setText(txtErrore);
 	}

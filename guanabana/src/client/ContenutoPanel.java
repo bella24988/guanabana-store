@@ -1,6 +1,5 @@
 package client;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modello.Cliente;
@@ -13,88 +12,48 @@ import java.awt.Color;
 import java.io.IOException;
 
 
-/**
+/** 
+ * Classe ContenutoPanel: Pannello che contiene tutti gli altri pannelli in uso di volta in volta
+ * @author Gabriele
  * @author Veronica
- *
- */
-/**
- * @author Veronica
- *
+ * @version 3.0 Jan 3, 2013.
  */
 public class ContenutoPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
-	 * Create the panel.
-	 * 
-	 * @uml.property name="registratiView"
-	 * @uml.associationEnd
+	 * Pannelli
 	 */
 	private RegistratiView registratiView;
-
-	/**
-	 * @uml.property name="modelloView"
-	 * @uml.associationEnd
-	 */
+	private RegistratiController registratiController;
 	private ModelloView modelloView;
-	/**
-	 * @uml.property name="confermaOrdinePanel"
-	 * @uml.associationEnd
-	 */
 	private ConfermaOrdinePanel confermaOrdinePanel;
+	
 	/**
-	 * @uml.property name="clienteLogato"
-	 * @uml.associationEnd
+	 * Variabili
 	 */
-	private Cliente clienteLogato;
-	/**
-	 * @uml.property name="attessaCompra"
-	 */
-	private boolean attessaCompra;
-	/**
-	 * @uml.property name="computer"
-	 * @uml.associationEnd
-	 */
+	private Cliente clienteLoggato;
+	private boolean waitForBuy;
 	private Computer computer;
-	/**
-	 * @uml.property name="ordine"
-	 * @uml.associationEnd
-	 */
 	private Ordine ordine;
-	/**
-	 * @uml.property name="pagamento"
-	 * @uml.associationEnd
-	 */
 	private Pagamento pagamento;
 	private String host;
 
 
+	/**
+	 * Costruttore del pannello contenitore
+	 */
 	public ContenutoPanel() {
 		super();
 		setBackground(Color.white);
 		setForeground(new Color(0, 0, 0));
-		this.setAttessaCompra(false);
+		this.setWaitForBuy(false);
 	}
 
-	/**
-	 * @return
-	 * @uml.property name="registratiView"
+	/** Metodo che mostra il formulario di registrazione
+	 * @param panel			Pannello di login
 	 */
-	public RegistratiView getRegistratiView() {
-		return registratiView;
-	}
-
-	/**
-	 * @param registratiView
-	 * @uml.property name="registratiView"
-	 */
-	public void setRegistratiView(RegistratiView registratiView) {
-		this.registratiView = registratiView;
-	}
-
 	public void mostraFormularioRegistrati(LogPanel panel) {
 		removeAll();
 		pulisceSchermo();
@@ -102,14 +61,23 @@ public class ContenutoPanel extends JPanel {
 		registratiView.setVisible(false);
 		add(registratiView);
 		registratiView.setVisible(true);
-		registratiView.conoscePanel(panel);
+		registratiView.associaPanel(panel);
 	}
 
-	public void nascondeFormularioRegistrati() {
+	/**
+	 *  Metodo che nasconde il formulario di registrazione
+	 */
+	public void nascondiFormularioRegistrati() {
 		registratiView.setVisible(false);
 		nascondeModelli();
 	}
 
+	/** Metodo che mostra i modelli disponibili
+	 * @param num				Numero di modelli disponibili
+	 * @param computers			Modelli di computer disponibili
+	 * @param tipo				Tipo di computer
+	 * @param contenutoPanel	Pannello contenitore in uso
+	 */
 	public void mostraModelli(int num, Computer[] computers, String tipo,
 			ContenutoPanel contenutoPanel) {
 
@@ -126,10 +94,19 @@ public class ContenutoPanel extends JPanel {
 		modelloView.setContenutoPanel(contenutoPanel);
 	}
 
+	/**
+	 * Metodo che nasconde i modelli disponibili
+	 */
 	public void nascondeModelli() {
 		modelloView.setVisible(false);
 	}
 
+	/** Metodo che mostra la schermata di conferma dell'ordine
+	 * @param comp					Computer ordinato
+	 * @param configurazione		Configurazione scelta
+	 * @param prezzoTotale			Prezzo totale dell'ordine
+	 * @param panelDaRimuovere
+	 */
 	public void mostraConfermaOrdine(Computer comp,
 			Configurazione configurazione, float prezzoTotale,
 			JPanel panelDaRimuovere) {
@@ -142,7 +119,10 @@ public class ContenutoPanel extends JPanel {
 		confermaOrdinePanel.setVisible(true);
 		add(confermaOrdinePanel);
 	}
-
+	
+	/**
+	 * Metodo per pulire la schermata
+	 */
 	public void pulisceSchermo() {
 		JPanel pulito;
 		pulito = new JPanel();
@@ -152,73 +132,35 @@ public class ContenutoPanel extends JPanel {
 		this.add(pulito);
 		pulito.setVisible(true);
 	}
-
-	/**
-	 * @uml.property name="registratiController"
-	 * @uml.associationEnd
+	
+	/** Aggiunge il pannello di pagamento
+	 * @param panelDaRimuovere
+	 * @param prezzoTotale
 	 */
-	private RegistratiController registratiController;
-
-	/**
-	 * Getter of the property <tt>registratiController</tt>
-	 * 
-	 * @return Returns the registratiController.
-	 * @uml.property name="registratiController"
-	 */
-	public RegistratiController getRegistratiController() {
-		return registratiController;
-	}
-
-	/**
-	 * Setter of the property <tt>registratiController</tt>
-	 * 
-	 * @param registratiController
-	 *            The registratiController to set.
-	 * @uml.property name="registratiController"
-	 */
-	public void setRegistratiController(
-			RegistratiController registratiController) {
-		this.registratiController = registratiController;
-	}
-
-	/**
-	 * @return the modelloView
-	 * @uml.property name="modelloView"
-	 */
-	public ModelloView getModelloView() {
-		return modelloView;
-	}
-
-	/**
-	 * @param modelloView
-	 *            the modelloView to set
-	 * @uml.property name="modelloView"
-	 */
-	public void setModelloView(ModelloView modelloView) {
-		this.modelloView = modelloView;
-	}
-
-	public void aggiungePagamentoPanel(ConfermaOrdinePanel panelDaRimuovere,
+	public void aggiungiPagamentoPanel(ConfermaOrdinePanel panelDaRimuovere,
 			float prezzoTotale) {
 		confermaOrdinePanel.setPrezzoTotale(prezzoTotale);
 
-		if (clienteLogato != null) {
+		if (clienteLoggato != null) {
 			remove(panelDaRimuovere);
 			continuaOperazione();
 
 		} else {
-			setAttessaCompra(true);
+			setWaitForBuy(true);
 			panelDaRimuovere
-					.mostraMessaggioErrore("Per continuare con l'acquisto, devi fare il log-in o registrarti");
+					.mostraMessaggioErrore("Per continuare con l'acquisto, devi fare il login o registrarti");
 		}
 
 	}
 
+	/**
+	 * Metodo di supporto all'operazione di pagamento
+	 */
 	public void continuaOperazione() {
 		try {
-			Client client = new Client(host);
+			ServizioClient client = new ServizioClient(host);
 			setOrdine(client.creaOrdine(getComputer(),
-					confermaOrdinePanel.getPrezzoTotale(), clienteLogato));
+					confermaOrdinePanel.getPrezzoTotale(), clienteLoggato));
 
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -227,101 +169,21 @@ public class ContenutoPanel extends JPanel {
 
 	}
 
+	/**
+	 * Mostra il pannello di pagamento
+	 */
 	public void mostraPagamentoPanel() {
 		removeAll();
 		pulisceSchermo();
-		setAttessaCompra(false);
+		setWaitForBuy(false);
 		PagamentoPanel pagamentoPanel = new PagamentoPanel(this);
 		add(pagamentoPanel);
 		setVisible(true);
 	}
-
+	
 	/**
-	 * @return the clienteLogato
-	 * @uml.property name="clienteLogato"
+	 * Mostra il pannello di ringraziamento
 	 */
-	public Cliente getClienteLogato() {
-		return clienteLogato;
-	}
-
-	/**
-	 * @param clienteLogato
-	 *            the clienteLogato to set
-	 * @uml.property name="clienteLogato"
-	 */
-	public void setClienteLogato(Cliente clienteLogato) {
-		this.clienteLogato = clienteLogato;
-	}
-
-	/**
-	 * @return the attessaCompra
-	 * @uml.property name="attessaCompra"
-	 */
-	public boolean getAttessaCompra() {
-		return attessaCompra;
-	}
-
-	/**
-	 * @param b
-	 *            the attessaCompra to set
-	 * @uml.property name="attessaCompra"
-	 */
-	public void setAttessaCompra(boolean b) {
-		this.attessaCompra = b;
-	}
-
-	/**
-	 * @return the computer
-	 * @uml.property name="computer"
-	 */
-	public Computer getComputer() {
-		return computer;
-	}
-
-	/**
-	 * @param computer
-	 *            the computer to set
-	 * @uml.property name="computer"
-	 */
-	public void setComputer(Computer computer) {
-		this.computer = computer;
-	}
-
-	/**
-	 * @return the ordine
-	 * @uml.property name="ordine"
-	 */
-	public Ordine getOrdine() {
-		return ordine;
-	}
-
-	/**
-	 * @param ordine
-	 *            the ordine to set
-	 * @uml.property name="ordine"
-	 */
-	public void setOrdine(Ordine ordine) {
-		this.ordine = ordine;
-	}
-
-	/**
-	 * @return the pagamento
-	 * @uml.property name="pagamento"
-	 */
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-	/**
-	 * @param pagamento
-	 *            the pagamento to set
-	 * @uml.property name="pagamento"
-	 */
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
-	}
-
-	// aggiunti commenti per evitare l'errore che da noia nel compilare
 	public void mostraRingraziamento() {
 		removeAll();
 		pulisceSchermo();
@@ -330,6 +192,10 @@ public class ContenutoPanel extends JPanel {
 		add(ringraziamento);
 	}
 
+	/** Mostra il pannello "I tuoi ordini"
+	 * @param ordini
+	 * @param carr
+	 */
 	public void mostraTuoiOrdini(Ordine[] ordini, boolean carr) {
 		removeAll();
 		pulisceSchermo();
@@ -340,7 +206,7 @@ public class ContenutoPanel extends JPanel {
 	}
 
 	/**
-	 * 
+	 * Mostra il pannello di annullamento dell'ordine
 	 */
 	public void mostraAnnullaOrdine() {
 		removeAll();
@@ -351,17 +217,129 @@ public class ContenutoPanel extends JPanel {
 		add(annullaOrdinePanel);
 		annullaOrdinePanel.setVisible(true);
 	}
+	
+	/** Restituisce il pannello di registrazione
+	 * @return registratiView
+	 */
+	public RegistratiView getRegistratiView() {
+		return registratiView;
+	}
 
-	/**
-	 * @return the host
+	/** Setter del pannello di registrazione
+	 * @param registratiView
+	 */
+	public void setRegistratiView(RegistratiView registratiView) {
+		this.registratiView = registratiView;
+	}
+	
+	/** Restituisce il controller del pannello di registrazione
+	 * @return registratiController
+	 */
+	public RegistratiController getRegistratiController() {
+		return registratiController;
+	}
+	
+	/** Setter del controller del pannello di registrazione
+	 * @param registratiController		Controller da settare
+	 */
+	public void setRegistratiController(
+			RegistratiController registratiController) {
+		this.registratiController = registratiController;
+	}
+
+	/** Restituisce il pannello che contiene i modelli
+	 * @return modelloView
+	 */
+	public ModelloView getModelloView() {
+		return modelloView;
+	}
+
+	/** Setter del pannello che contiene i modelli
+	 * @param modelloView
+	 */
+	public void setModelloView(ModelloView modelloView) {
+		this.modelloView = modelloView;
+	}
+
+	/** Restituisce il cliente che ha effettuato il login
+	 * @return clienteLoggato
+	 */
+	public Cliente getClienteLoggato() {
+		return clienteLoggato;
+	}
+
+	/** Setter del cliente che ha effettuato il login
+	 * @param clienteLogato
+	 */
+	public void setClienteLoggato(Cliente clienteLogato) {
+		this.clienteLoggato = clienteLogato;
+	}
+
+	/** Getter of waitForBuy
+	 * @return waitForBuy
+	 */
+	public boolean getWaitForBuy() {
+		return waitForBuy;
+	}
+
+	/** Setter of waitForBuy
+	 * @param b
+	 */
+	public void setWaitForBuy(boolean b) {
+		this.waitForBuy = b;
+	}
+
+	/** Getter of computer
+	 * @return computer
+	 */
+	public Computer getComputer() {
+		return computer;
+	}
+
+	/** Setter of computer
+	 * @param computer    Computer to set
+	 */
+	public void setComputer(Computer computer) {
+		this.computer = computer;
+	}
+
+	/** Getter of ordine
+	 * @return ordine
+	 */
+	public Ordine getOrdine() {
+		return ordine;
+	}
+
+	/** Setter of ordine
+	 * @param ordine
+	 */
+	public void setOrdine(Ordine ordine) {
+		this.ordine = ordine;
+	}
+
+	/** Getter of pagamento
+	 * @return pagamento
+	 */
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	/**Setter of pagamento
+	 * @param pagamento
+	 */
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	/** Getter of host
+	 * @return host
 	 */
 	public String getHost() {
 		return host;
 	}
 
-	/**
+	/** Setter of host
 	 * @param host
-	 *            the host to set
 	 */
 	public void setHost(String host) {
 		this.host = host;

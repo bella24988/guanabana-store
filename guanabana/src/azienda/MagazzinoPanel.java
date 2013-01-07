@@ -12,24 +12,31 @@ import modello.Ordine;
 import java.awt.Insets;
 
 /**
+ * Classe MagazzinoPanel: Pannello che mostra gli ordini ricevuti,
+ * e permette agli impiegati di magazzino di visualizzare gli ordini
+ * da assemblare, quelli pronti per la spedizione, ecc. I dipendenti
+ * di magazzino possono quindi segnalare come pronto per la spedizione
+ * un ordine ricevuto e giˆ assemblato.
  * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
-public class MagazinoPanel extends JPanel {
+public class MagazzinoPanel extends JPanel {
 
-	/**
-	 * Create the panel.
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * @uml.property name="ordini"
-	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * Dichiarazione delle variabili
 	 */
 	private Ordine[] ordini;
 
-	private MagazinoController magazinoController;
+	private MagazzinoController magazzinoController;
 
-	public MagazinoPanel(Ordine[] ordini, MagazinoController magazinoController) {
+	/**
+	 * Costruttore del pannello di magazzino.
+	 * @param ordini
+	 * @param magazinoController
+	 */
+	public MagazzinoPanel(Ordine[] ordini, MagazzinoController magazinoController) {
 		this.setOrdini(ordini);
 		this.setMagazinoController(magazinoController);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -39,7 +46,7 @@ public class MagazinoPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[ordini.length + 2];
 		setLayout(gridBagLayout);
 
-		JLabel lblITuoiOrdini = new JLabel("Ordini da assamblare");
+		JLabel lblITuoiOrdini = new JLabel("Ordini da assemblare");
 		lblITuoiOrdini.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblITuoiOrdini = new GridBagConstraints();
 		gbc_lblITuoiOrdini.insets = new Insets(0, 0, 5, 0);
@@ -134,35 +141,35 @@ public class MagazinoPanel extends JPanel {
 	}
 
 	/**
-	 * @return the ordini
-	 * @uml.property name="ordini"
+	 * Getter of ordini
+	 * @return ordini
 	 */
 	public Ordine[] getOrdini() {
 		return ordini;
 	}
 
 	/**
+	 * Setter of ordini
 	 * @param ordini
-	 *            the ordini to set
-	 * @uml.property name="ordini"
 	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
 	}
 
 	/**
-	 * @return the magazinoController
+	 * Getter of magazzinoController
+	 * @return magazzinoController
 	 */
-	public MagazinoController getMagazinoController() {
-		return magazinoController;
+	public MagazzinoController getMagazzinoController() {
+		return magazzinoController;
 	}
 
 	/**
-	 * @param magazinoController
-	 *            the magazinoController to set
+	 * Setter of magazzinoController
+	 * @param magazzinoController
 	 */
-	public void setMagazinoController(MagazinoController magazinoController) {
-		this.magazinoController = magazinoController;
+	public void setMagazinoController(MagazzinoController magazzinoController) {
+		this.magazzinoController = magazzinoController;
 	}
 
 }

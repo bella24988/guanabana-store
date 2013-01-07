@@ -12,12 +12,27 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import modello.Ordine;
 
-public class VenditaDaGestireController implements ActionListener, ItemListener {
+/**
+ * Classe VenditeDaGestireController: Controller del pannello rivolto al reparto
+ * vendite, che si occupa degli ordini ancora in gestione (in attesa di pagamento o da spedire).
+ * Implementa ActionListener e ItemListener.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
+public class VenditeDaGestireController implements ActionListener, ItemListener {
 
+	/**
+	 * Dichiarazione delle variabili.
+	 */
 	private SistemaGestioneFinestra sistemaGestioneFinestra;
-	private VenditaDaGestirePanel veGestirePanel;
+	private VenditeDaGestirePanel veGestirePanel;
 
-	public VenditaDaGestireController(
+	/**
+	 * Costruttore del controller delle vendite da gestire.
+	 * @param sistemaGestioneFinestra
+	 */
+	public VenditeDaGestireController(
 			SistemaGestioneFinestra sistemaGestioneFinestra) {
 		this.sistemaGestioneFinestra = sistemaGestioneFinestra;
 	}
@@ -34,7 +49,7 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 			
 		}else if (e.getActionCommand().compareTo("richiede pagamento") == 0) {
 			JButton buttonPressed = (JButton) e.getSource();
-			inviaMessaggioCambiaStato(buttonPressed, "ORDINATO", "Il suo pagamento non &eacute; stato accettato, vi preghiamo di rifarlo. Nella voce &ldquo;Carrello&rdquo;");
+			inviaMessaggioCambiaStato(buttonPressed, "ORDINATO", "Il suo pagamento non &eacute; stato accettato, vi preghiamo di procedere di nuovo alla transazione dalla sezione &ldquo;Carrello&rdquo;");
 			Ordine ordine = veGestirePanel.getOrdini()[buttonPressed.getMnemonic()];
 			ClientAzienda servizioClientAzienda = new ClientAzienda();
 			try {
@@ -50,7 +65,13 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 
 	}
 	
-	private void inviaMessaggioCambiaStato(JButton invio,String nuovoStato, String messagioEmail){
+	/**
+	 * Metodo che invia una mail al cliente ad ogni cambio di stato dell'ordine.
+	 * @param invio
+	 * @param nuovoStato
+	 * @param messaggioEmail
+	 */
+	private void inviaMessaggioCambiaStato(JButton invio,String nuovoStato, String messaggioEmail){
 		veGestirePanel.setVisible(false);
 		ClientAzienda servizioClientAzienda = new ClientAzienda();
 		try {
@@ -60,7 +81,7 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 							.getNumeroOrdine());
 			servizioClientAzienda.inviaEmailConferma(veGestirePanel.getOrdini()[invio.getMnemonic()].getCliente().getEmail(),//email cliente
 					veGestirePanel.getOrdini()[invio.getMnemonic()].getMessaggioEmail(veGestirePanel
-							.getOrdini()[invio.getMnemonic()].getPagamento(), messagioEmail),//messaggio della email
+							.getOrdini()[invio.getMnemonic()].getPagamento(), messaggioEmail),//messaggio della email
 					"Ricevuta - Ordine Numero: "+veGestirePanel
 					.getOrdini()[invio.getMnemonic()].getNumeroOrdine());//subject della email
 		} catch (IOException e1) {
@@ -76,14 +97,18 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 		
 	}
 
+	/**
+	 * Metodo che permette di aggiornare la finestra degli ordini da gestire.
+	 * @param tipo
+	 */
 	private void refreshFinestra(String tipo) {
 		sistemaGestioneFinestra.pulisceSchermo();
-		Ordine[] ordini = sistemaGestioneFinestra.enlistaOrdini(tipo);
+		Ordine[] ordini = sistemaGestioneFinestra.elencaOrdini(tipo);
 		if (ordini == null) {
 			sistemaGestioneFinestra
 					.setTxtErrore("Non ci sono ordini da gestire");
 		} else if (tipo == "VENDUTO") {
-			veGestirePanel = new VenditaDaGestirePanel(ordini, this);
+			veGestirePanel = new VenditeDaGestirePanel(ordini, this);
 			sistemaGestioneFinestra.getContenutoPanel().add(veGestirePanel);
 			veGestirePanel.setVisible(true);
 		}
@@ -96,12 +121,12 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 			ClientAzienda clientAzienda = new ClientAzienda();
 			JCheckBox btnConferma = (JCheckBox) e.getSource();
 			if (e.getStateChange() == ItemEvent.SELECTED) {
-				veGestirePanel.mostraButtoneInvio(btnConferma.getMnemonic());
+				veGestirePanel.mostraBottoneInvio(btnConferma.getMnemonic());
 				clientAzienda.confermarePagamento(true, veGestirePanel
 						.getOrdini()[btnConferma.getMnemonic()]
 						.getNumeroOrdine());
 			} else {
-				veGestirePanel.nascondiButtoneInvio(btnConferma.getMnemonic());
+				veGestirePanel.nascondiBottoneInvio(btnConferma.getMnemonic());
 				clientAzienda.confermarePagamento(false, veGestirePanel
 						.getOrdini()[btnConferma.getMnemonic()]
 						.getNumeroOrdine());
@@ -112,15 +137,16 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 	}
 
 	/**
-	 * @return the sistemaGestioneFinestra
+	 * Getter of sistemaGestioneFinestra
+	 * @return sistemaGestioneFinestra
 	 */
 	public SistemaGestioneFinestra getSistemaGestioneFinestra() {
 		return sistemaGestioneFinestra;
 	}
 
 	/**
+	 * Setter of sistemaGestioneFinestra
 	 * @param sistemaGestioneFinestra
-	 *            the sistemaGestioneFinestra to set
 	 */
 	public void setSistemaGestioneFinestra(
 			SistemaGestioneFinestra sistemaGestioneFinestra) {
@@ -128,17 +154,18 @@ public class VenditaDaGestireController implements ActionListener, ItemListener 
 	}
 
 	/**
-	 * @return the veGestirePanel
+	 * Getter of veGestirePanel
+	 * @return veGestirePanel
 	 */
-	public VenditaDaGestirePanel getVeGestirePanel() {
+	public VenditeDaGestirePanel getVeGestirePanel() {
 		return veGestirePanel;
 	}
 
 	/**
+	 * Setter of veGestirePanel
 	 * @param veGestirePanel
-	 *            the veGestirePanel to set
 	 */
-	public void setVeGestirePanel(VenditaDaGestirePanel veGestirePanel) {
+	public void setVeGestirePanel(VenditeDaGestirePanel veGestirePanel) {
 		this.veGestirePanel = veGestirePanel;
 	}
 

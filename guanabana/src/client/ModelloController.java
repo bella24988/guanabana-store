@@ -6,19 +6,27 @@ import java.awt.event.ActionListener;
 import modello.Computer;
 
 /**
+ * Classe ModelloController: Controller del pannello ModelloView.
+ * Implementa ActionListener.
  * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class ModelloController implements ActionListener {
 	/**
-	 * @uml.property  name="tipo"
+	 * Dichiarazione delle variabili
 	 */
 	private String tipo;
-	/**
-	 * @uml.property  name="computer"
-	 * @uml.associationEnd  
-	 */
 	private Computer computer;
+	
+	private ModelloView modelloView;
 
+
+	/**
+	 * Costruttore della classe, associa il computer e il pannello di scelta dei modelli al controller
+	 * @param computer
+	 * @param modView
+	 */
 	public ModelloController(Computer computer, ModelloView modView) {
 		this.computer = computer;
 		this.setModelloView(modView);
@@ -31,82 +39,49 @@ public class ModelloController implements ActionListener {
 		}
 	}
 	
-
 	/**
-	 * @uml.property  name="modelloView"
-	 * @uml.associationEnd  
-	 */
-	private ModelloView modelloView;
-
-	/**
-	 * Getter of the property <tt>modelloView</tt>
-	 * @return  Returns the modelloView.
-	 * @uml.property  name="modelloView"
+	 * Getter of modelloView
+	 * @return modelloView
 	 */
 	public ModelloView getModelloView() {
 		return modelloView;
 	}
 
 	/**
-	 * Setter of the property <tt>modelloView</tt>
-	 * @param modelloView  The modelloView to set.
-	 * @uml.property  name="modelloView"
+	 * Setter of modelloView
+	 * @param modelloView
 	 */
 	public void setModelloView(ModelloView modelloView) {
 		this.modelloView = modelloView;
 	}
 
 	/**
-	 * @uml.property  name="client"
-	 * @uml.associationEnd  
-	 */
-	private Client client;
-
-	/**
-	 * Getter of the property <tt>client</tt>
-	 * @return  Returns the client.
-	 * @uml.property  name="client"
-	 */
-	public Client getClient() {
-		return client;
-	}
-
-	/**
-	 * Setter of the property <tt>client</tt>
-	 * @param client  The client to set.
-	 * @uml.property  name="client"
-	 */
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	/**
-	 * @return  the computer
-	 * @uml.property  name="computer"
+	 * Getter of computer
+	 * @return computer
 	 */
 	public Computer getComputer() {
 		return computer;
 	}
 
 	/**
-	 * @param computer  the computer to set
-	 * @uml.property  name="computer"
+	 * Setter of computer
+	 * @param computer
 	 */
 	public void setComputer(Computer computer) {
 		this.computer = computer;
 	}
 
 	/**
-	 * @return  the tipo
-	 * @uml.property  name="tipo"
+	 * Getter of tipo
+	 * @return tipo
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @param tipo  the tipo to set
-	 * @uml.property  name="tipo"
+	 * Setter of tipo
+	 * @param tipo
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;

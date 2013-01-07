@@ -11,18 +11,28 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import modello.Ordine;
 
+/**
+ * Classe VenditeEvasePanel: Pannello rivolto al reparto
+ * vendite, che si occupa degli ordini evasi.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
 public class VenditeEvasePanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Dichiarazione delle variabili
+	 */
 	private Ordine[] ordini;
 	private VenditeEvaseController veEvaseController;
 	private JCheckBox[] conferma;
-
+	
 	/**
-	 * Create the panel.
+	 * Costruttore del pannello degli ordini evasi.
+	 * @param ordini
+	 * @param veEvaseController
 	 */
 	public VenditeEvasePanel(Ordine[] ordini,
 			VenditeEvaseController veEvaseController) {
@@ -37,7 +47,7 @@ public class VenditeEvasePanel extends JPanel {
 				1.0 };
 		setLayout(gridBagLayout);
 
-		JLabel lblITuoiOrdini = new JLabel("Ordini Evase");
+		JLabel lblITuoiOrdini = new JLabel("Ordini Evasi");
 		lblITuoiOrdini.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblITuoiOrdini = new GridBagConstraints();
 		gbc_lblITuoiOrdini.insets = new Insets(0, 0, 5, 0);
@@ -181,35 +191,41 @@ public class VenditeEvasePanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Metodo che permette di disabilitare il checkbox di conferma pagamento
+	 * @param index
+	 */
 	public void disabilitaConferma(int index) {
 		conferma[index].setEnabled(false);
 	}
 
 	/**
-	 * @return the ordini
+	 * Getter of ordini
+	 * @return ordini
 	 */
 	public Ordine[] getOrdini() {
 		return ordini;
 	}
 
 	/**
+	 * Setter of ordini
 	 * @param ordini
-	 *            the ordini to set
 	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
 	}
 
 	/**
-	 * @return the veEvaseController
+	 * Getter of veEvaseController
+	 * @return veEvaseController
 	 */
 	public VenditeEvaseController getVeEvaseController() {
 		return veEvaseController;
 	}
 
 	/**
+	 * Setter of veEvaseController
 	 * @param veEvaseController
-	 *            the veEvaseController to set
 	 */
 	public void setVeEvaseController(VenditeEvaseController veEvaseController) {
 		this.veEvaseController = veEvaseController;

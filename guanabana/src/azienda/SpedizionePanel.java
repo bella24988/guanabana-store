@@ -11,20 +11,30 @@ import javax.swing.JButton;
 import modello.Ordine;
 import java.awt.Insets;
 
+/**
+ * Classe SpedizionePanel: Classe che permette ai dipendenti del
+ * reparto di spedizione di visualizzare gli ordini pronti per la spedizione,
+ * e quindi di procedere alla spedizione stessa e stampare la fattura.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
+ */
 public class SpedizionePanel extends JPanel{
-	/**
-	 * Create the panel.
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	/**
-	 * @uml.property name="ordini"
-	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * Dichiarazione delle variabili
 	 */
 	private Ordine[] ordini;
-
 	private SpedizioneController spedizioneController;
 
+	/**
+	 * Costruttore del pannello di spedizione, elenca gli ordini da assemblare
+	 * e quelli pronti per la spedizione, permette di spedire e stampare la fattura.
+	 * @param ordini
+	 * @param spedizioneController
+	 */
 	public SpedizionePanel(Ordine[] ordini, SpedizioneController spedizioneController) {
 		this.setOrdini(ordini);
 		this.setSpedizioneController(spedizioneController);
@@ -35,7 +45,7 @@ public class SpedizionePanel extends JPanel{
 		gridBagLayout.rowWeights = new double[ordini.length + 2];
 		setLayout(gridBagLayout);
 
-		JLabel lblITuoiOrdini = new JLabel("Ordini da assamblare");
+		JLabel lblITuoiOrdini = new JLabel("Ordini da assemblare");
 		lblITuoiOrdini.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblITuoiOrdini = new GridBagConstraints();
 		gbc_lblITuoiOrdini.insets = new Insets(0, 0, 5, 0);
@@ -116,7 +126,7 @@ public class SpedizionePanel extends JPanel{
 			btnAssembla.addActionListener(spedizioneController);
 			
 
-			JButton btnAnnullaOrdine = new JButton("Spedice");
+			JButton btnAnnullaOrdine = new JButton("Spedisci");
 			btnAnnullaOrdine.setFont(new Font("Tahoma", Font.PLAIN, 8));
 			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
 			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 5);
@@ -140,19 +150,35 @@ public class SpedizionePanel extends JPanel{
 		}
 		
 		}
-
+	
+	/**
+	 * Getter of ordini
+	 * @return ordini
+	 */
 	public Ordine[] getOrdini() {
 		return ordini;
 	}
 
+	/**
+	 * Setter of ordini
+	 * @param ordini
+	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
 	}
 
+	/**
+	 * Getter of spedizioneController
+	 * @return spedizioneController
+	 */
 	public SpedizioneController getSpedizioneController() {
 		return spedizioneController;
 	}
 
+	/**
+	 * Setter of spedizioneController
+	 * @param spedizioneController
+	 */
 	public void setSpedizioneController(SpedizioneController spedizioneController) {
 		this.spedizioneController = spedizioneController;
 	}

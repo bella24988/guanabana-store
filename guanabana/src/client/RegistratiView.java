@@ -19,59 +19,31 @@ import javax.swing.text.StyleConstants;
 
 import modello.Cliente;
 
+/**
+ * Classe RegistratiView: Crea il pannello che contiene il form per la registrazione,
+ * con tutti i campi validati e con i pulsanti per confermare o annullare la registrazione.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013. 
+ */
 public class RegistratiView extends JPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @uml.property name="txtNome"
+	 * Dichiarazione delle variabili
 	 */
 	private JTextField txtNome;
-	/**
-	 * @uml.property name="txtCognome"
-	 */
 	private JTextField txtCognome;
-	/**
-	 * @uml.property name="txtCf"
-	 */
 	private JTextField txtCf;
-	/**
-	 * @uml.property name="txtEmail"
-	 */
 	private JTextField txtEmail;
-	/**
-	 * @uml.property name="txtCitta"
-	 */
 	private JTextField txtCitta;
-	/**
-	 * @uml.property name="txtVia"
-	 */
 	private JTextField txtVia;
-	/**
-	 * @uml.property name="txtProvincia"
-	 */
 	private JTextField txtProvincia;
-	/**
-	 * @uml.property name="txtCap"
-	 */
 	private JTextField txtCap;
-	/**
-	 * @uml.property name="txtStato"
-	 */
 	private JTextField txtStato;
-	/**
-	 * @uml.property name="txtTelefono"
-	 */
 	private JTextField txtTelefono;
-	/**
-	 * @uml.property name="txtPassword"
-	 */
 	private JPasswordField txtPassword;
-	/**
-	 * @uml.property name="txtPasswordConferma"
-	 */
 	private JPasswordField txtPasswordConferma;
 
 	private JTextField[] txtArray = { txtNome, txtCognome, txtCf, txtEmail,
@@ -81,29 +53,15 @@ public class RegistratiView extends JPanel {
 			"Cittˆ:", "Via:", "Provincia:", "CAP:", "Stato:", "Telefono:",
 			"Password:", "Conferma Password:" };
 
-	/**
-	 * @uml.property name="txaMessaggioErrore"
-	 */
 	JTextPane txaMessaggioErrore;
 
-	/**
-	 * @uml.property name="logPanel"
-	 * @uml.associationEnd
-	 */
 	private LogPanel logPanel;
-	/**
-	 * @uml.property name="panelContenitore"
-	 * @uml.associationEnd
-	 */
 	private ContenutoPanel panelContenitore;
-	/**
-	 * @uml.property name="controller"
-	 * @uml.associationEnd
-	 */
 	private RegistratiController controller;
-
+	
 	/**
-	 * Create the panel.
+	 * Costruttore del pannello di registrazione
+	 * @param panelContenitore
 	 */
 	public RegistratiView(ContenutoPanel panelContenitore) {
 
@@ -215,6 +173,9 @@ public class RegistratiView extends JPanel {
 		btnRegistrati.addActionListener(controller);
 	}
 
+	/**
+	 * Metodo che inizializza il form, svuotando tutti i campi
+	 */
 	public void inizializza() {
 		setTxtCap("");
 		setTxtCf("");
@@ -229,190 +190,26 @@ public class RegistratiView extends JPanel {
 		setTxtStato("");
 		togliMessaggio();
 	}
-
+	
 	/**
-	 * @param panelContenitore
-	 * @uml.property name="panelContenitore"
+	 * Nasconde il pannello di registrazione
 	 */
-	public void setPanelContenitore(ContenutoPanel panelContenitore) {
-		this.panelContenitore = panelContenitore;
-	}
-
 	public void disabilitaRegistrati() {
 		panelContenitore.getRegistratiView().setVisible(false);
 	}
-
+	
 	/**
-	 * @return the panelContenitore
-	 * @uml.property name="panelContenitore"
+	 * Nasconde il messaggio d'errore
 	 */
-	public ContenutoPanel getPanelContenitore() {
-		return panelContenitore;
-	}
-
-	/**
-	 * @param panelContenitore
-	 *            the panelContenitore to set
-	 * @uml.property name="txtNome"
-	 */
-
-	public String getTxtNome() {
-		return txtArray[0].getText();
-	}
-
-	public void setTxtNome(String txtNome) {
-		this.txtArray[0].setText(txtNome);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtCognome"
-	 */
-	public String getTxtCognome() {
-		return txtArray[1].getText();
-	}
-
-	public void setTxtCognome(String txtCognome) {
-		this.txtArray[1].setText(txtCognome);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtCf"
-	 */
-	public String getTxtCf() {
-		return txtArray[2].getText();
-	}
-
-	public void setTxtCf(String txtCf) {
-		this.txtArray[2].setText(txtCf);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtEmail"
-	 */
-	public String getTxtEmail() {
-		return txtArray[3].getText();
-	}
-
-	public void setTxtEmail(String txtEmail) {
-		this.txtArray[3].setText(txtEmail);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtCitta"
-	 */
-	public String getTxtCitta() {
-		return txtArray[4].getText();
-	}
-
-	public void setTxtCitta(String txtCitta) {
-		this.txtArray[4].setText(txtCitta);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtVia"
-	 */
-	public String getTxtVia() {
-		return txtArray[5].getText();
-	}
-
-	public void setTxtVia(String string) {
-		this.txtArray[5].setText(string);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtProvincia"
-	 */
-	public String getTxtProvincia() {
-		return txtArray[6].getText();
-	}
-
-	public void setTxtProvincia(String txtProvincia) {
-		this.txtArray[6].setText(txtProvincia);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtCap"
-	 */
-	public String getTxtCap() {
-		return txtArray[7].getText();
-	}
-
-	public void setTxtCap(String txtCap) {
-		this.txtArray[7].setText(txtCap);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtStato"
-	 */
-	public String getTxtStato() {
-		return txtArray[8].getText();
-	}
-
-	public void setTxtStato(String txtStato) {
-		this.txtArray[8].setText(txtStato);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtTelefono"
-	 */
-	public String getTxtTelefono() {
-		return txtArray[9].getText();
-	}
-
-	public void setTxtTelefono(String txtTelefono) {
-		this.txtArray[9].setText(txtTelefono);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtPassword"
-	 */
-	public char[] getTxtPassword() {
-		return txtPassword.getPassword();
-	}
-
-	public void setTxtPassword(String txtPassword) {
-		this.txtPassword.setText(txtPassword);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txtPasswordConferma"
-	 */
-	public char[] getTxtPasswordConferma() {
-		return txtPasswordConferma.getPassword();
-	}
-
-	public void setTxtPasswordConferma(String txtPasswordConferma) {
-		this.txtPasswordConferma.setText(txtPasswordConferma);
-	}
-
-	/**
-	 * @return
-	 * @uml.property name="txaMessaggioErrore"
-	 */
-	public String getTxaMessaggioErrore() {
-		return txaMessaggioErrore.getText();
-	}
-
-	public void setTxaMessaggioErrore(String txaMessaggioErrore) {
-		this.txaMessaggioErrore.setText(txaMessaggioErrore);
-	}
-
 	public void togliMessaggio() {
 		setTxaMessaggioErrore("");
 		txaMessaggioErrore.setVisible(false);
 	}
 
+	/**
+	 * Mostra il messaggio d'errore passato come parametro
+	 * @param msn
+	 */
 	public void mostraMessaggio(String msn) {
 
 		setTxaMessaggioErrore(msn);
@@ -421,84 +218,261 @@ public class RegistratiView extends JPanel {
 	}
 
 	/**
-	 * @return the logPanel
-	 * @uml.property name="logPanel"
+	 * Associa il pannello di login
+	 * @param logPanel
+	 */
+	public void associaPanel(LogPanel logPanel) {
+		this.setLogPanel(logPanel);
+	}
+
+	/**
+	 * Nasconde la finestra di registrazione una volta che
+	 * il cliente ha effettuato il login
+	 * @param cliente
+	 */
+	public void nascondiFinestra(Cliente cliente) {
+		this.setVisible(false);
+		logPanel.loginFatto(cliente);
+	}
+	
+	/**
+	 * Setter of panelContenitore
+	 * @param panelContenitore
+	 */
+	public void setPanelContenitore(ContenutoPanel panelContenitore) {
+		this.panelContenitore = panelContenitore;
+	}
+
+	/**
+	 * Getter of panelContenitore
+	 * @return panelContenitore
+	 */
+	public ContenutoPanel getPanelContenitore() {
+		return panelContenitore;
+	}
+
+	/**
+	 * Getter of txtNome
+	 * @return txtNome
+	 */
+	public String getTxtNome() {
+		return txtArray[0].getText();
+	}
+
+	/**
+	 * Setter of txtNome
+	 * @param txtNome
+	 */
+	public void setTxtNome(String txtNome) {
+		this.txtArray[0].setText(txtNome);
+	}
+
+	/**
+	 * Getter of txtCognome
+	 * @return txtCognome
+	 */
+	public String getTxtCognome() {
+		return txtArray[1].getText();
+	}
+
+	/**
+	 * Setter of txtCognome
+	 * @param txtCognome
+	 */
+	public void setTxtCognome(String txtCognome) {
+		this.txtArray[1].setText(txtCognome);
+	}
+
+	/**
+	 * Getter of txtCf
+	 * @return txtCf
+	 */
+	public String getTxtCf() {
+		return txtArray[2].getText();
+	}
+
+	/**
+	 * Setter of txtCf
+	 * @param txtCf
+	 */
+	public void setTxtCf(String txtCf) {
+		this.txtArray[2].setText(txtCf);
+	}
+
+	/**
+	 * Getter of txtEmail
+	 * @return txtEmail
+	 */
+	public String getTxtEmail() {
+		return txtArray[3].getText();
+	}
+
+	/**
+	 * Setter of txtEmail
+	 * @param txtEmail
+	 */
+	public void setTxtEmail(String txtEmail) {
+		this.txtArray[3].setText(txtEmail);
+	}
+
+	/**
+	 * Getter of txtCitta
+	 * @return txtCitta
+	 */
+	public String getTxtCitta() {
+		return txtArray[4].getText();
+	}
+
+	/**
+	 * Setter of txtCitta
+	 * @param txtCitta
+	 */
+	public void setTxtCitta(String txtCitta) {
+		this.txtArray[4].setText(txtCitta);
+	}
+
+	/**
+	 * Getter of txtVia
+	 * @return txtVia
+	 */
+	public String getTxtVia() {
+		return txtArray[5].getText();
+	}
+
+	/**
+	 * Setter of txtVia
+	 * @param string
+	 */
+	public void setTxtVia(String string) {
+		this.txtArray[5].setText(string);
+	}
+
+	/**
+	 * Getter of txtProvincia
+	 * @return txtProvincia
+	 */
+	public String getTxtProvincia() {
+		return txtArray[6].getText();
+	}
+
+	/**
+	 * Setter of txtProvincia
+	 * @param txtProvincia
+	 */
+	public void setTxtProvincia(String txtProvincia) {
+		this.txtArray[6].setText(txtProvincia);
+	}
+
+	/**
+	 * Getter of txtCap
+	 * @return txtCap
+	 */
+	public String getTxtCap() {
+		return txtArray[7].getText();
+	}
+
+	/**
+	 * Setter of txtCap
+	 * @param txtCap
+	 */
+	public void setTxtCap(String txtCap) {
+		this.txtArray[7].setText(txtCap);
+	}
+
+	/**
+	 * Getter of txtStato
+	 * @return txtStato
+	 */
+	public String getTxtStato() {
+		return txtArray[8].getText();
+	}
+
+	/**
+	 * Setter of txtStato
+	 * @param txtStato
+	 */
+	public void setTxtStato(String txtStato) {
+		this.txtArray[8].setText(txtStato);
+	}
+
+	/**
+	 * Getter of txtTelefono
+	 * @return txtTelefono
+	 */
+	public String getTxtTelefono() {
+		return txtArray[9].getText();
+	}
+
+	/**
+	 * Setter of txtTelefono
+	 * @param txtTelefono
+	 */
+	public void setTxtTelefono(String txtTelefono) {
+		this.txtArray[9].setText(txtTelefono);
+	}
+
+	/**
+	 * Getter of txtPassword
+	 * @return txtPassword
+	 */
+	public char[] getTxtPassword() {
+		return txtPassword.getPassword();
+	}
+
+	/**
+	 * Setter of txtPassword
+	 * @param txtPassword
+	 */
+	public void setTxtPassword(String txtPassword) {
+		this.txtPassword.setText(txtPassword);
+	}
+
+	/**
+	 * Getter of txtPasswordConferma
+	 * @return txtPasswordConferma
+	 */
+	public char[] getTxtPasswordConferma() {
+		return txtPasswordConferma.getPassword();
+	}
+
+	/**
+	 * Setter of txtPasswordConferma
+	 * @param txtPasswordConferma
+	 */
+	public void setTxtPasswordConferma(String txtPasswordConferma) {
+		this.txtPasswordConferma.setText(txtPasswordConferma);
+	}
+
+	/**
+	 * Getter of txaMessaggioErrore
+	 * @return txaMessaggioErrore
+	 */
+	public String getTxaMessaggioErrore() {
+		return txaMessaggioErrore.getText();
+	}
+
+	/**
+	 * Setter of txaMessaggioErrore
+	 * @param txaMessaggioErrore
+	 */
+	public void setTxaMessaggioErrore(String txaMessaggioErrore) {
+		this.txaMessaggioErrore.setText(txaMessaggioErrore);
+	}
+
+	/**
+	 * Getter of logPanel
+	 * @return logPanel
 	 */
 	public LogPanel getLogPanel() {
 		return logPanel;
 	}
 
 	/**
+	 * Setter of logPanel
 	 * @param logPanel
-	 *            the logPanel to set
-	 * @uml.property name="logPanel"
 	 */
 	public void setLogPanel(LogPanel logPanel) {
 		this.logPanel = logPanel;
-	}
-
-	public void conoscePanel(LogPanel logPanel) {
-		this.setLogPanel(logPanel);
-	}
-
-	public void ocultaFinestra(Cliente cliente) {
-		this.setVisible(false);
-		logPanel.loginFatto(cliente);
-	}
-
-	/**
-	 * @uml.property name="registratiController"
-	 * @uml.associationEnd
-	 */
-	private RegistratiController registratiController;
-
-	/**
-	 * Getter of the property <tt>registratiController</tt>
-	 * 
-	 * @return Returns the registratiController.
-	 * @uml.property name="registratiController"
-	 */
-	public RegistratiController getRegistratiController() {
-		return registratiController;
-	}
-
-	/**
-	 * Setter of the property <tt>registratiController</tt>
-	 * 
-	 * @param registratiController
-	 *            The registratiController to set.
-	 * @uml.property name="registratiController"
-	 */
-	public void setRegistratiController(
-			RegistratiController registratiController) {
-		this.registratiController = registratiController;
-	}
-
-	/**
-	 * @uml.property name="logPanel1"
-	 * @uml.associationEnd
-	 */
-	private LogPanel logPanel1;
-
-	/**
-	 * Getter of the property <tt>logPanel1</tt>
-	 * 
-	 * @return Returns the logPanel1.
-	 * @uml.property name="logPanel1"
-	 */
-	public LogPanel getLogPanel1() {
-		return logPanel1;
-	}
-
-	/**
-	 * Setter of the property <tt>logPanel1</tt>
-	 * 
-	 * @param logPanel1
-	 *            The logPanel1 to set.
-	 * @uml.property name="logPanel1"
-	 */
-	public void setLogPanel1(LogPanel logPanel1) {
-		this.logPanel1 = logPanel1;
 	}
 
 }

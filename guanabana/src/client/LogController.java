@@ -11,45 +11,42 @@ import client.SalutoPanel;
 import client.LogPanel;
 
 /**
- * @author  Lele  Classe che implementa l'action listener per il pulsante login e logout
+ * Classe LogController: implementa l'action listener per il pulsante login e logout.
+ * Implementa ActionListener e KeyListener.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.  
  */
 public class LogController implements ActionListener, KeyListener{
 	
-	/**
-	 * @uml.property  name="logPanel"
-	 * @uml.associationEnd  
-	 */
-	private LogPanel logPanel; //pannello login da cui � chiamato LogController (funzionalitˆ login)
-	/**
-	 * @uml.property  name="salutoPanel"
-	 * @uml.associationEnd  
-	 */
-	private SalutoPanel salutoPanel; //pannello saluto da cui � chiamato LogController (funzionalitˆ logout)
-	/**
-	 * @uml.property  name="cliente"
-	 * @uml.associationEnd  
-	 */
+	/** Pannello di login da cui e' chiamato LogController (funzionalita' login) */
+	private LogPanel logPanel;
+	
+	/** Pannello di saluto da cui e' chiamato LogController (funzionalita' logout) */
+	private SalutoPanel salutoPanel;
+	
 	private Cliente cliente;
 	
 	
-	/**
+	/** 
+	 * Primo costruttore del controller di login: apre la connessione col database e si associa al LogPanel chiamante
 	 * @param log
-	 * costruttore 1: apre la connessione col database e si associa al LogPanel chiamante
 	 */
 	public LogController(LogPanel log){
-		this.setLogpanel(log);
+		this.setLogPanel(log);
 	}
 	
 	/**
+	 * Secondo costruttore del controller di login: si associa al SalutoPanel chiamante
 	 * @param salutoPanel
 	 * @param logPanel
-	 * costruttore 2: si associa al SalutoPanel chiamante
 	 */
 	public LogController(SalutoPanel salutoPanel, LogPanel logPanel) {
 		this.setLogFattoPanel(salutoPanel);
-		this.setLogpanel(logPanel);
+		this.setLogPanel(logPanel);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getActionCommand().equalsIgnoreCase("Login")){
@@ -63,9 +60,9 @@ public class LogController implements ActionListener, KeyListener{
 		
 		if (e.getActionCommand().equalsIgnoreCase("I tuoi ordini")){
 				
-				Client servizioClient = new Client(logPanel.getContenuto().getHost());
+				ServizioClient servizioClient = new ServizioClient(logPanel.getContenuto().getHost());
 				try {
-					Ordine[] ordini = servizioClient.consultaOrdini(logPanel.getContenuto().getClienteLogato());
+					Ordine[] ordini = servizioClient.consultaOrdini(logPanel.getContenuto().getClienteLoggato());
 					if (ordini != null){
 						logPanel.getContenuto().mostraTuoiOrdini(ordini, false);
 					}else{
@@ -77,9 +74,9 @@ public class LogController implements ActionListener, KeyListener{
 				}
 		}else if (e.getActionCommand().equalsIgnoreCase("Carrello")){
 			
-			Client servizioClient = new Client(logPanel.getContenuto().getHost());
+			ServizioClient servizioClient = new ServizioClient(logPanel.getContenuto().getHost());
 			try {
-				Ordine[] ordini = servizioClient.consultaCarrello(logPanel.getContenuto().getClienteLogato());
+				Ordine[] ordini = servizioClient.consultaCarrello(logPanel.getContenuto().getClienteLoggato());
 				if (ordini != null){
 					logPanel.getContenuto().mostraTuoiOrdini(ordini, true);
 				}else{
@@ -93,10 +90,13 @@ public class LogController implements ActionListener, KeyListener{
 			
 	}
 
+	/**
+	 * Effettua il login
+	 */
 	private void login() {
 		logPanel.bloccareInserimento();
 		try {
-			Client servizioClient = new Client(logPanel.getContenuto().getHost());
+			ServizioClient servizioClient = new ServizioClient(logPanel.getContenuto().getHost());
 			setCliente(servizioClient.fareLogin(logPanel.getTxtUser(), String.valueOf(logPanel.getTxtPassword())));
 			if (cliente != null){
 				logPanel.mostraMessaggioErrore("");
@@ -113,17 +113,19 @@ public class LogController implements ActionListener, KeyListener{
 		
 	}
 
-	/**
-	 * @return the logpanel
+	/** 
+	 * Getter of logPanel
+	 * @return logPanel
 	 */
-	public LogPanel getLogpanel() {
+	public LogPanel getLogPanel() {
 		return logPanel;
 	}
 
 	/**
-	 * @param logpanel the logpanel to set
+	 * Setter of logPanel
+	 * @param logpanel
 	 */
-	public void setLogpanel(LogPanel logpanel) {
+	public void setLogPanel(LogPanel logpanel) {
 		this.logPanel = logpanel;
 	}
 
@@ -141,66 +143,31 @@ public class LogController implements ActionListener, KeyListener{
 		this.salutoPanel = logFattoPanel;
 	}
 
-	/**
-	 * @uml.property  name="logPanel1"
-	 * @uml.associationEnd  
-	 */
-	private LogPanel logPanel1;
-
-
-	/**
-	 * Getter of the property <tt>logPanel1</tt>
-	 * @return  Returns the logPanel1.
-	 * @uml.property  name="logPanel1"
-	 */
-	public LogPanel getLogPanel1() {
-		return logPanel1;
-	}
-
-	/**
-	 * Setter of the property <tt>logPanel1</tt>
-	 * @param logPanel1  The logPanel1 to set.
-	 * @uml.property  name="logPanel1"
-	 */
-	public void setLogPanel1(LogPanel logPanel1) {
-		this.logPanel1 = logPanel1;
-	}
-
-	/** 
-	 * @uml.property name="salutoPanel"
-	 * @uml.associationEnd inverse="logController1:client.SalutoPanel"
-	 * @uml.association name="controllato"
-	 */
-
-	/**
-	 * @uml.property  name="salutoPanel"
-	 * @uml.associationEnd  inverse="logController1:client.SalutoPanel"
-	 * @uml.association  name="controllato"
+	/** Getter of salutoPanel
+	 * @return salutoPanel
 	 */
 	public SalutoPanel getSalutoPanel() {
 		return salutoPanel;
 	}
 
 	/** 
-	 * Setter of the property <tt>salutoPanel</tt>
-	 * @param salutoPanel  The salutoPanel to set.
-	 * @uml.property  name="salutoPanel"
+	 * Setter of salutoPanel
+	 * @param salutoPanel
 	 */
 	public void setSalutoPanel(SalutoPanel salutoPanel) {
 		this.salutoPanel = salutoPanel;
 	}
 
 	/**
-	 * @return  the cliente
-	 * @uml.property  name="cliente"
+	 * @return cliente
 	 */
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 	/**
-	 * @param cliente  the cliente to set
-	 * @uml.property  name="cliente"
+	 * Setter of cliente
+	 * @param cliente
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;

@@ -11,8 +11,10 @@ import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 
 /**
- * @author Lele Classe MenuPanel: contiene 3 bottoni per selezionare l'acquisto
- *         di Ser, Lap, Des
+ * Classe MenuPanel: contiene 3 bottoni per selezionare l'acquisto di Server, Laptop, Desktop
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013. 
  */
 public class MenuPanel extends JPanel {
 
@@ -20,23 +22,19 @@ public class MenuPanel extends JPanel {
 	 * Dichiarazioni delle variabili
 	 */
 	private static final long serialVersionUID = 1L; // serializzazione
+	
 	public JButton btnLaptop; // Bottone Acquista Laptop
 	public JButton btnServer; // Bottone Acquista Server
 	public JButton btnDesktop;// Bottone Acquista Desktop
-	/**
-	 * @uml.property name="contenuto"
-	 * @uml.associationEnd
-	 */
+	
 	private ContenutoPanel contenuto; // Pannello contenuto
-	/**
-	 * @uml.property name="menuController"
-	 * @uml.associationEnd
-	 */
-	private MenuController menuController; // Controllore di questo pannello
+	
+	private MenuController menuController; // Controller di questo pannello
 
 	/**
 	 * Costruttore della classe: crea il pannello e passa il riferimento a
 	 * contenuto
+	 * @param contenuto
 	 */
 	public MenuPanel(ContenutoPanel contenuto) {
 
@@ -100,17 +98,16 @@ public class MenuPanel extends JPanel {
 
 	// inizio getter and setter
 	/**
-	 * @return the contenuto
-	 * @uml.property name="contenuto"
+	 * Getter of contenuto
+	 * @return contenuto
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 	/**
+	 * Setter of contenuto
 	 * @param contenuto
-	 *            the contenuto to set
-	 * @uml.property name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;

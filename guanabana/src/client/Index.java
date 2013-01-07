@@ -20,9 +20,13 @@ import java.awt.Component;
  */
 
 /**
- * @author Lele Classe Index: Applet che contiene tutti i pannelli
- *         dell'applicazione lato client. Implementa l'interfaccia Collegare che
- *         contiene tutti i metodi di connessione.
+ * Classe Index: Applet che contiene tutti i pannelli dell'applicazione lato
+ * client. Implementa l'interfaccia cliente che contiene tutti i metodi di
+ * connessione.
+ * Extends JApplet.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
  */
 public class Index extends JApplet {
 
@@ -32,28 +36,14 @@ public class Index extends JApplet {
 	private static final long serialVersionUID = 1L; // serializzazione
 	public JPanel contentPane; // Pannello principale che contiene tutti gli
 								// altri pannelli in ogni momento
-	/**
-	 * @uml.property name="menuPanel"
-	 * @uml.associationEnd
-	 */
 	public MenuPanel menuPanel; // Pannello contenente i tipi di computer
 								// acquistabili (Des, Lap, Ser) sempre presente
 								// in contentPane
-	/**
-	 * @uml.property name="logPanel"
-	 * @uml.associationEnd
-	 */
 	public LogPanel logPanel; // Pannello di login (mostra login, logout e
 								// registrati)
-	/**
-	 * @uml.property name="contenuto"
-	 * @uml.associationEnd
-	 */
 	private ContenutoPanel contenuto; // Pannello contenitore, sempre presente,
 										// in cui sono visualizzati
 										// dinamicamente tutti i pannelli
-
-	// public String host = getCodeBase().getHost(); //host del client
 
 	/**
 	 * Costruttore della classe Index
@@ -157,89 +147,57 @@ public class Index extends JApplet {
 		super.paint(g);
 	}
 
-	/**
-	 * @uml.property name="menuPanel"
-	 * @uml.associationEnd inverse="index:client.MenuPanel"
-	 * @uml.association name="menu"
-	 */
+	
 
 	// inizio getters and setters
+	
 	/**
-	 * @uml.property name="menuPanel"
-	 * @uml.associationEnd inverse="index:client.MenuPanel"
-	 * @uml.association name="menu"
+	 * Getter del pannello di menu
+	 * @return menuPanel
 	 */
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
 	}
 
 	/**
-	 * Setter of the property <tt>menuPanel</tt>
-	 * 
+	 * Setter del pannello dei menu
 	 * @param menuPanel
-	 *            The menuPanel to set.
-	 * @uml.property name="menuPanel"
 	 */
 	public void setMenuPanel(MenuPanel menuPanel) {
 		this.menuPanel = menuPanel;
 	}
 
-	/**
-	 * @uml.property name="panelLog"
-	 * @uml.associationEnd inverse="index:client.LogPanel"
-	 * @uml.association name="mostra"
-	 */
-
-	/**
-	 * @uml.property name="panelLog"
-	 * @uml.associationEnd inverse="index:client.LogPanel"
-	 * @uml.association name="mostra"
+	/** 
+	 * Getter del pannello di login
+	 * @return logPanel
 	 */
 	public LogPanel getPanelLog() {
 		return logPanel;
 	}
 
 	/**
-	 * Setter of the property <tt>panelLog</tt>
-	 * 
+	 * Setter del pannello di login
 	 * @param panelLog
-	 *            The panelLog to set.
-	 * @uml.property name="panelLog"
 	 */
 	public void setPanelLog(LogPanel panelLog) {
 		this.logPanel = panelLog;
 	}
 
+	
 	/**
-	 * @uml.property name="contenuto"
-	 * @uml.associationEnd inverse="index:client.ContenutoPanel"
-	 * @uml.association name="mostra"
-	 */
-
-	/**
-	 * @uml.property name="contenuto"
-	 * @uml.associationEnd inverse="index:client.ContenutoPanel"
-	 * @uml.association name="mostra"
+	 * Getter del pannello contenitore
+	 * @return contenuto
 	 */
 	public ContenutoPanel getContenuto() {
 		return contenuto;
 	}
 
 	/**
-	 * Setter of the property <tt>contenuto</tt>
-	 * 
+	 * Setter del pannello contenitore
 	 * @param contenuto
-	 *            The contenuto to set.
-	 * @uml.property name="contenuto"
 	 */
 	public void setContenuto(ContenutoPanel contenuto) {
 		this.contenuto = contenuto;
 	}
-
-	/**
-	 * @uml.property name="contenuto"
-	 * @uml.associationEnd inverse="index:client.ContenutoPanel"
-	 * @uml.association name="mostra"
-	 */
 	// fine getters and setters
 }

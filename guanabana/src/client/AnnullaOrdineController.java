@@ -4,28 +4,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-/**
- * @author  Veronica
+/** 
+ * Classe AnnullaOrdineController: Controller del pannello per annullare l'ordine.
+ * Implementa ActionListener
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class AnnullaOrdineController implements ActionListener{
 	
-	/**
-	 * @uml.property  name="annullaOrdinePanel"
-	 * @uml.associationEnd  
-	 */
+	/** Pannello per annullare l'ordine */
 	private AnnullaOrdinePanel annullaOrdinePanel;
 
 	
-	public AnnullaOrdineController(AnnullaOrdinePanel aPanel) {
+	/** Costruttore del controller
+	 * @param annullaPanel
+	 */
+	public AnnullaOrdineController(AnnullaOrdinePanel annullaPanel) {
 		super();
-		this.annullaOrdinePanel = aPanel;
+		this.annullaOrdinePanel = annullaPanel;
 	}
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getActionCommand().equalsIgnoreCase("Si")){
-			Client servizioClient = new Client(annullaOrdinePanel.getContenutoPanel().getHost());
+			ServizioClient servizioClient = new ServizioClient(annullaOrdinePanel.getContenutoPanel().getHost());
 			try {
 				servizioClient.aggiornaOrdine(annullaOrdinePanel.getOrdine().getNumeroOrdine(),"ANNULLATO");
 				annullaOrdinePanel.getContenutoPanel().mostraRingraziamento();

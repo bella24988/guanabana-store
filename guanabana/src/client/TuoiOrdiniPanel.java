@@ -12,35 +12,28 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 
 /**
+ * Classe TuoiOrdiniPanel: Pannello che riporta tutti gli ordini effettuati
+ * dal cliente che ha effettuato il login fino a quel momento.
  * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class TuoiOrdiniPanel extends JPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	/**
-	 * @uml.property  name="ordini"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 * Dichiarazione delle variabili
 	 */
 	private Ordine[] ordini;
-	/**
-	 * @uml.property  name="carrello"
-	 */
 	private boolean carrello;
-	/**
-	 * @uml.property  name="contenutoPanel"
-	 * @uml.associationEnd  
-	 */
+	
 	private ContenutoPanel contenutoPanel;
-	/**
-	 * @uml.property  name="tOrdinicontroller"
-	 * @uml.associationEnd  
-	 */
 	private TuoiOrdiniController tOrdinicontroller;
 
 	/**
-	 * Create the panel.
+	 * Costruttore del pannello "I tuoi ordini"
+	 * @param ordini
+	 * @param carr
 	 */
 	public TuoiOrdiniPanel(Ordine[] ordini, boolean carr) {
 		this.carrello = carr;
@@ -210,64 +203,64 @@ public class TuoiOrdiniPanel extends JPanel {
 	}
 
 	/**
-	 * @return  the ordini
-	 * @uml.property  name="ordini"
+	 * Getter of ordini
+	 * @return ordini
 	 */
 	public Ordine[] getOrdini() {
 		return ordini;
 	}
 
 	/**
-	 * @param ordini  the ordini to set
-	 * @uml.property  name="ordini"
+	 * Setter of ordini
+	 * @param ordini
 	 */
 	public void setOrdini(Ordine[] ordini) {
 		this.ordini = ordini;
 	}
 
 	/**
-	 * @return  the carrello
-	 * @uml.property  name="carrello"
+	 * Getter of carrello
+	 * @return carrello
 	 */
 	public boolean isCarrello() {
 		return carrello;
 	}
 
 	/**
-	 * @param carrello  the carrello to set
-	 * @uml.property  name="carrello"
+	 * Setter of carrello
+	 * @param carrello
 	 */
 	public void setCarrello(boolean carrello) {
 		this.carrello = carrello;
 	}
 
 	/**
-	 * @return  the contenutoPanel
-	 * @uml.property  name="contenutoPanel"
+	 * Getter of contenutoPanel
+	 * @return contenutoPanel
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
 	/**
-	 * @param contenutoPanel  the contenutoPanel to set
-	 * @uml.property  name="contenutoPanel"
+	 * Setter of contenutoPanel
+	 * @param contenutoPanel
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
 	}
 
 	/**
-	 * @return  the tOrdinicontroller
-	 * @uml.property  name="tOrdinicontroller"
+	 * Getter of tOrdiniController
+	 * @return tOrdinicontroller
 	 */
 	public TuoiOrdiniController gettOrdinicontroller() {
 		return tOrdinicontroller;
 	}
 
 	/**
-	 * @param tOrdinicontroller  the tOrdinicontroller to set
-	 * @uml.property  name="tOrdinicontroller"
+	 * Setter of tOrdiniController
+	 * @param tOrdinicontroller
 	 */
 	public void settOrdinicontroller(TuoiOrdiniController tOrdinicontroller) {
 		this.tOrdinicontroller = tOrdinicontroller;

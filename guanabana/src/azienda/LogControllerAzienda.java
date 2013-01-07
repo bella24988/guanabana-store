@@ -9,17 +9,26 @@ import modello.Dipendente;
 
 
 /**
- * @author  Veronica
+ * Classe LogControllerAzienda: Controller che gestisce il login
+ * dei dipendenti al software aziendale.
+ * Implementa ActionListener e KeyListener.
+ * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
  */
 public class LogControllerAzienda implements ActionListener, KeyListener{
+	
 	/**
-	 * @uml.property  name="logAzienda"
-	 * @uml.associationEnd  
+	 * Dichiarazione delle variabili
 	 */
 	private LogPanel logAzienda;
 	private Dipendente impiegato;
 	private SistemaGestioneFinestra sistemaGestioneFinestra;
 
+	/**
+	 * Costruttore del controller di login
+	 * @param logAzienda
+	 */
 	public LogControllerAzienda(LogPanel logAzienda) {
 		this.logAzienda = logAzienda;
 		
@@ -42,6 +51,9 @@ public class LogControllerAzienda implements ActionListener, KeyListener{
 	
 	
 	
+	/**
+	 * Metodo che effettua il login del dipendente
+	 */
 	private void faLogIn() {
 		try {
 			int id = Integer.parseInt(logAzienda.getTxtUser());
@@ -54,22 +66,26 @@ public class LogControllerAzienda implements ActionListener, KeyListener{
 						setImpiegato(impiegato);
 						mostraPanelPrincipale(getImpiegato());
 					}else{
-						mostraMessaggioErrore("User e password non coincidono");
+						mostraMessaggioErrore("User e password non coincidono.");
 					}
 				} catch (IOException e1) {
-					mostraMessaggioErrore("User e password non coincidono");
+					mostraMessaggioErrore("User e password non coincidono.");
 					e1.printStackTrace();
 				}
 				
 			}
 		} catch (Exception e2) {
-			mostraMessaggioErrore("Non è un user o password valido");
+			mostraMessaggioErrore("Il nome utente o la password non sono validi.");
 		}
 		
 		
 	}
 
 
+	/**
+	 * Metodo che mostra a video un messaggio d'errore 
+	 * @param msn				Messaggio da visualizzare
+	 */
 	private void mostraMessaggioErrore(String msn) {
 		logAzienda.setTxtErrore(msn);
 		logAzienda.setTxtPassword("");
@@ -78,6 +94,7 @@ public class LogControllerAzienda implements ActionListener, KeyListener{
 
 
 	/**
+	 * Metodo che mostra il pannello principale dopo aver effettuato il login
 	 * @param impiegato
 	 */
 	public void mostraPanelPrincipale(Dipendente impiegato) {
@@ -85,52 +102,7 @@ public class LogControllerAzienda implements ActionListener, KeyListener{
 		sistemaGestioneFinestra = new SistemaGestioneFinestra(impiegato, this);
 		sistemaGestioneFinestra.setVisible(true);
 	}
-
-
-	/**
-	 * @return the impiegato
-	 */
-	public Dipendente getImpiegato() {
-		return impiegato;
-	}
-
-
-	/**
-	 * @param impiegato the impiegato to set
-	 */
-	public void setImpiegato(Dipendente impiegato) {
-		this.impiegato = impiegato;
-	}
-
-
-	/**
-	 * @uml.property  name="sistemaGestioneFinestra"
-	 * @uml.associationEnd  inverse="logControllerAzienda:azienda.SistemaGestioneFinestra"
-	 * @uml.association  name="mostra"
-	 */
-	private SistemaGestioneFinestra gestioneFinestra;
-
-	/**
-	 * Getter of the property <tt>sistemaGestioneFinestra</tt>
-	 * @return  Returns the gestioneFinestra.
-	 * @uml.property  name="sistemaGestioneFinestra"
-	 */
-	public SistemaGestioneFinestra getSistemaGestioneFinestra() {
-		return gestioneFinestra;
-	}
-
-
-	/**
-	 * Setter of the property <tt>sistemaGestioneFinestra</tt>
-	 * @param sistemaGestioneFinestra  The gestioneFinestra to set.
-	 * @uml.property  name="sistemaGestioneFinestra"
-	 */
-	public void setSistemaGestioneFinestra(
-			SistemaGestioneFinestra sistemaGestioneFinestra) {
-		gestioneFinestra = sistemaGestioneFinestra;
-	}
-
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -154,5 +126,25 @@ public class LogControllerAzienda implements ActionListener, KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	/**
+	 * Getter of impiegato
+	 * @return impiegato
+	 */
+	public Dipendente getImpiegato() {
+		return impiegato;
+	}
+
+
+	/**
+	 * Setter of impiegato
+	 * @param impiegato
+	 */
+	public void setImpiegato(Dipendente impiegato) {
+		this.impiegato = impiegato;
+	}
+
+
 
 }

@@ -9,30 +9,30 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
 /**
+ * Classe PreventivoPanel: mostra il prezzo totale secondo la configurazione scelta,
+ * e ad ogni cambio di componente aggiorna il prezzo totale in base ai nuovi costi.
+ * Permette inoltre di procedere successivamente al pagamento
  * @author Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013. 
  */
 public class PreventivoPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * @uml.property name="totalePreventivo"
+	 * Dichiarazione delle variabili
 	 */
 	private JTextField totalePreventivo;
-	/**
-	 * @uml.property name="preventivoController"
-	 * @uml.associationEnd
-	 */
+
 	private PreventivoController preventivoController;
 
+
 	/**
-	 * Create the panel.
+	 * Costruttore del pannello di preventivo
+	 * @param preventivoController
 	 */
 	public PreventivoPanel(PreventivoController preventivoController) {
 		setBorder(null);
@@ -120,29 +120,32 @@ public class PreventivoPanel extends JPanel {
 	}
 
 	/**
-	 * @return
-	 * @uml.property name="totalePreventivo"
+	 * Getter of totalePreventivo
+	 * @return totalePreventivo
 	 */
 	public String getTotalePreventivo() {
 		return totalePreventivo.getText();
 	}
 
+	/**
+	 * Setter of totalePreventivo
+	 * @param totalePreventivo
+	 */
 	public void setTotalePreventivo(String totalePreventivo) {
 		this.totalePreventivo.setText(totalePreventivo);
 	}
 
 	/**
-	 * @return the preventivoController
-	 * @uml.property name="preventivoController"
+	 * Getter of preventivoController
+	 * @return preventivoController
 	 */
 	public PreventivoController getPreventivoController() {
 		return preventivoController;
 	}
 
 	/**
+	 * Setter of preventivoController
 	 * @param preventivoController
-	 *            the preventivoController to set
-	 * @uml.property name="preventivoController"
 	 */
 	public void setPreventivoController(
 			PreventivoController preventivoController) {

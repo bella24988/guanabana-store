@@ -16,49 +16,52 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 
+/** 
+ * Classe ConfermaOrdinePanel: Pannello che consente di confermare l'ordine
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
+ */
 public class ConfermaOrdinePanel extends JPanel {
-
-	/**
-	 * @uml.property name="contenutoPanel"
-	 * @uml.associationEnd
-	 */
-	private ContenutoPanel contenutoPanel;
+	
 	private static final long serialVersionUID = 1L;
-	private JLabel lblMess;
+
+	/** Pannello contenitore */
+	private ContenutoPanel contenutoPanel;
+	
 	/**
-	 * Create the panel.
-	 * 
-	 * @uml.property name="nome"
+	 * Dati dell'ordine
 	 */
 	private String nome;
-	/**
-	 * @uml.property name="prezzo"
-	 */
 	private float prezzo;
-	/**
-	 * @uml.property name="prezzoTotale"
-	 */
 	private float prezzoTotale;
-	/**
-	 * @uml.property name="configurazioneScelta"
-	 * @uml.associationEnd multiplicity="(0 -1)"
-	 */
 	private Componente[] configurazioneScelta;
-	private JTable table;
-	/**
-	 * @uml.property name="controller"
-	 * @uml.associationEnd
-	 */
+	
+	/** Controller */
 	private ConfermaOrdineController controller;
+	
+	/**
+	 * Grafica
+	 */
+	private JLabel lblMess;
+	private JTable table;
+	
 
+	/** Costruttore del pannello di conferma dell'ordine
+	 * @param nome
+	 * @param prezzo
+	 * @param configurazione
+	 * @param prezzoTotale
+	 * @param content		Pannello contenitore
+	 */
 	public ConfermaOrdinePanel(String nome, float prezzo,
 			Configurazione configurazione, float prezzoTotale,
-			ContenutoPanel contenutoPanel2) {
+			ContenutoPanel content) {
 		this.prezzo = prezzo;
 		this.nome = nome;
 		this.setConfigurazioneScelta(configurazione.getComponentiScelti());
 		this.prezzoTotale = prezzoTotale;
-		this.contenutoPanel = contenutoPanel2;
+		this.contenutoPanel = content;
 		setBackground(Color.WHITE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 241, 230, 0 };
@@ -130,8 +133,8 @@ public class ConfermaOrdinePanel extends JPanel {
 
 		JButton btnContinuaConIl = new JButton("Aggiunge al carrello");
 		btnContinuaConIl.setBackground(Color.WHITE);
-		//btnContinuaConIl.setIcon(new ImageIcon(ConfermaOrdinePanel.class.getResource("/icons/icon_carrello.jpg")));
-		//btnContinuaConIl.setSelectedIcon(new ImageIcon(ConfermaOrdinePanel.class.getResource("/icons/icon_carrello.jpg")));
+		btnContinuaConIl.setIcon(new ImageIcon(ConfermaOrdinePanel.class.getResource("/icons/icon_carrello.jpg")));
+		btnContinuaConIl.setSelectedIcon(new ImageIcon(ConfermaOrdinePanel.class.getResource("/icons/icon_carrello.jpg")));
 		GridBagConstraints gbc_btnContinuaConIl = new GridBagConstraints();
 		gbc_btnContinuaConIl.fill = GridBagConstraints.BOTH;
 		gbc_btnContinuaConIl.gridheight = 2;
@@ -158,97 +161,80 @@ public class ConfermaOrdinePanel extends JPanel {
 
 	}
 
+	/** Metodo per mostrare un messaggio di errore
+	 * @param messaggio		Stringa da mostrare
+	 */
 	public void mostraMessaggioErrore(String messaggio) {
 		lblMess.setText(messaggio);
 		lblMess.setVisible(true);
 
 	}
 
-	/**
-	 * @return the contenutoPanel
-	 * @uml.property name="contenutoPanel"
+	/** Restituisce il pannello contenitore in uso
+	 * @return contenutoPanel
 	 */
 	public ContenutoPanel getContenutoPanel() {
 		return contenutoPanel;
 	}
 
-	/**
-	 * @param contenutoPanel
-	 *            the contenutoPanel to set
-	 * @uml.property name="contenutoPanel"
+	/** Setter del pannello contenitore
+	 * @param contenutoPanel		Pannello contenitore da settare
 	 */
 	public void setContenutoPanel(ContenutoPanel contenutoPanel) {
 		this.contenutoPanel = contenutoPanel;
 	}
 
-	/**
-	 * @return the nome
-	 * @uml.property name="nome"
+	/** Restituisce il nome
+	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
-	/**
-	 * @param nome
-	 *            the nome to set
-	 * @uml.property name="nome"
+	/** Setter del nome
+	 * @param nome			Nome da settare
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	/**
-	 * @return the prezzo
-	 * @uml.property name="prezzo"
+	/** Restituisce il prezzo
+	 * @return prezzo
 	 */
 	public float getPrezzo() {
 		return prezzo;
 	}
 
-	/**
-	 * @param prezzo
-	 *            the prezzo to set
-	 * @uml.property name="prezzo"
+	/** Setter del prezzo
+	 * @param prezzo		Prezzo da settare
 	 */
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
 
-	/**
-	 * @return the prezzoTotale
-	 * @uml.property name="prezzoTotale"
+	/** Restituisce il prezzo totale
+	 * @return prezzoTotale
 	 */
 	public float getPrezzoTotale() {
 		return prezzoTotale;
 	}
 
-	/**
-	 * @param prezzoTotale
-	 *            the prezzoTotale to set
-	 * @uml.property name="prezzoTotale"
+	/** Setter del prezzo totale
+	 * @param prezzoTotale		Prezzo totale da settare
 	 */
 	public void setPrezzoTotale(float prezzoTotale) {
 		this.prezzoTotale = prezzoTotale;
 	}
 
-	/*
-	 * public int getProgressBar() { return progressBar.getValue(); }
-	 * 
-	 * public void setProgressBar(int value) {
-	 * this.progressBar.setVisible(true); this.progressBar.setValue(value); }
-	 */
-
-	/**
-	 * @return the configurazioneScelta
+	/** Restituisce l'array di componenti che costituiscono la configurazione scelta
+	 * @return configurazioneScelta
 	 */
 	public Componente[] getConfigurazioneScelta() {
 		return configurazioneScelta;
 	}
 
-	/**
-	 * @param configurazioneScelta
-	 *            the configurazioneScelta to set
+	/** Setter della configurazione scelta
+	 * @param configurazioneScelta		Configurazione da settare
 	 */
 	public void setConfigurazioneScelta(Componente[] configurazioneScelta) {
 		this.configurazioneScelta = configurazioneScelta;

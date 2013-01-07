@@ -2,26 +2,33 @@ package modello;
 
 import java.io.Serializable;
 
+/**
+ * Classe Configurazione: modello di una configurazione di componenti scelta
+ * per un computer.
+ * Implementa Serializable.
+ * @author  Veronica
+ * @author Gabriele
+ * @version 3.0 Jan 3, 2013.
+ */
 public class Configurazione implements Serializable{
 	
-	
-	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/** 
-	 * @uml.property name="componenti"
-	 * @uml.associationEnd multiplicity="(0 -1)" dimension="1" ordering="true" inverse="configurazione:modello.Componente"
-	 * @uml.association name="composta"
+	/**
+	 * Dichiarazione delle variabili
 	 */
-	private Componente[] componentiConfigurabili;
-	private Componente[] componentiScelti;
-	private Componente[] componentiStandard;
-	private int maxComponentiScelti;
+	private Componente[] componentiConfigurabili;	//Componenti selezionabili per una configurazione di un computer
+	private Componente[] componentiScelti;			//Componenti selezionati
+	private Componente[] componentiStandard;		//Componenti facenti parte della configurazione standard
+	private int maxComponentiScelti;				//Numero di componenti selezionati per una configurazione
 
+	/**
+	 * Primo costruttore della classe Configurazione, setta i componenti configurabili,
+	 * la configurazione standard e il numero di componenti selezionati.
+	 * @param componenti				Componenti configurabili
+	 * @param codiceConfigStandard		Lista di componenti della configurazione standard di un computer
+	 * @param maxComp					Numero di componenti selezionati
+	 */
 	public Configurazione(Componente[] componenti, String[] codiceConfigStandard, int maxComp) {
 		super();
 		setMaxComponentiScelti(maxComp);
@@ -32,6 +39,12 @@ public class Configurazione implements Serializable{
 	
 	
 
+	/**
+	 * Secondo costruttore della classe Configurazione, setta i componenti scelti
+	 * e il numero di componenenti scelti.
+	 * @param componentiScelti			Componenti scelti
+	 * @param maxComponentiScelti		Numero di componenti scelti
+	 */
 	public Configurazione(Componente[] componentiScelti, int maxComponentiScelti) {
 		super();
 		this.componentiScelti = componentiScelti;
@@ -41,9 +54,9 @@ public class Configurazione implements Serializable{
 
 
 	/**
-	 * @param componenti
-	 * @param configStandard
-	 * Serve per stabilire quali dei componenti configurabili è standard.
+	 * Metodo che permette di stabilire quali dei componenti
+	 * configurabili appartiene alla configurazione standard.
+	 * @param configStandard			Configurazione standard
 	 */
 	private void setConfigurazioneStandard(String[] configStandard) {
 		int numComponenti = configStandard.length;
@@ -57,72 +70,79 @@ public class Configurazione implements Serializable{
 			}
 		}
 	}
+	
+	/**
+	 * Metodo che permette di settare una configurazione scelta arbitrariamente.
+	 */
+	public void setConfigurazioneScelta(int indexComponenti, int indexConfigScelta){
+		
+		componentiScelti[indexConfigScelta]=componentiConfigurabili[indexComponenti];
+		
+	}
 
 	/** 
-	 * Getter of the property <tt>componenti</tt>
-	 * @return  Returns the componenti.
-	 * @uml.property  name="componenti"
+	 * Getter of componenti
+	 * @return componenti
 	 */
 	public Componente[] getComponenti() {
 		return componentiConfigurabili;
 	}
 
 	/** 
-	 * Setter of the property <tt>componenti</tt>
-	 * @param componenti  The componenti to set.
-	 * @uml.property  name="componenti"
+	 * Setter of componenti
+	 * @param componenti
 	 */
 	public void setComponenti(Componente[] componenti) {
 		this.componentiConfigurabili = componenti;
 	}
 
-		
-		/**
-		 */
-		public void setConfigurazioneScelta(int indexComponenti, int indexConfigScelta){
-			
-			componentiScelti[indexConfigScelta]=componentiConfigurabili[indexComponenti];
-			
-		}
+	/**
+	 * Getter of componentiScelti
+	 * @return componentiScelti
+	 */
+	public Componente[] getComponentiScelti() {
+		return componentiScelti;
+	}
 
-		public Componente[] getComponentiScelti() {
-			return componentiScelti;
-		}
+	/**
+	 * Setter of componentiScelti
+	 * @param componentiScelti
+	 */
+	public void setComponentiScelti(Componente[] componentiScelti) {
+		this.componentiScelti = componentiScelti;
+	}
 
-		public void setComponentiScelti(Componente[] componentiScelti) {
-			this.componentiScelti = componentiScelti;
-		}
+	/**
+	 * Getter of componentiStandard
+	 * @return componentiStandard
+	 */
+	public Componente[] getComponentiStandard() {
+		return componentiStandard;
+	}
 
-		/**
-		 * @return the componentiStandard
-		 */
-		public Componente[] getComponentiStandard() {
-			return componentiStandard;
-		}
+	/**
+	 * Setter of componentiStandard
+	 * @param componentiStandard
+	 */
+	public void setComponentiStandard(Componente[] componentiStandard) {
+		this.componentiStandard = componentiStandard;
+	}
 
-		/**
-		 * @param componentiStandard the componentiStandard to set
-		 */
-		public void setComponentiStandard(Componente[] componentiStandard) {
-			this.componentiStandard = componentiStandard;
-		}
+	/**
+	 * Getter of maxComponentiScelti
+	 * @return maxComponentiScelti
+	 */
+	public int getMaxComponentiScelti() {
+		return maxComponentiScelti;
+	}
 
-		/**
-		 * @return the maxComponentiScelti
-		 */
-		public int getMaxComponentiScelti() {
-			return maxComponentiScelti;
-		}
-
-		/**
-		 * @param maxComponentiScelti the maxComponentiScelti to set
-		 */
-		public void setMaxComponentiScelti(int maxComponentiScelti) {
-			this.maxComponentiScelti = maxComponentiScelti;
-		}
-		
-		
-		
+	/**
+	 * Setter of maxComponentiScelti
+	 * @param maxComponentiScelti
+	 */
+	public void setMaxComponentiScelti(int maxComponentiScelti) {
+		this.maxComponentiScelti = maxComponentiScelti;
+	}
 		
 
 }
