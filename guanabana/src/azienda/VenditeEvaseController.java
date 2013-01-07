@@ -39,7 +39,7 @@ public class VenditeEvaseController implements ActionListener, ItemListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().compareTo("Ordini evase")==0){
+		if(e.getActionCommand().compareTo("Ordini evasi")==0){
 			refreshFinestra("SPEDITO", "ANNULLATO");
 		}
 		

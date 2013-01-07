@@ -25,46 +25,41 @@ import modello.Server;
 import connectionInterface.InterfacciaAzienda;
 import connectionInterface.InterfacciaCliente;
 
-import java.util.Collection;
-
 
 /**
- * @author  Veronica
+ * Classe ServizioServer: Classe che rende effettivamente disponibile
+ * la connessione al database.
+ * Implementa InterfacciaCliente, InterfacciaAzienda e Runnable.
+ * @author Gabriele
+ * @author Veronica
+ * @version 3.0 Jan 3, 2013.
  */
 public class ServizioServer implements InterfacciaCliente, Runnable, InterfacciaAzienda{
-	
-	private Socket client;
-	/**
-	 * @uml.property  name="db"
-	 * @uml.associationEnd  
-	 */
-	private DataBase db;
-	/**
-	 * @uml.property  name="cliente1"
-	 * @uml.associationEnd  
-	 */
-	private Cliente cliente = new modello.Cliente();;
-	/**
-	 * @uml.property  name="computers"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
-	 */
-	private Computer[] computers;
-	/**
-	 * @uml.property  name="componenti"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
-	 */
-	private Componente[] componenti;
 
+	/**
+	 * Dichiarazione delle variabili
+	 */
+	private Socket client;
+	private DataBase db;
+	private Cliente cliente = new modello.Cliente();
+	private Computer[] computers;
+	private Componente[] componenti;
+	private static ServerSocket serverSocket;
+
+	/**
+	 * Costruttore del servizio server: crea un nuovo oggetto DataBase
+	 * @param client
+	 */
 	public ServizioServer(Socket client) {
 		super();
 		this.client = client;
 		try {
 			db= new DataBase();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Data base non trovato");
+			System.out.println("DataBase non trovato");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Impossibile collegarsi con il Data base");
+			System.out.println("Impossibile collegarsi con il DataBase");
 			e.printStackTrace();
 		}
 	}
@@ -288,6 +283,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 
 	}
 
+	@Override
 	public Computer[] cercaModelli(String tipo, int numComputer) {
 		//Dichiarazione variabile locali
 		String[][] modelli = new String[numComputer][2];
@@ -335,6 +331,12 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		return comp;
 	}
 	
+	/**
+	 * Metodo che permette di cercare i componenti configurabili per un tipo di computer
+	 * @param tipo			Tipo di computer
+	 * @return componenti	Componenti configurabili
+	 * @throws SQLException
+	 */
 	private Componente[] cercaComponentiComputer(String tipo) throws SQLException{
 		int rows = 0;
 		int maxCol = 3;
@@ -350,9 +352,10 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	}
 	
 	/**
-	 * @param nome
-	 * @param tipo
-	 * @return restituisce una parametro di tipo un array di String di lunghezza variabile
+	 * Metodo per cercare la configurazione standard di un modello di computer.
+	 * @param nome			Nome del computer
+	 * @param tipo			Tipo di computer
+	 * @return string 		Configurazione standard
 	 * @throws SQLException
 	 */
 	private String[] cercaConfigurazioneDefault(String nome, String tipo) throws SQLException{
@@ -378,6 +381,10 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		
 	}
 	
+	/**
+	 * Main: apre la connessione con il server
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		try {
 			serverSocket = new ServerSocket(4000);
@@ -410,24 +417,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		setCliente(new Cliente(cf, nome, cognome, email, indirizzo, telefono, password));
 		return cliente;
 	}
-
-
-	/**
-	 * @return  the computers
-	 * @uml.property  name="computers"
-	 */
-	public Computer[] getComputers() {
-		return computers;
-	}
-
-	/**
-	 * @param computers  the computers to set
-	 * @uml.property  name="computers"
-	 */
-	public void setComputers(Computer[] computers) {
-		this.computers = computers;
-	}
-
+	
 	@Override
 	public int conta(String cosa) {
 		
@@ -441,75 +431,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			}
 		
 	}
-
-	/**
-	 * @uml.property  name="dataBase"
-	 * @uml.associationEnd  
-	 */
-	private DataBase dataBase;
-
-	/**
-	 * Getter of the property <tt>dataBase</tt>
-	 * @return  Returns the dataBase.
-	 * @uml.property  name="dataBase"
-	 */
-	public DataBase getDataBase() {
-		return dataBase;
-	}
-
-	/**
-	 * Setter of the property <tt>dataBase</tt>
-	 * @param dataBase  The dataBase to set.
-	 * @uml.property  name="dataBase"
-	 */
-	public void setDataBase(DataBase dataBase) {
-		this.dataBase = dataBase;
-	}
-
-	/**
-	 * @uml.property  name="computer"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="servizioServer:modello.Computer"
-	 * @uml.association  name="cerca"
-	 */
-	private Collection<?> computer;
-	private static ServerSocket serverSocket;
-
-	/**
-	 * Getter of the property <tt>computer</tt>
-	 * @return  Returns the computer.
-	 * @uml.property  name="computer"
-	 */
-	public Collection<?> getComputer() {
-		return computer;
-	}
-
-	/**
-	 * Setter of the property <tt>computer</tt>
-	 * @param computer  The computer to set.
-	 * @uml.property  name="computer"
-	 */
-	public void setComputer(Collection<?> computer) {
-		this.computer = computer;
-	}
-
-	/**
-	 * Getter of the property <tt>cliente1</tt>
-	 * @return  Returns the cliente.
-	 * @uml.property  name="cliente"
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * Setter of the property <tt>cliente1</tt>
-	 * @param cliente1  The cliente1 to set.
-	 * @uml.property  name="cliente"
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
+	
 	@Override
 	public Ordine creaOrdine(Computer comp, float prezzoTotale, Cliente cliente)
 			throws IOException {
@@ -791,6 +713,15 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		return ordini;
 	}
 	
+	/**
+	 * Metodo che inizializza un pagamento con il corrispondente tipo di pagamento.
+	 * @param ordine			Ordine relativo al pagamento
+	 * @param tipoPagamento		Tipo di pagamento (bonifico, carta di credito, contrassegno)
+	 * @param numPagamento		Numero del pagamento
+	 * @param confermato		True se il pagamento è confermato, false altrimenti
+	 * @return pagamento		Pagamento inizializzato con tipo corrispondente
+	 * @throws SQLException
+	 */
 	private Pagamento istanziarePagamento(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) throws SQLException{
 		Pagamento pagamento = null;
 		String[] args = new String[2];
@@ -892,9 +823,36 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 		
 	}
 
-	
+	/**
+	 * Getter of computers
+	 * @return computers
+	 */
+	public Computer[] getComputers() {
+		return computers;
+	}
 
-	
+	/**
+	 * Setter of computers
+	 * @param computers
+	 */
+	public void setComputers(Computer[] computers) {
+		this.computers = computers;
+	}
 
+	/**
+	 * Getter of cliente
+	 * @return cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	/**
+	 * Setter of cliente
+	 * @param cliente
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 }

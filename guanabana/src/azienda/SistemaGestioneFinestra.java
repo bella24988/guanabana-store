@@ -139,7 +139,7 @@ public class SistemaGestioneFinestra extends JFrame {
 
 		VenditeEvaseController veEvaseController = new VenditeEvaseController(
 				this);
-		JMenuItem mntmOrdiniEvase = new JMenuItem("Ordini evase");
+		JMenuItem mntmOrdiniEvase = new JMenuItem("Ordini evasi");
 		mnVendite.add(mntmOrdiniEvase);
 
 		mntmOrdiniEvase.setBackground(Color.white);
