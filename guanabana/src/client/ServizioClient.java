@@ -442,18 +442,11 @@ public class ServizioClient implements InterfacciaCliente {
 	    props.put("mail.smtp.port", "587");
 	    props.put("mail.smtp.auth", "true");
 
-	    //String[] to = {"to@gmail.com"}; // added this line
-
 	    Session session = Session.getDefaultInstance(props, null);
 	    MimeMessage message = new MimeMessage(session);
 	    message.setFrom(new InternetAddress(from));
 
 	    InternetAddress toAddress = new InternetAddress(to);
-
-	    System.out.println(to);
-	   
-	    System.out.println(Message.RecipientType.TO);
-
 	    
 	    message.addRecipient(Message.RecipientType.TO, toAddress);
 	    
@@ -463,7 +456,6 @@ public class ServizioClient implements InterfacciaCliente {
 	    transport.connect(host, from, pass);
 	    transport.sendMessage(message, message.getAllRecipients());
 	    transport.close();
-	
 	}
 
 	@Override
