@@ -13,7 +13,7 @@ public class Desktop extends Computer {
 
 	/**
 	 * Primo costruttore di un computer desktop,
-	 * setta nome e prezzo, nonchè il tipo di computer: DESKTOP
+	 * setta nome e prezzo, nonche' il tipo di computer: DESKTOP
 	 * @param nome			Nome del computer
 	 * @param prezzo		Prezzo del computer
 	 */

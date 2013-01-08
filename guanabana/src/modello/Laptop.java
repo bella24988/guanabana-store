@@ -13,7 +13,7 @@ public class Laptop extends Computer {
 	
 	/**
 	 * Primo costruttore di un computer laptop,
-	 * setta nome e prezzo, nonchè il tipo di computer: LAPTOP
+	 * setta nome e prezzo, nonche' il tipo di computer: LAPTOP
 	 * @param nome			Nome del computer
 	 * @param prezzo		Prezzo del computer
 	 */

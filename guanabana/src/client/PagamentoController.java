@@ -123,7 +123,7 @@ public class PagamentoController implements ActionListener {
 	/**
 	 * Validazione dei campi del form di pagamento, ottenuta con Java Pattern
 	 * @param p
-	 * @return true or false se il form è rispettivamente valido o non valido
+	 * @return true or false se il form e' rispettivamente valido o non valido
 	 */
 	private boolean validate(PagamentoPanel p) {
 
@@ -156,7 +156,7 @@ public class PagamentoController implements ActionListener {
 			}
 
 			if (!codSicurezzaMatcher.matches()) {
-				p.mostraMessaggioErrore("Il codice di sicurezza è di tre cifre \ne si trova sul retro della carta");
+				p.mostraMessaggioErrore("Il codice di sicurezza e' di tre cifre \ne si trova sul retro della carta");
 				return false;
 			}
 

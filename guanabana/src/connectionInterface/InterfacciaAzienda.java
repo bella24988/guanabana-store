@@ -62,7 +62,7 @@ public interface InterfacciaAzienda {
 	
 	/**
 	 * Metodo che permette di confermare il pagamento di un ordine.
-	 * @param valore				True se il pagamento è confermato, false altrimenti
+	 * @param valore				True se il pagamento e' confermato, false altrimenti
 	 * @param i						Indice dell'ordine
 	 * @throws IOException
 	 * @throws ClassNotFoundException

@@ -323,7 +323,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			
 			
 		} catch (SQLException e) {
-			System.out.println("Non Ë possibile collegarsi con il db oppure db vuoto. ERRORE: "+e);
+			System.out.println("Non e' possibile collegarsi con il db oppure db vuoto. ERRORE: "+e);
 			e.printStackTrace();
 			return null;
 		}//Chiamata funzione al db
@@ -411,7 +411,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Non Ë possibile collegarsi con il DB. ERRORE: "+e);
+			System.out.println("Non e' possibile collegarsi con il DB. ERRORE: "+e);
 			return null;
 		}
 		setCliente(new Cliente(cf, nome, cognome, email, indirizzo, telefono, password));
@@ -718,7 +718,7 @@ public class ServizioServer implements InterfacciaCliente, Runnable, Interfaccia
 	 * @param ordine			Ordine relativo al pagamento
 	 * @param tipoPagamento		Tipo di pagamento (bonifico, carta di credito, contrassegno)
 	 * @param numPagamento		Numero del pagamento
-	 * @param confermato		True se il pagamento è confermato, false altrimenti
+	 * @param confermato		True se il pagamento e' confermato, false altrimenti
 	 * @return pagamento		Pagamento inizializzato con tipo corrispondente
 	 * @throws SQLException
 	 */

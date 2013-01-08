@@ -25,7 +25,7 @@ import modello.Pagamento;
 import connectionInterface.InterfacciaAzienda;
 
 /**
- * Classe ClientAzienda: è la classe che rende disponibile
+ * Classe ClientAzienda: e' la classe che rende disponibile
  * il servizio che permette la comunicazione fra client e server per
  * il pacchetto rivolto all'azienda.
  * Implementa InterfacciaAzienda.
@@ -46,7 +46,6 @@ public class ClientAzienda implements InterfacciaAzienda{
 	
 	/**
 	 * Costruttore del servizio client-server
-	 * @param host
 	 */
 	public ClientAzienda() {
 		super();

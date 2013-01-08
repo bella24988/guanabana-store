@@ -17,7 +17,7 @@ import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 
 /**
- * Classe PagamentoPanel: pannello che permette di selezionare le modalitˆ di pagamento
+ * Classe PagamentoPanel: pannello che permette di selezionare le modalita' di pagamento
  * (carta di credito, bonifico o contrassegno) e di procedere effettivamente al pagamento.
  * @author Gabriele
  * @author Veronica

@@ -50,7 +50,7 @@ public class RegistratiView extends JPanel {
 			txtCitta, txtVia, txtProvincia, txtCap, txtStato, txtTelefono };
 
 	private static String[] labels = { "Nome:", "Cognome:", "C.F.:", "Email:",
-			"Cittˆ:", "Via:", "Provincia:", "CAP:", "Stato:", "Telefono:",
+			"Citta':", "Via:", "Provincia:", "CAP:", "Stato:", "Telefono:",
 			"Password:", "Conferma Password:" };
 
 	JTextPane txaMessaggioErrore;

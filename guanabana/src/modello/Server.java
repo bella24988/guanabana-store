@@ -13,7 +13,7 @@ public class Server extends Computer {
 	
 	/**
 	 * Primo costruttore di un computer server,
-	 * setta nome e prezzo, nonchè il tipo di computer: SERVER
+	 * setta nome e prezzo, nonche' il tipo di computer: SERVER
 	 * @param nome			Nome del computer
 	 * @param prezzo		Prezzo del computer
 	 */

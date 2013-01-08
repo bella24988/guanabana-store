@@ -24,7 +24,7 @@ public class CartaCredito extends Pagamento {
 	 * @param ordine				Ordine pagato con carta di credito
 	 * @param tipoPagamento			Tipo di pagamento
 	 * @param numPagamento			Numero di pagamento
-	 * @param confermato			True se il pagamento è confermato, false altrimenti
+	 * @param confermato			True se il pagamento e' confermato, false altrimenti
 	 */
 	public CartaCredito(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super(ordine, "Carta di Credito", numPagamento, confermato);

@@ -16,7 +16,7 @@ public class Contrassegno extends Pagamento {
 	 * @param ordine			Ordine pagato con contrassegno
 	 * @param tipoPagamento		Tipo di pagamento
 	 * @param numPagamento		Numero di pagamento
-	 * @param confermato		True se il pagamento è confermato, false altrimenti
+	 * @param confermato		True se il pagamento e' confermato, false altrimenti
 	 */
 	public Contrassegno(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super(ordine, "Contrassegno", numPagamento, confermato);

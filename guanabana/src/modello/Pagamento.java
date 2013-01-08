@@ -18,7 +18,7 @@ public class Pagamento implements Serializable{
 	 */
 	private String tipoPagamento;		//Tipo di pagamento (bonifico, contrassegno o carta di credito)
 	private int numPagamento;			//Numero del pagamento
-	private boolean confermato;			//True se il pagamento è confermato, false altrimenti
+	private boolean confermato;			//True se il pagamento e' confermato, false altrimenti
 	private Ordine ordine = null;		//Ordine pagato
 	private Fattura fattura = null;		//Fattura del pagamento
 	
@@ -27,7 +27,7 @@ public class Pagamento implements Serializable{
 	 * @param ordine					Ordine pagato
 	 * @param tipoPagamento				Tipo di pagamento
 	 * @param numPagamento				Numero del pagamento
-	 * @param confermato				True se il pagamento è confermato, false altrimenti
+	 * @param confermato				True se il pagamento e' confermato, false altrimenti
 	 */
 	public Pagamento(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super();

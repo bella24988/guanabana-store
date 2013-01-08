@@ -21,7 +21,7 @@ public class Bonifico extends Pagamento {
 	 * @param ordine				Ordine pagato con bonifico
 	 * @param tipoPagamento			Tipo di pagamento
 	 * @param numPagamento			Numero di pagamento
-	 * @param confermato			True se il pagamento è confermato, false altrimenti
+	 * @param confermato			True se il pagamento e' confermato, false altrimenti
 	 */
 	public Bonifico(Ordine ordine, String tipoPagamento, int numPagamento, boolean confermato) {
 		super(ordine, "Bonifico", numPagamento, confermato);

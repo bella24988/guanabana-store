@@ -43,15 +43,15 @@ public class ConfigPanel extends JPanel {
 					"WAR" } };
 	private static final String[][] labels = {
 			{ "Memoria RAM:", "Processore:", "Hard Disk (obbligatorio):",
-					"Scheda Grafica:", "Unitˆ ottica:", "Garanzia:" },
+					"Scheda Grafica:", "Unita' ottica:", "Garanzia:" },
 			{ "Memoria RAM:", "Processore:", "Mouse:",
 					"Hard Disk (obbligatorio):", "Hard Disk (opzionale):",
-					"Scheda Grafica:", "Unitˆ ottica:", "Garanzia:",
+					"Scheda Grafica:", "Unita' ottica:", "Garanzia:",
 					"Tastiera:", "Monitor:" },
 			{ "Memoria RAM:", "Processore:", "Multilevel Cell:",
 					"Hard Disk (obbligatorio):", "Hard Disk (opzionale 1):",
 					"Hard Disk (opzionale2):", "Hard Disk (opzionale 3):",
-					"Unitˆ ottica:", "Scheda PCI:", "Garanzia:" } };
+					"Unita' ottica:", "Scheda PCI:", "Garanzia:" } };
 
 	private static final String[] lblComp = { "Laptop", "Desktop", "Server" };
 	
@@ -154,7 +154,7 @@ public class ConfigPanel extends JPanel {
 	 * @param indexTipoComp		Tipo di computer
 	 * @param indexComp
 	 * @param conf				Configurazione
-	 * @return
+	 * @return rdbtn			Radio button configurato
 	 */
 	private JRadioButton configButtons(JRadioButton rdbtn, int indexTipoComp,
 			int indexComp, Configurazione conf) {

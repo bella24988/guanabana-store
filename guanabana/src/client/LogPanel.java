@@ -185,7 +185,6 @@ public class LogPanel extends JPanel {
 	/**
 	 *  Mostra salutoPanel una volta fatto il login
 	 * @param cliente
-	 * @param cognome
 	 */
 	public void loginFatto(Cliente cliente) {
 		logController.setCliente(cliente);

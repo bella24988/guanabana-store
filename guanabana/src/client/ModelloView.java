@@ -106,7 +106,7 @@ public class ModelloView extends JPanel {
 
 	/**
 	 * Metodo di supporto a mostraComponente: in base al computer selezionato imposta la configurazione standard e
-	 * l'associa al pannello di preventivo, cos“ da permettere l'aggiornamento in tempo reale del prezzo totale.
+	 * l'associa al pannello di preventivo, permettendo l'aggiornamento in tempo reale del prezzo totale.
 	 * @param comp
 	 */
 	private void setSecondoComputer(Computer comp) {

@@ -28,7 +28,7 @@ import modello.Pagamento;
 import connectionInterface.InterfacciaCliente;
 
 /**
- * Classe ServizioClient: è la classe che rende disponibile
+ * Classe ServizioClient: e' la classe che rende disponibile
  * il servizio che permette la comunicazione fra client e server per
  * il pacchetto rivolto al cliente.
  * Implementa InterfacciaCliente.

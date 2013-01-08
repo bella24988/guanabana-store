@@ -16,7 +16,7 @@ import java.awt.Insets;
  * e permette agli impiegati di magazzino di visualizzare gli ordini
  * da assemblare, quelli pronti per la spedizione, ecc. I dipendenti
  * di magazzino possono quindi segnalare come pronto per la spedizione
- * un ordine ricevuto e giˆ assemblato.
+ * un ordine ricevuto e gia' assemblato.
  * @author Veronica
  * @author Gabriele
  * @version 3.0 Jan 3, 2013.

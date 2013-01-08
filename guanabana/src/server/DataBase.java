@@ -479,12 +479,12 @@ public class DataBase {
 					"and nome = nome_computer and cliente_CF = '"+cf+"' order by ordini.data");
 			j=0;
 			while(result.next()){
-				ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice Ë un intero
-				ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data Ë un timestamp
-				ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale Ë un float
-				ordini[j][3]=result.getString(4);//stato Ë un string
-				ordini[j][4]=result.getString(5); // tipo Ë un string
-				ordini[j][5]=result.getString(6);// nomecomputer Ë un string
+				ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice e' un intero
+				ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data e' un timestamp
+				ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale e' un float
+				ordini[j][3]=result.getString(4);//stato e' un string
+				ordini[j][4]=result.getString(5); // tipo e' un string
+				ordini[j][5]=result.getString(6);// nomecomputer e' un string
 				ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice 
 				ordini[j][7]=result.getString(8);
 				ordini[j][8]=result.getString(9);
@@ -523,11 +523,11 @@ public class DataBase {
 							" from ordini where stato='ORDINATO' and cliente_CF = '"+cf+"' order by data");
 					j=0;
 					while(result.next()){
-						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice Ë un intero
-						ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data Ë un timestamp
-						ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale Ë un float
-						ordini[j][3]=result.getString(4);//stato Ë un string
-						ordini[j][4]=result.getString(5);// nomecomputer Ë un string
+						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice e' un intero
+						ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data e' un timestamp
+						ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale e' un float
+						ordini[j][3]=result.getString(4);//stato e' un string
+						ordini[j][4]=result.getString(5);// nomecomputer e' un string
 						
 						j++;
 					}
@@ -589,13 +589,13 @@ public class DataBase {
 									"ordini.codice = ordine_codice and nome_computer = nome order by ordini.data");
 					j=0;
 					while(result.next()){
-						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice Ë un intero
-						ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data Ë un timestamp
-						ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale Ë un float
-						ordini[j][3]=result.getString(4);//stato Ë un string
-						ordini[j][4]=result.getString(5); // tipo Ë un string
-						ordini[j][5]=result.getString(6);// nomecomputer Ë un string
-						ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice Ë un float
+						ordini[j][0]=String.valueOf(result.getInt(1)); //ordine.codice e' un intero
+						ordini[j][1]=String.valueOf(result.getTimestamp(2));//ordini.data e' un timestamp
+						ordini[j][2]=String.valueOf(result.getFloat(3));//ordini.totale e' un float
+						ordini[j][3]=result.getString(4);//stato e' un string
+						ordini[j][4]=result.getString(5); // tipo e' un string
+						ordini[j][5]=result.getString(6);// nomecomputer e' un string
+						ordini[j][6]=String.valueOf(result.getInt(7));//pagamenti.codice e' un float
 						ordini[j][7]=result.getString(8);
 						ordini[j][8]=String.valueOf(result.getByte(9));
 						ordini[j][9]=String.valueOf(result.getString(10));
@@ -637,7 +637,7 @@ public class DataBase {
 
 	/**
 	 * Metodo per confermare un pagamento
-	 * @param valore				True se il pagamento è confermato, false altrimenti
+	 * @param valore				True se il pagamento e' confermato, false altrimenti
 	 * @param codicePagamento		Codice del pagamento
 	 * @throws SQLException
 	 */

@@ -151,7 +151,7 @@ public class Fattura implements Serializable{
 		table.addCell(String.valueOf(ordine.getPrezzo()));
 		
 		Paragraph piePagina = new Paragraph("Grazie per l'acquisto! \nA seconda del metodo di pagamento scelto, possono essere necessari fino a 7 giorni lavorativi per l'elaborazione dell'ordine. Per i pagamenti tramite bonifico, vi saranno richiesti i vostri estremi bancari per addebitare l'importo sul vostro conto." +
-				"\nNon vi verrà addebitato nessun costo sulla vostra carta di credito finchè l'ordine non risulterà spedito. Per qualsiasi tipo di annullamento dell'ordine prima della spedizione, l'importo dell'autorizzazione trattenuto sulla vostra carta verrà restituito entro 3 giorni dalla società erogatrice della carta di credito." +
+				"\nNon vi verra' addebitato nessun costo sulla vostra carta di credito finche' l'ordine non risultera' spedito. Per qualsiasi tipo di annullamento dell'ordine prima della spedizione, l'importo dell'autorizzazione trattenuto sulla vostra carta verra' restituito entro 3 giorni dalla societa' erogatrice della carta di credito." +
 				"\nData: "+getData(), style1);
 		piePagina.setAlignment(Element.ALIGN_CENTER);
 		

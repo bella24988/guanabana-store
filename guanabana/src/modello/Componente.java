@@ -26,7 +26,7 @@ public class Componente implements Serializable{
 	private String nome;     //nome del componente
 	private float prezzo;    //prezzo del componente
 	private boolean standard;//true se il componente fa parte della configurazione standard, false altrimenti
-	private boolean scelto;  //true se il componente è stato scelto in una configurazione, false altrimenti
+	private boolean scelto;  //true se il componente e' stato scelto in una configurazione, false altrimenti
 
 
 	

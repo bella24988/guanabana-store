@@ -209,8 +209,8 @@ public class Ordine implements Serializable{
 	
 	/**
 	 * Metodo che permette di verificare lo stato del pagamento di un ordine.
-	 * @param confermato			True se il pagamento è confermato, false altrimenti
-	 * @return "Pagato" se il pagamento è confermato, "Non pagato" altrimenti
+	 * @param confermato			True se il pagamento e' confermato, false altrimenti
+	 * @return "Pagato" se il pagamento e' confermato, "Non pagato" altrimenti
 	 */
 	private String statoPagamento(boolean confermato) {
 		 if(confermato){

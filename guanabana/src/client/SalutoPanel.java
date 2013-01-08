@@ -162,7 +162,7 @@ public class SalutoPanel extends JPanel {
 
 	/**
 	 * Setter of logPanel
-	 * @param logPanel
+	 * @param panel
 	 */
 	public void setLogPanel(LogPanel panel) {
 		this.logPanel = panel;
