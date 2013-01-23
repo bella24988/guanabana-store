@@ -183,7 +183,7 @@ public class LogPanel extends JPanel {
 	}
 
 	/**
-	 *  Mostra salutoPanel una volta fatto il login
+	 * Mostra salutoPanel una volta fatto il login
 	 * @param cliente
 	 */
 	public void loginFatto(Cliente cliente) {
