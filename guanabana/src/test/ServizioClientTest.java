@@ -12,8 +12,9 @@ import org.junit.Test;
 import client.ServizioClient;
 
 /**
- * @author Gab
- *
+ * Classe di test Junit
+ * @author Gabriele
+ * @author Veronica
  */
 public class ServizioClientTest {
 
