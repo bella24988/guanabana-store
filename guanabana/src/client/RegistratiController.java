@@ -3,6 +3,7 @@ package client;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.mail.MessagingException;
@@ -82,27 +83,39 @@ public class RegistratiController implements ActionListener {
 					client = new ServizioClient(registrati.getLogPanel().getContenuto()
 							.getHost());
 					try {
-						try {
-							cliente = client
-									.registraNuovoCliente(
-											registrati.getTxtCf(), registrati
-													.getTxtNome(), registrati
-													.getTxtCognome(),
-											registrati.getTxtEmail(),
-											indirizzo, registrati
-													.getTxtTelefono(), String
-													.valueOf(registrati
-															.getTxtPassword()));
+							try {
+								cliente = client
+										.registraNuovoCliente(
+												registrati.getTxtCf(), registrati
+														.getTxtNome(), registrati
+														.getTxtCognome(),
+												registrati.getTxtEmail(),
+												indirizzo, registrati
+														.getTxtTelefono(), String
+														.valueOf(registrati
+																.getTxtPassword()));
+								
+							} catch (IOException e1) {
+								e1.printStackTrace();
+								registrati.mostraMessaggio("Errore: cliente già registrato");
+							}
 
-							if (client != null) {
+						if(cliente != null){
 
-								registrati.setTxtNome(cliente.getNome() + " "
-										+ cliente.getCognome());
-								registrati.getLogPanel().getContenuto()
-										.setClienteLoggato(cliente);
-								client.inviaEmailConferma(registrati.getTxtEmail(),//email cliente
-										cliente.getMessaggio(),//messaggio della email
-										"Guanabana - Registrazione");//subject della email
+								
+								try {
+									registrati.setTxtNome(cliente.getNome() + " "
+											+ cliente.getCognome());
+									registrati.getLogPanel().getContenuto()
+											.setClienteLoggato(cliente);
+									client.inviaEmailConferma(registrati.getTxtEmail(),//email cliente
+											cliente.getMessaggio(),//messaggio della email
+											"Guanabana - Registrazione");
+								} catch (UnknownHostException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+									registrati.mostraMessaggio("Errore, non è possibile registrarsi con questa email");
+								}//subject della email
 
 								if (registrati.getLogPanel().getContenuto()
 										.getWaitForBuy() == true) {
@@ -111,10 +124,8 @@ public class RegistratiController implements ActionListener {
 											.continuaOperazione();
 
 								}
-
-							} else
-								registrati
-										.mostraMessaggio("Errore al registrarsi");
+								registrati.nascondiFinestra(cliente);
+						}
 						} catch (ClassNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -124,12 +135,9 @@ public class RegistratiController implements ActionListener {
 						} catch (MessagingException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
+							registrati.mostraMessaggio("Errore con il server");
 						}
-					} catch (IOException e1) {
-						e1.printStackTrace();
-						registrati.mostraMessaggio("Errore con il server");
-					}
-					registrati.nascondiFinestra(cliente);
+
 
 				} else {
 					registrati.mostraMessaggio("Le password non coincidono");
